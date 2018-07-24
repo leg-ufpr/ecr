@@ -1,0 +1,32 @@
+bookdown::gitbook:
+  config:
+    toc:
+      collapse: none
+      scroll_highlight: yes
+      before: null
+      after: null
+    toolbar:
+      position: fixed
+    edit : null
+    download: [pdf, epub, mobi]
+    search: yes
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+    sharing:
+      facebook: yes
+      twitter: yes
+      google: yes
+      all: ['facebook', 'google', 'twitter']
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+  keep_tex: yes
+  template: null
+  #pandoc_args: --top-level-division=chapter
+  toc_depth: 3
+  toc_unnumbered: no
+  #toc_appendix: yes
+  #quote_footer: ["\\VA{", "}{}"]
+bookdown::epub_book: default

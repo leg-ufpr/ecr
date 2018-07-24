@@ -1,0 +1,4 @@
+book_filename: "EstatComp1"
+output_dir: "docs"
+before_chapter_script: "setup_knitr.R"
+delete_merged_file: true

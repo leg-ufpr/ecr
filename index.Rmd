@@ -1,0 +1,28 @@
+---
+title: "Introdução à Estatística Computacional"
+author:
+- "Fernando P. Mayer"
+- "Wagner H. Bonat"
+date: |
+   | Laboratório de Estatística e Geoinformação (LEG)
+   | Departamento de Estatística (DEST)
+   | Universidade Federal do Paraná (UFPR)
+   |
+   | 2018-07-24
+   | Última atualização: `r Sys.Date()`
+#site: "bookdown::bookdown_site"
+documentclass: book
+classoption: a4paper
+colorlinks: yes
+fontsize: 10pt
+geometry: margin=3cm
+#lot: yes
+#lof: yes
+#bibliography: [book.bib, packages.bib]
+#biblio-style: apalike
+#link-citations: yes
+---
+
+# Prefácio {-}
+
+Alguma coisa aqui.
