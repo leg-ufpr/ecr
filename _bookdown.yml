@@ -1,4 +1,4 @@
-book_filename: "EstatComp1"
+book_filename: "ecr"
 output_dir: "docs"
 before_chapter_script: "setup_knitr.R"
 delete_merged_file: true

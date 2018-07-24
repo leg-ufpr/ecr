@@ -24,9 +24,8 @@ bookdown::pdf_book:
     in_header: latex/preamble.tex
   keep_tex: yes
   template: null
-  #pandoc_args: --top-level-division=chapter
   toc_depth: 3
   toc_unnumbered: no
+  #pandoc_args: --top-level-division=chapter
   #toc_appendix: yes
-  #quote_footer: ["\\VA{", "}{}"]
 bookdown::epub_book: default

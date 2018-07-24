@@ -256,7 +256,7 @@ knitr::include_graphics("img/script-workspacedata.png")
 - O mais importante é salvar o **código**, assim sabemos **como**
   chegamos a determinado resultado, e podemos recriá-lo depois
 
-## Finalizando o programa
+### Finalizando o programa
 
 A qualquer momento durante uma sessão você pode usar o comando
 ```{r, prompt=TRUE, eval=FALSE}

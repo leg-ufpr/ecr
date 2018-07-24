@@ -1,5 +1,5 @@
 ---
-title: "Introdução à Estatística Computacional"
+title: "Estatística Computacional com R"
 author:
 - "Fernando P. Mayer"
 - "Wagner H. Bonat"
