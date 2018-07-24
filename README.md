@@ -22,7 +22,10 @@ também é necessário uma instalação do LaTeX.
 
 ```r
 library(bookdown)
-render_book()
+## Para renderizar somente o HTML
+render_book("index.Rmd")
+## Para renderizar todos os fromatos (HTML, PDF, EPUB)
+render_book("index.Rmd", output_format = "all")
 ```
 
 ### Licença
