@@ -1,5 +1,7 @@
 # ecr
 
+[![Build Status](https://travis-ci.org/leg-ufpr/ecr.svg?branch=master)](https://travis-ci.org/leg-ufpr/ecr)
+
 ## Estatística Computacional com R
 
 Material (**em desenvolvimento**) da disciplina CE083 - Estatística
