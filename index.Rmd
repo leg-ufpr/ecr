@@ -26,3 +26,11 @@ link-citations: yes
 # Prefácio {-}
 
 Alguma coisa aqui.
+
+## Informação de Sessão
+
+```{r, echo = FALSE, results = "hold"}
+cat(format(Sys.time(), format = "%A, %d %B, %Y, %H:%M"),
+    "----------------------------------------", sep = "\n")
+sessionInfo()
+```

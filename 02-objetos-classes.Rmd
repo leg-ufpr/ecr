@@ -1,4 +1,6 @@
-# Funções e argumentos
+# Objetos e classes
+
+## Funções e argumentos
 
 ```{r external-code, cache=FALSE, include=FALSE}
 knitr::read_chunk("scripts/objetos-classes-exercicios.R")
@@ -41,7 +43,7 @@ não nomeados estejam na posição correta:
 runif(10, max = 100, min = 1)
 ```
 
-## Outros tipos de argumentos
+### Outros tipos de argumentos
 
 Exemplo: função `sample()`:
 
@@ -69,7 +71,7 @@ função `args()`
 args(sample)
 ```
 
-# Mecanismos de ajuda
+## Mecanismos de ajuda
 
 Argumentos e detalhes do funcionamento das funções:
 
@@ -192,7 +194,7 @@ Para atualizar automaticamente todos os pacotes faça
 update.packages(ask = FALSE)
 ```
 
-# Criando uma função
+## Criando uma função
 
 A ideia original do R é transformar usuários em programadores
 
@@ -234,7 +236,7 @@ ola.mundo("Funções são legais")
 
 (Veremos detalhes de funções mais adiante)
 
-## Exercícios 1
+## Exercícios {-}
 
 1. Usando a função `runif()` gere $30$ números aleatórios entre:
     - 0 e 1
@@ -251,7 +253,7 @@ ola.mundo("Funções são legais")
 ```{r ex1, eval=FALSE, include=FALSE}
 ```
 
-# Objetos
+## Objetos
 
 O que é um objeto?
 
@@ -265,7 +267,7 @@ Por quê objetos?
 
 Programação:
 
-- Objetos &nbsp; &rArr; &nbsp; Classes &nbsp; &rArr; &nbsp; Métodos
+- Objetos $\Rightarrow$ Classes $\Rightarrow$ Métodos
 
 > *“Tudo no R é um objeto.”*
 
@@ -349,7 +351,7 @@ Note que cada objeto só pode armazenar uma estrutura (um número ou uma
 sequência de valores) de cada vez! (Aqui, o valor $4$ que estava
 armazenado em `y` foi sobrescrito pelos valores acima.)
 
-## Nomes de objetos
+### Nomes de objetos
 
 - Podem ser formados por letras, números, "`_`", e "`.`"
 - Não podem começar com número e/ou ponto
@@ -363,7 +365,7 @@ armazenado em `y` foi sobrescrito pelos valores acima.)
 
 `dados` $\neq$ `Dados` $\neq$ `DADOS`
 
-## Gerenciando a área de trabalho
+### Gerenciando a área de trabalho
 
 Liste os objetos criados com a função `ls()`:
 
@@ -395,7 +397,7 @@ trabalho sem perguntar. Depois só é possível recuperar os objetos ao
 rodar os script novamente.
 </div>
 
-## Exercícios 2
+## Exercícios {-}
 
 1. Armazene o resultado da equação $32 + 16^2 - 25^3$ no objeto `x`
 2. Divida `x` por $345$ e armazene em `y`
@@ -410,7 +412,7 @@ rodar os script novamente.
 ```{r ex2, eval=FALSE, include=FALSE}
 ```
 
-# Tipos e classes de objetos
+## Tipos e classes de objetos
 
 Para saber como trabalhar com dados no R, é fundamental entender as
 possíveis estruturas (ou tipos) de dados possíveis. O formato mais
@@ -480,7 +482,7 @@ typeof(x)
 class(x)
 ```
 
-## Vetores numéricos
+### Vetores numéricos
 
 Características:
 
@@ -523,7 +525,7 @@ A diferença pode parecer pequena, mas pode ter um grande impacto
 computacional quando os vetores são formados por milhares ou milhões de
 números.
 
-### Representação numérica dentro do R
+#### Representação numérica dentro do R
 
 Os números que aparecem na tela do console do R são apenas
 representações simplificadas do número real armazenado na memória. Por
@@ -596,7 +598,7 @@ format(x, scientific = TRUE)
 Nessa representação, o valor `r xf[1]` = $2.875775 \times 10^{-01}$ =
 $`r x[1]`$.
 
-### Sequências de números
+#### Sequências de números
 
 Usando a função `seq()`
 
@@ -634,7 +636,7 @@ Para repetir um número da sequência várias vezes
 rep(c(1, 2, 3), each = 5)
 ```
 
-### Operações matemáticas em vetores numéricos
+#### Operações matemáticas em vetores numéricos
 
 Operações podem ser feitas entre um vetor e um número:
 
@@ -650,7 +652,7 @@ num * num
 num + c(2, 4, 1)
 ```
 
-### A Regra da Reciclagem
+#### A Regra da Reciclagem
 
 ```{r, echo=FALSE, out.width='80%'}
 knitr::include_graphics("img/reciclagem.png")
@@ -662,7 +664,7 @@ Agora tente:
 num + c(2, 4, 1, 3)
 ```
 
-## Outros tipos de vetores
+### Outros tipos de vetores
 
 Vetores também podem ter outros tipos:
 
@@ -701,7 +703,7 @@ lógicos utilizados no R são:
 | `%in%`    | `a %in% c(a, b)` | `a` está contido no vetor `c(a, b)`? |
 
 
-## Misturando classes de objetos
+### Misturando classes de objetos
 
 Algumas vezes isso acontece por acidente, mas também pode acontecer de
 propósito.
@@ -760,7 +762,7 @@ as.numeric(x)
 as.logical(x)
 ```
 
-## Valores perdidos e especiais
+### Valores perdidos e especiais
 
 Valores perdidos devem ser definidos como `NA` (*not available*):
 
@@ -801,7 +803,7 @@ A função `is.infinite()` testa se há valores infinitos
 is.infinite(perd)
 ```
 
-## Exercícios 3
+## Exercícios {-}
 
 1.  Crie um objeto com os valores 54, 0, 17, 94, 12.5, 2, 0.9, 15.
     a. Some o objeto acima com os valores 5, 6, e depois com os valores 5,
@@ -834,13 +836,13 @@ is.infinite(perd)
 ```{r ex3, eval=FALSE, include=FALSE}
 ```
 
-# Outras classes
+## Outras classes
 
 Como mencionado na seção anterior, o R possui 6 tipos básicos de
 estrutura de dados, mas diversas classes podem ser construídas a partir
 destes tipos básicos. Abaixo, veremos algumas das mais importantes.
 
-## Fator
+### Fator
 
 Os fatores são parecidos com caracteres no R, mas são armazenados e
 tratados de maneira diferente.
@@ -916,7 +918,7 @@ levels(fator)
 nlevels(fator)
 ```
 
-## Matriz
+### Matriz
 
 Matrizes são vetores que podem ser dispostos em duas dimensões.
 
@@ -973,7 +975,7 @@ class(m)
 typeof(m)
 ```
 
-### Operações matemáticas em matrizes
+#### Operações matemáticas em matrizes
 
 Matriz multiplicada por um escalar
 
@@ -988,7 +990,7 @@ matriz2 <- matrix(1, nrow = 4, ncol = 3)
 matriz %*% matriz2
 ```
 
-## Array
+### Array
 
 Um array é a forma mais geral de uma matriz, pois pode ter $n$
 dimensões.
@@ -1016,7 +1018,7 @@ ar <- array(1:12, dim = c(3, 2, 2))
 ar
 ```
 
-## Lista
+### Lista
 
 Como já vimos, uma lista não é uma "classe" propriamente dita, mas sim
 um tipo de estrutura de dados básico, ao lado dos vetores atômicos. E,
@@ -1064,7 +1066,7 @@ lista
 length(lista)
 ```
 
-## Data frame
+### Data frame
 
 Data frame é a versão bidimensional de uma lista. Data frames **são**
 listas, mas onde cada componente dever ter obrigatoriamente o mesmo
@@ -1143,7 +1145,7 @@ as.numeric(fator)
 ```
 </div>
 
-# Atributos de objetos
+## Atributos de objetos
 
 Um atributo é um pedaço de informação que pode ser "anexado" à qualquer
 objeto, e não irá interferir nos valores daquele objeto. Os atributos
@@ -1254,7 +1256,7 @@ matrizes e data frames.
 `matrix`     | `colnames()`     | `rownames()`
 
 
-## Exercícios 4
+## Exercícios {-}
 
 1.  Crie um objeto para armazenar a seguinte matriz
     $$\left[ \begin{array}{ccc}
@@ -1288,190 +1290,13 @@ matrizes e data frames.
 ```{r ex3, eval=FALSE, include=FALSE}
 ```
 
-# Programação Orientada a Objetos
-
-Como vimos anteriormente, o R é uma linguagem de programação orientada à
-objetos. Dois conceitos fundamentais desse tipo de linguagem são os de
-**classe** e **método**. Já vimos também que todo objeto no R possui uma
-classe (que define sua estrutura) e analisamos algumas delas. O que
-seria então um método? Para responder essa pergunta precisamos entender
-inicialmente os tipos de orientação a objetos que o R possui.
-
-O R possui 3 sitemas de orientação a objetos: **S3**, **S4**, e **RC**:
-
-- **S3**: implementa um estilo de programação orientada a objeto chamada
-  de *generic-function*. Esse é o estilo mais básico de programação em R
-  (e também o mais utilizado). A ideia é que existam **funções
-  genéricas** que decidem qual método aplicar de acordo com a classe do
-  objeto. Os métodos são definidos da mesma forma que qualquer função,
-  mas chamados de amenira diferente. É um estilo de programação mais
-  "informal", mas possibilita uma grande liberdade para o programador.
-- **S4**: é um estilo mais formal, no sentido que que as funções
-  genéricas devem possuir uma classe formal definida. Além disso, é
-  possível também fazer o **despacho múltiplo de métodos**, ao contrário
-  da classe S3.
-- **RC**: (*Reference Classes*, antes chamado de R5) é o sistema mais
-  novo implementado no R. A principal diferença com os sistemas S3 e
-  S4 é que métodos pertencem à objetos, não à funções. Isso faz com que
-  objetos da classe RC se comportem mais como objetos da maioria das
-  linguagens de programação, como Python, Java, e C#.
-
-Nesta sessão vamos abordar como funcionam os métodos como definidos pelo
-sistema S3, por ser o mais utilizado na prática para se criar novas
-funções no R. Para saber mais sobre os outros métodos, consulte o livro
-[Advanced R](http://adv-r.had.co.nz/OO-essentials.html).
-
-Vamos entender como uma função genérica pode ser criada através de um
-exemplo. Usando a função `methods()`, podemos verificar quais métodos
-estão disponíveis para uma determinada função, por exemplo, para a
-função `mean()`:
-
-```{r}
-methods(mean)
-```
-
-O resultado são expressões do tipo `mean.<classe>`, onde `<classe>` é
-uma classe de objeto como aquelas vistas anteriormente. Isso significa
-que a função `mean()`, quando aplicada à um objeto da classe `Date`, por
-exemplo, pode ter um comportamento diferente quando a mesma função for
-aplicada à um objeto de outra classe (numérica).
-
-Suponha que temos o seguinte vetor numérico:
-
-```{r}
-set.seed(1)
-vec <- rnorm(100)
-class(vec)
-```
-
-e queremos calcular sua média. Basta aplicar a função `mean()` nesse
-objeto para obtermos o resultado esperado
-
-```{r}
-mean(vec)
-```
-
-Mas isso só é possível porque existe um método definido espcificamente
-para um vetor da classe `numeric`, que nesse caso é a função
-`mean.default`. A função genérica nesse caso é a `mean()`, e a função
-método é a `mean.default`. Veja que não precisamos escrever onome
-inteiro da função genérica para que ela seja utilizada, como por exemplo,
-
-```{r}
-mean.default(vec)
-```
-
-Uma vez passado um objeto para uma função, é a classe do objeto que irá
-definir qual método utilizar, de acordo com os métodos disponíveis. Veja
-o que acontece se forcarmos o uso da função `mean.Date()` nesse vetor
-
-```{r}
-mean.Date(vec)
-```
-
-O resultado não faz sentido pois ele é específico para um objeto da
-classe `Date`.
-
-Tudo isso acontece por causa de um mecanismo chamado de **despacho de
-métodos** (*method dispatch*), que é responsável por identificar a
-classe do objeto e utilizar ("despachar") a função método correta para
-aquela classe. Toda função genérica possui a mesma forma: uma chamada
-para a função `UseMethod()`, que especifica o nome genérico e o objeto a
-ser despachado. Por exemplo, veja o código fonte da função `mean()`
-
-```{r}
-mean
-```
-
-Agora veja o código fonte da função `mean.default`, que é o método
-específico para vetores numéricos
-
-```{r}
-mean.default
-```
-
-Agora suponha que você ddeseja criar uma função que calcule a média para
-um objeto de uma classe diferente daquelas previamente definidas. Por
-exemplo, suponha que você quer que a função `mean()` retorne a média das
-linhas de uma matriz.
-
-```{r}
-set.seed(1)
-mat <- matrix(rnorm(50), nrow = 5)
-mean(mat)
-```
-
-O resultado é a média de todos os elementos, e não de cada linha. Nesse
-caso, podemos definir nossa própria função método para fazer o cálculo
-que precisamos. Por exemplo:
-
-```{r}
-mean.matrix <- function(x, ...) rowMeans(x)
-```
-
-Uma função método é sempre definida dessa forma:
-`<funçãogenérica>.<classe>`. Agora podemos ver novamente os métodos
-disponíveis para a função `mean()`
-
-```{r}
-methods(mean)
-```
-
-e simplesmente aplicar a função genérica `mean()` à um objeto da classe
-`matrix` para obter o resultado que desejamos
-
-```{r}
-class(mat)
-mean(mat)
-```
-
-Esse exemplo ilustra como é simples criar funções método para
-diferentes classes de objetos. Poderíamos fazer o mesmo para objetos das
-classes `data.frame` e `list`
-
-```{r}
-mean.data.frame <- function(x, ...) sapply(x, mean, ...)
-mean.list <- function(x, ...) lapply(x, mean)
-```
-
-Aplicando em objetos dessas classes específicas, obtemos:
-
-```{r}
-## Data frame
-set.seed(1)
-da <- data.frame(c1 = rnorm(10),
-                 c2 = runif(10))
-class(da)
-mean(da)
-## Lista
-set.seed(1)
-dl <- list(rnorm(10), runif(50))
-class(dl)
-mean(dl)
-```
-
-Obviamente esse processo todo é extremamente importante ao se criar
-novas funções no R. Podemos tanto criar uma função genérica (como a
-`mean()`) e diversos métodos para ela usando classes de objetos
-existentes, quanto (inclusive) criar novas classes e funções método para
-elas. Essa é uma das grandes lberdades que o método S3 de orientação à
-objetos permite, e possivelmente um dos motivos pelos quais é
-relativamente simples criar pacotes inteiros no R.
-
-# Referências
+## Referências {-}
 
 Para mais detalhes e exemplos dos assuntos abordados aqui, veja
 @Grolemund2014. Uma abordagem mais avançada e detalhada sobre
 programação orientada a objetos no R pode ser consultada em
 @Wickham2015.
 
+<!-- Isso faz com que as referências se mantenham noo final do capítulo -->
 <div id="refs">
 </div>
-
-# Informação de Sessão
-
-```{r, echo = FALSE, results = "hold"}
-cat(format(Sys.time(), format = "%A, %d %B, %Y, %H:%M"),
-    "----------------------------------------", sep = "\n")
-sessionInfo()
-```
