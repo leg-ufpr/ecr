@@ -50,6 +50,15 @@
 
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66454501-6"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+
+ gtag('config', 'UA-66454501-6');
+</script>
 
 
 <style type="text/css">
@@ -662,7 +671,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st1
    user  system elapsed 
-  <span class="fl">0.120</span>   <span class="fl">0.000</span>   <span class="fl">0.124</span> 
+  <span class="fl">0.104</span>   <span class="fl">0.000</span>   <span class="fl">0.102</span> 
 
 ## Tempo de execução usando a regra da reciclagem
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
@@ -670,8 +679,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st2
    user  system elapsed 
-  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.004</span> </code></pre></div>
-<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.124/0.004 = 31 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
+  <span class="fl">0.000</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </code></pre></div>
+<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.102/0.002 = 51 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
 <div class="panel panel-primary">
 <div class="panel-heading">
 Uma nota de precaução
@@ -695,7 +704,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st1
    user  system elapsed 
-  <span class="fl">0.108</span>   <span class="fl">0.008</span>   <span class="fl">0.117</span> 
+  <span class="fl">0.100</span>   <span class="fl">0.000</span>   <span class="fl">0.102</span> 
 
 ## Cria um objeto de tamanho &quot;zero&quot; e vai &quot;crescendo&quot; esse vetor
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
@@ -706,8 +715,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st2
    user  system elapsed 
-  <span class="fl">0.368</span>   <span class="fl">0.024</span>   <span class="fl">0.392</span> </code></pre></div>
-<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.392/0.117 = 3.35 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
+  <span class="fl">0.316</span>   <span class="fl">0.020</span>   <span class="fl">0.338</span> </code></pre></div>
+<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.338/0.102 = 3.31 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
 <p>Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a memória para esse vetor já foi alocada previamente, de uma única vez.</p>
 <p><img src="img/R_club.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
