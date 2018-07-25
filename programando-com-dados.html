@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Estatística Computacional com R</title>
+  <meta name="description" content="Estatística Computacional com R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Estatística Computacional com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Estatística Computacional com R" />
+  
+  
+  
+
+<meta name="author" content="Fernando P. Mayer">
+<meta name="author" content="Wagner H. Bonat">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="entrada-e-saida-de-dados-no-r.html">
+<link rel="next" href="programacao-orientada-a-objetos.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#informacao-de-sessao"><i class="fa fa-check"></i>Informação de sessão</a></li>
+</ul></li>
+<li class="part"><span><b>I R básico</b></span></li>
+<li class="chapter" data-level="1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
+<li class="chapter" data-level="1.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
+<li class="chapter" data-level="1.2" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#configuracao-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
+<li class="chapter" data-level="1.3.2" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
+<li class="chapter" data-level="1.3.3" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#para-onde-vao-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
+<li class="chapter" data-level="1.3.4" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#o-editor-de-scripts"><i class="fa fa-check"></i><b>1.3.4</b> O editor de scripts</a></li>
+<li class="chapter" data-level="1.3.5" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#operadores-aritmeticos"><i class="fa fa-check"></i><b>1.3.5</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="1.3.6" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#ordens-de-execucao"><i class="fa fa-check"></i><b>1.3.6</b> Ordens de execução</a></li>
+<li class="chapter" data-level="" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#exercicios"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="1.3.7" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#salvando-resultados"><i class="fa fa-check"></i><b>1.3.7</b> “Salvando” resultados</a></li>
+<li class="chapter" data-level="1.3.8" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#finalizando-o-programa"><i class="fa fa-check"></i><b>1.3.8</b> Finalizando o programa</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#referencias"><i class="fa fa-check"></i>Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a><ul>
+<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funcoes-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-argumentos"><i class="fa fa-check"></i><b>2.1.1</b> Outros tipos de argumentos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#mecanismos-de-ajuda"><i class="fa fa-check"></i><b>2.2</b> Mecanismos de ajuda</a></li>
+<li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-funcao"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-1"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#nomes-de-objetos"><i class="fa fa-check"></i><b>2.4.1</b> Nomes de objetos</a></li>
+<li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-area-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-2"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numericos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
+<li class="chapter" data-level="2.5.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-vetores"><i class="fa fa-check"></i><b>2.5.2</b> Outros tipos de vetores</a></li>
+<li class="chapter" data-level="2.5.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#misturando-classes-de-objetos"><i class="fa fa-check"></i><b>2.5.3</b> Misturando classes de objetos</a></li>
+<li class="chapter" data-level="2.5.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#valores-perdidos-e-especiais"><i class="fa fa-check"></i><b>2.5.4</b> Valores perdidos e especiais</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-3"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#fator"><i class="fa fa-check"></i><b>2.6.1</b> Fator</a></li>
+<li class="chapter" data-level="2.6.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#matriz"><i class="fa fa-check"></i><b>2.6.2</b> Matriz</a></li>
+<li class="chapter" data-level="2.6.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#array"><i class="fa fa-check"></i><b>2.6.3</b> Array</a></li>
+<li class="chapter" data-level="2.6.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#lista"><i class="fa fa-check"></i><b>2.6.4</b> Lista</a></li>
+<li class="chapter" data-level="2.6.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#data-frame"><i class="fa fa-check"></i><b>2.6.5</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#atributos-de-objetos"><i class="fa fa-check"></i><b>2.7</b> Atributos de objetos</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-4"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referencias-1"><i class="fa fa-check"></i>Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
+<li class="chapter" data-level="3.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-5"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.1.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="3.1.3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-listas"><i class="fa fa-check"></i><b>3.1.3</b> Indexação de listas</a></li>
+<li class="chapter" data-level="3.1.4" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-6"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
+<li class="chapter" data-level="3.2.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#a-funcao-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-7"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.2.3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional-em-data-frames"><i class="fa fa-check"></i><b>3.2.3</b> Seleção condicional em data frames</a></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-8"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
+<li class="chapter" data-level="4.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-9"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.1.3" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-em-arquivos-texto"><i class="fa fa-check"></i><b>4.1.3</b> Entrada de dados em arquivos texto</a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-10"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.1.4" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-atraves-da-area-de-transferencia"><i class="fa fa-check"></i><b>4.1.4</b> Entrada de dados através da área de transferência</a></li>
+<li class="chapter" data-level="4.1.5" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#importando-dados-diretamente-de-planilhas"><i class="fa fa-check"></i><b>4.1.5</b> Importando dados diretamente de planilhas</a></li>
+<li class="chapter" data-level="4.1.6" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#carregando-dados-ja-disponiveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
+<li class="chapter" data-level="4.1.7" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#saida-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#usando-a-funcao-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-11"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.2.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#usando-os-formatos-textual-e-binario-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#informacoes-sobre-diretorios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repeticao-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a></li>
+<li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-selecao-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorizacao"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a></li>
+<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apêndice</b></span></li>
+<li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estatística Computacional com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="programando-com-dados" class="section level1">
+<h1><span class="header-section-number">5</span> Programando com dados</h1>
+<p>Por quê programar?</p>
+<ul>
+<li>Evitar repetições desnecessárias de análises ou cálculos que são repetidos com frequência.</li>
+<li>Fica documentado as etapas que você realizou para chegar a um resultado.</li>
+<li>Fácil recuperação e modificação de programas.</li>
+</ul>
+<p>Como programar?</p>
+<ul>
+<li>Criando programas! (Scripts, rotinas, <strong>algoritmos</strong>).</li>
+<li>Crie uma sequência lógica de comandos que devem ser executados em ordem.</li>
+<li>Utilize as ferramentas básicas da programação: <strong>estruturas de repetição</strong> (<code>for()</code>) e <strong>estruturas de seleção</strong> (<code>if()</code>).</li>
+</ul>
+<div id="estrutura-de-repeticao-for" class="section level2">
+<h2><span class="header-section-number">5.1</span> Estrutura de repetição <code>for()</code></h2>
+<p>Serve para repetir um ou mais comandos diversas vezes. Para ver como funciona, considere o seguinte exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+    <span class="kw">print</span>(i)
+}
+[<span class="dv">1</span>] <span class="dv">1</span>
+[<span class="dv">1</span>] <span class="dv">2</span>
+[<span class="dv">1</span>] <span class="dv">3</span>
+[<span class="dv">1</span>] <span class="dv">4</span>
+[<span class="dv">1</span>] <span class="dv">5</span>
+[<span class="dv">1</span>] <span class="dv">6</span>
+[<span class="dv">1</span>] <span class="dv">7</span>
+[<span class="dv">1</span>] <span class="dv">8</span>
+[<span class="dv">1</span>] <span class="dv">9</span>
+[<span class="dv">1</span>] <span class="dv">10</span></code></pre></div>
+<p>O resultado é a chamada do comando <code>print()</code> para cada valor que o índice <code>i</code> recebe (nesse caso <code>i</code> recebe os valores de 1 a 10).</p>
+<p>A sintaxe será sempre nesse formato:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(<span class="op">&lt;</span>índice<span class="op">&gt;</span><span class="st"> </span><span class="cf">in</span> <span class="op">&lt;</span>valores<span class="op">&gt;</span>){
+    <span class="op">&lt;</span>comandos<span class="op">&gt;</span>
+}</code></pre></div>
+<p>Veja outro exemplo em como podemos aplicar o índice:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">:</span><span class="dv">200</span>
+<span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+    <span class="kw">print</span>(x[j])
+}
+[<span class="dv">1</span>] <span class="dv">100</span>
+[<span class="dv">1</span>] <span class="dv">101</span>
+[<span class="dv">1</span>] <span class="dv">102</span>
+[<span class="dv">1</span>] <span class="dv">103</span>
+[<span class="dv">1</span>] <span class="dv">104</span>
+[<span class="dv">1</span>] <span class="dv">105</span>
+[<span class="dv">1</span>] <span class="dv">106</span>
+[<span class="dv">1</span>] <span class="dv">107</span>
+[<span class="dv">1</span>] <span class="dv">108</span>
+[<span class="dv">1</span>] <span class="dv">109</span></code></pre></div>
+<p>Veja que o índice não precisa ser <code>i</code>, na verdade pode ser qualquer letra ou palavra. Nesse caso, veja que utilizamos os valores como índice para selecionar elementos de <code>x</code> naquelas posições específicas.</p>
+<p>Um outro exemplo seria se quisessemos imprimir o quadrado de alguns números (não necessariamente em sequência):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">6</span>)){
+    <span class="kw">print</span>(i<span class="op">^</span><span class="dv">2</span>)
+}
+[<span class="dv">1</span>] <span class="dv">4</span>
+[<span class="dv">1</span>] <span class="dv">81</span>
+[<span class="dv">1</span>] <span class="dv">16</span>
+[<span class="dv">1</span>] <span class="dv">36</span></code></pre></div>
+<p>Ou mesmo imprimir caracteres a partir de um vetor de caracteres:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(veiculos <span class="cf">in</span> <span class="kw">c</span>(<span class="st">&quot;carro&quot;</span>, <span class="st">&quot;ônibus&quot;</span>, <span class="st">&quot;trem&quot;</span>, <span class="st">&quot;bicicleta&quot;</span>)){
+    <span class="kw">print</span>(veiculos)
+}
+[<span class="dv">1</span>] <span class="st">&quot;carro&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;ônibus&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;trem&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;bicicleta&quot;</span></code></pre></div>
+<p><strong>Exemplo</strong>: cálculo de notas de uma disciplina.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Importa os dados
+url &lt;-<span class="st"> &quot;http://leg.ufpr.br/~fernandomayer/data/notas.csv&quot;</span>
+notas &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)
+## Analisa a estrutura dos dados
+<span class="kw">str</span>(notas)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">30</span> obs. of  <span class="dv">4</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>nome  <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">30</span> levels <span class="st">&quot;Aluno_1&quot;</span>,<span class="st">&quot;Aluno_10&quot;</span>,..<span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">12</span> <span class="dv">23</span> <span class="dv">25</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">28</span> <span class="dv">29</span> <span class="dv">30</span> <span class="dv">2</span> ...
+ <span class="op">$</span><span class="st"> </span>prova1<span class="op">:</span><span class="st"> </span>int  <span class="dv">8</span> <span class="dv">2</span> <span class="dv">9</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">10</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">5</span> <span class="dv">10</span> ...
+ <span class="op">$</span><span class="st"> </span>prova2<span class="op">:</span><span class="st"> </span>int  <span class="dv">4</span> <span class="dv">7</span> <span class="dv">2</span> <span class="dv">10</span> <span class="dv">6</span> <span class="dv">0</span> <span class="dv">8</span> <span class="dv">9</span> <span class="dv">6</span> <span class="dv">2</span> ...
+ <span class="op">$</span><span class="st"> </span>prova3<span class="op">:</span><span class="st"> </span>int  <span class="dv">1</span> <span class="dv">6</span> <span class="dv">4</span> <span class="dv">9</span> <span class="dv">8</span> <span class="dv">3</span> <span class="dv">0</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">3</span> ...
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span>
+<span class="kw">summary</span>(notas)
+       nome        prova1           prova2           prova3   
+ Aluno_<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Min.   <span class="op">:</span><span class="st"> </span><span class="fl">0.000</span>   Min.   <span class="op">:</span><span class="st"> </span><span class="fl">0.000</span>   Min.   <span class="op">:</span><span class="fl">0.0</span>  
+ Aluno_<span class="dv">10</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   1st Qu.<span class="op">:</span><span class="st"> </span><span class="fl">2.000</span>   1st Qu.<span class="op">:</span><span class="st"> </span><span class="fl">3.000</span>   1st Qu.<span class="op">:</span><span class="fl">3.0</span>  
+ Aluno_<span class="dv">11</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Median <span class="op">:</span><span class="st"> </span><span class="fl">4.000</span>   Median <span class="op">:</span><span class="st"> </span><span class="fl">6.000</span>   Median <span class="op">:</span><span class="fl">6.5</span>  
+ Aluno_<span class="dv">12</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Mean   <span class="op">:</span><span class="st"> </span><span class="fl">4.433</span>   Mean   <span class="op">:</span><span class="st"> </span><span class="fl">5.433</span>   Mean   <span class="op">:</span><span class="fl">5.4</span>  
+ Aluno_<span class="dv">13</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   3rd Qu.<span class="op">:</span><span class="st"> </span><span class="fl">6.750</span>   3rd Qu.<span class="op">:</span><span class="st"> </span><span class="fl">8.000</span>   3rd Qu.<span class="op">:</span><span class="fl">8.0</span>  
+ Aluno_<span class="dv">14</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Max.   <span class="op">:</span><span class="fl">10.000</span>   Max.   <span class="op">:</span><span class="fl">10.000</span>   Max.   <span class="op">:</span><span class="fl">9.0</span>  
+ (Other) <span class="op">:</span><span class="dv">24</span>                                                  </code></pre></div>
+<p>Antes de seguir adiante, veja o resultado de</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>){
+    <span class="kw">print</span>(notas[i, <span class="kw">c</span>(<span class="st">&quot;prova1&quot;</span>, <span class="st">&quot;prova2&quot;</span>, <span class="st">&quot;prova3&quot;</span>)])
+}</code></pre></div>
+<p>Para calcular as médias das 3 provas, precisamos inicialmente de um vetor para armazenar os resultados. Esse vetor pode ser um novo objeto ou uma nova coluna no dataframe</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Aqui vamos criar uma nova coluna no dataframe, contendo apenas o
+## valor 0
+notas<span class="op">$</span>media &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># note que aqui será usada a regra da reciclagem, ou</span>
+                 <span class="co"># seja, o valor zero será repetido até completar todas</span>
+                 <span class="co"># as linhas do dataframe</span>
+## Estrutura de repetição para calcular a média
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>){
+    ## Aqui, cada linha i da coluna media sera substituida pelo
+    ## respectivo valor da media caculada
+    notas<span class="op">$</span>media[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(notas[i, <span class="kw">c</span>(<span class="st">&quot;prova1&quot;</span>, <span class="st">&quot;prova2&quot;</span>, <span class="st">&quot;prova3&quot;</span>)])<span class="op">/</span><span class="dv">3</span>
+}
+
+## Confere os resultados
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span></code></pre></div>
+<p>Agora podemos melhorar o código, tornando-o mais <strong>genérico</strong>. Dessa forma fica mais fácil fazer alterações e procurar erros. Uma forma de melhorar o código acima é generalizando alguns passos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Armazenamos o número de linhas no dataframe
+nlinhas &lt;-<span class="st"> </span><span class="kw">nrow</span>(notas)
+## Identificamos as colunas de interesse no cálculo da média, e
+## armazenamos em um objeto separado
+provas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;prova1&quot;</span>, <span class="st">&quot;prova2&quot;</span>, <span class="st">&quot;prova3&quot;</span>)
+## Sabendo o número de provas, fica mais fácil dividir pelo total no
+## cálculo da média
+nprovas &lt;-<span class="st"> </span><span class="kw">length</span>(provas)
+## Cria uma nova coluna apenas para comparar o cálculo com o anterior
+notas<span class="op">$</span>media2 &lt;-<span class="st"> </span><span class="dv">0</span>
+## A estrutura de repetição fica
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nlinhas){
+    notas<span class="op">$</span>media2[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(notas[i, provas])<span class="op">/</span>nprovas
+}
+
+## Confere
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span>
+<span class="kw">identical</span>(notas<span class="op">$</span>media, notas<span class="op">$</span>media2)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>Ainda podemos melhorar (leia-se: <strong>otimizar</strong>) o código, se utilizarmos funções prontas do R. No caso da média isso é possível pois a função <code>mean()</code> já existe. Em seguida veremos como fazer quando o cálculo que estamos utilizando não está implementado em nenhuma função pronta do R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cria uma nova coluna apenas para comparação
+notas<span class="op">$</span>media3 &lt;-<span class="st"> </span><span class="dv">0</span>
+## A estrutura de repetição fica
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nlinhas){
+    notas<span class="op">$</span>media3[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">as.numeric</span>(notas[i, provas]))
+}
+
+## Confere
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span>
+
+## A única diferença é que aqui precisamos transformar cada linha em um
+## vetor de números com as.numeric(), pois
+notas[<span class="dv">1</span>, provas]
+  prova1 prova2 prova3
+<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span>
+## é um data.frame:
+<span class="kw">class</span>(notas[<span class="dv">1</span>, provas])
+[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span></code></pre></div>
+<p>No caso acima vimos que não era necessário calcular a média através de <code>soma/total</code> porque existe uma função pronta no R para fazer esse cálculo. Mas, e se quisessemos, por exemplo, calcular a Coeficiente de Variação (CV) entre as notas das três provas de cada aluno? Uma busca por</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help.search</span>(<span class="st">&quot;coefficient of variation&quot;</span>)</code></pre></div>
+<p>não retorna nenhuma função (dos pacotes básicos) para fazer esse cálculo. O motivo é simples: como é uma conta simples de fazer não há necessidade de se criar uma função extra dentro dos pacotes. No entanto, nós podemos criar uma função que calcule o CV, e usá-la para o nosso propósito</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cv &lt;-<span class="st"> </span><span class="cf">function</span>(x){
+    desv.pad &lt;-<span class="st"> </span><span class="kw">sd</span>(x)
+    med &lt;-<span class="st"> </span><span class="kw">mean</span>(x)
+    cv &lt;-<span class="st"> </span>desv.pad<span class="op">/</span>med
+    <span class="kw">return</span>(cv)
+}</code></pre></div>
+<div class="alert alert-warning">
+<p>NOTA: na função criada acima o único argumento que usamos foi <code>x</code>, que neste caso deve ser um vetor de números para o cálculo do CV. Os argumentos colocados dentro de <code>function()</code> devem ser apropriados para o propósito de cada função.</p>
+</div>
+<p>Antes de aplicar a função dentro de um <code>for()</code> devemos testá-la para ver se ela está funcioanando de maneira correta. Por exemplo, o CV para as notas do primeiro aluno pode ser calculado “manualmente” por</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(<span class="kw">as.numeric</span>(notas[<span class="dv">1</span>, provas]))<span class="op">/</span><span class="kw">mean</span>(<span class="kw">as.numeric</span>(notas[<span class="dv">1</span>, provas]))
+[<span class="dv">1</span>] <span class="fl">0.8104349</span></code></pre></div>
+<p>E através da função, o resultado é</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cv</span>(<span class="kw">as.numeric</span>(notas[<span class="dv">1</span>, provas]))
+[<span class="dv">1</span>] <span class="fl">0.8104349</span></code></pre></div>
+<p>o que mostra que a função está funcionando corretamente, e podemos aplicá-la em todas as linhas usando a repetição</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cria uma nova coluna para o CV
+notas<span class="op">$</span>CV &lt;-<span class="st"> </span><span class="dv">0</span>
+## A estrutura de repetição fica
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nlinhas){
+    notas<span class="op">$</span>CV[i] &lt;-<span class="st"> </span><span class="kw">cv</span>(<span class="kw">as.numeric</span>(notas[i, provas]))
+}
+
+## Confere
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span></code></pre></div>
+<p>Podemos agora querer calcular as médias ponderadas para as provas. Por exemplo:</p>
+<ul>
+<li>Prova 1: peso 3</li>
+<li>Prova 2: peso 3</li>
+<li>Prova 3: peso 4</li>
+</ul>
+<p>Usando a fórmula:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{1}{N} \sum_{i=1}^{n} x_i \cdot w_i
+\]</span></p>
+<p>onde <span class="math inline">\(w_i\)</span> são os pesos, e <span class="math inline">\(N = \sum_{i=1}^{n} w_i\)</span> é a soma dos pesos. Como já vimos que criar uma função é uma forma mais prática (e elegante) de executar determinada tarefa, vamos criar uma função que calcule as médias ponderadas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">med.pond &lt;-<span class="st"> </span><span class="cf">function</span>(notas, pesos){
+    ## Multiplica o valor de cada prova pelo seu peso
+    pond &lt;-<span class="st"> </span>notas <span class="op">*</span><span class="st"> </span>pesos
+    ## Calcula o valor total dos pesos
+    peso.total &lt;-<span class="st"> </span><span class="kw">sum</span>(pesos)
+    ## Calcula a soma da ponderação
+    sum.pond &lt;-<span class="st"> </span><span class="kw">sum</span>(pond)
+    ## Finalmente calcula a média ponderada
+    saida &lt;-<span class="st"> </span>sum.pond<span class="op">/</span>peso.total
+    <span class="kw">return</span>(saida)
+}</code></pre></div>
+<p>Antes de aplicar a função para o caso geral, sempre é importante testar e conferir o resultado em um caso menor. Podemos verificar o resultado da média ponderada para o primeiro aluno</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(notas[<span class="dv">1</span>, provas] <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>))<span class="op">/</span><span class="dv">10</span>
+[<span class="dv">1</span>] <span class="dv">4</span></code></pre></div>
+<p>e testar a função para o mesmo caso</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">med.pond</span>(<span class="dt">notas =</span> notas[<span class="dv">1</span>, provas], <span class="dt">pesos =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>))
+[<span class="dv">1</span>] <span class="dv">4</span></code></pre></div>
+<p>Como o resultado é o mesmo podemos aplicar a função para todas as linhas através do <code>for()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cria uma nova coluna para a média ponderada
+notas<span class="op">$</span>MP &lt;-<span class="st"> </span><span class="dv">0</span>
+## A estrutura de repetição fica
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nlinhas){
+    notas<span class="op">$</span>MP[i] &lt;-<span class="st"> </span><span class="kw">med.pond</span>(<span class="dt">notas =</span> notas[i, provas], <span class="dt">pesos =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>))
+}
+
+## Confere
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span></code></pre></div>
+<div class="alert alert-warning">
+<p>NOTA: uma função para calcular a média ponderada já existe implementada no R. Veja <code>?weighted.mean()</code> e confira os resultados obtidos aqui</p>
+</div>
+<p>Repare na construção da função acima: agora usamos dois argumentos, <code>notas</code> e <code>pesos</code>, pois precisamos dos doiss vetores para calcular a média ponderada. Repare também que ambos argumentos não possuem um valor padrão. Poderíamos, por exemplo, assumir valores padrão para os pesos, e deixar para que o usuário mude apenas se achar necessário.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Atribuindo pesos iguais para as provas como padrão
+med.pond &lt;-<span class="st"> </span><span class="cf">function</span>(notas, <span class="dt">pesos =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">length</span>(notas))){
+    ## Multiplica o valor de cada prova pelo seu peso
+    pond &lt;-<span class="st"> </span>notas <span class="op">*</span><span class="st"> </span>pesos
+    ## Calcula o valor total dos pesos
+    peso.total &lt;-<span class="st"> </span><span class="kw">sum</span>(pesos)
+    ## Calcula a soma da ponderação
+    sum.pond &lt;-<span class="st"> </span><span class="kw">sum</span>(pond)
+    ## Finalmente calcula a média ponderada
+    saida &lt;-<span class="st"> </span>sum.pond<span class="op">/</span>peso.total
+    <span class="kw">return</span>(saida)
+}</code></pre></div>
+<p>Repare que neste caso, como os pesos são iguais, a chamada da função sem alterar o argumento <code>pesos</code> gera o mesmo resultado do cálculo da média comum.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cria uma nova coluna para a média ponderada para comparação
+notas<span class="op">$</span>MP2 &lt;-<span class="st"> </span><span class="dv">0</span>
+## A estrutura de repetição fica
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nlinhas){
+    notas<span class="op">$</span>MP2[i] &lt;-<span class="st"> </span><span class="kw">med.pond</span>(<span class="dt">notas =</span> notas[i, provas])
+}
+
+## Confere
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2
+<span class="dv">1</span> <span class="fl">4.333333</span>
+<span class="dv">2</span> <span class="fl">5.000000</span>
+<span class="dv">3</span> <span class="fl">5.000000</span>
+<span class="dv">4</span> <span class="fl">6.666667</span>
+<span class="dv">5</span> <span class="fl">7.000000</span>
+<span class="dv">6</span> <span class="fl">4.333333</span></code></pre></div>
+</div>
+<div id="estrutura-de-selecao-if" class="section level2">
+<h2><span class="header-section-number">5.2</span> Estrutura de seleção <code>if()</code></h2>
+<p>Uma estrutura de seleção serve para executar algum comando apenas se alguma condição (em forma de <strong>expressão condicional</strong>) seja satisfeita. Geralmente é utilizada dentro de um <code>for()</code>.</p>
+<p>No exemplo inicial poderíamos querer imprimir um resultado caso satisfaça determinada condição. Por exemplo, se o valor de <code>x</code> for menor ou igual a 105, então imprima um texto informando isso.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">:</span><span class="dv">200</span>
+<span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+    <span class="cf">if</span>(x[j] <span class="op">&lt;=</span><span class="st"> </span><span class="dv">105</span>){
+        <span class="kw">print</span>(<span class="st">&quot;Menor ou igual a 105&quot;</span>)
+    }
+}
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span></code></pre></div>
+<p>Mas também podemos considerar o que aconteceria caso contrário. Por exemplo, se o valor de <code>x</code>for maior do que 105, então imprima outro texto.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">:</span><span class="dv">200</span>
+<span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>){
+    <span class="cf">if</span>(x[j] <span class="op">&lt;=</span><span class="st"> </span><span class="dv">105</span>){
+        <span class="kw">print</span>(<span class="st">&quot;Menor ou igual a 105&quot;</span>)
+    } <span class="cf">else</span>{
+        <span class="kw">print</span>(<span class="st">&quot;Maior do que 105&quot;</span>)
+    }
+}
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Menor ou igual a 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Maior do que 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Maior do que 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Maior do que 105&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;Maior do que 105&quot;</span></code></pre></div>
+<p>A sintaxe será sempre no formato:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">&lt;</span>condição<span class="op">&gt;</span>){
+    <span class="op">&lt;</span>comandos que satisfazem a condição<span class="op">&gt;</span>
+} <span class="cf">else</span>{
+   <span class="op">&lt;</span>comandos que não satisfazem a condição<span class="op">&gt;</span>
+}</code></pre></div>
+<p>Como vimos acima, a especificação do <code>else{}</code> não é obrigatória.</p>
+<p>Voltando ao exemplo das notas, podemos adicionar uma coluna com a condição do aluno: <code>aprovado</code> ou <code>reprovado</code> de acordo com a sua nota. Para isso precisamos criar uma condição (nesse caso se a nota é maior do que 7), e verificar se ela é verdadeira.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Nova coluna para armazenar a situacao
+notas<span class="op">$</span>situacao &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># aqui usamos NA porque o resultado será um</span>
+                     <span class="co"># caracter</span>
+## Estrutura de repetição
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nlinhas){
+    ## Estrutura de seleção (usando a média ponderada)
+    <span class="cf">if</span>(notas<span class="op">$</span>MP[i] <span class="op">&gt;=</span><span class="st"> </span><span class="dv">7</span>){
+        notas<span class="op">$</span>situacao[i] &lt;-<span class="st"> &quot;aprovado&quot;</span>
+    } <span class="cf">else</span>{
+        notas<span class="op">$</span>situacao[i] &lt;-<span class="st"> &quot;reprovado&quot;</span>
+    }
+}
+
+## Confere
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado</code></pre></div>
+</div>
+<div id="o-modo-r-vetorizacao" class="section level2">
+<h2><span class="header-section-number">5.3</span> O modo R: vetorização</h2>
+<p>As funções vetorizadas do R, além de facilitar e resumir a execução de tarefas repetitivas, também são computacionalmente mais eficientes, <em>i.e.</em> o tempo de execução das rotinas é muito mais rápido.</p>
+<p>Já vimos que a <strong>regra da reciclagem</strong> é uma forma de vetorizar cálculos no R. Os cálculos feitos com funções vetorizadas (ou usando a regra de reciclagem) são muito mais eficientes (e preferíveis) no R. Por exemplo, podemos criar um vetor muito grande de números e querer calcular o quadrado de cada número. Se pensássemos em usar uma estrutura de repetição, o cálculo seria o seguinte:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Vetor com uma sequência de 1 a 1.000.000
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>
+## Calcula o quadrado de cada número da sequência em x usando for()
+y1 &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x)) <span class="co"># vetor de mesmo comprimento de x que vai</span>
+                         <span class="co"># receber os resultados</span>
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){
+    y1[i] &lt;-<span class="st"> </span>x[i]<span class="op">^</span><span class="dv">2</span>
+}</code></pre></div>
+<p>Mas, da forma vetorial e usando a regra da reciclagem, a mesma operação pode ser feita apenas com</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calcula o quadrado de cada número da sequência em x usando a regra da
+## reciclagem
+y2 &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>
+## Confere os resultados
+<span class="kw">identical</span>(y1, y2)
+[<span class="dv">1</span>] <span class="ot">TRUE</span></code></pre></div>
+<p>Note que os resultados são exatamente iguais, mas então porque se prefere o formato vetorial? Primeiro porque é muito mais simples de escrever, e segundo (e princiapalmente) porque a forma vetorizada é muito mais <strong>eficiente computacionalmente</strong>. A eficiência computacional pode ser medida de várias formas (alocação de memória, tempo de execução, etc), mas apenas para comparação, vamos medir o tempo de execução destas mesmas operações usando o <code>for()</code> e usando a regra da reciclagem.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Tempo de execução usando for()
+y1 &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))
+st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
+    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){
+        y1[i] &lt;-<span class="st"> </span>x[i]<span class="op">^</span><span class="dv">2</span>
+    }
+)
+st1
+   user  system elapsed 
+  <span class="fl">0.104</span>   <span class="fl">0.000</span>   <span class="fl">0.106</span> 
+
+## Tempo de execução usando a regra da reciclagem
+st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
+    y2 &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>
+)
+st2
+   user  system elapsed 
+  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </code></pre></div>
+<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.106/0.002 = 53 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
+<div class="panel panel-primary">
+<div class="panel-heading">
+Uma nota de precaução
+</div>
+<div class="panel-body">
+<p>Existem duas formas básicas de tornar um loop <code>for</code> no R mais rápido:</p>
+<ol style="list-style-type: decimal">
+<li>Faça o máximo possível fora do loop</li>
+<li>Crie um objeto com tamanho suficiente para armazenar <em>todos</em> os resultados do loop <strong>antes</strong> de executá-lo</li>
+</ol>
+<p>Veja este exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Vetor com uma sequência de 1 a 1.000.000
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000000</span>
+
+## Cria um objeto de armazenamento com o mesmo tamanho do resultado
+st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
+    out &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))
+    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){
+        out[i] &lt;-<span class="st"> </span>x[i]<span class="op">^</span><span class="dv">2</span>
+    }
+})
+st1
+   user  system elapsed 
+  <span class="fl">0.104</span>   <span class="fl">0.000</span>   <span class="fl">0.106</span> 
+
+## Cria um objeto de tamanho &quot;zero&quot; e vai &quot;crescendo&quot; esse vetor
+st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
+    out &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">0</span>)
+    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){
+        out[i] &lt;-<span class="st"> </span>x[i]<span class="op">^</span><span class="dv">2</span>
+    }
+})
+st2
+   user  system elapsed 
+  <span class="fl">0.348</span>   <span class="fl">0.020</span>   <span class="fl">0.369</span> </code></pre></div>
+<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.369/0.106 = 3.48 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
+<p>Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a memória para esse vetor já foi alocada previamente, de uma única vez.</p>
+<p><img src="img/R_club.jpg" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<p>Voltando ao exemplo das notas, por exemplo, o cálculo da média simples poderia ser feita diretamente com a função <code>apply()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">notas<span class="op">$</span>media.apply &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> notas[, provas], <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> mean)
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao media.apply
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado    <span class="fl">6.666667</span>
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado    <span class="fl">7.000000</span>
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span></code></pre></div>
+<p>As médias ponderadas poderiam ser calculadas da mesma forma, e usando a função que criamos anteriormente</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">notas<span class="op">$</span>MP.apply &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> notas[, provas], <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> med.pond)
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao media.apply MP.apply
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span> <span class="fl">4.333333</span>
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span> <span class="fl">5.000000</span>
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span> <span class="fl">5.000000</span>
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado    <span class="fl">6.666667</span> <span class="fl">6.666667</span>
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado    <span class="fl">7.000000</span> <span class="fl">7.000000</span>
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span> <span class="fl">4.333333</span></code></pre></div>
+<p>Mas note que como temos o argumento <code>pesos</code> especificado com um padrão, devemos alterar na própria função <code>apply()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">notas<span class="op">$</span>MP.apply &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> notas[, provas], <span class="dt">MARGIN =</span> <span class="dv">1</span>,
+                        <span class="dt">FUN =</span> med.pond, <span class="dt">pesos =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>))
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao media.apply MP.apply
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.0</span>
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">5.1</span>
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">4.9</span>
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado    <span class="fl">6.666667</span>      <span class="fl">6.9</span>
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado    <span class="fl">7.000000</span>      <span class="fl">7.1</span>
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.2</span></code></pre></div>
+<div class="alert alert-warning">
+<p>NOTA: veja que isso é possível devido à presença do argumento <code>...</code> na função <code>apply()</code>, que permite passar argumentos de outras funções dentro dela.</p>
+</div>
+<p>Também poderíamos usar a função <code>weighted.mean()</code> implementada no R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">notas<span class="op">$</span>MP2.apply &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> notas[, provas], <span class="dt">MARGIN =</span> <span class="dv">1</span>,
+                         <span class="dt">FUN =</span> weighted.mean, <span class="dt">w =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>))
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao media.apply MP.apply MP2.apply
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.0</span>       <span class="fl">4.0</span>
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">5.1</span>       <span class="fl">5.1</span>
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">4.9</span>       <span class="fl">4.9</span>
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado    <span class="fl">6.666667</span>      <span class="fl">6.9</span>       <span class="fl">6.9</span>
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado    <span class="fl">7.000000</span>      <span class="fl">7.1</span>       <span class="fl">7.1</span>
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.2</span>       <span class="fl">4.2</span></code></pre></div>
+<p>O Coeficiente de Variação poderia ser calculado usando nossa função <code>cv()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">notas<span class="op">$</span>CV.apply &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> notas[, provas], <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> cv)
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao media.apply MP.apply MP2.apply  CV.apply
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.0</span>       <span class="fl">4.0</span> <span class="fl">0.8104349</span>
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">5.1</span>       <span class="fl">5.1</span> <span class="fl">0.5291503</span>
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">4.9</span>       <span class="fl">4.9</span> <span class="fl">0.7211103</span>
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado    <span class="fl">6.666667</span>      <span class="fl">6.9</span>       <span class="fl">6.9</span> <span class="fl">0.7399324</span>
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado    <span class="fl">7.000000</span>      <span class="fl">7.1</span>       <span class="fl">7.1</span> <span class="fl">0.1428571</span>
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.2</span>       <span class="fl">4.2</span> <span class="fl">1.1842157</span></code></pre></div>
+<p>Finalmente, a estrutura de repetição <code>if()</code> também possui uma forma vetorizada através da função <code>ifelse()</code>. Essa função funciona da seguinte forma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="op">&lt;</span>condição<span class="op">&gt;</span>, <span class="op">&lt;</span>valor se verdadeiro<span class="op">&gt;</span>, <span class="op">&lt;</span>valor se falso<span class="op">&gt;</span>)</code></pre></div>
+<p>Dessa forma, a atribuição da situação dos alunos poderia ser feita da seguinte forma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">notas<span class="op">$</span>situacao2 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(notas<span class="op">$</span>MP <span class="op">&gt;=</span><span class="st"> </span><span class="dv">7</span>, <span class="st">&quot;aprovado&quot;</span>, <span class="st">&quot;reprovado&quot;</span>)
+<span class="kw">head</span>(notas)
+     nome prova1 prova2 prova3    media   media2   media3        CV  MP
+<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">0.8104349</span> <span class="fl">4.0</span>
+<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.5291503</span> <span class="fl">5.1</span>
+<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">5.000000</span> <span class="fl">0.7211103</span> <span class="fl">4.9</span>
+<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">6.666667</span> <span class="fl">0.7399324</span> <span class="fl">6.9</span>
+<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">7.000000</span> <span class="fl">0.1428571</span> <span class="fl">7.1</span>
+<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">4.333333</span> <span class="fl">1.1842157</span> <span class="fl">4.2</span>
+       MP2  situacao media.apply MP.apply MP2.apply  CV.apply situacao2
+<span class="dv">1</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.0</span>       <span class="fl">4.0</span> <span class="fl">0.8104349</span> reprovado
+<span class="dv">2</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">5.1</span>       <span class="fl">5.1</span> <span class="fl">0.5291503</span> reprovado
+<span class="dv">3</span> <span class="fl">5.000000</span> reprovado    <span class="fl">5.000000</span>      <span class="fl">4.9</span>       <span class="fl">4.9</span> <span class="fl">0.7211103</span> reprovado
+<span class="dv">4</span> <span class="fl">6.666667</span> reprovado    <span class="fl">6.666667</span>      <span class="fl">6.9</span>       <span class="fl">6.9</span> <span class="fl">0.7399324</span> reprovado
+<span class="dv">5</span> <span class="fl">7.000000</span>  aprovado    <span class="fl">7.000000</span>      <span class="fl">7.1</span>       <span class="fl">7.1</span> <span class="fl">0.1428571</span>  aprovado
+<span class="dv">6</span> <span class="fl">4.333333</span> reprovado    <span class="fl">4.333333</span>      <span class="fl">4.2</span>       <span class="fl">4.2</span> <span class="fl">1.1842157</span> reprovado</code></pre></div>
+</div>
+<div id="outras-estruturas-while-e-repeat" class="section level2">
+<h2><span class="header-section-number">5.4</span> Outras estruturas: while e repeat</h2>
+<p>O <code>while</code> executa comandos enquanto uma determinada condição permanece verdadeira.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calcule a soma em 1,2,3... até que o soma seja maior do que 1000
+n &lt;-<span class="st"> </span><span class="dv">0</span>
+soma &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="cf">while</span>(soma <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1000</span>){
+    n &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+    soma &lt;-<span class="st"> </span>soma <span class="op">+</span><span class="st"> </span>n
+}
+soma
+[<span class="dv">1</span>] <span class="dv">1035</span></code></pre></div>
+<p>O <code>repeat</code> é ainda mais básico, e irá executar comandos até que você explicitamente pare a execução com o comando <code>break</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Mesmo exemplo
+n &lt;-<span class="st"> </span><span class="dv">0</span>
+soma &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="cf">repeat</span>{
+    n &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+    soma &lt;-<span class="st"> </span>soma <span class="op">+</span><span class="st"> </span>n
+    <span class="cf">if</span>(soma <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="cf">break</span>
+}
+soma
+[<span class="dv">1</span>] <span class="dv">1035</span></code></pre></div>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="entrada-e-saida-de-dados-no-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programacao-orientada-a-objetos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": true,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": ["ecr.pdf", "ecr.epub", "ecr.mobi"],
+"toc": {
+"collapse": "none",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

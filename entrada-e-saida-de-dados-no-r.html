@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Estatística Computacional com R</title>
+  <meta name="description" content="Estatística Computacional com R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Estatística Computacional com R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Estatística Computacional com R" />
+  
+  
+  
+
+<meta name="author" content="Fernando P. Mayer">
+<meta name="author" content="Wagner H. Bonat">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="indexacao-e-selecao-condicional.html">
+<link rel="next" href="programando-com-dados.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#informacao-de-sessao"><i class="fa fa-check"></i>Informação de sessão</a></li>
+</ul></li>
+<li class="part"><span><b>I R básico</b></span></li>
+<li class="chapter" data-level="1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
+<li class="chapter" data-level="1.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
+<li class="chapter" data-level="1.2" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#configuracao-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
+<li class="chapter" data-level="1.3.2" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
+<li class="chapter" data-level="1.3.3" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#para-onde-vao-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
+<li class="chapter" data-level="1.3.4" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#o-editor-de-scripts"><i class="fa fa-check"></i><b>1.3.4</b> O editor de scripts</a></li>
+<li class="chapter" data-level="1.3.5" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#operadores-aritmeticos"><i class="fa fa-check"></i><b>1.3.5</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="1.3.6" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#ordens-de-execucao"><i class="fa fa-check"></i><b>1.3.6</b> Ordens de execução</a></li>
+<li class="chapter" data-level="" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#exercicios"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="1.3.7" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#salvando-resultados"><i class="fa fa-check"></i><b>1.3.7</b> “Salvando” resultados</a></li>
+<li class="chapter" data-level="1.3.8" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#finalizando-o-programa"><i class="fa fa-check"></i><b>1.3.8</b> Finalizando o programa</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#referencias"><i class="fa fa-check"></i>Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a><ul>
+<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funcoes-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-argumentos"><i class="fa fa-check"></i><b>2.1.1</b> Outros tipos de argumentos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#mecanismos-de-ajuda"><i class="fa fa-check"></i><b>2.2</b> Mecanismos de ajuda</a></li>
+<li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-funcao"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-1"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#nomes-de-objetos"><i class="fa fa-check"></i><b>2.4.1</b> Nomes de objetos</a></li>
+<li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-area-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-2"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numericos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
+<li class="chapter" data-level="2.5.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-vetores"><i class="fa fa-check"></i><b>2.5.2</b> Outros tipos de vetores</a></li>
+<li class="chapter" data-level="2.5.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#misturando-classes-de-objetos"><i class="fa fa-check"></i><b>2.5.3</b> Misturando classes de objetos</a></li>
+<li class="chapter" data-level="2.5.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#valores-perdidos-e-especiais"><i class="fa fa-check"></i><b>2.5.4</b> Valores perdidos e especiais</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-3"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#fator"><i class="fa fa-check"></i><b>2.6.1</b> Fator</a></li>
+<li class="chapter" data-level="2.6.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#matriz"><i class="fa fa-check"></i><b>2.6.2</b> Matriz</a></li>
+<li class="chapter" data-level="2.6.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#array"><i class="fa fa-check"></i><b>2.6.3</b> Array</a></li>
+<li class="chapter" data-level="2.6.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#lista"><i class="fa fa-check"></i><b>2.6.4</b> Lista</a></li>
+<li class="chapter" data-level="2.6.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#data-frame"><i class="fa fa-check"></i><b>2.6.5</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#atributos-de-objetos"><i class="fa fa-check"></i><b>2.7</b> Atributos de objetos</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-4"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referencias-1"><i class="fa fa-check"></i>Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
+<li class="chapter" data-level="3.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-5"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.1.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="3.1.3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-listas"><i class="fa fa-check"></i><b>3.1.3</b> Indexação de listas</a></li>
+<li class="chapter" data-level="3.1.4" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-6"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
+<li class="chapter" data-level="3.2.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#a-funcao-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-7"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.2.3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional-em-data-frames"><i class="fa fa-check"></i><b>3.2.3</b> Seleção condicional em data frames</a></li>
+<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-8"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
+<li class="chapter" data-level="4.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-9"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.1.3" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-em-arquivos-texto"><i class="fa fa-check"></i><b>4.1.3</b> Entrada de dados em arquivos texto</a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-10"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.1.4" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-atraves-da-area-de-transferencia"><i class="fa fa-check"></i><b>4.1.4</b> Entrada de dados através da área de transferência</a></li>
+<li class="chapter" data-level="4.1.5" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#importando-dados-diretamente-de-planilhas"><i class="fa fa-check"></i><b>4.1.5</b> Importando dados diretamente de planilhas</a></li>
+<li class="chapter" data-level="4.1.6" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#carregando-dados-ja-disponiveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
+<li class="chapter" data-level="4.1.7" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#saida-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#usando-a-funcao-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-11"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.2.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#usando-os-formatos-textual-e-binario-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#informacoes-sobre-diretorios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repeticao-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a></li>
+<li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-selecao-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorizacao"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a></li>
+<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apêndice</b></span></li>
+<li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estatística Computacional com R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="entrada-e-saida-de-dados-no-r" class="section level1">
+<h1><span class="header-section-number">4</span> Entrada e saída de dados no R</h1>
+<p>A entrada de dados no R pode ser realizada de diferentes formas. O formato mais adequado vai depender do tamanho do conjunto de dados, e se os dados já existem em outro formato para serem importados ou se serão digitados diretamente no R.</p>
+<p>A seguir são descritas as formas de entrada de dados com indicação de quando cada uma das formas deve ser usada. Os três primeiros casos são adequados para entrada de dados diretamente no R, os seguintes descrevem como importar dados já disponíveis eletronicamentede um arquivo texto, em outro sistema ou no próprio R.</p>
+<p>Posteriormente também será mostrado como fazer para exportar bases de dados geradas e/ou alteradas dentro do R.</p>
+<div id="entrada-de-dados" class="section level2">
+<h2><span class="header-section-number">4.1</span> Entrada de dados</h2>
+<div id="entrada-de-dados-diretamente-no-r" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Entrada de dados diretamente no R</h3>
+<div id="vetores" class="section level4">
+<h4><span class="header-section-number">4.1.1.1</span> Vetores</h4>
+<p>A forma mais básica de entrada de dados no R é através da função <code>c()</code> (como já vimos). A partir dela pode se criar os outros tipos de objetos como listas e data frames.</p>
+<p>As funções básicas de entrada de dados são:</p>
+<ul>
+<li><code>c()</code></li>
+<li><code>rep()</code></li>
+<li><code>seq()</code> ou <code>:</code></li>
+</ul>
+<p>A partir destas funções básicas podemos criar objetos de classes mais específicas com</p>
+<ul>
+<li><code>matrix()</code></li>
+<li><code>list()</code></li>
+<li><code>data.frame()</code></li>
+</ul>
+</div>
+</div>
+<div id="entrada-via-teclado" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Entrada via teclado</h3>
+<div id="usando-a-funcao-scan" class="section level4">
+<h4><span class="header-section-number">4.1.2.1</span> Usando a função <code>scan()</code></h4>
+<p>Esta função lê dados diretamento do console, isto é, coloca o R em modo <em>prompt</em> onde o usuário deve digitar cada dado seguido da tecla <kbd>Enter</kbd>. Para encerrar a entrada de dados basta digitar <kbd>Enter</kbd> duas vezes consecutivas.</p>
+<p>Veja o seguinte resultado:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">scan</span>()
+
+<span class="dv">1</span><span class="op">:</span><span class="st"> </span><span class="dv">11</span>
+<span class="dv">2</span><span class="op">:</span><span class="st"> </span><span class="dv">24</span>
+<span class="dv">3</span><span class="op">:</span><span class="st"> </span><span class="dv">35</span>
+<span class="dv">4</span><span class="op">:</span><span class="st"> </span><span class="dv">29</span>
+<span class="dv">5</span><span class="op">:</span><span class="st"> </span><span class="dv">39</span>
+<span class="dv">6</span><span class="op">:</span><span class="st"> </span><span class="dv">47</span>
+<span class="dv">7</span><span class="op">:</span>
+Read <span class="dv">6</span> items</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y
+[<span class="dv">1</span>] <span class="dv">11</span> <span class="dv">24</span> <span class="dv">35</span> <span class="dv">29</span> <span class="dv">39</span> <span class="dv">47</span></code></pre></div>
+<p>Os dados também podem ser digitados em sequência, desde que separados por um espaço,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">scan</span>()
+
+<span class="dv">1</span><span class="op">:</span><span class="st"> </span><span class="dv">11</span> <span class="dv">24</span>
+<span class="dv">3</span><span class="op">:</span><span class="st"> </span><span class="dv">35</span> <span class="dv">29</span>
+<span class="dv">5</span><span class="op">:</span><span class="st"> </span><span class="dv">39</span> <span class="dv">47</span>
+<span class="dv">7</span><span class="op">:</span>
+Read <span class="dv">6</span> items</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y
+[<span class="dv">1</span>] <span class="dv">11</span> <span class="dv">24</span> <span class="dv">35</span> <span class="dv">29</span> <span class="dv">39</span> <span class="dv">47</span></code></pre></div>
+<p>Este formato é mais ágil que o anterior (com <code>c()</code>, por exemplo) e é conveniente para digitar vetores longos. Esta função pode também ser usada para ler dados de um arquivo ou conexão, aceitando inclusive endereços de URLs (endereços da <em>web</em>) o que iremos mencionar em detalhes mais adiante.</p>
+<p>Por padrão, a função <code>scan()</code> aceita apenas valores numéricos como entrada (lembre-se que vetores só podem ter elementos da mesma classe). Para alterar a classe de objeto de entrada, precisamos especificar o argumento <code>what</code> de <code>scan()</code>. Por exemplo, para entrar com um vetor de caracteres, fazemos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="dt">what =</span> <span class="st">&quot;character&quot;</span>)
+
+<span class="dv">1</span><span class="op">:</span><span class="st"> </span>a
+<span class="dv">2</span><span class="op">:</span><span class="st"> </span>b
+<span class="dv">3</span><span class="op">:</span><span class="st"> </span>c
+<span class="dv">4</span><span class="op">:</span>
+Read <span class="dv">3</span> items</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
+[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span> <span class="st">&quot;b&quot;</span> <span class="st">&quot;c&quot;</span></code></pre></div>
+<p>Outras classe possíveis para o argumento <code>what</code> são: <code>logical</code>, <code>integer</code>, <code>numeric</code>, <code>complex</code>, <code>character</code>, <code>raw</code> e <code>list</code>.</p>
+</div>
+</div>
+<div id="exercicios-9" class="section level3 unnumbered">
+<h3>Exercícios</h3>
+<ol style="list-style-type: decimal">
+<li>Usando a função <code>scan()</code> crie objetos para armazenar os seguintes valores:
+<ol style="list-style-type: lower-alpha">
+<li>19, 13, 19, 23, 18, 20, 25, 14, 20, 18, 22, 18, 23, 14, 19</li>
+<li><code>joaquina</code>, <code>armação</code>, <code>praia brava</code>, <code>praia mole</code>, <code>morro das pedras</code></li>
+<li><code>TRUE</code>, <code>TRUE</code>, <code>FALSE</code>, <code>FALSE</code>, <code>TRUE</code></li>
+</ol></li>
+</ol>
+<div id="usando-a-funcao-readlines" class="section level4">
+<h4><span class="header-section-number">4.1.2.2</span> Usando a função <code>readLines()</code></h4>
+<p>Esta função é particularmente útil para ler entradas na forma de texto (<em>strings</em>). Por exemplo, para ler uma linha a ser digitada na tela do R, siga o comando abaixo e digite o texto indicado. Ao terminar pressione a tecla <kbd>Enter</kbd> e o texto será armazanado no objeto texto.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">texto &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="dt">n =</span> <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Estou digitando no console</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">texto
+[<span class="dv">1</span>] <span class="st">&quot;Estou digitando no console&quot;</span></code></pre></div>
+<p>Um possível uso é dentro que funções que solicitem que o usuário responda e/ou entre com informações na medida que são solicitadas. Experimente definir e rodar o função a seguir.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fn.ex &lt;-<span class="st"> </span><span class="cf">function</span>() {
+    <span class="kw">cat</span>(<span class="st">&quot;Digite o nome do time de futebol de sua preferência (em letras minúsculas)</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    time &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="dt">n =</span> <span class="dv">1</span>)
+    <span class="cf">if</span> (time <span class="op">==</span><span class="st"> &quot;atletico-pr&quot;</span>)
+        <span class="kw">cat</span>(<span class="st">&quot;BOA ESCOLHA!!!</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="cf">else</span> <span class="kw">cat</span>(<span class="st">&quot;Ihh, tá mal de escolha...</span><span class="ch">\n</span><span class="st">&quot;</span>)
+    <span class="kw">return</span>(<span class="kw">invisible</span>())
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fn.ex</span>()</code></pre></div>
+<p>Nesse exemplo, <code>readLines()</code> foi utilizada para efetuar a leitura via teclado, mas a função permite ainda entrada de dados por conexões com outros dispositivos de <em>input</em>. Por exemplo, pode ser utilizada para ler texto de um arquivo. Consulte a documentação da função para maiores detalhes e exemplos.</p>
+<!-- #### Usando `textConnection()` -->
+<!-- Esta função generaliza a anterior permitindo que se entre com mais de um -->
+<!-- campo por linha, gravando o resultado em um data frame. Por exemplo, -->
+<!-- ```{r, eval=FALSE} -->
+<!-- teste <- textConnection("trat resposta  -->
+<!--    a 10  -->
+<!--    a 12  -->
+<!--    b 15  -->
+<!--    b 20  -->
+<!--    c 12  -->
+<!--    c 5  -->
+<!--    d 8  -->
+<!--    d 10") -->
+<!-- ``` -->
+<!-- ```{r, eval=FALSE} -->
+<!-- # capture R output: use part of example from help(lm) -->
+<!-- zz <- textConnection(object = "foo", open = "w") -->
+<!-- ctl <- c(4.17, 5.58, 5.18, 6.11, 4.5, 4.61, 5.17, 4.53, 5.33, 5.14) -->
+<!-- trt <- c(4.81, 4.17, 4.41, 3.59, 5.87, 3.83, 6.03, 4.89, 4.32, 4.69) -->
+<!-- group <- gl(2, 10, 20, labels = c("Ctl", "Trt")) -->
+<!-- weight <- c(ctl, trt) -->
+<!-- sink(zz) -->
+<!-- anova(lm.D9 <- lm(weight ~ group)) -->
+<!-- cat("\nSummary of Residuals:\n\n") -->
+<!-- summary(resid(lm.D9)) -->
+<!-- sink() -->
+<!-- close(zz) -->
+<!-- cat(foo, sep = "\n") -->
+<!-- ``` -->
+</div>
+</div>
+<div id="entrada-de-dados-em-arquivos-texto" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Entrada de dados em arquivos texto</h3>
+<p>Se os dados já estão disponíveis em formato eletrônico, isto é, já foram digitados em outro programa, voce pode importar os dados para o R sem a necessidade de digitá-los novamente.</p>
+<p>A forma mais fácil de fazer isto é usar dados em formato texto (arquivo do tipo ASCII). Por exemplo, se seus dados estão disponíveis em uma planilha eletrônica como LibreOffice Calc, MS Excel ou similar, você pode escolher a opção <kbd>Salvar como…</kbd> e gravar os dados em um arquivo em formato texto. Os dois prncipais formatos de texto são:</p>
+<ul>
+<li><code>txt</code>: arquivo de texto puro, onde as colunas são separadas geralmente por uma tabulação (<kbd>Tab</kbd>) ou espaço (<kbd>Spc</kbd>)</li>
+<li><code>csv</code>: arquivo de texto, onde as colunas são geralmente separadas por vírgula (<em>comma separated value</em>), ou ponto-e-vírgula.</li>
+</ul>
+<p>No R usa-se <code>scan()</code> mencionada anteriormente, ou então a função mais flexível <code>read.table()</code> para ler os dados de um arquivo texto e armazenar no formato de um data frame.</p>
+<p>Antes de importar para o R:</p>
+<ul>
+<li>Se houverem valores perdidos, preencha com <code>NA</code></li>
+<li>A matriz de dados deve formar um bloco só. Se houverem colunas de diferentes comprimentos, preencha com <code>NA</code></li>
+<li>Salve o arquivo como “valores separados por vírgula” (<code>.csv</code>), mas atenção:
+<ul>
+<li>Se o separador de decimal for <code>,</code>, o separador de campos será <code>;</code> automaticamente (o que é mais comum nos sistemas em português).</li>
+</ul></li>
+</ul>
+<div id="a-funcao-read.table" class="section level4">
+<h4><span class="header-section-number">4.1.3.1</span> A função <code>read.table()</code></h4>
+<p>O método mais comum de importação de dados para o R, é utilizando a função <code>read.table()</code>. Como exemplo, baixe o arquivo <code>crabs.csv</code> disponível <a href="http://leg.ufpr.br/~fernandomayer/data/crabs.csv">aqui</a>, e salve em um diretório chamado <code>dados</code> no seu diretório de trabalho.</p>
+<p>Para importar um arquivo <code>.csv</code> faça:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/crabs.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>,
+                    <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<p>Argumentos:</p>
+<ul>
+<li><code>&quot;crabs.csv&quot;</code>: nome do arquivo. (Considerando que o arquivo <code>crabs.csv</code> está dentro do diretório <code>dados</code>).</li>
+<li><code>header = TRUE</code>: significa que a primeira linha do arquivo deve ser interpretada como os nomes das colunas</li>
+<li><code>sep = &quot;;&quot;</code>: o separador de colunas (também pode ser <code>&quot;,&quot;</code>, <code>&quot;\t&quot;</code> para tabulação e <code>&quot;&quot;</code> para espaços)</li>
+<li><code>dec = &quot;,&quot;</code>: o separador de decimais (também pode ser <code>&quot;.&quot;</code>)</li>
+</ul>
+<p>As funções <code>read.csv()</code> e <code>read.csv2()</code> são chamadas de <em>wrappers</em> (envelopes) que tornam o usa da função <code>read.table()</code> um pouco mais direta, alterando alguns argumentos. Por exemplo, o comando acima poderia ser substituído por</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;dados/crabs.csv&quot;</span>)</code></pre></div>
+<p>O objeto criado com as funções <code>read.*()</code> sempre serão da classe <code>data.frame</code>, e quando houverem colunas com caracteres, estas colunas sempre serão da classe <code>factor</code>. Você pode alterar esse padrão usando o argumento <code>stringAsFactors = FALSE</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados2 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;dados/crabs.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Para conferir a estrutura dos dados importados, usamos a função <code>str()</code> que serve para demonstrar a estrutura de um objeto, como o nome das colunas e suas classes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">156</span> obs. of  <span class="dv">7</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>especie<span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;azul&quot;</span>,<span class="st">&quot;laranja&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...
+ <span class="op">$</span><span class="st"> </span>sexo   <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> ...
+ <span class="op">$</span><span class="st"> </span>FL     <span class="op">:</span><span class="st"> </span>num  <span class="fl">8.1</span> <span class="fl">8.8</span> <span class="fl">9.2</span> <span class="fl">9.6</span> <span class="fl">10.8</span> <span class="fl">11.6</span> <span class="fl">11.8</span> <span class="fl">12.3</span> <span class="fl">12.6</span> <span class="fl">12.8</span> ...
+ <span class="op">$</span><span class="st"> </span>RW     <span class="op">:</span><span class="st"> </span>num  <span class="fl">6.7</span> <span class="fl">7.7</span> <span class="fl">7.8</span> <span class="fl">7.9</span> <span class="dv">9</span> <span class="fl">9.1</span> <span class="fl">10.5</span> <span class="dv">11</span> <span class="dv">10</span> <span class="fl">10.9</span> ...
+ <span class="op">$</span><span class="st"> </span>CL     <span class="op">:</span><span class="st"> </span>num  <span class="fl">16.1</span> <span class="fl">18.1</span> <span class="dv">19</span> <span class="fl">20.1</span> <span class="dv">23</span> <span class="fl">24.5</span> <span class="fl">25.2</span> <span class="fl">26.8</span> <span class="fl">27.7</span> <span class="fl">27.4</span> ...
+ <span class="op">$</span><span class="st"> </span>CW     <span class="op">:</span><span class="st"> </span>num  <span class="dv">19</span> <span class="fl">20.8</span> <span class="fl">22.4</span> <span class="fl">23.1</span> <span class="fl">26.5</span> <span class="fl">28.4</span> <span class="fl">29.3</span> <span class="fl">31.5</span> <span class="fl">31.7</span> <span class="fl">31.5</span> ...
+ <span class="op">$</span><span class="st"> </span>BD     <span class="op">:</span><span class="st"> </span>num  <span class="dv">7</span> <span class="fl">7.4</span> <span class="fl">7.7</span> <span class="fl">8.2</span> <span class="fl">9.8</span> <span class="fl">10.4</span> <span class="fl">10.3</span> <span class="fl">11.4</span> <span class="fl">11.4</span> <span class="dv">11</span> ...
+<span class="kw">str</span>(dados2)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">156</span> obs. of  <span class="dv">7</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>especie<span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;azul&quot;</span> <span class="st">&quot;azul&quot;</span> <span class="st">&quot;azul&quot;</span> <span class="st">&quot;azul&quot;</span> ...
+ <span class="op">$</span><span class="st"> </span>sexo   <span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;M&quot;</span> <span class="st">&quot;M&quot;</span> <span class="st">&quot;M&quot;</span> <span class="st">&quot;M&quot;</span> ...
+ <span class="op">$</span><span class="st"> </span>FL     <span class="op">:</span><span class="st"> </span>num  <span class="fl">8.1</span> <span class="fl">8.8</span> <span class="fl">9.2</span> <span class="fl">9.6</span> <span class="fl">10.8</span> <span class="fl">11.6</span> <span class="fl">11.8</span> <span class="fl">12.3</span> <span class="fl">12.6</span> <span class="fl">12.8</span> ...
+ <span class="op">$</span><span class="st"> </span>RW     <span class="op">:</span><span class="st"> </span>num  <span class="fl">6.7</span> <span class="fl">7.7</span> <span class="fl">7.8</span> <span class="fl">7.9</span> <span class="dv">9</span> <span class="fl">9.1</span> <span class="fl">10.5</span> <span class="dv">11</span> <span class="dv">10</span> <span class="fl">10.9</span> ...
+ <span class="op">$</span><span class="st"> </span>CL     <span class="op">:</span><span class="st"> </span>num  <span class="fl">16.1</span> <span class="fl">18.1</span> <span class="dv">19</span> <span class="fl">20.1</span> <span class="dv">23</span> <span class="fl">24.5</span> <span class="fl">25.2</span> <span class="fl">26.8</span> <span class="fl">27.7</span> <span class="fl">27.4</span> ...
+ <span class="op">$</span><span class="st"> </span>CW     <span class="op">:</span><span class="st"> </span>num  <span class="dv">19</span> <span class="fl">20.8</span> <span class="fl">22.4</span> <span class="fl">23.1</span> <span class="fl">26.5</span> <span class="fl">28.4</span> <span class="fl">29.3</span> <span class="fl">31.5</span> <span class="fl">31.7</span> <span class="fl">31.5</span> ...
+ <span class="op">$</span><span class="st"> </span>BD     <span class="op">:</span><span class="st"> </span>num  <span class="dv">7</span> <span class="fl">7.4</span> <span class="fl">7.7</span> <span class="fl">8.2</span> <span class="fl">9.8</span> <span class="fl">10.4</span> <span class="fl">10.3</span> <span class="fl">11.4</span> <span class="fl">11.4</span> <span class="dv">11</span> ...</code></pre></div>
+<p>Podemos também visualizar algumas linhas iniciais e finais do objeto importado através de duas funções auxiliares:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dados)
+  especie sexo   FL  RW   CL   CW   BD
+<span class="dv">1</span>    azul    M  <span class="fl">8.1</span> <span class="fl">6.7</span> <span class="fl">16.1</span> <span class="fl">19.0</span>  <span class="fl">7.0</span>
+<span class="dv">2</span>    azul    M  <span class="fl">8.8</span> <span class="fl">7.7</span> <span class="fl">18.1</span> <span class="fl">20.8</span>  <span class="fl">7.4</span>
+<span class="dv">3</span>    azul    M  <span class="fl">9.2</span> <span class="fl">7.8</span> <span class="fl">19.0</span> <span class="fl">22.4</span>  <span class="fl">7.7</span>
+<span class="dv">4</span>    azul    M  <span class="fl">9.6</span> <span class="fl">7.9</span> <span class="fl">20.1</span> <span class="fl">23.1</span>  <span class="fl">8.2</span>
+<span class="dv">5</span>    azul    M <span class="fl">10.8</span> <span class="fl">9.0</span> <span class="fl">23.0</span> <span class="fl">26.5</span>  <span class="fl">9.8</span>
+<span class="dv">6</span>    azul    M <span class="fl">11.6</span> <span class="fl">9.1</span> <span class="fl">24.5</span> <span class="fl">28.4</span> <span class="fl">10.4</span>
+<span class="kw">tail</span>(dados)
+    especie sexo   FL   RW   CL   CW   BD
+<span class="dv">151</span> laranja    F <span class="fl">21.3</span> <span class="fl">18.4</span> <span class="fl">43.8</span> <span class="fl">48.4</span> <span class="fl">20.0</span>
+<span class="dv">152</span> laranja    F <span class="fl">21.4</span> <span class="fl">18.0</span> <span class="fl">41.2</span> <span class="fl">46.2</span> <span class="fl">18.7</span>
+<span class="dv">153</span> laranja    F <span class="fl">21.7</span> <span class="fl">17.1</span> <span class="fl">41.7</span> <span class="fl">47.2</span> <span class="fl">19.6</span>
+<span class="dv">154</span> laranja    F <span class="fl">21.9</span> <span class="fl">17.2</span> <span class="fl">42.6</span> <span class="fl">47.4</span> <span class="fl">19.5</span>
+<span class="dv">155</span> laranja    F <span class="fl">22.5</span> <span class="fl">17.2</span> <span class="fl">43.0</span> <span class="fl">48.7</span> <span class="fl">19.8</span>
+<span class="dv">156</span> laranja    F <span class="fl">23.1</span> <span class="fl">20.2</span> <span class="fl">46.2</span> <span class="fl">52.5</span> <span class="fl">21.1</span></code></pre></div>
+<p>As funções permitem ainda ler dados diretamente disponíveis na <em>web</em>. Por exemplo, os dados do exemplo poderiam ser lidos diretamente com o comando a seguir, sem a necessidade de copiar primeiro os dados para algum local no computador do usuário:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;http://www.leg.ufpr.br/~fernandomayer/data/crabs.csv&quot;</span>)</code></pre></div>
+<p>Para maiores informações consulte a documentação desta função com <code>?read.table()</code>. Embora <code>read.table()</code> seja provavelmente a função mais utilizada existem outras que podem ser úteis e determinadas situações:</p>
+<ul>
+<li><code>read.fwf()</code> é conveniente para ler <em>fixed width formats</em></li>
+<li><code>read.fortran()</code> é semelhante à anterior porém usando o estilo Fortran de especificação das colunas</li>
+<li><code>read.csv()</code>, <code>read.csv2()</code>, <code>read.delim()</code> e <code>read.delim2()</code>: estas funções são praticamente iguais a <code>read.table()</code> porém com diferentes opções padrão. Em geral (mas não sempre) dados em formato <code>csv</code> usado no Brasil são lidos diretamente com <code>read.csv2()</code>.</li>
+</ul>
+</div>
+</div>
+<div id="exercicios-10" class="section level3 unnumbered">
+<h3>Exercícios</h3>
+<ol style="list-style-type: decimal">
+<li>Baixe os arquivos a seguir e coloque os arquivos em um local apropriado (de preferência no mesmo diretório de trabalho que voce definiu no início da sessão), faça a importação usando a função <code>read.table()</code>, e confira a estrutura dos dados com <code>str()</code>.
+<ol style="list-style-type: lower-alpha">
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/BHH2/prb0519.dat">prb0519.dat</a></li>
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/BHH2/tab0303.dat">tab0303.dat</a></li>
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/BHH2/tab1208.dat">tab1208.dat</a></li>
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/BHH2/ReadMe.txt">ReadMe.txt</a></li>
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/montgomery_6-26.csv">montgomery_6-26.csv</a></li>
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/montgomery_14-12.txt">montgomery_14-12.txt</a></li>
+<li><a href="http://leg.ufpr.br/~fernandomayer/data/montgomery_ex6-2.csv">montgomery_ex6-2.csv</a></li>
+<li><a href="http://www.leg.ufpr.br/~fernandomayer/data/ipea_habitacao.csv">ipea_habitacao.csv</a></li>
+<li><a href="http://www.leg.ufpr.br/~fernandomayer/data/stratford.csv">stratford.csv</a></li>
+</ol></li>
+<li>Faça a leitura dos dados do exercício anterior, mas agora utilize o endereço <em>web</em> dos arquivos.</li>
+</ol>
+</div>
+<div id="entrada-de-dados-atraves-da-area-de-transferencia" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Entrada de dados através da área de transferência</h3>
+<p>Um mecanismos comum para copiar dados de um programa para o outro é usando a <strong>área de transferência</strong> (ou <em>clipboard</em>). Tipicamente isto é feito com o mecanismo de copia-e-cola, ou seja-se, marca-se os dados desejados em algum aplicativo (editor, planilha, página web, etc), usa-se o mecanismo de COPIAR (opção no menu do programa que muitas vezes corresponde o teclar <kbd>Ctrl</kbd> + <kbd>c</kbd>), o que transfere os dados para a área de transferência. Funções como <code>scan()</code>, <code>read.table()</code> e outras podem ser usades apra ler os dados diretamente da área de transferência passando-se a opção <code>&quot;clipboard&quot;</code> ao primeiro argumento. Por exemplo, os seguintes dados:</p>
+<pre><code>ID  Grupo  Gasto  Ano
+23      A  25,4   11
+12      B  12,3   09
+23      A  19,8   07</code></pre>
+<p>podem ser marcados e copiados para área de transferência e lidos diretamente com</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados.clip &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dados.clip)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">3</span> obs. of  <span class="dv">4</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>ID   <span class="op">:</span><span class="st"> </span>int  <span class="dv">23</span> <span class="dv">12</span> <span class="dv">23</span>
+ <span class="op">$</span><span class="st"> </span>Grupo<span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span>
+ <span class="op">$</span><span class="st"> </span>Gasto<span class="op">:</span><span class="st"> </span>num  <span class="fl">25.4</span> <span class="fl">12.3</span> <span class="fl">19.8</span>
+ <span class="op">$</span><span class="st"> </span>Ano  <span class="op">:</span><span class="st"> </span>int  <span class="dv">11</span> <span class="dv">9</span> <span class="dv">7</span></code></pre></div>
+</div>
+<div id="importando-dados-diretamente-de-planilhas" class="section level3">
+<h3><span class="header-section-number">4.1.5</span> Importando dados diretamente de planilhas</h3>
+<p>Existem alguns pacotes disponíveis que podem ler dados diretamente de planilhas do MS Excel. No entanto, estes pacotes geralmente possuem particularidades quanto ao sistema operacional e demais dependências para funcionar corretamente.</p>
+<p>Um destes pacotes, é o <strong>gdata</strong>, que funciona em diversos sistemas operacionais mas depende da linguagem Perl estar instalada. Por exemplo, para ler o conjuto de dados <code>crabs</code> armazenado em uma planilha do Excel (disponível <a href="http://leg.ufpr.br/~fernandomayer/data/crabs.xls">aqui</a>), podemos usar</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Carrega o pacote
+<span class="kw">library</span>(gdata)
+gdata<span class="op">:</span><span class="st"> </span>read.xls support <span class="cf">for</span> <span class="st">&#39;XLS&#39;</span> (Excel <span class="dv">97</span><span class="op">-</span><span class="dv">2004</span>) files ENABLED.
+
+gdata<span class="op">:</span><span class="st"> </span>read.xls support <span class="cf">for</span> <span class="st">&#39;XLSX&#39;</span> (Excel <span class="dv">2007</span><span class="op">+</span>) files ENABLED.
+
+Attaching package<span class="op">:</span><span class="st"> &#39;gdata&#39;</span>
+The following object is masked from <span class="st">&#39;package:stats&#39;</span><span class="op">:</span>
+
+<span class="st">    </span>nobs
+The following object is masked from <span class="st">&#39;package:utils&#39;</span><span class="op">:</span>
+
+<span class="st">    </span>object.size
+The following object is masked from <span class="st">&#39;package:base&#39;</span><span class="op">:</span>
+
+<span class="st">    </span>startsWith
+## Leitura diretamente do Excel
+dados.xls &lt;-<span class="st"> </span><span class="kw">read.xls</span>(<span class="st">&quot;dados/crabs.xls&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;Plan1&quot;</span>,
+                      <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)
+## Estrutura
+<span class="kw">str</span>(dados.xls)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">156</span> obs. of  <span class="dv">7</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>especie<span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;azul&quot;</span>,<span class="st">&quot;laranja&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...
+ <span class="op">$</span><span class="st"> </span>sexo   <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> ...
+ <span class="op">$</span><span class="st"> </span>FL     <span class="op">:</span><span class="st"> </span>num  <span class="fl">8.1</span> <span class="fl">8.8</span> <span class="fl">9.2</span> <span class="fl">9.6</span> <span class="fl">10.8</span> <span class="fl">11.6</span> <span class="fl">11.8</span> <span class="fl">12.3</span> <span class="fl">12.6</span> <span class="fl">12.8</span> ...
+ <span class="op">$</span><span class="st"> </span>RW     <span class="op">:</span><span class="st"> </span>num  <span class="fl">6.7</span> <span class="fl">7.7</span> <span class="fl">7.8</span> <span class="fl">7.9</span> <span class="dv">9</span> <span class="fl">9.1</span> <span class="fl">10.5</span> <span class="dv">11</span> <span class="dv">10</span> <span class="fl">10.9</span> ...
+ <span class="op">$</span><span class="st"> </span>CL     <span class="op">:</span><span class="st"> </span>num  <span class="fl">16.1</span> <span class="fl">18.1</span> <span class="dv">19</span> <span class="fl">20.1</span> <span class="dv">23</span> <span class="fl">24.5</span> <span class="fl">25.2</span> <span class="fl">26.8</span> <span class="fl">27.7</span> <span class="fl">27.4</span> ...
+ <span class="op">$</span><span class="st"> </span>CW     <span class="op">:</span><span class="st"> </span>num  <span class="dv">19</span> <span class="fl">20.8</span> <span class="fl">22.4</span> <span class="fl">23.1</span> <span class="fl">26.5</span> <span class="fl">28.4</span> <span class="fl">29.3</span> <span class="fl">31.5</span> <span class="fl">31.7</span> <span class="fl">31.5</span> ...
+ <span class="op">$</span><span class="st"> </span>BD     <span class="op">:</span><span class="st"> </span>num  <span class="dv">7</span> <span class="fl">7.4</span> <span class="fl">7.7</span> <span class="fl">8.2</span> <span class="fl">9.8</span> <span class="fl">10.4</span> <span class="fl">10.3</span> <span class="fl">11.4</span> <span class="fl">11.4</span> <span class="dv">11</span> ...</code></pre></div>
+<p>Outros pacotes que possuem funções similares são: <strong>openxlsx</strong>, <strong>xlsx</strong>, e <strong>XLConnect</strong>.</p>
+<p>Estruturas de dados mais complexas são tipicamente armazenadas nos chamados DBMS (<em>database management system</em>) ou RDBMS (<em>relational database management system</em>). Aguns exemplos são Oracle, Microsoft SQL server, MySQL, PostgreSQL, Microsoft Access, dentre outros. O R possui ferramentas implementadas em pacotes para acesso a estes sistemas gerenciadores.</p>
+<p>Para mais detalhes consulte o manual <a href="http://cran-r.c3sl.ufpr.br/doc/manuals/r-release/R-data.html">R Data Import/Export</a> e a documentação dos pacotes que implementam tal funcionalidade. Alguns destes pacotes disponíveis são: <strong>RODBC</strong>, <strong>DBI</strong>, <strong>RMySQL</strong>, <strong>RPostgreSQL</strong>, <strong>ROracle</strong>, <strong>RNetCDF</strong>, <strong>RSQLite</strong>, dentre outros.</p>
+</div>
+<div id="carregando-dados-ja-disponiveis-no-r" class="section level3">
+<h3><span class="header-section-number">4.1.6</span> Carregando dados já disponíveis no R</h3>
+<p>O R já possui alguns conjuntos de dados que estão disponíeis logo após a instalação. Estes dados são também objetos que precisam ser carregados para ficarem disponiveis para o usuário. Normalmente, estes conjuntos de dados são para uso de exemplo de funções.</p>
+<p>Para carregar conjuntos de dados que são disponibilizados com o R, use o comando <code>data()</code>. Por exemplo, abaixo mostramos como carregar o conjunto <code>mtcars</code> que está no pacote <strong>datasets</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Objetos criados até o momento nesta seção
+<span class="kw">ls</span>()
+[<span class="dv">1</span>] <span class="st">&quot;dados&quot;</span>      <span class="st">&quot;dados.clip&quot;</span> <span class="st">&quot;dados.xls&quot;</span>  <span class="st">&quot;dados2&quot;</span>     <span class="st">&quot;fn.ex&quot;</span>     
+[<span class="dv">6</span>] <span class="st">&quot;texto&quot;</span>      <span class="st">&quot;x&quot;</span>          <span class="st">&quot;y&quot;</span>         
+## Carrega a base de dados mtcars
+<span class="kw">data</span>(mtcars)
+## Note como agora o objeto mtcars fica disponível na sua área de
+## trabalho
+<span class="kw">ls</span>()
+[<span class="dv">1</span>] <span class="st">&quot;dados&quot;</span>      <span class="st">&quot;dados.clip&quot;</span> <span class="st">&quot;dados.xls&quot;</span>  <span class="st">&quot;dados2&quot;</span>     <span class="st">&quot;fn.ex&quot;</span>     
+[<span class="dv">6</span>] <span class="st">&quot;mtcars&quot;</span>     <span class="st">&quot;texto&quot;</span>      <span class="st">&quot;x&quot;</span>          <span class="st">&quot;y&quot;</span>         
+## Estrutura e visualização do objeto
+<span class="kw">str</span>(mtcars)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">32</span> obs. of  <span class="dv">11</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>mpg <span class="op">:</span><span class="st"> </span>num  <span class="dv">21</span> <span class="dv">21</span> <span class="fl">22.8</span> <span class="fl">21.4</span> <span class="fl">18.7</span> <span class="fl">18.1</span> <span class="fl">14.3</span> <span class="fl">24.4</span> <span class="fl">22.8</span> <span class="fl">19.2</span> ...
+ <span class="op">$</span><span class="st"> </span>cyl <span class="op">:</span><span class="st"> </span>num  <span class="dv">6</span> <span class="dv">6</span> <span class="dv">4</span> <span class="dv">6</span> <span class="dv">8</span> <span class="dv">6</span> <span class="dv">8</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">6</span> ...
+ <span class="op">$</span><span class="st"> </span>disp<span class="op">:</span><span class="st"> </span>num  <span class="dv">160</span> <span class="dv">160</span> <span class="dv">108</span> <span class="dv">258</span> <span class="dv">360</span> ...
+ <span class="op">$</span><span class="st"> </span>hp  <span class="op">:</span><span class="st"> </span>num  <span class="dv">110</span> <span class="dv">110</span> <span class="dv">93</span> <span class="dv">110</span> <span class="dv">175</span> <span class="dv">105</span> <span class="dv">245</span> <span class="dv">62</span> <span class="dv">95</span> <span class="dv">123</span> ...
+ <span class="op">$</span><span class="st"> </span>drat<span class="op">:</span><span class="st"> </span>num  <span class="fl">3.9</span> <span class="fl">3.9</span> <span class="fl">3.85</span> <span class="fl">3.08</span> <span class="fl">3.15</span> <span class="fl">2.76</span> <span class="fl">3.21</span> <span class="fl">3.69</span> <span class="fl">3.92</span> <span class="fl">3.92</span> ...
+ <span class="op">$</span><span class="st"> </span>wt  <span class="op">:</span><span class="st"> </span>num  <span class="fl">2.62</span> <span class="fl">2.88</span> <span class="fl">2.32</span> <span class="fl">3.21</span> <span class="fl">3.44</span> ...
+ <span class="op">$</span><span class="st"> </span>qsec<span class="op">:</span><span class="st"> </span>num  <span class="fl">16.5</span> <span class="dv">17</span> <span class="fl">18.6</span> <span class="fl">19.4</span> <span class="dv">17</span> ...
+ <span class="op">$</span><span class="st"> </span>vs  <span class="op">:</span><span class="st"> </span>num  <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...
+ <span class="op">$</span><span class="st"> </span>am  <span class="op">:</span><span class="st"> </span>num  <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> ...
+ <span class="op">$</span><span class="st"> </span>gear<span class="op">:</span><span class="st"> </span>num  <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> ...
+ <span class="op">$</span><span class="st"> </span>carb<span class="op">:</span><span class="st"> </span>num  <span class="dv">4</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">4</span> ...
+<span class="kw">head</span>(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         <span class="fl">21.0</span>   <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span> <span class="fl">3.90</span> <span class="fl">2.620</span> <span class="fl">16.46</span>  <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">4</span>
+Mazda RX4 Wag     <span class="fl">21.0</span>   <span class="dv">6</span>  <span class="dv">160</span> <span class="dv">110</span> <span class="fl">3.90</span> <span class="fl">2.875</span> <span class="fl">17.02</span>  <span class="dv">0</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">4</span>
+Datsun <span class="dv">710</span>        <span class="fl">22.8</span>   <span class="dv">4</span>  <span class="dv">108</span>  <span class="dv">93</span> <span class="fl">3.85</span> <span class="fl">2.320</span> <span class="fl">18.61</span>  <span class="dv">1</span>  <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">1</span>
+Hornet <span class="dv">4</span> Drive    <span class="fl">21.4</span>   <span class="dv">6</span>  <span class="dv">258</span> <span class="dv">110</span> <span class="fl">3.08</span> <span class="fl">3.215</span> <span class="fl">19.44</span>  <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">1</span>
+Hornet Sportabout <span class="fl">18.7</span>   <span class="dv">8</span>  <span class="dv">360</span> <span class="dv">175</span> <span class="fl">3.15</span> <span class="fl">3.440</span> <span class="fl">17.02</span>  <span class="dv">0</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">2</span>
+Valiant           <span class="fl">18.1</span>   <span class="dv">6</span>  <span class="dv">225</span> <span class="dv">105</span> <span class="fl">2.76</span> <span class="fl">3.460</span> <span class="fl">20.22</span>  <span class="dv">1</span>  <span class="dv">0</span>    <span class="dv">3</span>    <span class="dv">1</span></code></pre></div>
+<p>As bases de dados também possuem páginas de documentação para explicar o que são os dados e as colunas correspondentes. Para ver o que são os dados do <code>mtcars</code> por exemplo, veja <code>?mtcars</code>.</p>
+<p>O conjunto <code>mtcars</code> é disponibilizado prontamente pois faz parte do pacote <strong>datasets</strong>, que por padrão é sempre carregado na inicialização do R. No entanto, existem outros conjuntos de dados, disponibilizados por outros pacotes, que precisam ser carregados para que os dados possam ser disponibilizados. Por exemplo, os dados do objeto <code>topo</code> são do pacote <strong>MASS</strong>. Se tentarmos fazer</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(topo)
+Warning <span class="cf">in</span> <span class="kw">data</span>(topo)<span class="op">:</span><span class="st"> </span>data set <span class="st">&#39;topo&#39;</span> not found</code></pre></div>
+<p>Portanto, precisamos primeiro carregar o pacote <strong>MASS</strong> com</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)</code></pre></div>
+<p>e agora podemos carregar o objeto <code>topo</code> com</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(topo)
+## O objeto fica disponível na sua área de trabalho
+<span class="kw">ls</span>()
+ [<span class="dv">1</span>] <span class="st">&quot;dados&quot;</span>      <span class="st">&quot;dados.clip&quot;</span> <span class="st">&quot;dados.xls&quot;</span>  <span class="st">&quot;dados2&quot;</span>     <span class="st">&quot;fn.ex&quot;</span>     
+ [<span class="dv">6</span>] <span class="st">&quot;mtcars&quot;</span>     <span class="st">&quot;texto&quot;</span>      <span class="st">&quot;topo&quot;</span>       <span class="st">&quot;x&quot;</span>          <span class="st">&quot;y&quot;</span>         
+## Confere a estrutura
+<span class="kw">str</span>(topo)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">52</span> obs. of  <span class="dv">3</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>x<span class="op">:</span><span class="st"> </span>num  <span class="fl">0.3</span> <span class="fl">1.4</span> <span class="fl">2.4</span> <span class="fl">3.6</span> <span class="fl">5.7</span> <span class="fl">1.6</span> <span class="fl">2.9</span> <span class="fl">3.4</span> <span class="fl">3.4</span> <span class="fl">4.8</span> ...
+ <span class="op">$</span><span class="st"> </span>y<span class="op">:</span><span class="st"> </span>num  <span class="fl">6.1</span> <span class="fl">6.2</span> <span class="fl">6.1</span> <span class="fl">6.2</span> <span class="fl">6.2</span> <span class="fl">5.2</span> <span class="fl">5.1</span> <span class="fl">5.3</span> <span class="fl">5.7</span> <span class="fl">5.6</span> ...
+ <span class="op">$</span><span class="st"> </span>z<span class="op">:</span><span class="st"> </span>int  <span class="dv">870</span> <span class="dv">793</span> <span class="dv">755</span> <span class="dv">690</span> <span class="dv">800</span> <span class="dv">800</span> <span class="dv">730</span> <span class="dv">728</span> <span class="dv">710</span> <span class="dv">780</span> ...</code></pre></div>
+<p>A função <code>data()</code> pode ainda ser usada para listar os conjutos de dados disponíveis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>()</code></pre></div>
+<p>e também pode ser útil para listar os conjuntos de dados disponíveis para um pacote específico, por exemplo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="dt">package =</span> <span class="st">&quot;nlme&quot;</span>)</code></pre></div>
+</div>
+<div id="importando-dados-de-outros-programas" class="section level3">
+<h3><span class="header-section-number">4.1.7</span> Importando dados de outros programas</h3>
+<p>É possível ler dados diretamente de outros formatos que não seja texto (ASCII). Isto em geral é mais eficiente e requer menos memória do que converter para formato texto. Há funções para importar dados diretamente de EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat e Octave. Além disto é comum surgir a necessidade de importar dados de planilhas eletrônicas. Muitas funções que permitem a importação de dados de outros programas são implementadas no pacote <strong>foreign</strong>.</p>
+<p>A seguir listamos algumas (não todas!) destas funções:</p>
+<ul>
+<li><code>read.dbf()</code> para arquivos DBASE</li>
+<li><code>read.epiinfo()</code> para arquivos .REC do Epi-Info</li>
+<li><code>read.mtp()</code> para arquivos “Minitab Portable Worksheet”</li>
+<li><code>read.S()</code> para arquivos do S-PLUS, e <code>restore.data()</code> para “dumps” do S-PLUS</li>
+<li><code>read.spss()</code> para dados do SPSS</li>
+<li><code>read.systat()</code> para dados do SYSTAT</li>
+<li><code>read.dta()</code> para dados do STATA</li>
+<li><code>read.octave()</code> para dados do OCTAVE (um clone do MATLAB)</li>
+<li>Para dados do SAS há ao menos duas alternativas:
+<ul>
+<li>O pacote <strong>foreign</strong> disponibiliza <code>read.xport()</code> para ler do formato TRANSPORT do SAS e <code>read.ssd()</code> pode escrever dados permanentes do SAS (<code>.ssd</code> ou <code>.sas7bdat</code>) no formato TRANSPORT, se o SAS estiver disponível no seu sistema e depois usa internamente <code>read.xport()</code> para ler os dados no R.</li>
+<li>O pacote <strong>Hmisc</strong> disponibiliza <code>sas.get()</code> que também requer o SAS no sistema.</li>
+</ul></li>
+</ul>
+<p>Para mais detalhes consulte a documentação de cada função e/ou o manual <a href="http://cran-r.c3sl.ufpr.br/doc/manuals/r-release/R-data.html">R Data Import/Export</a>.</p>
+</div>
+</div>
+<div id="saida-de-dados-do-r" class="section level2">
+<h2><span class="header-section-number">4.2</span> Saída de dados do R</h2>
+<div id="usando-a-funcao-write.table" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Usando a função <code>write.table()</code></h3>
+<p>Para exportar objetos do R, usamos a função <code>write.table()</code>, que possui argumentos parecidos com aqueles da função <code>read.table()</code>.</p>
+<p>A função <code>write.table()</code> é capaz de criar um arquivo de texto no formato <code>txt</code> ou <code>csv</code>, com as especificações definidas pelos argumentos.</p>
+<p>Para ilustrar o uso desta função, considerer o conjunto de dados <code>iris</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
+<span class="kw">str</span>(iris)
+<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">150</span> obs. of  <span class="dv">5</span> variables<span class="op">:</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>Sepal.Length<span class="op">:</span><span class="st"> </span>num  <span class="fl">5.1</span> <span class="fl">4.9</span> <span class="fl">4.7</span> <span class="fl">4.6</span> <span class="dv">5</span> <span class="fl">5.4</span> <span class="fl">4.6</span> <span class="dv">5</span> <span class="fl">4.4</span> <span class="fl">4.9</span> ...
+ <span class="op">$</span><span class="st"> </span>Sepal.Width <span class="op">:</span><span class="st"> </span>num  <span class="fl">3.5</span> <span class="dv">3</span> <span class="fl">3.2</span> <span class="fl">3.1</span> <span class="fl">3.6</span> <span class="fl">3.9</span> <span class="fl">3.4</span> <span class="fl">3.4</span> <span class="fl">2.9</span> <span class="fl">3.1</span> ...
+ <span class="op">$</span><span class="st"> </span>Petal.Length<span class="op">:</span><span class="st"> </span>num  <span class="fl">1.4</span> <span class="fl">1.4</span> <span class="fl">1.3</span> <span class="fl">1.5</span> <span class="fl">1.4</span> <span class="fl">1.7</span> <span class="fl">1.4</span> <span class="fl">1.5</span> <span class="fl">1.4</span> <span class="fl">1.5</span> ...
+ <span class="op">$</span><span class="st"> </span>Petal.Width <span class="op">:</span><span class="st"> </span>num  <span class="fl">0.2</span> <span class="fl">0.2</span> <span class="fl">0.2</span> <span class="fl">0.2</span> <span class="fl">0.2</span> <span class="fl">0.4</span> <span class="fl">0.3</span> <span class="fl">0.2</span> <span class="fl">0.2</span> <span class="fl">0.1</span> ...
+ <span class="op">$</span><span class="st"> </span>Species     <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">3</span> levels <span class="st">&quot;setosa&quot;</span>,<span class="st">&quot;versicolor&quot;</span>,..<span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> ...</code></pre></div>
+<p>Podemos exportar esse data frame com</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(iris, <span class="dt">file =</span> <span class="st">&quot;dados/iris.csv&quot;</span>)</code></pre></div>
+<p>Por padrão, o arquivo resultante tem colunas separadas por espaço, o separador de decimal é ponto, e os nomes das linhas são também incluídos (o que geralmente é desnecessário). Para alterar essa configuração podemos fazer</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(iris, <span class="dt">file =</span> <span class="st">&quot;dados/iris.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>,
+            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<p>Os argumentos são</p>
+<ul>
+<li><code>iris</code>: o nome do objeto a ser exportado (matriz ou data frame)</li>
+<li><code>&quot;iris.csv&quot;</code>: nome do arquivo a ser gerado. (Considerando que o arquivo <code>iris.csv</code> será criado dentro do diretório <code>dados</code>).</li>
+<li><code>row.names = FALSE</code>: para eliminar o nome das linhas do objeto (geralmente desnecessário), como retornado por <code>row.names()</code></li>
+<li><code>sep = &quot;;&quot;</code>: o separador de colunas (também pode ser <code>&quot;,&quot;</code>, <code>&quot;\t&quot;</code> para tabulação e <code>&quot;&quot;</code> para espaços)</li>
+<li><code>dec = &quot;,&quot;</code>: o separador de decimais (também pode ser <code>&quot;.&quot;</code>)</li>
+</ul>
+<p>Note que o objeto a ser exportado (nesse caso <code>iris</code>) deve ser em formato tabular, ou seja, uma matriz ou data frame. Outras classes de objetos podem ser exportadas, mas haverá uma coerção para data frame, o que pode fazer com que o resultado final não seja o esperado.</p>
+<p>Assim como <code>read.table()</code> possui as funções <code>read.csv()</code> e <code>read.csv2()</code>, a função <code>write.table()</code> possui as funções <code>write.table()</code> e <code>write.table2()</code> como <em>wrappers</em>. O comando acima também poderia ser executado como</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv2</span>(iris, <span class="dt">file =</span> <span class="st">&quot;dados/iris.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Note que <code>row.names = FALSE</code> ainda é necessário para eliminar os nomes das linhas.</p>
+<p>O pacote <strong>foreign</strong> também possui funções para exportar para uma variedade de formatos. Veja a documentação em <code>help(package = &quot;foreign&quot;)</code>. Os pacotes para ler dados diretamente de arquivos do MS Excel mencionados acima também possuem funções para exportar diretamente para esse formato.</p>
+</div>
+<div id="exercicios-11" class="section level3 unnumbered">
+<h3>Exercícios</h3>
+<ol style="list-style-type: decimal">
+<li>Considere a tabela abaixo com o resultado de uma pesquisa que avaliou o número de fumates e não fumantes por sexo. <!-- Gerado em http://www.tablesgenerator.com/html_tables -->
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-e3zv{font-weight:bold}
+.tg .tg-hgcj{font-weight:bold;text-align:center}
+.tg .tg-yw4l{vertical-align:top}
+.tg .tg-9hbo{font-weight:bold;vertical-align:top}
+</style>
+<table class="tg">
+<tr>
+<th class="tg-031e">
+</th>
+<th class="tg-hgcj" colspan="2">
+Sexo
+</th>
+</tr>
+<tr>
+<td class="tg-e3zv">
+Condição
+</td>
+<td class="tg-hgcj">
+Masculino
+</td>
+<td class="tg-hgcj">
+Feminino
+</td>
+</tr>
+<tr>
+<td class="tg-e3zv">
+Fumante
+</td>
+<td class="tg-s6z2">
+49
+</td>
+<td class="tg-s6z2">
+54
+</td>
+</tr>
+<tr>
+<td class="tg-031e">
+</td>
+<td class="tg-s6z2">
+64
+</td>
+<td class="tg-s6z2">
+61
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+37
+</td>
+<td class="tg-baqh">
+79
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+52
+</td>
+<td class="tg-baqh">
+64
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+68
+</td>
+<td class="tg-baqh">
+29
+</td>
+</tr>
+<tr>
+<td class="tg-9hbo">
+Não fumante
+</td>
+<td class="tg-baqh">
+27
+</td>
+<td class="tg-baqh">
+40
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+58
+</td>
+<td class="tg-baqh">
+39
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+52
+</td>
+<td class="tg-baqh">
+44
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+41
+</td>
+<td class="tg-baqh">
+34
+</td>
+</tr>
+<tr>
+<td class="tg-yw4l">
+</td>
+<td class="tg-baqh">
+30
+</td>
+<td class="tg-baqh">
+44
+</td>
+</tr>
+</table>
+<!-- |             |    Sexo   |          | -->
+<!-- |-------------|:---------:|:--------:| -->
+<!-- | Condição    | Masculino | Feminino | -->
+<!-- | Fumante     |     49    |    54    | -->
+<!-- |             |     64    |    61    | -->
+<!-- |             |     37    |    79    | -->
+<!-- |             |     52    |    64    | -->
+<!-- |             |     68    |    29    | -->
+<!-- | Não fumante |     27    |    40    | -->
+<!-- |             |     58    |    39    | -->
+<!-- |             |     52    |    44    | -->
+<!-- |             |     41    |    34    | -->
+<!-- |             |     30    |    44    | --></li>
+<li>Digite estes dados em uma planilha eletrônica em um formato apropriado para um data frame do R, e salve em um arquivo <code>csv</code>.</li>
+<li>Importe esse arquivo para o R com <code>read.table()</code>.</li>
+<li>Crie uma nova coluna no objeto que contém estes dados, sendo a coluna com o número de pessoas multiplicada por 2.</li>
+<li>Exporte esse novo objeto usando a função <code>write.table()</code>.</li>
+<li>Tente criar esse mesmo conjunto de dados usando comandos do R (ex.: <code>c()</code>, <code>rep()</code>, <code>data.frame()</code>, etc.)</li>
+</ol>
+</div>
+<div id="usando-os-formatos-textual-e-binario-para-lerescrever-dados" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Usando os formatos textual e binário para ler/escrever dados</h3>
+<p>As formas mais comuns de entrada de dados no R são através da entrada direta pelo teclado (e.g. <code>c()</code> ou <code>scan()</code>), ou pela importação de arquivos de texto (e.g. <code>read.table()</code>). No etanto, ainda existem mais dois formatos par armazenar dados para leitura no R: o textual e o binário.</p>
+<p>O <strong>formato binário</strong> é aquele armazenado em um arquivo binário, ou seja, um arquivo que contém apenas 0s e 1s, e possui um formato específico que só pode ser lido por determinado <em>software</em> ou função. É o oposto de um arquivo de texto, por exemplo, que podemos abrir e editar em qualquer prorama que edite texto puro.</p>
+<p>O <strong>formato textual</strong> é o intermediário entre o texto puro e o binário. Os dados em formato textual são apresentados como texto puro, mas contém informações adicionais, chamados de <strong>metadados</strong>, que preservam toda a estrutura dos dados, como as classes de cada coluna de um data frame.</p>
+<div id="formato-textual" class="section level4">
+<h4><span class="header-section-number">4.2.2.1</span> Formato textual</h4>
+<p>O formato textual é muito útil para compartilhar conjuntos de dados que não são muito grandes, e onde a formatação (leia-se: classes de objetos) precisa ser mantida.</p>
+<p>Para criar um conjunto de dados no formato textual, usamos a função <code>dput()</code>. Vamos criar um data frame de exemplo e ver o resultado da chamada dessa função:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">B =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))
+<span class="kw">dput</span>(da)
+<span class="kw">structure</span>(<span class="kw">list</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">B =</span> <span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">.Label =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, 
+<span class="st">&quot;b&quot;</span>), <span class="dt">class =</span> <span class="st">&quot;factor&quot;</span>)), <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>, <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, 
+<span class="op">-</span>2L))</code></pre></div>
+<p>Note que o resultado de <code>dput()</code> é no formato do R, e preserva metadados como as classes do objeto e de cada coluna, e os nomes das linhas e colunas.</p>
+<p>Outas classes de objetos são facilmente preservadas quando armazenadas com o resultado de <code>dput()</code>. Por exemplo, uma matriz:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)
+<span class="kw">dput</span>(ma)
+<span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">.Dim =</span> <span class="kw">c</span>(3L, 3L))</code></pre></div>
+<p>E uma lista:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">la &lt;-<span class="st"> </span><span class="kw">list</span>(da, ma)
+<span class="kw">dput</span>(la)
+<span class="kw">list</span>(<span class="kw">structure</span>(<span class="kw">list</span>(<span class="dt">A =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">B =</span> <span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">.Label =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, 
+<span class="st">&quot;b&quot;</span>), <span class="dt">class =</span> <span class="st">&quot;factor&quot;</span>)), <span class="dt">class =</span> <span class="st">&quot;data.frame&quot;</span>, <span class="dt">row.names =</span> <span class="kw">c</span>(<span class="ot">NA</span>, 
+<span class="op">-</span>2L)), <span class="kw">structure</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">.Dim =</span> <span class="kw">c</span>(3L, 3L)))</code></pre></div>
+<p>A saída da função <code>dput()</code> pode ser copiada para um script do R, para garantir que qualquer pessoa que venha usar o código (incluindo você no futuro), usará os dados no formato correto (esperado). Isso é muito importante para a <strong>pesquisa reproduzível</strong>!</p>
+<p>A saída de <code>dput()</code> também pode ser salva diretamente em um arquivo de script do R, por exemplo,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(da, <span class="dt">file =</span> <span class="st">&quot;da.R&quot;</span>)</code></pre></div>
+<p>irá criar o arquivo <code>da.R</code> com o resultado da função. Para importar os dados salvos dessa forma, usamos a função <code>dget()</code>,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da2 &lt;-<span class="st"> </span><span class="kw">dget</span>(<span class="dt">file =</span> <span class="st">&quot;da.R&quot;</span>)
+da2
+  A B
+<span class="dv">1</span> <span class="dv">1</span> a
+<span class="dv">2</span> <span class="dv">2</span> b</code></pre></div>
+<p>Múltiplos objetos podem ser armazenados em formato textual usando a função <code>dump()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dump</span>(<span class="kw">c</span>(<span class="st">&quot;da&quot;</span>, <span class="st">&quot;ma&quot;</span>, <span class="st">&quot;la&quot;</span>), <span class="dt">file =</span> <span class="st">&quot;dados.R&quot;</span>)</code></pre></div>
+<p>Note que os objetos são passados como um vetor de caracteres, e um arquivo chamado <code>dados.R</code> é criado com todos os objetos no formato textual. Para importar estes objetos para uma sessão do R, usamos a função <code>source()</code>,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;dados.R&quot;</span>)</code></pre></div>
+<p>que já cria os objetos na sua área de trabalho com os mesmos nomes e atributos como foram armazenados.</p>
+</div>
+<div id="formato-binario" class="section level4">
+<h4><span class="header-section-number">4.2.2.2</span> Formato binário</h4>
+<p>Armazenar dados em formato binário é vantajoso quando não há uma forma “fácil” de armazenar os dados em formato de texto puro ou textual. Além disso, algumas vezes o formato binário possui maior eficiência em termos de velocidade de leitura/escrita, dependendo dos dados. Outra vantagem é que valores numéricos geralmente perdem precisão quando armazenados em texto ou textual, enquanto que o formato binário preserva toda a precisão (embora essa perda de precisão seja desprezível na maioria dos casos).</p>
+<p>Para salvar um objeto contendo dados no R, usamos a função <code>save()</code>. Por exemplo, para armazenar o objeto <code>da</code> criado acima, fazemos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(da, <span class="dt">file =</span> <span class="st">&quot;dados.rda&quot;</span>)</code></pre></div>
+<p>Esse comando irá criar o arquivo (binário) <code>dados.rda</code>. Note que a extensão <code>.rda</code> é comumente utilizada para dados binários do R, mas não é única.</p>
+<p>Paa salvar mais de um objeto no mesmo arquivo, basta passar os nomes na mesma função</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(da, ma, <span class="dt">file =</span> <span class="st">&quot;dados.rda&quot;</span>)</code></pre></div>
+<p>A função <code>save.image()</code> pode ser utilizada se a intenção é salvar <strong>todos</strong> os objetos criados na sua área de trabalho (isso inclui qualquer objeto, não só os conjuntos de dados). Nesse caso, podemos fazer</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save.image</span>(<span class="dt">file =</span> <span class="st">&quot;workspace.RData&quot;</span>)</code></pre></div>
+<p>Note que quando foi utilizada a função <code>save()</code>, a extensão do arquivo foi <code>rda</code>, e com <code>save.image()</code> foi <code>RData</code>. Isso é uma convenção comum de arquivos binários do R, mas não é obrigatório. Qualquer uma das extensões funciona em ambas as funções.</p>
+<p>Para carregar os conjuntos de dados (ou de forma mais geral, os objetos) armazenados em formato binário, usamos a função <code>load()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;dados.rda&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;workspace.RData&quot;</span>)</code></pre></div>
+<p>Dessa forma, os objetos já estarão disponíveis na sua área de trabalho.</p>
+</div>
+</div>
+</div>
+<div id="informacoes-sobre-diretorios-e-arquivos" class="section level2">
+<h2><span class="header-section-number">4.3</span> Informações sobre diretórios e arquivos</h2>
+<p>O R possui uma variedade de funções para mostrar informações sobre arquivos e diretórios. Alguns exemplos são:</p>
+<ul>
+<li><code>file.info()</code> mostra o tamanho do arquivo, data de criação, …</li>
+<li><code>dir()</code> mostra todos os arquivos presentes em um diretório (tente com <code>recursive = TRUE</code>)</li>
+<li><code>file.exists()</code> retorna <code>TRUE</code> ou <code>FALSE</code> para a presença de um arquivo</li>
+<li><code>getwd()</code> e <code>setwd()</code> para verificar e altear o diretório de trabalho</li>
+</ul>
+<p>Veja <code>?files</code> para uma lista copleta de funções úteis para manipular arquivos de dentro do R.</p>
+<!-- Referencias -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="indexacao-e-selecao-condicional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programando-com-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": true,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": ["ecr.pdf", "ecr.epub", "ecr.mobi"],
+"toc": {
+"collapse": "none",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

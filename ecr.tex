@@ -167,7 +167,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 00:45
+Wednesday, 25 July, 2018, 01:22
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -189,15 +189,17 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] knitr_1.20
+[1] MASS_7.3-50  gdata_2.18.0 knitr_1.20  
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.18    bookdown_0.7.15 digest_0.6.15   rprojroot_1.3-2
- [5] backports_1.1.2 magrittr_1.5    evaluate_0.11   highr_0.7      
- [9] stringi_1.2.4   rstudioapi_0.7  rmarkdown_1.10  tools_3.5.0    
-[13] stringr_1.3.1   xfun_0.3        yaml_2.1.19     compiler_3.5.0 
-[17] htmltools_0.3.6
+ [1] Rcpp_0.12.18    bookdown_0.7.15 gtools_3.8.1    digest_0.6.15  
+ [5] rprojroot_1.3-2 backports_1.1.2 magrittr_1.5    evaluate_0.11  
+ [9] highr_0.7       stringi_1.2.4   rstudioapi_0.7  rmarkdown_1.10 
+[13] tools_3.5.0     stringr_1.3.1   xfun_0.3        yaml_2.1.19    
+[17] compiler_3.5.0  htmltools_0.3.6
 \end{verbatim}
+
+\part{R básico}\label{part-r-basico}
 
 \chapter{Computação científica e interação com o
 R}\label{computacao-cientifica-e-interacao-com-o-r}
@@ -879,7 +881,8 @@ No entanto, nem todos são carregados na inicialização do R. Por padrão,
 apenas os seguintes pacotes são carregados automaticamente:
 
 \begin{verbatim}
-[1] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
+[1] "knitr"     "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[7] "methods"   "base"     
 \end{verbatim}
 
 Para listar os pacotes carregados, use a função
@@ -1414,9 +1417,9 @@ ocupa menos espaço na memória. Dessa forma, esperamos que o vetor
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{object.size}\NormalTok{(num)}
-\DecValTok{96}\NormalTok{ bytes}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{96}\NormalTok{ bytes}
 \KeywordTok{object.size}\NormalTok{(x)}
-\DecValTok{80}\NormalTok{ bytes}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{80}\NormalTok{ bytes}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3914,6 +3917,2039 @@ A grande vantagem é que a função \texttt{subset()} já lida com os
   Qual região possui praias com mais de 50 caranguejos contados?
 \end{enumerate}
 
+\chapter{Entrada e saída de dados no
+R}\label{entrada-e-saida-de-dados-no-r}
+
+A entrada de dados no R pode ser realizada de diferentes formas. O
+formato mais adequado vai depender do tamanho do conjunto de dados, e se
+os dados já existem em outro formato para serem importados ou se serão
+digitados diretamente no R.
+
+A seguir são descritas as formas de entrada de dados com indicação de
+quando cada uma das formas deve ser usada. Os três primeiros casos são
+adequados para entrada de dados diretamente no R, os seguintes descrevem
+como importar dados já disponíveis eletronicamentede um arquivo texto,
+em outro sistema ou no próprio R.
+
+Posteriormente também será mostrado como fazer para exportar bases de
+dados geradas e/ou alteradas dentro do R.
+
+\section{Entrada de dados}\label{entrada-de-dados}
+
+\subsection{Entrada de dados diretamente no
+R}\label{entrada-de-dados-diretamente-no-r}
+
+\subsubsection{Vetores}\label{vetores}
+
+A forma mais básica de entrada de dados no R é através da função
+\texttt{c()} (como já vimos). A partir dela pode se criar os outros
+tipos de objetos como listas e data frames.
+
+As funções básicas de entrada de dados são:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{c()}
+\item
+  \texttt{rep()}
+\item
+  \texttt{seq()} ou \texttt{:}
+\end{itemize}
+
+A partir destas funções básicas podemos criar objetos de classes mais
+específicas com
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{matrix()}
+\item
+  \texttt{list()}
+\item
+  \texttt{data.frame()}
+\end{itemize}
+
+\subsection{Entrada via teclado}\label{entrada-via-teclado}
+
+\subsubsection{\texorpdfstring{Usando a função
+\texttt{scan()}}{Usando a função scan()}}\label{usando-a-funcao-scan}
+
+Esta função lê dados diretamento do console, isto é, coloca o R em modo
+\emph{prompt} onde o usuário deve digitar cada dado seguido da tecla
+Enter. Para encerrar a entrada de dados basta digitar Enter duas vezes
+consecutivas.
+
+Veja o seguinte resultado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{scan}\NormalTok{()}
+
+\DecValTok{1}\OperatorTok{:}\StringTok{ }\DecValTok{11}
+\DecValTok{2}\OperatorTok{:}\StringTok{ }\DecValTok{24}
+\DecValTok{3}\OperatorTok{:}\StringTok{ }\DecValTok{35}
+\DecValTok{4}\OperatorTok{:}\StringTok{ }\DecValTok{29}
+\DecValTok{5}\OperatorTok{:}\StringTok{ }\DecValTok{39}
+\DecValTok{6}\OperatorTok{:}\StringTok{ }\DecValTok{47}
+\DecValTok{7}\OperatorTok{:}
+\NormalTok{Read }\DecValTok{6}\NormalTok{ items}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{11} \DecValTok{24} \DecValTok{35} \DecValTok{29} \DecValTok{39} \DecValTok{47}
+\end{Highlighting}
+\end{Shaded}
+
+Os dados também podem ser digitados em sequência, desde que separados
+por um espaço,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{scan}\NormalTok{()}
+
+\DecValTok{1}\OperatorTok{:}\StringTok{ }\DecValTok{11} \DecValTok{24}
+\DecValTok{3}\OperatorTok{:}\StringTok{ }\DecValTok{35} \DecValTok{29}
+\DecValTok{5}\OperatorTok{:}\StringTok{ }\DecValTok{39} \DecValTok{47}
+\DecValTok{7}\OperatorTok{:}
+\NormalTok{Read }\DecValTok{6}\NormalTok{ items}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{11} \DecValTok{24} \DecValTok{35} \DecValTok{29} \DecValTok{39} \DecValTok{47}
+\end{Highlighting}
+\end{Shaded}
+
+Este formato é mais ágil que o anterior (com \texttt{c()}, por exemplo)
+e é conveniente para digitar vetores longos. Esta função pode também ser
+usada para ler dados de um arquivo ou conexão, aceitando inclusive
+endereços de URLs (endereços da \emph{web}) o que iremos mencionar em
+detalhes mais adiante.
+
+Por padrão, a função \texttt{scan()} aceita apenas valores numéricos
+como entrada (lembre-se que vetores só podem ter elementos da mesma
+classe). Para alterar a classe de objeto de entrada, precisamos
+especificar o argumento \texttt{what} de \texttt{scan()}. Por exemplo,
+para entrar com um vetor de caracteres, fazemos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{scan}\NormalTok{(}\DataTypeTok{what =} \StringTok{"character"}\NormalTok{)}
+
+\DecValTok{1}\OperatorTok{:}\StringTok{ }\NormalTok{a}
+\DecValTok{2}\OperatorTok{:}\StringTok{ }\NormalTok{b}
+\DecValTok{3}\OperatorTok{:}\StringTok{ }\NormalTok{c}
+\DecValTok{4}\OperatorTok{:}
+\NormalTok{Read }\DecValTok{3}\NormalTok{ items}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"a"} \StringTok{"b"} \StringTok{"c"}
+\end{Highlighting}
+\end{Shaded}
+
+Outras classe possíveis para o argumento \texttt{what} são:
+\texttt{logical}, \texttt{integer}, \texttt{numeric}, \texttt{complex},
+\texttt{character}, \texttt{raw} e \texttt{list}.
+
+\subsection*{Exercícios}\label{exercicios-9}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Usando a função \texttt{scan()} crie objetos para armazenar os
+  seguintes valores:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    19, 13, 19, 23, 18, 20, 25, 14, 20, 18, 22, 18, 23, 14, 19
+  \item
+    \texttt{joaquina}, \texttt{armação}, \texttt{praia\ brava},
+    \texttt{praia\ mole}, \texttt{morro\ das\ pedras}
+  \item
+    \texttt{TRUE}, \texttt{TRUE}, \texttt{FALSE}, \texttt{FALSE},
+    \texttt{TRUE}
+  \end{enumerate}
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{Usando a função
+\texttt{readLines()}}{Usando a função readLines()}}\label{usando-a-funcao-readlines}
+
+Esta função é particularmente útil para ler entradas na forma de texto
+(\emph{strings}). Por exemplo, para ler uma linha a ser digitada na tela
+do R, siga o comando abaixo e digite o texto indicado. Ao terminar
+pressione a tecla Enter e o texto será armazanado no objeto texto.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Estou digitando no console}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Estou digitando no console"}
+\end{Highlighting}
+\end{Shaded}
+
+Um possível uso é dentro que funções que solicitem que o usuário
+responda e/ou entre com informações na medida que são solicitadas.
+Experimente definir e rodar o função a seguir.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fn.ex <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+    \KeywordTok{cat}\NormalTok{(}\StringTok{"Digite o nome do time de futebol de sua preferência (em letras minúsculas)}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{    time <-}\StringTok{ }\KeywordTok{readLines}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ (time }\OperatorTok{==}\StringTok{ "atletico-pr"}\NormalTok{)}
+        \KeywordTok{cat}\NormalTok{(}\StringTok{"BOA ESCOLHA!!!}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \ControlFlowTok{else} \KeywordTok{cat}\NormalTok{(}\StringTok{"Ihh, tá mal de escolha...}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{invisible}\NormalTok{())}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fn.ex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Nesse exemplo, \texttt{readLines()} foi utilizada para efetuar a leitura
+via teclado, mas a função permite ainda entrada de dados por conexões
+com outros dispositivos de \emph{input}. Por exemplo, pode ser utilizada
+para ler texto de um arquivo. Consulte a documentação da função para
+maiores detalhes e exemplos.
+
+\subsection{Entrada de dados em arquivos
+texto}\label{entrada-de-dados-em-arquivos-texto}
+
+Se os dados já estão disponíveis em formato eletrônico, isto é, já foram
+digitados em outro programa, voce pode importar os dados para o R sem a
+necessidade de digitá-los novamente.
+
+A forma mais fácil de fazer isto é usar dados em formato texto (arquivo
+do tipo ASCII). Por exemplo, se seus dados estão disponíveis em uma
+planilha eletrônica como LibreOffice Calc, MS Excel ou similar, você
+pode escolher a opção Salvar como\ldots{} e gravar os dados em um
+arquivo em formato texto. Os dois prncipais formatos de texto são:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{txt}: arquivo de texto puro, onde as colunas são separadas
+  geralmente por uma tabulação (Tab) ou espaço (Spc)
+\item
+  \texttt{csv}: arquivo de texto, onde as colunas são geralmente
+  separadas por vírgula (\emph{comma separated value}), ou
+  ponto-e-vírgula.
+\end{itemize}
+
+No R usa-se \texttt{scan()} mencionada anteriormente, ou então a função
+mais flexível \texttt{read.table()} para ler os dados de um arquivo
+texto e armazenar no formato de um data frame.
+
+Antes de importar para o R:
+
+\begin{itemize}
+\tightlist
+\item
+  Se houverem valores perdidos, preencha com \texttt{NA}
+\item
+  A matriz de dados deve formar um bloco só. Se houverem colunas de
+  diferentes comprimentos, preencha com \texttt{NA}
+\item
+  Salve o arquivo como ``valores separados por vírgula''
+  (\texttt{.csv}), mas atenção:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Se o separador de decimal for \texttt{,}, o separador de campos será
+    \texttt{;} automaticamente (o que é mais comum nos sistemas em
+    português).
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{\texorpdfstring{A função
+\texttt{read.table()}}{A função read.table()}}\label{a-funcao-read.table}
+
+O método mais comum de importação de dados para o R, é utilizando a
+função \texttt{read.table()}. Como exemplo, baixe o arquivo
+\texttt{crabs.csv} disponível
+\href{http://leg.ufpr.br/~fernandomayer/data/crabs.csv}{aqui}, e salve
+em um diretório chamado \texttt{dados} no seu diretório de trabalho.
+
+Para importar um arquivo \texttt{.csv} faça:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"dados/crabs.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{,}
+                    \DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Argumentos:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{"crabs.csv"}: nome do arquivo. (Considerando que o arquivo
+  \texttt{crabs.csv} está dentro do diretório \texttt{dados}).
+\item
+  \texttt{header\ =\ TRUE}: significa que a primeira linha do arquivo
+  deve ser interpretada como os nomes das colunas
+\item
+  \texttt{sep\ =\ ";"}: o separador de colunas (também pode ser
+  \texttt{","}, \texttt{"\textbackslash{}t"} para tabulação e
+  \texttt{""} para espaços)
+\item
+  \texttt{dec\ =\ ","}: o separador de decimais (também pode ser
+  \texttt{"."})
+\end{itemize}
+
+As funções \texttt{read.csv()} e \texttt{read.csv2()} são chamadas de
+\emph{wrappers} (envelopes) que tornam o usa da função
+\texttt{read.table()} um pouco mais direta, alterando alguns argumentos.
+Por exemplo, o comando acima poderia ser substituído por
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"dados/crabs.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+O objeto criado com as funções \texttt{read.*()} sempre serão da classe
+\texttt{data.frame}, e quando houverem colunas com caracteres, estas
+colunas sempre serão da classe \texttt{factor}. Você pode alterar esse
+padrão usando o argumento \texttt{stringAsFactors\ =\ FALSE}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados2 <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"dados/crabs.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Para conferir a estrutura dos dados importados, usamos a função
+\texttt{str()} que serve para demonstrar a estrutura de um objeto, como
+o nome das colunas e suas classes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(dados)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{156}\NormalTok{ obs. of  }\DecValTok{7}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"azul"}\NormalTok{,}\StringTok{"laranja"}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{FL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{8.1} \FloatTok{8.8} \FloatTok{9.2} \FloatTok{9.6} \FloatTok{10.8} \FloatTok{11.6} \FloatTok{11.8} \FloatTok{12.3} \FloatTok{12.6} \FloatTok{12.8}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{RW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{6.7} \FloatTok{7.7} \FloatTok{7.8} \FloatTok{7.9} \DecValTok{9} \FloatTok{9.1} \FloatTok{10.5} \DecValTok{11} \DecValTok{10} \FloatTok{10.9}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{CL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{16.1} \FloatTok{18.1} \DecValTok{19} \FloatTok{20.1} \DecValTok{23} \FloatTok{24.5} \FloatTok{25.2} \FloatTok{26.8} \FloatTok{27.7} \FloatTok{27.4}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{CW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{19} \FloatTok{20.8} \FloatTok{22.4} \FloatTok{23.1} \FloatTok{26.5} \FloatTok{28.4} \FloatTok{29.3} \FloatTok{31.5} \FloatTok{31.7} \FloatTok{31.5}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{BD     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{7} \FloatTok{7.4} \FloatTok{7.7} \FloatTok{8.2} \FloatTok{9.8} \FloatTok{10.4} \FloatTok{10.3} \FloatTok{11.4} \FloatTok{11.4} \DecValTok{11}\NormalTok{ ...}
+\KeywordTok{str}\NormalTok{(dados2)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{156}\NormalTok{ obs. of  }\DecValTok{7}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"azul"} \StringTok{"azul"} \StringTok{"azul"} \StringTok{"azul"}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"M"} \StringTok{"M"} \StringTok{"M"} \StringTok{"M"}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{FL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{8.1} \FloatTok{8.8} \FloatTok{9.2} \FloatTok{9.6} \FloatTok{10.8} \FloatTok{11.6} \FloatTok{11.8} \FloatTok{12.3} \FloatTok{12.6} \FloatTok{12.8}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{RW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{6.7} \FloatTok{7.7} \FloatTok{7.8} \FloatTok{7.9} \DecValTok{9} \FloatTok{9.1} \FloatTok{10.5} \DecValTok{11} \DecValTok{10} \FloatTok{10.9}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{CL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{16.1} \FloatTok{18.1} \DecValTok{19} \FloatTok{20.1} \DecValTok{23} \FloatTok{24.5} \FloatTok{25.2} \FloatTok{26.8} \FloatTok{27.7} \FloatTok{27.4}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{CW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{19} \FloatTok{20.8} \FloatTok{22.4} \FloatTok{23.1} \FloatTok{26.5} \FloatTok{28.4} \FloatTok{29.3} \FloatTok{31.5} \FloatTok{31.7} \FloatTok{31.5}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{BD     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{7} \FloatTok{7.4} \FloatTok{7.7} \FloatTok{8.2} \FloatTok{9.8} \FloatTok{10.4} \FloatTok{10.3} \FloatTok{11.4} \FloatTok{11.4} \DecValTok{11}\NormalTok{ ...}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos também visualizar algumas linhas iniciais e finais do objeto
+importado através de duas funções auxiliares:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(dados)}
+\NormalTok{  especie sexo   FL  RW   CL   CW   BD}
+\DecValTok{1}\NormalTok{    azul    M  }\FloatTok{8.1} \FloatTok{6.7} \FloatTok{16.1} \FloatTok{19.0}  \FloatTok{7.0}
+\DecValTok{2}\NormalTok{    azul    M  }\FloatTok{8.8} \FloatTok{7.7} \FloatTok{18.1} \FloatTok{20.8}  \FloatTok{7.4}
+\DecValTok{3}\NormalTok{    azul    M  }\FloatTok{9.2} \FloatTok{7.8} \FloatTok{19.0} \FloatTok{22.4}  \FloatTok{7.7}
+\DecValTok{4}\NormalTok{    azul    M  }\FloatTok{9.6} \FloatTok{7.9} \FloatTok{20.1} \FloatTok{23.1}  \FloatTok{8.2}
+\DecValTok{5}\NormalTok{    azul    M }\FloatTok{10.8} \FloatTok{9.0} \FloatTok{23.0} \FloatTok{26.5}  \FloatTok{9.8}
+\DecValTok{6}\NormalTok{    azul    M }\FloatTok{11.6} \FloatTok{9.1} \FloatTok{24.5} \FloatTok{28.4} \FloatTok{10.4}
+\KeywordTok{tail}\NormalTok{(dados)}
+\NormalTok{    especie sexo   FL   RW   CL   CW   BD}
+\DecValTok{151}\NormalTok{ laranja    F }\FloatTok{21.3} \FloatTok{18.4} \FloatTok{43.8} \FloatTok{48.4} \FloatTok{20.0}
+\DecValTok{152}\NormalTok{ laranja    F }\FloatTok{21.4} \FloatTok{18.0} \FloatTok{41.2} \FloatTok{46.2} \FloatTok{18.7}
+\DecValTok{153}\NormalTok{ laranja    F }\FloatTok{21.7} \FloatTok{17.1} \FloatTok{41.7} \FloatTok{47.2} \FloatTok{19.6}
+\DecValTok{154}\NormalTok{ laranja    F }\FloatTok{21.9} \FloatTok{17.2} \FloatTok{42.6} \FloatTok{47.4} \FloatTok{19.5}
+\DecValTok{155}\NormalTok{ laranja    F }\FloatTok{22.5} \FloatTok{17.2} \FloatTok{43.0} \FloatTok{48.7} \FloatTok{19.8}
+\DecValTok{156}\NormalTok{ laranja    F }\FloatTok{23.1} \FloatTok{20.2} \FloatTok{46.2} \FloatTok{52.5} \FloatTok{21.1}
+\end{Highlighting}
+\end{Shaded}
+
+As funções permitem ainda ler dados diretamente disponíveis na
+\emph{web}. Por exemplo, os dados do exemplo poderiam ser lidos
+diretamente com o comando a seguir, sem a necessidade de copiar primeiro
+os dados para algum local no computador do usuário:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"http://www.leg.ufpr.br/~fernandomayer/data/crabs.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Para maiores informações consulte a documentação desta função com
+\texttt{?read.table()}. Embora \texttt{read.table()} seja provavelmente
+a função mais utilizada existem outras que podem ser úteis e
+determinadas situações:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{read.fwf()} é conveniente para ler \emph{fixed width formats}
+\item
+  \texttt{read.fortran()} é semelhante à anterior porém usando o estilo
+  Fortran de especificação das colunas
+\item
+  \texttt{read.csv()}, \texttt{read.csv2()}, \texttt{read.delim()} e
+  \texttt{read.delim2()}: estas funções são praticamente iguais a
+  \texttt{read.table()} porém com diferentes opções padrão. Em geral
+  (mas não sempre) dados em formato \texttt{csv} usado no Brasil são
+  lidos diretamente com \texttt{read.csv2()}.
+\end{itemize}
+
+\subsection*{Exercícios}\label{exercicios-10}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Baixe os arquivos a seguir e coloque os arquivos em um local
+  apropriado (de preferência no mesmo diretório de trabalho que voce
+  definiu no início da sessão), faça a importação usando a função
+  \texttt{read.table()}, e confira a estrutura dos dados com
+  \texttt{str()}.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/BHH2/prb0519.dat}{prb0519.dat}
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/BHH2/tab0303.dat}{tab0303.dat}
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/BHH2/tab1208.dat}{tab1208.dat}
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/BHH2/ReadMe.txt}{ReadMe.txt}
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/montgomery_6-26.csv}{montgomery\_6-26.csv}
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/montgomery_14-12.txt}{montgomery\_14-12.txt}
+  \item
+    \href{http://leg.ufpr.br/~fernandomayer/data/montgomery_ex6-2.csv}{montgomery\_ex6-2.csv}
+  \item
+    \href{http://www.leg.ufpr.br/~fernandomayer/data/ipea_habitacao.csv}{ipea\_habitacao.csv}
+  \item
+    \href{http://www.leg.ufpr.br/~fernandomayer/data/stratford.csv}{stratford.csv}
+  \end{enumerate}
+\item
+  Faça a leitura dos dados do exercício anterior, mas agora utilize o
+  endereço \emph{web} dos arquivos.
+\end{enumerate}
+
+\subsection{Entrada de dados através da área de
+transferência}\label{entrada-de-dados-atraves-da-area-de-transferencia}
+
+Um mecanismos comum para copiar dados de um programa para o outro é
+usando a \textbf{área de transferência} (ou \emph{clipboard}).
+Tipicamente isto é feito com o mecanismo de copia-e-cola, ou seja-se,
+marca-se os dados desejados em algum aplicativo (editor, planilha,
+página web, etc), usa-se o mecanismo de COPIAR (opção no menu do
+programa que muitas vezes corresponde o teclar Ctrl + c), o que
+transfere os dados para a área de transferência. Funções como
+\texttt{scan()}, \texttt{read.table()} e outras podem ser usades apra
+ler os dados diretamente da área de transferência passando-se a opção
+\texttt{"clipboard"} ao primeiro argumento. Por exemplo, os seguintes
+dados:
+
+\begin{verbatim}
+ID  Grupo  Gasto  Ano
+23      A  25,4   11
+12      B  12,3   09
+23      A  19,8   07
+\end{verbatim}
+
+podem ser marcados e copiados para área de transferência e lidos
+diretamente com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados.clip <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"clipboard"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(dados.clip)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{3}\NormalTok{ obs. of  }\DecValTok{4}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{ID   }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{23} \DecValTok{12} \DecValTok{23}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Grupo}\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{2} \DecValTok{1}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Gasto}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{25.4} \FloatTok{12.3} \FloatTok{19.8}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Ano  }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{11} \DecValTok{9} \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Importando dados diretamente de
+planilhas}\label{importando-dados-diretamente-de-planilhas}
+
+Existem alguns pacotes disponíveis que podem ler dados diretamente de
+planilhas do MS Excel. No entanto, estes pacotes geralmente possuem
+particularidades quanto ao sistema operacional e demais dependências
+para funcionar corretamente.
+
+Um destes pacotes, é o \textbf{gdata}, que funciona em diversos sistemas
+operacionais mas depende da linguagem Perl estar instalada. Por exemplo,
+para ler o conjuto de dados \texttt{crabs} armazenado em uma planilha do
+Excel (disponível
+\href{http://leg.ufpr.br/~fernandomayer/data/crabs.xls}{aqui}), podemos
+usar
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Carrega o pacote}
+\KeywordTok{library}\NormalTok{(gdata)}
+\NormalTok{## Leitura diretamente do Excel}
+\NormalTok{dados.xls <-}\StringTok{ }\KeywordTok{read.xls}\NormalTok{(}\StringTok{"dados/crabs.xls"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"Plan1"}\NormalTok{,}
+                      \DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\NormalTok{## Estrutura}
+\KeywordTok{str}\NormalTok{(dados.xls)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{156}\NormalTok{ obs. of  }\DecValTok{7}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"azul"}\NormalTok{,}\StringTok{"laranja"}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{FL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{8.1} \FloatTok{8.8} \FloatTok{9.2} \FloatTok{9.6} \FloatTok{10.8} \FloatTok{11.6} \FloatTok{11.8} \FloatTok{12.3} \FloatTok{12.6} \FloatTok{12.8}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{RW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{6.7} \FloatTok{7.7} \FloatTok{7.8} \FloatTok{7.9} \DecValTok{9} \FloatTok{9.1} \FloatTok{10.5} \DecValTok{11} \DecValTok{10} \FloatTok{10.9}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{CL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{16.1} \FloatTok{18.1} \DecValTok{19} \FloatTok{20.1} \DecValTok{23} \FloatTok{24.5} \FloatTok{25.2} \FloatTok{26.8} \FloatTok{27.7} \FloatTok{27.4}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{CW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{19} \FloatTok{20.8} \FloatTok{22.4} \FloatTok{23.1} \FloatTok{26.5} \FloatTok{28.4} \FloatTok{29.3} \FloatTok{31.5} \FloatTok{31.7} \FloatTok{31.5}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{BD     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{7} \FloatTok{7.4} \FloatTok{7.7} \FloatTok{8.2} \FloatTok{9.8} \FloatTok{10.4} \FloatTok{10.3} \FloatTok{11.4} \FloatTok{11.4} \DecValTok{11}\NormalTok{ ...}
+\end{Highlighting}
+\end{Shaded}
+
+Outros pacotes que possuem funções similares são: \textbf{openxlsx},
+\textbf{xlsx}, e \textbf{XLConnect}.
+
+Estruturas de dados mais complexas são tipicamente armazenadas nos
+chamados DBMS (\emph{database management system}) ou RDBMS
+(\emph{relational database management system}). Aguns exemplos são
+Oracle, Microsoft SQL server, MySQL, PostgreSQL, Microsoft Access,
+dentre outros. O R possui ferramentas implementadas em pacotes para
+acesso a estes sistemas gerenciadores.
+
+Para mais detalhes consulte o manual
+\href{http://cran-r.c3sl.ufpr.br/doc/manuals/r-release/R-data.html}{R
+Data Import/Export} e a documentação dos pacotes que implementam tal
+funcionalidade. Alguns destes pacotes disponíveis são: \textbf{RODBC},
+\textbf{DBI}, \textbf{RMySQL}, \textbf{RPostgreSQL}, \textbf{ROracle},
+\textbf{RNetCDF}, \textbf{RSQLite}, dentre outros.
+
+\subsection{Carregando dados já disponíveis no
+R}\label{carregando-dados-ja-disponiveis-no-r}
+
+O R já possui alguns conjuntos de dados que estão disponíeis logo após a
+instalação. Estes dados são também objetos que precisam ser carregados
+para ficarem disponiveis para o usuário. Normalmente, estes conjuntos de
+dados são para uso de exemplo de funções.
+
+Para carregar conjuntos de dados que são disponibilizados com o R, use o
+comando \texttt{data()}. Por exemplo, abaixo mostramos como carregar o
+conjunto \texttt{mtcars} que está no pacote \textbf{datasets}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Objetos criados até o momento nesta seção}
+\KeywordTok{ls}\NormalTok{()}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"dados"}      \StringTok{"dados.clip"} \StringTok{"dados.xls"}  \StringTok{"dados2"}     \StringTok{"fn.ex"}     
+\NormalTok{[}\DecValTok{6}\NormalTok{] }\StringTok{"texto"}      \StringTok{"x"}          \StringTok{"y"}         
+\NormalTok{## Carrega a base de dados mtcars}
+\KeywordTok{data}\NormalTok{(mtcars)}
+\NormalTok{## Note como agora o objeto mtcars fica disponível na sua área de}
+\NormalTok{## trabalho}
+\KeywordTok{ls}\NormalTok{()}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"dados"}      \StringTok{"dados.clip"} \StringTok{"dados.xls"}  \StringTok{"dados2"}     \StringTok{"fn.ex"}     
+\NormalTok{[}\DecValTok{6}\NormalTok{] }\StringTok{"mtcars"}     \StringTok{"texto"}      \StringTok{"x"}          \StringTok{"y"}         
+\NormalTok{## Estrutura e visualização do objeto}
+\KeywordTok{str}\NormalTok{(mtcars)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{32}\NormalTok{ obs. of  }\DecValTok{11}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{mpg }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{21} \DecValTok{21} \FloatTok{22.8} \FloatTok{21.4} \FloatTok{18.7} \FloatTok{18.1} \FloatTok{14.3} \FloatTok{24.4} \FloatTok{22.8} \FloatTok{19.2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{cyl }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{6} \DecValTok{6} \DecValTok{4} \DecValTok{6} \DecValTok{8} \DecValTok{6} \DecValTok{8} \DecValTok{4} \DecValTok{4} \DecValTok{6}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{disp}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{160} \DecValTok{160} \DecValTok{108} \DecValTok{258} \DecValTok{360}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{hp  }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{110} \DecValTok{110} \DecValTok{93} \DecValTok{110} \DecValTok{175} \DecValTok{105} \DecValTok{245} \DecValTok{62} \DecValTok{95} \DecValTok{123}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{drat}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{3.9} \FloatTok{3.9} \FloatTok{3.85} \FloatTok{3.08} \FloatTok{3.15} \FloatTok{2.76} \FloatTok{3.21} \FloatTok{3.69} \FloatTok{3.92} \FloatTok{3.92}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{wt  }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{2.62} \FloatTok{2.88} \FloatTok{2.32} \FloatTok{3.21} \FloatTok{3.44}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{qsec}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{16.5} \DecValTok{17} \FloatTok{18.6} \FloatTok{19.4} \DecValTok{17}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{vs  }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{0} \DecValTok{0} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{1} \DecValTok{0} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{am  }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0} \DecValTok{0}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{gear}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{4} \DecValTok{4} \DecValTok{4} \DecValTok{3} \DecValTok{3} \DecValTok{3} \DecValTok{3} \DecValTok{4} \DecValTok{4} \DecValTok{4}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{carb}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{4} \DecValTok{4} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{1} \DecValTok{4} \DecValTok{2} \DecValTok{2} \DecValTok{4}\NormalTok{ ...}
+\KeywordTok{head}\NormalTok{(mtcars)}
+\NormalTok{                   mpg cyl disp  hp drat    wt  qsec vs am gear carb}
+\NormalTok{Mazda RX4         }\FloatTok{21.0}   \DecValTok{6}  \DecValTok{160} \DecValTok{110} \FloatTok{3.90} \FloatTok{2.620} \FloatTok{16.46}  \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}
+\NormalTok{Mazda RX4 Wag     }\FloatTok{21.0}   \DecValTok{6}  \DecValTok{160} \DecValTok{110} \FloatTok{3.90} \FloatTok{2.875} \FloatTok{17.02}  \DecValTok{0}  \DecValTok{1}    \DecValTok{4}    \DecValTok{4}
+\NormalTok{Datsun }\DecValTok{710}        \FloatTok{22.8}   \DecValTok{4}  \DecValTok{108}  \DecValTok{93} \FloatTok{3.85} \FloatTok{2.320} \FloatTok{18.61}  \DecValTok{1}  \DecValTok{1}    \DecValTok{4}    \DecValTok{1}
+\NormalTok{Hornet }\DecValTok{4}\NormalTok{ Drive    }\FloatTok{21.4}   \DecValTok{6}  \DecValTok{258} \DecValTok{110} \FloatTok{3.08} \FloatTok{3.215} \FloatTok{19.44}  \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}
+\NormalTok{Hornet Sportabout }\FloatTok{18.7}   \DecValTok{8}  \DecValTok{360} \DecValTok{175} \FloatTok{3.15} \FloatTok{3.440} \FloatTok{17.02}  \DecValTok{0}  \DecValTok{0}    \DecValTok{3}    \DecValTok{2}
+\NormalTok{Valiant           }\FloatTok{18.1}   \DecValTok{6}  \DecValTok{225} \DecValTok{105} \FloatTok{2.76} \FloatTok{3.460} \FloatTok{20.22}  \DecValTok{1}  \DecValTok{0}    \DecValTok{3}    \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+As bases de dados também possuem páginas de documentação para explicar o
+que são os dados e as colunas correspondentes. Para ver o que são os
+dados do \texttt{mtcars} por exemplo, veja \texttt{?mtcars}.
+
+O conjunto \texttt{mtcars} é disponibilizado prontamente pois faz parte
+do pacote \textbf{datasets}, que por padrão é sempre carregado na
+inicialização do R. No entanto, existem outros conjuntos de dados,
+disponibilizados por outros pacotes, que precisam ser carregados para
+que os dados possam ser disponibilizados. Por exemplo, os dados do
+objeto \texttt{topo} são do pacote \textbf{MASS}. Se tentarmos fazer
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(topo)}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{data}\NormalTok{(topo)}\OperatorTok{:}\StringTok{ }\NormalTok{data set }\StringTok{'topo'}\NormalTok{ not found}
+\end{Highlighting}
+\end{Shaded}
+
+Portanto, precisamos primeiro carregar o pacote \textbf{MASS} com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+e agora podemos carregar o objeto \texttt{topo} com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(topo)}
+\NormalTok{## O objeto fica disponível na sua área de trabalho}
+\KeywordTok{ls}\NormalTok{()}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"dados"}      \StringTok{"dados.clip"} \StringTok{"dados.xls"}  \StringTok{"dados2"}     \StringTok{"fn.ex"}     
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"mtcars"}     \StringTok{"texto"}      \StringTok{"topo"}       \StringTok{"x"}          \StringTok{"y"}         
+\NormalTok{## Confere a estrutura}
+\KeywordTok{str}\NormalTok{(topo)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{52}\NormalTok{ obs. of  }\DecValTok{3}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{x}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{0.3} \FloatTok{1.4} \FloatTok{2.4} \FloatTok{3.6} \FloatTok{5.7} \FloatTok{1.6} \FloatTok{2.9} \FloatTok{3.4} \FloatTok{3.4} \FloatTok{4.8}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{y}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{6.1} \FloatTok{6.2} \FloatTok{6.1} \FloatTok{6.2} \FloatTok{6.2} \FloatTok{5.2} \FloatTok{5.1} \FloatTok{5.3} \FloatTok{5.7} \FloatTok{5.6}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{z}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{870} \DecValTok{793} \DecValTok{755} \DecValTok{690} \DecValTok{800} \DecValTok{800} \DecValTok{730} \DecValTok{728} \DecValTok{710} \DecValTok{780}\NormalTok{ ...}
+\end{Highlighting}
+\end{Shaded}
+
+A função \texttt{data()} pode ainda ser usada para listar os conjutos de
+dados disponíveis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+e também pode ser útil para listar os conjuntos de dados disponíveis
+para um pacote específico, por exemplo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\DataTypeTok{package =} \StringTok{"nlme"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Importando dados de outros
+programas}\label{importando-dados-de-outros-programas}
+
+É possível ler dados diretamente de outros formatos que não seja texto
+(ASCII). Isto em geral é mais eficiente e requer menos memória do que
+converter para formato texto. Há funções para importar dados diretamente
+de EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat e Octave. Além
+disto é comum surgir a necessidade de importar dados de planilhas
+eletrônicas. Muitas funções que permitem a importação de dados de outros
+programas são implementadas no pacote \textbf{foreign}.
+
+A seguir listamos algumas (não todas!) destas funções:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{read.dbf()} para arquivos DBASE
+\item
+  \texttt{read.epiinfo()} para arquivos .REC do Epi-Info
+\item
+  \texttt{read.mtp()} para arquivos ``Minitab Portable Worksheet''
+\item
+  \texttt{read.S()} para arquivos do S-PLUS, e \texttt{restore.data()}
+  para ``dumps'' do S-PLUS
+\item
+  \texttt{read.spss()} para dados do SPSS
+\item
+  \texttt{read.systat()} para dados do SYSTAT
+\item
+  \texttt{read.dta()} para dados do STATA
+\item
+  \texttt{read.octave()} para dados do OCTAVE (um clone do MATLAB)
+\item
+  Para dados do SAS há ao menos duas alternativas:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    O pacote \textbf{foreign} disponibiliza \texttt{read.xport()} para
+    ler do formato TRANSPORT do SAS e \texttt{read.ssd()} pode escrever
+    dados permanentes do SAS (\texttt{.ssd} ou \texttt{.sas7bdat}) no
+    formato TRANSPORT, se o SAS estiver disponível no seu sistema e
+    depois usa internamente \texttt{read.xport()} para ler os dados no
+    R.
+  \item
+    O pacote \textbf{Hmisc} disponibiliza \texttt{sas.get()} que também
+    requer o SAS no sistema.
+  \end{itemize}
+\end{itemize}
+
+Para mais detalhes consulte a documentação de cada função e/ou o manual
+\href{http://cran-r.c3sl.ufpr.br/doc/manuals/r-release/R-data.html}{R
+Data Import/Export}.
+
+\section{Saída de dados do R}\label{saida-de-dados-do-r}
+
+\subsection{\texorpdfstring{Usando a função
+\texttt{write.table()}}{Usando a função write.table()}}\label{usando-a-funcao-write.table}
+
+Para exportar objetos do R, usamos a função \texttt{write.table()}, que
+possui argumentos parecidos com aqueles da função \texttt{read.table()}.
+
+A função \texttt{write.table()} é capaz de criar um arquivo de texto no
+formato \texttt{txt} ou \texttt{csv}, com as especificações definidas
+pelos argumentos.
+
+Para ilustrar o uso desta função, considerer o conjunto de dados
+\texttt{iris}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(iris)}
+\KeywordTok{str}\NormalTok{(iris)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{150}\NormalTok{ obs. of  }\DecValTok{5}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{Sepal.Length}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{5.1} \FloatTok{4.9} \FloatTok{4.7} \FloatTok{4.6} \DecValTok{5} \FloatTok{5.4} \FloatTok{4.6} \DecValTok{5} \FloatTok{4.4} \FloatTok{4.9}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Sepal.Width }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{3.5} \DecValTok{3} \FloatTok{3.2} \FloatTok{3.1} \FloatTok{3.6} \FloatTok{3.9} \FloatTok{3.4} \FloatTok{3.4} \FloatTok{2.9} \FloatTok{3.1}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Petal.Length}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{1.4} \FloatTok{1.4} \FloatTok{1.3} \FloatTok{1.5} \FloatTok{1.4} \FloatTok{1.7} \FloatTok{1.4} \FloatTok{1.5} \FloatTok{1.4} \FloatTok{1.5}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Petal.Width }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{0.2} \FloatTok{0.2} \FloatTok{0.2} \FloatTok{0.2} \FloatTok{0.2} \FloatTok{0.4} \FloatTok{0.3} \FloatTok{0.2} \FloatTok{0.2} \FloatTok{0.1}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Species     }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{ levels }\StringTok{"setosa"}\NormalTok{,}\StringTok{"versicolor"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos exportar esse data frame com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.table}\NormalTok{(iris, }\DataTypeTok{file =} \StringTok{"dados/iris.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Por padrão, o arquivo resultante tem colunas separadas por espaço, o
+separador de decimal é ponto, e os nomes das linhas são também incluídos
+(o que geralmente é desnecessário). Para alterar essa configuração
+podemos fazer
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.table}\NormalTok{(iris, }\DataTypeTok{file =} \StringTok{"dados/iris.csv"}\NormalTok{, }\DataTypeTok{row.names =} \OtherTok{FALSE}\NormalTok{,}
+            \DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Os argumentos são
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{iris}: o nome do objeto a ser exportado (matriz ou data frame)
+\item
+  \texttt{"iris.csv"}: nome do arquivo a ser gerado. (Considerando que o
+  arquivo \texttt{iris.csv} será criado dentro do diretório
+  \texttt{dados}).
+\item
+  \texttt{row.names\ =\ FALSE}: para eliminar o nome das linhas do
+  objeto (geralmente desnecessário), como retornado por
+  \texttt{row.names()}
+\item
+  \texttt{sep\ =\ ";"}: o separador de colunas (também pode ser
+  \texttt{","}, \texttt{"\textbackslash{}t"} para tabulação e
+  \texttt{""} para espaços)
+\item
+  \texttt{dec\ =\ ","}: o separador de decimais (também pode ser
+  \texttt{"."})
+\end{itemize}
+
+Note que o objeto a ser exportado (nesse caso \texttt{iris}) deve ser em
+formato tabular, ou seja, uma matriz ou data frame. Outras classes de
+objetos podem ser exportadas, mas haverá uma coerção para data frame, o
+que pode fazer com que o resultado final não seja o esperado.
+
+Assim como \texttt{read.table()} possui as funções \texttt{read.csv()} e
+\texttt{read.csv2()}, a função \texttt{write.table()} possui as funções
+\texttt{write.table()} e \texttt{write.table2()} como \emph{wrappers}. O
+comando acima também poderia ser executado como
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv2}\NormalTok{(iris, }\DataTypeTok{file =} \StringTok{"dados/iris.csv"}\NormalTok{, }\DataTypeTok{row.names =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note que \texttt{row.names\ =\ FALSE} ainda é necessário para eliminar
+os nomes das linhas.
+
+O pacote \textbf{foreign} também possui funções para exportar para uma
+variedade de formatos. Veja a documentação em
+\texttt{help(package\ =\ "foreign")}. Os pacotes para ler dados
+diretamente de arquivos do MS Excel mencionados acima também possuem
+funções para exportar diretamente para esse formato.
+
+\subsection*{Exercícios}\label{exercicios-11}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Considere a tabela abaixo com o resultado de uma pesquisa que avaliou
+  o número de fumates e não fumantes por sexo.
+
+  Sexo
+
+  Condição
+
+  Masculino
+
+  Feminino
+
+  Fumante
+
+  49
+
+  54
+
+  64
+
+  61
+
+  37
+
+  79
+
+  52
+
+  64
+
+  68
+
+  29
+
+  Não fumante
+
+  27
+
+  40
+
+  58
+
+  39
+
+  52
+
+  44
+
+  41
+
+  34
+
+  30
+
+  44
+\item
+  Digite estes dados em uma planilha eletrônica em um formato apropriado
+  para um data frame do R, e salve em um arquivo \texttt{csv}.
+\item
+  Importe esse arquivo para o R com \texttt{read.table()}.
+\item
+  Crie uma nova coluna no objeto que contém estes dados, sendo a coluna
+  com o número de pessoas multiplicada por 2.
+\item
+  Exporte esse novo objeto usando a função \texttt{write.table()}.
+\item
+  Tente criar esse mesmo conjunto de dados usando comandos do R (ex.:
+  \texttt{c()}, \texttt{rep()}, \texttt{data.frame()}, etc.)
+\end{enumerate}
+
+\subsection{Usando os formatos textual e binário para ler/escrever
+dados}\label{usando-os-formatos-textual-e-binario-para-lerescrever-dados}
+
+As formas mais comuns de entrada de dados no R são através da entrada
+direta pelo teclado (e.g. \texttt{c()} ou \texttt{scan()}), ou pela
+importação de arquivos de texto (e.g. \texttt{read.table()}). No etanto,
+ainda existem mais dois formatos par armazenar dados para leitura no R:
+o textual e o binário.
+
+O \textbf{formato binário} é aquele armazenado em um arquivo binário, ou
+seja, um arquivo que contém apenas 0s e 1s, e possui um formato
+específico que só pode ser lido por determinado \emph{software} ou
+função. É o oposto de um arquivo de texto, por exemplo, que podemos
+abrir e editar em qualquer prorama que edite texto puro.
+
+O \textbf{formato textual} é o intermediário entre o texto puro e o
+binário. Os dados em formato textual são apresentados como texto puro,
+mas contém informações adicionais, chamados de \textbf{metadados}, que
+preservam toda a estrutura dos dados, como as classes de cada coluna de
+um data frame.
+
+\subsubsection{Formato textual}\label{formato-textual}
+
+O formato textual é muito útil para compartilhar conjuntos de dados que
+não são muito grandes, e onde a formatação (leia-se: classes de objetos)
+precisa ser mantida.
+
+Para criar um conjunto de dados no formato textual, usamos a função
+\texttt{dput()}. Vamos criar um data frame de exemplo e ver o resultado
+da chamada dessa função:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{))}
+\KeywordTok{dput}\NormalTok{(da)}
+\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{.Label =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
+\StringTok{"b"}\NormalTok{), }\DataTypeTok{class =} \StringTok{"factor"}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }
+\OperatorTok{-}\NormalTok{2L))}
+\end{Highlighting}
+\end{Shaded}
+
+Note que o resultado de \texttt{dput()} é no formato do R, e preserva
+metadados como as classes do objeto e de cada coluna, e os nomes das
+linhas e colunas.
+
+Outas classes de objetos são facilmente preservadas quando armazenadas
+com o resultado de \texttt{dput()}. Por exemplo, uma matriz:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ma <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{dput}\NormalTok{(ma)}
+\KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{.Dim =} \KeywordTok{c}\NormalTok{(3L, 3L))}
+\end{Highlighting}
+\end{Shaded}
+
+E uma lista:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{la <-}\StringTok{ }\KeywordTok{list}\NormalTok{(da, ma)}
+\KeywordTok{dput}\NormalTok{(la)}
+\KeywordTok{list}\NormalTok{(}\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{.Label =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
+\StringTok{"b"}\NormalTok{), }\DataTypeTok{class =} \StringTok{"factor"}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }
+\OperatorTok{-}\NormalTok{2L)), }\KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{.Dim =} \KeywordTok{c}\NormalTok{(3L, 3L)))}
+\end{Highlighting}
+\end{Shaded}
+
+A saída da função \texttt{dput()} pode ser copiada para um script do R,
+para garantir que qualquer pessoa que venha usar o código (incluindo
+você no futuro), usará os dados no formato correto (esperado). Isso é
+muito importante para a \textbf{pesquisa reproduzível}!
+
+A saída de \texttt{dput()} também pode ser salva diretamente em um
+arquivo de script do R, por exemplo,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dput}\NormalTok{(da, }\DataTypeTok{file =} \StringTok{"da.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+irá criar o arquivo \texttt{da.R} com o resultado da função. Para
+importar os dados salvos dessa forma, usamos a função \texttt{dget()},
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da2 <-}\StringTok{ }\KeywordTok{dget}\NormalTok{(}\DataTypeTok{file =} \StringTok{"da.R"}\NormalTok{)}
+\NormalTok{da2}
+\NormalTok{  A B}
+\DecValTok{1} \DecValTok{1}\NormalTok{ a}
+\DecValTok{2} \DecValTok{2}\NormalTok{ b}
+\end{Highlighting}
+\end{Shaded}
+
+Múltiplos objetos podem ser armazenados em formato textual usando a
+função \texttt{dump()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dump}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"da"}\NormalTok{, }\StringTok{"ma"}\NormalTok{, }\StringTok{"la"}\NormalTok{), }\DataTypeTok{file =} \StringTok{"dados.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note que os objetos são passados como um vetor de caracteres, e um
+arquivo chamado \texttt{dados.R} é criado com todos os objetos no
+formato textual. Para importar estes objetos para uma sessão do R,
+usamos a função \texttt{source()},
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"dados.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+que já cria os objetos na sua área de trabalho com os mesmos nomes e
+atributos como foram armazenados.
+
+\subsubsection{Formato binário}\label{formato-binario}
+
+Armazenar dados em formato binário é vantajoso quando não há uma forma
+``fácil'' de armazenar os dados em formato de texto puro ou textual.
+Além disso, algumas vezes o formato binário possui maior eficiência em
+termos de velocidade de leitura/escrita, dependendo dos dados. Outra
+vantagem é que valores numéricos geralmente perdem precisão quando
+armazenados em texto ou textual, enquanto que o formato binário preserva
+toda a precisão (embora essa perda de precisão seja desprezível na
+maioria dos casos).
+
+Para salvar um objeto contendo dados no R, usamos a função
+\texttt{save()}. Por exemplo, para armazenar o objeto \texttt{da} criado
+acima, fazemos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{save}\NormalTok{(da, }\DataTypeTok{file =} \StringTok{"dados.rda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Esse comando irá criar o arquivo (binário) \texttt{dados.rda}. Note que
+a extensão \texttt{.rda} é comumente utilizada para dados binários do R,
+mas não é única.
+
+Paa salvar mais de um objeto no mesmo arquivo, basta passar os nomes na
+mesma função
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{save}\NormalTok{(da, ma, }\DataTypeTok{file =} \StringTok{"dados.rda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+A função \texttt{save.image()} pode ser utilizada se a intenção é salvar
+\textbf{todos} os objetos criados na sua área de trabalho (isso inclui
+qualquer objeto, não só os conjuntos de dados). Nesse caso, podemos
+fazer
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{save.image}\NormalTok{(}\DataTypeTok{file =} \StringTok{"workspace.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note que quando foi utilizada a função \texttt{save()}, a extensão do
+arquivo foi \texttt{rda}, e com \texttt{save.image()} foi
+\texttt{RData}. Isso é uma convenção comum de arquivos binários do R,
+mas não é obrigatório. Qualquer uma das extensões funciona em ambas as
+funções.
+
+Para carregar os conjuntos de dados (ou de forma mais geral, os objetos)
+armazenados em formato binário, usamos a função \texttt{load()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{"dados.rda"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"workspace.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Dessa forma, os objetos já estarão disponíveis na sua área de trabalho.
+
+\section{Informações sobre diretórios e
+arquivos}\label{informacoes-sobre-diretorios-e-arquivos}
+
+O R possui uma variedade de funções para mostrar informações sobre
+arquivos e diretórios. Alguns exemplos são:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{file.info()} mostra o tamanho do arquivo, data de criação,
+  \ldots{}
+\item
+  \texttt{dir()} mostra todos os arquivos presentes em um diretório
+  (tente com \texttt{recursive\ =\ TRUE})
+\item
+  \texttt{file.exists()} retorna \texttt{TRUE} ou \texttt{FALSE} para a
+  presença de um arquivo
+\item
+  \texttt{getwd()} e \texttt{setwd()} para verificar e altear o
+  diretório de trabalho
+\end{itemize}
+
+Veja \texttt{?files} para uma lista copleta de funções úteis para
+manipular arquivos de dentro do R.
+
+\chapter{Programando com dados}\label{programando-com-dados}
+
+Por quê programar?
+
+\begin{itemize}
+\tightlist
+\item
+  Evitar repetições desnecessárias de análises ou cálculos que são
+  repetidos com frequência.
+\item
+  Fica documentado as etapas que você realizou para chegar a um
+  resultado.
+\item
+  Fácil recuperação e modificação de programas.
+\end{itemize}
+
+Como programar?
+
+\begin{itemize}
+\tightlist
+\item
+  Criando programas! (Scripts, rotinas, \textbf{algoritmos}).
+\item
+  Crie uma sequência lógica de comandos que devem ser executados em
+  ordem.
+\item
+  Utilize as ferramentas básicas da programação: \textbf{estruturas de
+  repetição} (\texttt{for()}) e \textbf{estruturas de seleção}
+  (\texttt{if()}).
+\end{itemize}
+
+\section{\texorpdfstring{Estrutura de repetição
+\texttt{for()}}{Estrutura de repetição for()}}\label{estrutura-de-repeticao-for}
+
+Serve para repetir um ou mais comandos diversas vezes. Para ver como
+funciona, considere o seguinte exemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{6}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{7}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+O resultado é a chamada do comando \texttt{print()} para cada valor que
+o índice \texttt{i} recebe (nesse caso \texttt{i} recebe os valores de 1
+a 10).
+
+A sintaxe será sempre nesse formato:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(}\OperatorTok{<}\NormalTok{índice}\OperatorTok{>}\StringTok{ }\ControlFlowTok{in} \OperatorTok{<}\NormalTok{valores}\OperatorTok{>}\NormalTok{)\{}
+    \OperatorTok{<}\NormalTok{comandos}\OperatorTok{>}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Veja outro exemplo em como podemos aplicar o índice:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{100}\OperatorTok{:}\DecValTok{200}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(x[j])}
+\NormalTok{\}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{100}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{101}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{102}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{103}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{104}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{105}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{106}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{107}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{108}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{109}
+\end{Highlighting}
+\end{Shaded}
+
+Veja que o índice não precisa ser \texttt{i}, na verdade pode ser
+qualquer letra ou palavra. Nesse caso, veja que utilizamos os valores
+como índice para selecionar elementos de \texttt{x} naquelas posições
+específicas.
+
+Um outro exemplo seria se quisessemos imprimir o quadrado de alguns
+números (não necessariamente em sequência):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{))\{}
+    \KeywordTok{print}\NormalTok{(i}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{81}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{16}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{36}
+\end{Highlighting}
+\end{Shaded}
+
+Ou mesmo imprimir caracteres a partir de um vetor de caracteres:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(veiculos }\ControlFlowTok{in} \KeywordTok{c}\NormalTok{(}\StringTok{"carro"}\NormalTok{, }\StringTok{"ônibus"}\NormalTok{, }\StringTok{"trem"}\NormalTok{, }\StringTok{"bicicleta"}\NormalTok{))\{}
+    \KeywordTok{print}\NormalTok{(veiculos)}
+\NormalTok{\}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"carro"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"ônibus"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"trem"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"bicicleta"}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo}: cálculo de notas de uma disciplina.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Importa os dados}
+\NormalTok{url <-}\StringTok{ "http://leg.ufpr.br/~fernandomayer/data/notas.csv"}
+\NormalTok{notas <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(url, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+\NormalTok{## Analisa a estrutura dos dados}
+\KeywordTok{str}\NormalTok{(notas)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{30}\NormalTok{ obs. of  }\DecValTok{4}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{nome  }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{30}\NormalTok{ levels }\StringTok{"Aluno_1"}\NormalTok{,}\StringTok{"Aluno_10"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{12} \DecValTok{23} \DecValTok{25} \DecValTok{26} \DecValTok{27} \DecValTok{28} \DecValTok{29} \DecValTok{30} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{prova1}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{8} \DecValTok{2} \DecValTok{9} \DecValTok{1} \DecValTok{7} \DecValTok{10} \DecValTok{1} \DecValTok{5} \DecValTok{5} \DecValTok{10}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{prova2}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{4} \DecValTok{7} \DecValTok{2} \DecValTok{10} \DecValTok{6} \DecValTok{0} \DecValTok{8} \DecValTok{9} \DecValTok{6} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{prova3}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{1} \DecValTok{6} \DecValTok{4} \DecValTok{9} \DecValTok{8} \DecValTok{3} \DecValTok{0} \DecValTok{7} \DecValTok{1} \DecValTok{3}\NormalTok{ ...}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3}
+\KeywordTok{summary}\NormalTok{(notas)}
+\NormalTok{       nome        prova1           prova2           prova3   }
+\NormalTok{ Aluno_}\DecValTok{1} \OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Min.   }\OperatorTok{:}\StringTok{ }\FloatTok{0.000}\NormalTok{   Min.   }\OperatorTok{:}\StringTok{ }\FloatTok{0.000}\NormalTok{   Min.   }\OperatorTok{:}\FloatTok{0.0}  
+\NormalTok{ Aluno_}\DecValTok{10}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   1st Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{2.000}\NormalTok{   1st Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{3.000}\NormalTok{   1st Qu.}\OperatorTok{:}\FloatTok{3.0}  
+\NormalTok{ Aluno_}\DecValTok{11}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Median }\OperatorTok{:}\StringTok{ }\FloatTok{4.000}\NormalTok{   Median }\OperatorTok{:}\StringTok{ }\FloatTok{6.000}\NormalTok{   Median }\OperatorTok{:}\FloatTok{6.5}  
+\NormalTok{ Aluno_}\DecValTok{12}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Mean   }\OperatorTok{:}\StringTok{ }\FloatTok{4.433}\NormalTok{   Mean   }\OperatorTok{:}\StringTok{ }\FloatTok{5.433}\NormalTok{   Mean   }\OperatorTok{:}\FloatTok{5.4}  
+\NormalTok{ Aluno_}\DecValTok{13}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   3rd Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{6.750}\NormalTok{   3rd Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{8.000}\NormalTok{   3rd Qu.}\OperatorTok{:}\FloatTok{8.0}  
+\NormalTok{ Aluno_}\DecValTok{14}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Max.   }\OperatorTok{:}\FloatTok{10.000}\NormalTok{   Max.   }\OperatorTok{:}\FloatTok{10.000}\NormalTok{   Max.   }\OperatorTok{:}\FloatTok{9.0}  
+\NormalTok{ (Other) }\OperatorTok{:}\DecValTok{24}                                                  
+\end{Highlighting}
+\end{Shaded}
+
+Antes de seguir adiante, veja o resultado de
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{30}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(notas[i, }\KeywordTok{c}\NormalTok{(}\StringTok{"prova1"}\NormalTok{, }\StringTok{"prova2"}\NormalTok{, }\StringTok{"prova3"}\NormalTok{)])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Para calcular as médias das 3 provas, precisamos inicialmente de um
+vetor para armazenar os resultados. Esse vetor pode ser um novo objeto
+ou uma nova coluna no dataframe
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Aqui vamos criar uma nova coluna no dataframe, contendo apenas o}
+\NormalTok{## valor 0}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{media <-}\StringTok{ }\DecValTok{0} \CommentTok{# note que aqui será usada a regra da reciclagem, ou}
+                 \CommentTok{# seja, o valor zero será repetido até completar todas}
+                 \CommentTok{# as linhas do dataframe}
+\NormalTok{## Estrutura de repetição para calcular a média}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{30}\NormalTok{)\{}
+\NormalTok{    ## Aqui, cada linha i da coluna media sera substituida pelo}
+\NormalTok{    ## respectivo valor da media caculada}
+\NormalTok{    notas}\OperatorTok{$}\NormalTok{media[i] <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(notas[i, }\KeywordTok{c}\NormalTok{(}\StringTok{"prova1"}\NormalTok{, }\StringTok{"prova2"}\NormalTok{, }\StringTok{"prova3"}\NormalTok{)])}\OperatorTok{/}\DecValTok{3}
+\NormalTok{\}}
+
+\NormalTok{## Confere os resultados}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333}
+\end{Highlighting}
+\end{Shaded}
+
+Agora podemos melhorar o código, tornando-o mais \textbf{genérico}.
+Dessa forma fica mais fácil fazer alterações e procurar erros. Uma forma
+de melhorar o código acima é generalizando alguns passos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Armazenamos o número de linhas no dataframe}
+\NormalTok{nlinhas <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(notas)}
+\NormalTok{## Identificamos as colunas de interesse no cálculo da média, e}
+\NormalTok{## armazenamos em um objeto separado}
+\NormalTok{provas <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"prova1"}\NormalTok{, }\StringTok{"prova2"}\NormalTok{, }\StringTok{"prova3"}\NormalTok{)}
+\NormalTok{## Sabendo o número de provas, fica mais fácil dividir pelo total no}
+\NormalTok{## cálculo da média}
+\NormalTok{nprovas <-}\StringTok{ }\KeywordTok{length}\NormalTok{(provas)}
+\NormalTok{## Cria uma nova coluna apenas para comparar o cálculo com o anterior}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{media2 <-}\StringTok{ }\DecValTok{0}
+\NormalTok{## A estrutura de repetição fica}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nlinhas)\{}
+\NormalTok{    notas}\OperatorTok{$}\NormalTok{media2[i] <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(notas[i, provas])}\OperatorTok{/}\NormalTok{nprovas}
+\NormalTok{\}}
+
+\NormalTok{## Confere}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333}
+\KeywordTok{identical}\NormalTok{(notas}\OperatorTok{$}\NormalTok{media, notas}\OperatorTok{$}\NormalTok{media2)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+Ainda podemos melhorar (leia-se: \textbf{otimizar}) o código, se
+utilizarmos funções prontas do R. No caso da média isso é possível pois
+a função \texttt{mean()} já existe. Em seguida veremos como fazer quando
+o cálculo que estamos utilizando não está implementado em nenhuma função
+pronta do R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Cria uma nova coluna apenas para comparação}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{media3 <-}\StringTok{ }\DecValTok{0}
+\NormalTok{## A estrutura de repetição fica}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nlinhas)\{}
+\NormalTok{    notas}\OperatorTok{$}\NormalTok{media3[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(notas[i, provas]))}
+\NormalTok{\}}
+
+\NormalTok{## Confere}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333}
+
+\NormalTok{## A única diferença é que aqui precisamos transformar cada linha em um}
+\NormalTok{## vetor de números com as.numeric(), pois}
+\NormalTok{notas[}\DecValTok{1}\NormalTok{, provas]}
+\NormalTok{  prova1 prova2 prova3}
+\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1}
+\NormalTok{## é um data.frame:}
+\KeywordTok{class}\NormalTok{(notas[}\DecValTok{1}\NormalTok{, provas])}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"data.frame"}
+\end{Highlighting}
+\end{Shaded}
+
+No caso acima vimos que não era necessário calcular a média através de
+\texttt{soma/total} porque existe uma função pronta no R para fazer esse
+cálculo. Mas, e se quisessemos, por exemplo, calcular a Coeficiente de
+Variação (CV) entre as notas das três provas de cada aluno? Uma busca
+por
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help.search}\NormalTok{(}\StringTok{"coefficient of variation"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+não retorna nenhuma função (dos pacotes básicos) para fazer esse
+cálculo. O motivo é simples: como é uma conta simples de fazer não há
+necessidade de se criar uma função extra dentro dos pacotes. No entanto,
+nós podemos criar uma função que calcule o CV, e usá-la para o nosso
+propósito
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}
+\NormalTok{    desv.pad <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x)}
+\NormalTok{    med <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x)}
+\NormalTok{    cv <-}\StringTok{ }\NormalTok{desv.pad}\OperatorTok{/}\NormalTok{med}
+    \KeywordTok{return}\NormalTok{(cv)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+NOTA: na função criada acima o único argumento que usamos foi
+\texttt{x}, que neste caso deve ser um vetor de números para o cálculo
+do CV. Os argumentos colocados dentro de \texttt{function()} devem ser
+apropriados para o propósito de cada função.
+
+Antes de aplicar a função dentro de um \texttt{for()} devemos testá-la
+para ver se ela está funcioanando de maneira correta. Por exemplo, o CV
+para as notas do primeiro aluno pode ser calculado ``manualmente'' por
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(notas[}\DecValTok{1}\NormalTok{, provas]))}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(notas[}\DecValTok{1}\NormalTok{, provas]))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.8104349}
+\end{Highlighting}
+\end{Shaded}
+
+E através da função, o resultado é
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cv}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(notas[}\DecValTok{1}\NormalTok{, provas]))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.8104349}
+\end{Highlighting}
+\end{Shaded}
+
+o que mostra que a função está funcionando corretamente, e podemos
+aplicá-la em todas as linhas usando a repetição
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Cria uma nova coluna para o CV}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{CV <-}\StringTok{ }\DecValTok{0}
+\NormalTok{## A estrutura de repetição fica}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nlinhas)\{}
+\NormalTok{    notas}\OperatorTok{$}\NormalTok{CV[i] <-}\StringTok{ }\KeywordTok{cv}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(notas[i, provas]))}
+\NormalTok{\}}
+
+\NormalTok{## Confere}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos agora querer calcular as médias ponderadas para as provas. Por
+exemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  Prova 1: peso 3
+\item
+  Prova 2: peso 3
+\item
+  Prova 3: peso 4
+\end{itemize}
+
+Usando a fórmula:
+
+\[
+\bar{x} = \frac{1}{N} \sum_{i=1}^{n} x_i \cdot w_i
+\]
+
+onde \(w_i\) são os pesos, e \(N = \sum_{i=1}^{n} w_i\) é a soma dos
+pesos. Como já vimos que criar uma função é uma forma mais prática (e
+elegante) de executar determinada tarefa, vamos criar uma função que
+calcule as médias ponderadas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{med.pond <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(notas, pesos)\{}
+\NormalTok{    ## Multiplica o valor de cada prova pelo seu peso}
+\NormalTok{    pond <-}\StringTok{ }\NormalTok{notas }\OperatorTok{*}\StringTok{ }\NormalTok{pesos}
+\NormalTok{    ## Calcula o valor total dos pesos}
+\NormalTok{    peso.total <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(pesos)}
+\NormalTok{    ## Calcula a soma da ponderação}
+\NormalTok{    sum.pond <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(pond)}
+\NormalTok{    ## Finalmente calcula a média ponderada}
+\NormalTok{    saida <-}\StringTok{ }\NormalTok{sum.pond}\OperatorTok{/}\NormalTok{peso.total}
+    \KeywordTok{return}\NormalTok{(saida)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Antes de aplicar a função para o caso geral, sempre é importante testar
+e conferir o resultado em um caso menor. Podemos verificar o resultado
+da média ponderada para o primeiro aluno
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(notas[}\DecValTok{1}\NormalTok{, provas] }\OperatorTok{*}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}\OperatorTok{/}\DecValTok{10}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+e testar a função para o mesmo caso
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{med.pond}\NormalTok{(}\DataTypeTok{notas =}\NormalTok{ notas[}\DecValTok{1}\NormalTok{, provas], }\DataTypeTok{pesos =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+Como o resultado é o mesmo podemos aplicar a função para todas as linhas
+através do \texttt{for()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Cria uma nova coluna para a média ponderada}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{MP <-}\StringTok{ }\DecValTok{0}
+\NormalTok{## A estrutura de repetição fica}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nlinhas)\{}
+\NormalTok{    notas}\OperatorTok{$}\NormalTok{MP[i] <-}\StringTok{ }\KeywordTok{med.pond}\NormalTok{(}\DataTypeTok{notas =}\NormalTok{ notas[i, provas], }\DataTypeTok{pesos =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\NormalTok{\}}
+
+\NormalTok{## Confere}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\end{Highlighting}
+\end{Shaded}
+
+NOTA: uma função para calcular a média ponderada já existe implementada
+no R. Veja \texttt{?weighted.mean()} e confira os resultados obtidos
+aqui
+
+Repare na construção da função acima: agora usamos dois argumentos,
+\texttt{notas} e \texttt{pesos}, pois precisamos dos doiss vetores para
+calcular a média ponderada. Repare também que ambos argumentos não
+possuem um valor padrão. Poderíamos, por exemplo, assumir valores padrão
+para os pesos, e deixar para que o usuário mude apenas se achar
+necessário.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Atribuindo pesos iguais para as provas como padrão}
+\NormalTok{med.pond <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(notas, }\DataTypeTok{pesos =} \KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{length}\NormalTok{(notas)))\{}
+\NormalTok{    ## Multiplica o valor de cada prova pelo seu peso}
+\NormalTok{    pond <-}\StringTok{ }\NormalTok{notas }\OperatorTok{*}\StringTok{ }\NormalTok{pesos}
+\NormalTok{    ## Calcula o valor total dos pesos}
+\NormalTok{    peso.total <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(pesos)}
+\NormalTok{    ## Calcula a soma da ponderação}
+\NormalTok{    sum.pond <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(pond)}
+\NormalTok{    ## Finalmente calcula a média ponderada}
+\NormalTok{    saida <-}\StringTok{ }\NormalTok{sum.pond}\OperatorTok{/}\NormalTok{peso.total}
+    \KeywordTok{return}\NormalTok{(saida)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Repare que neste caso, como os pesos são iguais, a chamada da função sem
+alterar o argumento \texttt{pesos} gera o mesmo resultado do cálculo da
+média comum.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Cria uma nova coluna para a média ponderada para comparação}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{MP2 <-}\StringTok{ }\DecValTok{0}
+\NormalTok{## A estrutura de repetição fica}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nlinhas)\{}
+\NormalTok{    notas}\OperatorTok{$}\NormalTok{MP2[i] <-}\StringTok{ }\KeywordTok{med.pond}\NormalTok{(}\DataTypeTok{notas =}\NormalTok{ notas[i, provas])}
+\NormalTok{\}}
+
+\NormalTok{## Confere}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2}
+\DecValTok{1} \FloatTok{4.333333}
+\DecValTok{2} \FloatTok{5.000000}
+\DecValTok{3} \FloatTok{5.000000}
+\DecValTok{4} \FloatTok{6.666667}
+\DecValTok{5} \FloatTok{7.000000}
+\DecValTok{6} \FloatTok{4.333333}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Estrutura de seleção
+\texttt{if()}}{Estrutura de seleção if()}}\label{estrutura-de-selecao-if}
+
+Uma estrutura de seleção serve para executar algum comando apenas se
+alguma condição (em forma de \textbf{expressão condicional}) seja
+satisfeita. Geralmente é utilizada dentro de um \texttt{for()}.
+
+No exemplo inicial poderíamos querer imprimir um resultado caso
+satisfaça determinada condição. Por exemplo, se o valor de \texttt{x}
+for menor ou igual a 105, então imprima um texto informando isso.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{100}\OperatorTok{:}\DecValTok{200}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+    \ControlFlowTok{if}\NormalTok{(x[j] }\OperatorTok{<=}\StringTok{ }\DecValTok{105}\NormalTok{)\{}
+        \KeywordTok{print}\NormalTok{(}\StringTok{"Menor ou igual a 105"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{\}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\end{Highlighting}
+\end{Shaded}
+
+Mas também podemos considerar o que aconteceria caso contrário. Por
+exemplo, se o valor de \texttt{x}for maior do que 105, então imprima
+outro texto.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{100}\OperatorTok{:}\DecValTok{200}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+    \ControlFlowTok{if}\NormalTok{(x[j] }\OperatorTok{<=}\StringTok{ }\DecValTok{105}\NormalTok{)\{}
+        \KeywordTok{print}\NormalTok{(}\StringTok{"Menor ou igual a 105"}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{\{}
+        \KeywordTok{print}\NormalTok{(}\StringTok{"Maior do que 105"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{\}}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Menor ou igual a 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Maior do que 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Maior do que 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Maior do que 105"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Maior do que 105"}
+\end{Highlighting}
+\end{Shaded}
+
+A sintaxe será sempre no formato:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{<}\NormalTok{condição}\OperatorTok{>}\NormalTok{)\{}
+    \OperatorTok{<}\NormalTok{comandos que satisfazem a condição}\OperatorTok{>}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{\{}
+   \OperatorTok{<}\NormalTok{comandos que não satisfazem a condição}\OperatorTok{>}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Como vimos acima, a especificação do \texttt{else\{\}} não é
+obrigatória.
+
+Voltando ao exemplo das notas, podemos adicionar uma coluna com a
+condição do aluno: \texttt{aprovado} ou \texttt{reprovado} de acordo com
+a sua nota. Para isso precisamos criar uma condição (nesse caso se a
+nota é maior do que 7), e verificar se ela é verdadeira.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Nova coluna para armazenar a situacao}
+\NormalTok{notas}\OperatorTok{$}\NormalTok{situacao <-}\StringTok{ }\OtherTok{NA} \CommentTok{# aqui usamos NA porque o resultado será um}
+                     \CommentTok{# caracter}
+\NormalTok{## Estrutura de repetição}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nlinhas)\{}
+\NormalTok{    ## Estrutura de seleção (usando a média ponderada)}
+    \ControlFlowTok{if}\NormalTok{(notas}\OperatorTok{$}\NormalTok{MP[i] }\OperatorTok{>=}\StringTok{ }\DecValTok{7}\NormalTok{)\{}
+\NormalTok{        notas}\OperatorTok{$}\NormalTok{situacao[i] <-}\StringTok{ "aprovado"}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{        notas}\OperatorTok{$}\NormalTok{situacao[i] <-}\StringTok{ "reprovado"}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\NormalTok{## Confere}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado}
+\end{Highlighting}
+\end{Shaded}
+
+\section{O modo R: vetorização}\label{o-modo-r-vetorizacao}
+
+As funções vetorizadas do R, além de facilitar e resumir a execução de
+tarefas repetitivas, também são computacionalmente mais eficientes,
+\emph{i.e.} o tempo de execução das rotinas é muito mais rápido.
+
+Já vimos que a \textbf{regra da reciclagem} é uma forma de vetorizar
+cálculos no R. Os cálculos feitos com funções vetorizadas (ou usando a
+regra de reciclagem) são muito mais eficientes (e preferíveis) no R. Por
+exemplo, podemos criar um vetor muito grande de números e querer
+calcular o quadrado de cada número. Se pensássemos em usar uma estrutura
+de repetição, o cálculo seria o seguinte:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Vetor com uma sequência de 1 a 1.000.000}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{1000000}
+\NormalTok{## Calcula o quadrado de cada número da sequência em x usando for()}
+\NormalTok{y1 <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\KeywordTok{length}\NormalTok{(x)) }\CommentTok{# vetor de mesmo comprimento de x que vai}
+                         \CommentTok{# receber os resultados}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x))\{}
+\NormalTok{    y1[i] <-}\StringTok{ }\NormalTok{x[i]}\OperatorTok{^}\DecValTok{2}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Mas, da forma vetorial e usando a regra da reciclagem, a mesma operação
+pode ser feita apenas com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calcula o quadrado de cada número da sequência em x usando a regra da}
+\NormalTok{## reciclagem}
+\NormalTok{y2 <-}\StringTok{ }\NormalTok{x}\OperatorTok{^}\DecValTok{2}
+\NormalTok{## Confere os resultados}
+\KeywordTok{identical}\NormalTok{(y1, y2)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+Note que os resultados são exatamente iguais, mas então porque se
+prefere o formato vetorial? Primeiro porque é muito mais simples de
+escrever, e segundo (e princiapalmente) porque a forma vetorizada é
+muito mais \textbf{eficiente computacionalmente}. A eficiência
+computacional pode ser medida de várias formas (alocação de memória,
+tempo de execução, etc), mas apenas para comparação, vamos medir o tempo
+de execução destas mesmas operações usando o \texttt{for()} e usando a
+regra da reciclagem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Tempo de execução usando for()}
+\NormalTok{y1 <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\KeywordTok{length}\NormalTok{(x))}
+\NormalTok{st1 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x))\{}
+\NormalTok{        y1[i] <-}\StringTok{ }\NormalTok{x[i]}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    \}}
+\NormalTok{)}
+\NormalTok{st1}
+\NormalTok{   user  system elapsed }
+  \FloatTok{0.144}   \FloatTok{0.004}   \FloatTok{0.148} 
+
+\NormalTok{## Tempo de execução usando a regra da reciclagem}
+\NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
+\NormalTok{    y2 <-}\StringTok{ }\NormalTok{x}\OperatorTok{^}\DecValTok{2}
+\NormalTok{)}
+\NormalTok{st2}
+\NormalTok{   user  system elapsed }
+  \FloatTok{0.000}   \FloatTok{0.004}   \FloatTok{0.005} 
+\end{Highlighting}
+\end{Shaded}
+
+Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
+de uma função medido por \texttt{system.time()}, notamos que usando a
+regra da reciclagem, o cálculo é aproximadamente 0.148/0.005 = 29.6
+vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
+simples. Mas em situações mais complexas, a diferença entro o tempo de
+execução das duas formas pode ser muito maior.
+
+Uma nota de precaução
+
+Existem duas formas básicas de tornar um loop \texttt{for} no R mais
+rápido:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Faça o máximo possível fora do loop
+\item
+  Crie um objeto com tamanho suficiente para armazenar \emph{todos} os
+  resultados do loop \textbf{antes} de executá-lo
+\end{enumerate}
+
+Veja este exemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Vetor com uma sequência de 1 a 1.000.000}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{1000000}
+
+\NormalTok{## Cria um objeto de armazenamento com o mesmo tamanho do resultado}
+\NormalTok{st1 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
+\NormalTok{    out <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\KeywordTok{length}\NormalTok{(x))}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x))\{}
+\NormalTok{        out[i] <-}\StringTok{ }\NormalTok{x[i]}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    \}}
+\NormalTok{\})}
+\NormalTok{st1}
+\NormalTok{   user  system elapsed }
+  \FloatTok{0.168}   \FloatTok{0.004}   \FloatTok{0.171} 
+
+\NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
+\NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
+\NormalTok{    out <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x))\{}
+\NormalTok{        out[i] <-}\StringTok{ }\NormalTok{x[i]}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    \}}
+\NormalTok{\})}
+\NormalTok{st2}
+\NormalTok{   user  system elapsed }
+  \FloatTok{0.520}   \FloatTok{0.008}   \FloatTok{0.527} 
+\end{Highlighting}
+\end{Shaded}
+
+Essa simples diferença gera um aumento de tempo de execução da segunda
+forma em aproximadamente 0.527/0.171 = 3.08 vezes. Isso acontece porque,
+da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
+com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
+um espaço na memória que possa armazenar o objeto maior. É necessário
+então copiar o vetor de saída e apagar sua versão anterior antes de
+seguir para o próximo loop. Ao final, foi necessário escrever um milhão
+de vezes na memória do computador.
+
+Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a
+memória para esse vetor já foi alocada previamente, de uma única vez.
+
+\begin{center}\includegraphics[width=0.9\linewidth]{img/R_club} \end{center}
+
+Voltando ao exemplo das notas, por exemplo, o cálculo da média simples
+poderia ser feita diretamente com a função \texttt{apply()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{notas}\OperatorTok{$}\NormalTok{media.apply <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ notas[, provas], }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ mean)}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao media.apply}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado    }\FloatTok{6.666667}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado    }\FloatTok{7.000000}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}
+\end{Highlighting}
+\end{Shaded}
+
+As médias ponderadas poderiam ser calculadas da mesma forma, e usando a
+função que criamos anteriormente
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{notas}\OperatorTok{$}\NormalTok{MP.apply <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ notas[, provas], }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ med.pond)}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao media.apply MP.apply}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333} \FloatTok{4.333333}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000} \FloatTok{5.000000}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000} \FloatTok{5.000000}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado    }\FloatTok{6.666667} \FloatTok{6.666667}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado    }\FloatTok{7.000000} \FloatTok{7.000000}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333} \FloatTok{4.333333}
+\end{Highlighting}
+\end{Shaded}
+
+Mas note que como temos o argumento \texttt{pesos} especificado com um
+padrão, devemos alterar na própria função \texttt{apply()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{notas}\OperatorTok{$}\NormalTok{MP.apply <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ notas[, provas], }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{,}
+                        \DataTypeTok{FUN =}\NormalTok{ med.pond, }\DataTypeTok{pesos =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao media.apply MP.apply}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.0}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{5.1}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{4.9}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado    }\FloatTok{6.666667}      \FloatTok{6.9}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado    }\FloatTok{7.000000}      \FloatTok{7.1}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.2}
+\end{Highlighting}
+\end{Shaded}
+
+NOTA: veja que isso é possível devido à presença do argumento
+\texttt{...} na função \texttt{apply()}, que permite passar argumentos
+de outras funções dentro dela.
+
+Também poderíamos usar a função \texttt{weighted.mean()} implementada no
+R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{notas}\OperatorTok{$}\NormalTok{MP2.apply <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ notas[, provas], }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{,}
+                         \DataTypeTok{FUN =}\NormalTok{ weighted.mean, }\DataTypeTok{w =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao media.apply MP.apply MP2.apply}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.0}       \FloatTok{4.0}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{5.1}       \FloatTok{5.1}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{4.9}       \FloatTok{4.9}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado    }\FloatTok{6.666667}      \FloatTok{6.9}       \FloatTok{6.9}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado    }\FloatTok{7.000000}      \FloatTok{7.1}       \FloatTok{7.1}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.2}       \FloatTok{4.2}
+\end{Highlighting}
+\end{Shaded}
+
+O Coeficiente de Variação poderia ser calculado usando nossa função
+\texttt{cv()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{notas}\OperatorTok{$}\NormalTok{CV.apply <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ notas[, provas], }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ cv)}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao media.apply MP.apply MP2.apply  CV.apply}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.0}       \FloatTok{4.0} \FloatTok{0.8104349}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{5.1}       \FloatTok{5.1} \FloatTok{0.5291503}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{4.9}       \FloatTok{4.9} \FloatTok{0.7211103}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado    }\FloatTok{6.666667}      \FloatTok{6.9}       \FloatTok{6.9} \FloatTok{0.7399324}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado    }\FloatTok{7.000000}      \FloatTok{7.1}       \FloatTok{7.1} \FloatTok{0.1428571}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.2}       \FloatTok{4.2} \FloatTok{1.1842157}
+\end{Highlighting}
+\end{Shaded}
+
+Finalmente, a estrutura de repetição \texttt{if()} também possui uma
+forma vetorizada através da função \texttt{ifelse()}. Essa função
+funciona da seguinte forma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ifelse}\NormalTok{(}\OperatorTok{<}\NormalTok{condição}\OperatorTok{>}\NormalTok{, }\OperatorTok{<}\NormalTok{valor se verdadeiro}\OperatorTok{>}\NormalTok{, }\OperatorTok{<}\NormalTok{valor se falso}\OperatorTok{>}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Dessa forma, a atribuição da situação dos alunos poderia ser feita da
+seguinte forma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{notas}\OperatorTok{$}\NormalTok{situacao2 <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(notas}\OperatorTok{$}\NormalTok{MP }\OperatorTok{>=}\StringTok{ }\DecValTok{7}\NormalTok{, }\StringTok{"aprovado"}\NormalTok{, }\StringTok{"reprovado"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(notas)}
+\NormalTok{     nome prova1 prova2 prova3    media   media2   media3        CV  MP}
+\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{0.8104349} \FloatTok{4.0}
+\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.5291503} \FloatTok{5.1}
+\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{5.000000} \FloatTok{0.7211103} \FloatTok{4.9}
+\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{6.666667} \FloatTok{0.7399324} \FloatTok{6.9}
+\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{7.000000} \FloatTok{0.1428571} \FloatTok{7.1}
+\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{4.333333} \FloatTok{1.1842157} \FloatTok{4.2}
+\NormalTok{       MP2  situacao media.apply MP.apply MP2.apply  CV.apply situacao2}
+\DecValTok{1} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.0}       \FloatTok{4.0} \FloatTok{0.8104349}\NormalTok{ reprovado}
+\DecValTok{2} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{5.1}       \FloatTok{5.1} \FloatTok{0.5291503}\NormalTok{ reprovado}
+\DecValTok{3} \FloatTok{5.000000}\NormalTok{ reprovado    }\FloatTok{5.000000}      \FloatTok{4.9}       \FloatTok{4.9} \FloatTok{0.7211103}\NormalTok{ reprovado}
+\DecValTok{4} \FloatTok{6.666667}\NormalTok{ reprovado    }\FloatTok{6.666667}      \FloatTok{6.9}       \FloatTok{6.9} \FloatTok{0.7399324}\NormalTok{ reprovado}
+\DecValTok{5} \FloatTok{7.000000}\NormalTok{  aprovado    }\FloatTok{7.000000}      \FloatTok{7.1}       \FloatTok{7.1} \FloatTok{0.1428571}\NormalTok{  aprovado}
+\DecValTok{6} \FloatTok{4.333333}\NormalTok{ reprovado    }\FloatTok{4.333333}      \FloatTok{4.2}       \FloatTok{4.2} \FloatTok{1.1842157}\NormalTok{ reprovado}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Outras estruturas: while e
+repeat}\label{outras-estruturas-while-e-repeat}
+
+O \texttt{while} executa comandos enquanto uma determinada condição
+permanece verdadeira.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calcule a soma em 1,2,3... até que o soma seja maior do que 1000}
+\NormalTok{n <-}\StringTok{ }\DecValTok{0}
+\NormalTok{soma <-}\StringTok{ }\DecValTok{0}
+\ControlFlowTok{while}\NormalTok{(soma }\OperatorTok{<=}\StringTok{ }\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{    n <-}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{    soma <-}\StringTok{ }\NormalTok{soma }\OperatorTok{+}\StringTok{ }\NormalTok{n}
+\NormalTok{\}}
+\NormalTok{soma}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1035}
+\end{Highlighting}
+\end{Shaded}
+
+O \texttt{repeat} é ainda mais básico, e irá executar comandos até que
+você explicitamente pare a execução com o comando \texttt{break}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Mesmo exemplo}
+\NormalTok{n <-}\StringTok{ }\DecValTok{0}
+\NormalTok{soma <-}\StringTok{ }\DecValTok{0}
+\ControlFlowTok{repeat}\NormalTok{\{}
+\NormalTok{    n <-}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{    soma <-}\StringTok{ }\NormalTok{soma }\OperatorTok{+}\StringTok{ }\NormalTok{n}
+    \ControlFlowTok{if}\NormalTok{(soma }\OperatorTok{>}\StringTok{ }\DecValTok{1000}\NormalTok{) }\ControlFlowTok{break}
+\NormalTok{\}}
+\NormalTok{soma}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1035}
+\end{Highlighting}
+\end{Shaded}
+
+\appendix
+
+
 \chapter{Programação Orientada a
 Objetos}\label{programacao-orientada-a-objetos}
 
@@ -4040,7 +6076,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x6cbacc8}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7bc0100}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -4075,7 +6111,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x6cba328}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7bbf6b8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
