@@ -455,7 +455,7 @@ st2
 Olhando o resultado de `elapsed`, que é o tempo total de execução de uma
 função medido por `system.time()`, notamos que usando a regra da
 reciclagem, o cálculo é aproximadamente
-`r st1[3]`/`r st2[3]` = `r round(st1[3]/st2[3], 2)` vezes mais rápido.
+$`r st1[3]`/`r st2[3]` = `r round(st1[3]/st2[3], 2)`$ vezes mais rápido.
 Claramente esse é só um exemplo de um cálculo muito simples. Mas em
 situações mais complexas, a diferença entro o tempo de execução das duas
 formas pode ser muito maior.
