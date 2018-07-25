@@ -167,7 +167,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 01:22
+Wednesday, 25 July, 2018, 01:37
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -5670,7 +5670,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.144}   \FloatTok{0.004}   \FloatTok{0.148} 
+  \FloatTok{0.164}   \FloatTok{0.004}   \FloatTok{0.170} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5678,13 +5678,13 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.000}   \FloatTok{0.004}   \FloatTok{0.005} 
+  \FloatTok{0.004}   \FloatTok{0.000}   \FloatTok{0.006} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente 0.148/0.005 = 29.6
+regra da reciclagem, o cálculo é aproximadamente 0.17/0.006 = 28.33
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entro o tempo de
 execução das duas formas pode ser muito maior.
@@ -5720,7 +5720,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.168}   \FloatTok{0.004}   \FloatTok{0.171} 
+  \FloatTok{0.132}   \FloatTok{0.004}   \FloatTok{0.136} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5731,12 +5731,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.520}   \FloatTok{0.008}   \FloatTok{0.527} 
+  \FloatTok{0.508}   \FloatTok{0.048}   \FloatTok{0.556} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.527/0.171 = 3.08 vezes. Isso acontece porque,
+forma em aproximadamente 0.556/0.136 = 4.09 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -5947,6 +5947,1282 @@ você explicitamente pare a execução com o comando \texttt{break}.
 \end{Highlighting}
 \end{Shaded}
 
+\part{Estatística}\label{part-estatistica}
+
+\chapter{Análise exploratória de
+dados}\label{analise-exploratoria-de-dados}
+
+Nesta sessão vamos ver alguns (mas não todos!) comandos do R para fazer
+uma análise exploratória descritiva de um conjunto de dados.
+
+Uma boa forma de iniciar uma análise descritiva adequada é verificar os
+tipos de de variáveis disponíveis. Variáveis podem ser classificadas da
+seguinte forma:
+
+\begin{itemize}
+\tightlist
+\item
+  Qualitativas
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Nominais
+  \item
+    Ordinais
+  \end{itemize}
+\item
+  Quantitativas
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Discretas
+  \item
+    Contínuas
+  \end{itemize}
+\end{itemize}
+
+e podem ser resumidas por tabelas, gráficos e/ou medidas.
+
+\section{\texorpdfstring{O conjunto de dados
+\texttt{milsa}}{O conjunto de dados milsa}}\label{o-conjunto-de-dados-milsa}
+
+O livro ``Estatística Básica'' de W. O. Bussab e P. A. Morettin traz no
+segundo capítulo um conjunto de dados hipotético de atributos de 36
+funcionários da companhia ``Milsa''. Os dados estão reproduzidos na
+tabela abaixo. Consulte o livro para mais detalhes sobre este dados.
+
+\begin{tabular}{r|l|l|r|r|r|r|l}
+\hline
+Funcionario & Est.civil & Inst & Filhos & Salario & Anos & Meses & Regiao\\
+\hline
+1 & solteiro & 1o Grau & NA & 4.00 & 26 & 3 & interior\\
+\hline
+2 & casado & 1o Grau & 1 & 4.56 & 32 & 10 & capital\\
+\hline
+3 & casado & 1o Grau & 2 & 5.25 & 36 & 5 & capital\\
+\hline
+4 & solteiro & 2o Grau & NA & 5.73 & 20 & 10 & outro\\
+\hline
+5 & solteiro & 1o Grau & NA & 6.26 & 40 & 7 & outro\\
+\hline
+6 & casado & 1o Grau & 0 & 6.66 & 28 & 0 & interior\\
+\hline
+7 & solteiro & 1o Grau & NA & 6.86 & 41 & 0 & interior\\
+\hline
+8 & solteiro & 1o Grau & NA & 7.39 & 43 & 4 & capital\\
+\hline
+9 & casado & 2o Grau & 1 & 7.59 & 34 & 10 & capital\\
+\hline
+10 & solteiro & 2o Grau & NA & 7.44 & 23 & 6 & outro\\
+\hline
+11 & casado & 2o Grau & 2 & 8.12 & 33 & 6 & interior\\
+\hline
+12 & solteiro & 1o Grau & NA & 8.46 & 27 & 11 & capital\\
+\hline
+13 & solteiro & 2o Grau & NA & 8.74 & 37 & 5 & outro\\
+\hline
+14 & casado & 1o Grau & 3 & 8.95 & 44 & 2 & outro\\
+\hline
+15 & casado & 2o Grau & 0 & 9.13 & 30 & 5 & interior\\
+\hline
+16 & solteiro & 2o Grau & NA & 9.35 & 38 & 8 & outro\\
+\hline
+17 & casado & 2o Grau & 1 & 9.77 & 31 & 7 & capital\\
+\hline
+18 & casado & 1o Grau & 2 & 9.80 & 39 & 7 & outro\\
+\hline
+19 & solteiro & Superior & NA & 10.53 & 25 & 8 & interior\\
+\hline
+20 & solteiro & 2o Grau & NA & 10.76 & 37 & 4 & interior\\
+\hline
+21 & casado & 2o Grau & 1 & 11.06 & 30 & 9 & outro\\
+\hline
+22 & solteiro & 2o Grau & NA & 11.59 & 34 & 2 & capital\\
+\hline
+23 & solteiro & 1o Grau & NA & 12.00 & 41 & 0 & outro\\
+\hline
+24 & casado & Superior & 0 & 12.79 & 26 & 1 & outro\\
+\hline
+25 & casado & 2o Grau & 2 & 13.23 & 32 & 5 & interior\\
+\hline
+26 & casado & 2o Grau & 2 & 13.60 & 35 & 0 & outro\\
+\hline
+27 & solteiro & 1o Grau & NA & 13.85 & 46 & 7 & outro\\
+\hline
+28 & casado & 2o Grau & 0 & 14.69 & 29 & 8 & interior\\
+\hline
+29 & casado & 2o Grau & 5 & 14.71 & 40 & 6 & interior\\
+\hline
+30 & casado & 2o Grau & 2 & 15.99 & 35 & 10 & capital\\
+\hline
+31 & solteiro & Superior & NA & 16.22 & 31 & 5 & outro\\
+\hline
+32 & casado & 2o Grau & 1 & 16.61 & 36 & 4 & interior\\
+\hline
+33 & casado & Superior & 3 & 17.26 & 43 & 7 & capital\\
+\hline
+34 & solteiro & Superior & NA & 18.75 & 33 & 7 & capital\\
+\hline
+35 & casado & 2o Grau & 2 & 19.40 & 48 & 11 & capital\\
+\hline
+36 & casado & Superior & 3 & 23.30 & 42 & 2 & interior\\
+\hline
+\end{tabular}
+
+Estes dados estão disponíveis em um arquivo \texttt{csv} no endereço
+\url{http://www.leg.ufpr.br/~fernandomayer/data/milsa.csv}.
+
+O nosso objetivo é, através do R,
+
+\begin{itemize}
+\tightlist
+\item
+  Entrar com os dados
+\item
+  Fazer uma análise descritiva
+\end{itemize}
+
+Estes são dados no ``estilo planilha'', com variáveis de diferentes
+tipos: categóricas e numéricas (qualitativas e quantitativas). Portanto
+o formato ideal de armazenamento destes dados no R é o
+\texttt{data.frame}.
+
+Para importar os dados do endereço acima diretamente para o R, usamos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{url <-}\StringTok{ "http://www.leg.ufpr.br/~fernandomayer/data/milsa.csv"}
+\NormalTok{milsa <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(url)}
+\end{Highlighting}
+\end{Shaded}
+
+E para conferir a estrutura dos dados podemos usar algumas funções como:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(milsa)}
+\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{36}\NormalTok{ obs. of  }\DecValTok{8}\NormalTok{ variables}\OperatorTok{:}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{Funcionario}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{1} \DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{5} \DecValTok{6} \DecValTok{7} \DecValTok{8} \DecValTok{9} \DecValTok{10}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Est.civil  }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"casado"}\NormalTok{,}\StringTok{"solteiro"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Inst       }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{ levels }\StringTok{"1o Grau"}\NormalTok{,}\StringTok{"2o Grau"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Filhos     }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\OtherTok{NA} \DecValTok{1} \DecValTok{2} \OtherTok{NA} \OtherTok{NA} \DecValTok{0} \OtherTok{NA} \OtherTok{NA} \DecValTok{1} \OtherTok{NA}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Salario    }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{4} \FloatTok{4.56} \FloatTok{5.25} \FloatTok{5.73} \FloatTok{6.26} \FloatTok{6.66} \FloatTok{6.86} \FloatTok{7.39} \FloatTok{7.59} \FloatTok{7.44}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Anos       }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{26} \DecValTok{32} \DecValTok{36} \DecValTok{20} \DecValTok{40} \DecValTok{28} \DecValTok{41} \DecValTok{43} \DecValTok{34} \DecValTok{23}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Meses      }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{3} \DecValTok{10} \DecValTok{5} \DecValTok{10} \DecValTok{7} \DecValTok{0} \DecValTok{0} \DecValTok{4} \DecValTok{10} \DecValTok{6}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Regiao     }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{ levels }\StringTok{"capital"}\NormalTok{,}\StringTok{"interior"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{3} \DecValTok{3} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{3}\NormalTok{ ...}
+\KeywordTok{head}\NormalTok{(milsa)}
+\NormalTok{  Funcionario Est.civil    Inst Filhos Salario Anos Meses   Regiao}
+\DecValTok{1}           \DecValTok{1}\NormalTok{  solteiro 1o Grau     }\OtherTok{NA}    \FloatTok{4.00}   \DecValTok{26}     \DecValTok{3}\NormalTok{ interior}
+\DecValTok{2}           \DecValTok{2}\NormalTok{    casado 1o Grau      }\DecValTok{1}    \FloatTok{4.56}   \DecValTok{32}    \DecValTok{10}\NormalTok{  capital}
+\DecValTok{3}           \DecValTok{3}\NormalTok{    casado 1o Grau      }\DecValTok{2}    \FloatTok{5.25}   \DecValTok{36}     \DecValTok{5}\NormalTok{  capital}
+\DecValTok{4}           \DecValTok{4}\NormalTok{  solteiro 2o Grau     }\OtherTok{NA}    \FloatTok{5.73}   \DecValTok{20}    \DecValTok{10}\NormalTok{    outro}
+\DecValTok{5}           \DecValTok{5}\NormalTok{  solteiro 1o Grau     }\OtherTok{NA}    \FloatTok{6.26}   \DecValTok{40}     \DecValTok{7}\NormalTok{    outro}
+\DecValTok{6}           \DecValTok{6}\NormalTok{    casado 1o Grau      }\DecValTok{0}    \FloatTok{6.66}   \DecValTok{28}     \DecValTok{0}\NormalTok{ interior}
+\KeywordTok{tail}\NormalTok{(milsa)}
+\NormalTok{   Funcionario Est.civil     Inst Filhos Salario Anos Meses   Regiao}
+\DecValTok{31}          \DecValTok{31}\NormalTok{  solteiro Superior     }\OtherTok{NA}   \FloatTok{16.22}   \DecValTok{31}     \DecValTok{5}\NormalTok{    outro}
+\DecValTok{32}          \DecValTok{32}\NormalTok{    casado  2o Grau      }\DecValTok{1}   \FloatTok{16.61}   \DecValTok{36}     \DecValTok{4}\NormalTok{ interior}
+\DecValTok{33}          \DecValTok{33}\NormalTok{    casado Superior      }\DecValTok{3}   \FloatTok{17.26}   \DecValTok{43}     \DecValTok{7}\NormalTok{  capital}
+\DecValTok{34}          \DecValTok{34}\NormalTok{  solteiro Superior     }\OtherTok{NA}   \FloatTok{18.75}   \DecValTok{33}     \DecValTok{7}\NormalTok{  capital}
+\DecValTok{35}          \DecValTok{35}\NormalTok{    casado  2o Grau      }\DecValTok{2}   \FloatTok{19.40}   \DecValTok{48}    \DecValTok{11}\NormalTok{  capital}
+\DecValTok{36}          \DecValTok{36}\NormalTok{    casado Superior      }\DecValTok{3}   \FloatTok{23.30}   \DecValTok{42}     \DecValTok{2}\NormalTok{ interior}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos classificar todas a svariáveis desse conjunto de dados como:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variável & Classificação\tabularnewline
+\midrule
+\endhead
+\texttt{Funcionario} & Quantitativa discreta\tabularnewline
+\texttt{Est.civil} & Qualitativa nominal\tabularnewline
+\texttt{Inst} & Qualitativa ordinal\tabularnewline
+\texttt{Filhos} & Quantitativa discreta\tabularnewline
+\texttt{Salario} & Quantitativa contínua\tabularnewline
+\texttt{Anos} & Quantitativa contínua\tabularnewline
+\texttt{Meses} & Quantitativa contínua\tabularnewline
+\texttt{Regiao} & Qualitativa nominal\tabularnewline
+\bottomrule
+\end{longtable}
+
+Como a variável \texttt{Inst} é qualitativa ordinal, podemos indicar
+para o R que ela deve ser tratada como ordinal. Se observarmos os níveis
+desse fator:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{levels}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"1o Grau"}  \StringTok{"2o Grau"}  \StringTok{"Superior"}
+\end{Highlighting}
+\end{Shaded}
+
+já notamos que a ordenação está correta (da esquerda para a direita),
+pois sabemos que a classificação interna dos níveis é por ordem
+alfabética, e nesse caso, por coincidência, a ordem já está na sequência
+correta. Mesmo assim, podemos indicar que este fator é ordinal, usando o
+argumento \texttt{ordered} da função \texttt{factor()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{milsa}\OperatorTok{$}\NormalTok{Inst <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst, }\DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note agora a modificação na classe dessa coluna, e a representação dos
+níveis:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"ordered"} \StringTok{"factor"} 
+\NormalTok{milsa}\OperatorTok{$}\NormalTok{Inst}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] 1o Grau  1o Grau  1o Grau  2o Grau  1o Grau  1o Grau  1o Grau }
+\NormalTok{ [}\DecValTok{8}\NormalTok{] 1o Grau  2o Grau  2o Grau  2o Grau  1o Grau  2o Grau  1o Grau }
+\NormalTok{[}\DecValTok{15}\NormalTok{] 2o Grau  2o Grau  2o Grau  1o Grau  Superior 2o Grau  2o Grau }
+\NormalTok{[}\DecValTok{22}\NormalTok{] 2o Grau  1o Grau  Superior 2o Grau  2o Grau  1o Grau  2o Grau }
+\NormalTok{[}\DecValTok{29}\NormalTok{] 2o Grau  2o Grau  Superior 2o Grau  Superior Superior 2o Grau }
+\NormalTok{[}\DecValTok{36}\NormalTok{] Superior}
+\NormalTok{Levels}\OperatorTok{:}\StringTok{ }\NormalTok{1o Grau }\OperatorTok{<}\StringTok{ }\NormalTok{2o Grau }\OperatorTok{<}\StringTok{ }\NormalTok{Superior}
+\end{Highlighting}
+\end{Shaded}
+
+A coluna continua sendo um \texttt{factor}, mas agora também é
+\texttt{ordered} (sim, um objeto pode ter mais de uma classe, se elas
+foram compatíveis e/ou complementares). Os níveis agora são
+representados por
+
+\begin{verbatim}
+1o Grau < 2o Grau < Superior
+\end{verbatim}
+
+para indicar explicitamente que existe uma ordem nos níveis desse fator.
+
+Podemos ainda definir uma nova variável, chamada \texttt{Idade}, a
+partir das variáveis \texttt{Anos} e \texttt{Meses}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{milsa}\OperatorTok{$}\NormalTok{Idade <-}\StringTok{ }\NormalTok{milsa}\OperatorTok{$}\NormalTok{Anos }\OperatorTok{+}\StringTok{ }\NormalTok{milsa}\OperatorTok{$}\NormalTok{Meses}\OperatorTok{/}\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+Os dois comandos acima (de modificação da classe de uma variável, e a
+criação de uma nova variável) poderiam ser facilmente executadas de uma
+única vez através do comando \texttt{transform()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{milsa <-}\StringTok{ }\KeywordTok{transform}\NormalTok{(milsa,}
+                   \DataTypeTok{Inst =} \KeywordTok{factor}\NormalTok{(Inst, }\DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{),}
+                   \DataTypeTok{Idade =}\NormalTok{ Anos }\OperatorTok{+}\StringTok{ }\NormalTok{Meses}\OperatorTok{/}\DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Agora que os dados estão prontos podemos começar a análise descritiva. A
+seguir mostramos como fazer análises descritivas uni e bi-variadas.
+Inspecione os comandos mostrados a seguir e os resultados por elas
+produzidos. Sugerimos ainda que o leitor use o R para reproduzir os
+resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab \&
+Morettin, relacionados com este exemplo. Veja os scripts do livro
+\href{https://rpubs.com/EstatBasica/Introd}{aqui}.
+
+\section{Análise univariada}\label{analise-univariada}
+
+A análise univariada consiste basicamente em, para cada uma das
+variáveis individualmente:
+
+\begin{itemize}
+\tightlist
+\item
+  Classificar a variável quanto a seu tipo: qualitativa (nominal ou
+  ordinal) ou quantitativa (discreta ou contínua)
+\item
+  Obter tabelas, gráficos e/ou medidas que resumam a variável
+\end{itemize}
+
+A partir destes resultados pode-se montar um resumo geral dos dados.
+
+A seguir vamos mostrar como obter tabelas, gráficos e medidas com o R.
+Para isto vamos selecionar uma variável de cada tipo para que o leitor
+possa, por analogia, obter resultados para as demais.
+
+\subsection{Variável Qualitativa
+Nominal}\label{variavel-qualitativa-nominal}
+
+A variável \texttt{Est.civil} é uma qualitativa nominal. Desta forma
+podemos obter: (i) uma tabela de frequências (absolutas e/ou relativas),
+(ii) um gráfico de setores, (iii) a ``moda'', \emph{i.e.} o valor que
+ocorre com maior frequência.
+
+Já vimos, através do resultado da função \texttt{str()} acima, que esta
+variável é um fator. A seguir obtemos frequências absolutas e relativas
+(note duas formas diferentes de obter as frequências relativas).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frequência absoluta}
+\NormalTok{civil.tb <-}\StringTok{ }\KeywordTok{table}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Est.civil)}
+\NormalTok{civil.tb}
+
+\NormalTok{  casado solteiro }
+      \DecValTok{20}       \DecValTok{16} 
+\NormalTok{## Frequência relativa, calculando manualmente}
+\NormalTok{civil.tb}\OperatorTok{/}\KeywordTok{length}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Est.civil)}
+
+\NormalTok{   casado  solteiro }
+\FloatTok{0.5555556} \FloatTok{0.4444444} 
+\NormalTok{## Frequência relativa, com a função prop.table()}
+\KeywordTok{prop.table}\NormalTok{(civil.tb)}
+
+\NormalTok{   casado  solteiro }
+\FloatTok{0.5555556} \FloatTok{0.4444444} 
+\end{Highlighting}
+\end{Shaded}
+
+Os gráficos de barras e de setores são adequados para representar esta
+variável. Os comandos \texttt{barplot()} e \texttt{pie()} usam o
+resultado da função \texttt{table()} para gerar os gráficos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(civil.tb)}
+\KeywordTok{pie}\NormalTok{(civil.tb)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-292-1} \end{center}
+
+A \emph{moda} de qualquer variável aleatória é definida como o valor
+mais frequente encontrado na amostra. No R não há uma função pronta para
+``calcular'' a moda, pois ela pode ser obtida facilmente através do uso
+de funções básicas. Uma opção seria usar os comandos abaixo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(civil.tb)[}\KeywordTok{which.max}\NormalTok{(civil.tb)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"casado"}
+\end{Highlighting}
+\end{Shaded}
+
+Deixamos a cargo do leitor entender e interpretar esse comando.
+
+\subsection{Variável Qualitativa
+Ordinal}\label{variavel-qualitativa-ordinal}
+
+Para exemplificar como obter análises para uma variável qualitativa
+ordinal vamos selecionar a variável \texttt{Inst}.
+
+As tabelas de frequências são obtidas de forma semelhante à mostrada
+anteriormente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frequência absoluta}
+\NormalTok{inst.tb <-}\StringTok{ }\KeywordTok{table}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)}
+\NormalTok{inst.tb}
+
+\NormalTok{ 1o Grau  2o Grau Superior }
+      \DecValTok{12}       \DecValTok{18}        \DecValTok{6} 
+\NormalTok{## Frequência relativa}
+\KeywordTok{prop.table}\NormalTok{(inst.tb)}
+
+\NormalTok{  1o Grau   2o Grau  Superior }
+\FloatTok{0.3333333} \FloatTok{0.5000000} \FloatTok{0.1666667} 
+\end{Highlighting}
+\end{Shaded}
+
+O gráfico de setores não é adequado para este tipo de variável por não
+expressar a ordem dos possíveis valores. Usamos então apenas um gráfico
+de barras conforme mostrado abaixo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(inst.tb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-295-1} \end{center}
+
+Em alguns casos podemos querer mostrar o gráfico de barras com as barras
+classificadas da menor para a maior, ou vice-versa, independente da
+ordem dos níveis. Para isso podemos usar a função \texttt{sort()} para
+ordenar os valores da tabela e fazer o gráfico
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{## Menor para maior}
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{sort}\NormalTok{(inst.tb))}
+\NormalTok{## Maior para menor}
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{sort}\NormalTok{(inst.tb, }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-296-1} \end{center}
+
+Para uma variável ordinal, além da moda podemos também calcular outras
+medidas, tais como a mediana conforme exemplificado a seguir. Note que o
+comando \texttt{median()} não funciona com variáveis não numéricas, e
+por isso usamos o comando seguinte.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Moda}
+\KeywordTok{names}\NormalTok{(inst.tb)[}\KeywordTok{which.max}\NormalTok{(inst.tb)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2o Grau"}
+\NormalTok{## Mediana}
+\KeywordTok{median}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst) }\CommentTok{# só funciona para variáveis numéricas}
+\NormalTok{Error }\ControlFlowTok{in} \KeywordTok{median.default}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)}\OperatorTok{:}\StringTok{ }\NormalTok{need numeric data}
+\KeywordTok{median}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)) }\CommentTok{# traz a mediana da codificação do nível}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\KeywordTok{levels}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)[}\KeywordTok{median}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst))] }\CommentTok{# valor correto}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2o Grau"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Variável quantitativa
+discreta}\label{variavel-quantitativa-discreta}
+
+Vamos agora usar a variável \texttt{Filhos} (número de filhos) para
+ilustrar algumas análises que podem ser feitas com uma quantitativa
+discreta.
+
+Frequências absolutas e relativas são obtidas como anteriormente. Também
+vamos calcular a frequência acumulada, onde a frequência em uma classe é
+a soma das frequências das classes anteriores. Para isso usamos a função
+\texttt{cumsum()}, que já faz a soma acumulada.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frequência absoluta}
+\NormalTok{filhos.tb <-}\StringTok{ }\KeywordTok{table}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos)}
+\NormalTok{filhos.tb}
+
+\DecValTok{0} \DecValTok{1} \DecValTok{2} \DecValTok{3} \DecValTok{5} 
+\DecValTok{4} \DecValTok{5} \DecValTok{7} \DecValTok{3} \DecValTok{1} 
+\NormalTok{## Frequência relativa}
+\NormalTok{filhos.tbr <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(filhos.tb)}
+\NormalTok{filhos.tbr}
+
+   \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{3}    \DecValTok{5} 
+\FloatTok{0.20} \FloatTok{0.25} \FloatTok{0.35} \FloatTok{0.15} \FloatTok{0.05} 
+\NormalTok{## Frequência acumulada}
+\NormalTok{filhos.tba <-}\StringTok{ }\KeywordTok{cumsum}\NormalTok{(filhos.tbr)}
+\NormalTok{filhos.tba}
+   \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{3}    \DecValTok{5} 
+\FloatTok{0.20} \FloatTok{0.45} \FloatTok{0.80} \FloatTok{0.95} \FloatTok{1.00} 
+\end{Highlighting}
+\end{Shaded}
+
+O gráfico adequado para frequências absolutas de uma variável discreta é
+parecido com um gráfico de barras, mas nesse caso, as frequências são
+indicadas por linhas. Usando a função \texttt{plot()} em um objeto
+resultado da função \texttt{table()}, o gráfico adequado já é
+selecionado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(filhos.tb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-299-1} \end{center}
+
+Outra possibilidade seria fazer gráficos de frequências relativas e de
+frequências acumuladas conforme mostrado na
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{## Frequência relativa}
+\KeywordTok{plot}\NormalTok{(filhos.tbr)}
+\NormalTok{## Frequência relativa acumulada}
+\KeywordTok{plot}\NormalTok{(filhos.tba, }\DataTypeTok{type =} \StringTok{"S"}\NormalTok{) }\CommentTok{# tipo step (escada)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-300-1} \end{center}
+
+Sendo a variável numérica há uma maior diversidade de medidas
+estatísticas que podem ser calculadas.
+
+A seguir mostramos como obter algumas medidas de posição: moda, mediana,
+média e média aparada. Note que o argumento \texttt{na.rm\ =\ TRUE} é
+necessário porque não há informação sobre número de filhos para alguns
+indivíduos (\texttt{NA}). Para calcular a média aparada, usamos o
+argumento \texttt{trim\ =\ 0.1} que indica que a média deve ser
+calculada excluindo-se 10\% dos menores e 10\% dos maiores valores do
+vetor de dados. Ao final mostramos como obter os quartis, incluido o
+mínimo e o máximo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Moda}
+\KeywordTok{names}\NormalTok{(filhos.tb)[}\KeywordTok{which.max}\NormalTok{(filhos.tb)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2"}
+\NormalTok{## Mediana}
+\KeywordTok{median}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\NormalTok{## Média}
+\KeywordTok{mean}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.65}
+\NormalTok{## Média aparada}
+\KeywordTok{mean}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{trim =} \FloatTok{0.1}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.5625}
+\NormalTok{## Quartis}
+\KeywordTok{quantile}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+  \DecValTok{0}\OperatorTok{%  25%}\StringTok{  }\DecValTok{50}\OperatorTok{%  75%}\StringTok{ }\DecValTok{100}\NormalTok{% }
+   \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{2}    \DecValTok{5} 
+\end{Highlighting}
+\end{Shaded}
+
+Passando agora para medidas de dispersão, vejamos como obter máximo e
+mínimo, e com isso a amplitude, além da variância, desvio padrão, e
+coeficiente de variação. Também obtemos os quartis para calcular a
+amplitude interquartílica.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Máximo e mínimo}
+\KeywordTok{max}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\KeywordTok{min}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{0}
+\NormalTok{## As duas informações juntas}
+\KeywordTok{range}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{0} \DecValTok{5}
+\NormalTok{## Amplitude é a diferença entre máximo e mínimo}
+\KeywordTok{diff}\NormalTok{(}\KeywordTok{range}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\NormalTok{## Variância}
+\KeywordTok{var}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.607895}
+\NormalTok{## Desvio-padrão}
+\KeywordTok{sd}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.268028}
+\NormalTok{## Coeficiente de variação}
+\KeywordTok{sd}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.7685018}
+\NormalTok{## Quartis}
+\NormalTok{(filhos.qt <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+  \DecValTok{0}\OperatorTok{%  25%}\StringTok{  }\DecValTok{50}\OperatorTok{%  75%}\StringTok{ }\DecValTok{100}\NormalTok{% }
+   \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{2}    \DecValTok{5} 
+\NormalTok{## Amplitude interquartílica}
+\NormalTok{filhos.qt[}\DecValTok{4}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{filhos.qt[}\DecValTok{2}\NormalTok{]}
+\DecValTok{75}\NormalTok{% }
+  \DecValTok{1} 
+\end{Highlighting}
+\end{Shaded}
+
+Finalmente, podemos usar a função \textbf{genérica} \texttt{summary()}
+para resumir od dados de uma só vez
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Filhos)}
+\NormalTok{   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA}\StringTok{'s }
+\StringTok{   0.00    1.00    2.00    1.65    2.00    5.00      16 }
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Variável quantitativa
+contínua}\label{variavel-quantitativa-continua}
+
+Para concluir os exemplos para análise univariada vamos considerar a
+variável quantitativa contínua \texttt{Salario}.
+
+Para se fazer uma tabela de frequências de uma VA contínua, é preciso
+primeiro agrupar os dados em classes. Nos comandos mostrados a seguir
+verificamos inicialmente os valores máximo e mínimo dos dados, depois
+usamos o critério de Sturges para definir o número de classes. Usamos a
+função \texttt{cut()} para agrupar os dados em classes e finalmente
+obtemos as frequências absolutas e relativas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Máximo e mínimo}
+\KeywordTok{range}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\FloatTok{4.0} \FloatTok{23.3}
+\NormalTok{## Número de classes estimado, com base no critério de Sturges. Veja}
+\NormalTok{## outras opções em ?nclass}
+\KeywordTok{nclass.Sturges}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{7}
+\NormalTok{## Criando as classes com a função cut(), usando os valores mínimos e}
+\NormalTok{## máximos dados em range()}
+\KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{8}\NormalTok{))}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\OperatorTok{<}\OtherTok{NA}\OperatorTok{>}\StringTok{        }\NormalTok{(}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
+\NormalTok{ [}\DecValTok{6}\NormalTok{] (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
+\NormalTok{[}\DecValTok{11}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
+\NormalTok{[}\DecValTok{16}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
+\NormalTok{[}\DecValTok{21}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]  }
+\NormalTok{[}\DecValTok{26}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]  }
+\NormalTok{[}\DecValTok{31}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{]}
+\NormalTok{[}\DecValTok{36}\NormalTok{] (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{(}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Note que uma das classes é \texttt{NA}. Isso ocorre pela definição das
+classes, que por padrão é no formato \texttt{(a,b{]}}, ou seja, o
+intervalo é aberto em \texttt{a} (não inclui \texttt{a}) e fechado em
+\texttt{b} (inclui \texttt{b}). Podemos alterar esse padrão usando o
+argumento \texttt{include.lowest\ =\ TRUE},
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{8}\NormalTok{),}
+    \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
+\NormalTok{ [}\DecValTok{6}\NormalTok{] [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
+\NormalTok{[}\DecValTok{11}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
+\NormalTok{[}\DecValTok{16}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
+\NormalTok{[}\DecValTok{21}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]  }
+\NormalTok{[}\DecValTok{26}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]  }
+\NormalTok{[}\DecValTok{31}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{]}
+\NormalTok{[}\DecValTok{36}\NormalTok{] (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{[}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+E note que agora a primeira classe fica \texttt{{[}a,b{]}}, ou seja,
+fechada (incluindo) os dois lados. Para que o intervalo seja fechado à
+esquerda, usamos o argumento \texttt{right\ =\ FALSE}. As combinações
+possíveis para esses dois argumentos, e as classes resultantes são
+apresentadas na tabela abaixo:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+Argumentos & Resultado\tabularnewline
+\midrule
+\endhead
+\texttt{include.lowest\ =\ T,\ right\ =\ T} &
+\texttt{{[}a,b{]},\ ...,\ (y,z{]}}\tabularnewline
+\texttt{include.lowest\ =\ F,\ right\ =\ T} &
+\texttt{(a,b{]},\ ...,\ (y,z{]}}\tabularnewline
+\texttt{include.lowest\ =\ F,\ right\ =\ F} &
+\texttt{{[}a,b),\ ...,\ {[}y,z)}\tabularnewline
+\texttt{include.lowest\ =\ T,\ right\ =\ F} &
+\texttt{{[}a,b),\ ...,\ {[}y,z{]}}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Outra opção para ``acomodar'' todos os extremos dentro das classes,
+seria naturalmente atribuir valores um pouco menores que o mínimo, e um
+pouco maiores que o máximo. Abaixo, usamos essa abordagem e fazemos uma
+tabela com as frequências absolutas e relativas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salario.cut <-}\StringTok{ }\KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario,}
+                   \DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\FloatTok{3.5}\NormalTok{, }\FloatTok{23.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{8}\NormalTok{))}
+\NormalTok{salario.cut}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{] }
+\NormalTok{ [}\DecValTok{6}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
+\NormalTok{[}\DecValTok{11}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
+\NormalTok{[}\DecValTok{16}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{]}
+\NormalTok{[}\DecValTok{21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{]}
+\NormalTok{[}\DecValTok{26}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{]}
+\NormalTok{[}\DecValTok{31}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{]}
+\NormalTok{[}\DecValTok{36}\NormalTok{] (}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{]}
+\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{(}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{]}
+\NormalTok{## Tabela com as frequencias absolutas por classe}
+\NormalTok{salario.tb <-}\StringTok{ }\KeywordTok{table}\NormalTok{(salario.cut)}
+\NormalTok{salario.tb}
+\NormalTok{salario.cut}
+\NormalTok{ (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{] }
+          \DecValTok{5}          \DecValTok{10}           \DecValTok{8}           \DecValTok{6}           \DecValTok{4}           \DecValTok{2} 
+\NormalTok{(}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{] }
+          \DecValTok{1} 
+\NormalTok{## Tabela com as frequências relativas}
+\KeywordTok{prop.table}\NormalTok{(salario.tb)}
+\NormalTok{salario.cut}
+\NormalTok{ (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{] }
+ \FloatTok{0.13888889}  \FloatTok{0.27777778}  \FloatTok{0.22222222}  \FloatTok{0.16666667}  \FloatTok{0.11111111}  \FloatTok{0.05555556} 
+\NormalTok{(}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{] }
+ \FloatTok{0.02777778} 
+\end{Highlighting}
+\end{Shaded}
+
+Na sequência vamos mostrar dois possíveis gráficos para variáveis
+contínuas: o histograma e o \emph{box-plot}.
+
+Para fazer um histograma usamos a função \texttt{hist()}, por exemplo,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-307-1} \end{center}
+
+A função \texttt{hist()} possui vários argumentos para alterar o
+comportamento da saída do gráfico. Por exemplo, com
+\texttt{labels\ =\ TRUE} as frequências são mostradas acima de cada
+barra. Com \texttt{freq\ =\ FALSE}, o gráfico é feito com as frequências
+relativas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{labels =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-308-1} \end{center}
+
+Por padrão, a função \texttt{hist()} calcula automaticamente o número de
+classes e os valores limites de cada classe. No entanto, isto pode ser
+alterado com o argumento \texttt{breaks}, que pode receber um vetor
+definindo os limites das classes, uma função para definir as quebras, um
+nome de critério (por exemplo, \texttt{"Sturges"}), ou um único escalar
+definido o número de classes. As últimas três opções são apenas
+sugestões utilizadas pela função. O argumento \texttt{nclass} também
+funciona dessa forma, recebendo apenas um valor com o número de classes
+(como sugestão).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{nclass =} \DecValTok{15}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-309-1} \end{center}
+
+Assim como na função \texttt{cut()}, os argumentos
+\texttt{include.lowest} e \texttt{right} são utilizados para controlar a
+borda das classes.
+
+Uma característica importante da função \texttt{hist()} é que ela
+retorna não apenas o gráfico, mas também uma lista com as informações
+utilizadas para construir o gráfico. Associando um histograma a um
+objeto, podemos ver o seu conteúdo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salario.hist <-}\StringTok{ }\KeywordTok{hist}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-310-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salario.hist}
+\OperatorTok{$}\NormalTok{breaks}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{4}  \DecValTok{6}  \DecValTok{8} \DecValTok{10} \DecValTok{12} \DecValTok{14} \DecValTok{16} \DecValTok{18} \DecValTok{20} \DecValTok{22} \DecValTok{24}
+
+\OperatorTok{$}\NormalTok{counts}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{6} \DecValTok{8} \DecValTok{5} \DecValTok{4} \DecValTok{3} \DecValTok{3} \DecValTok{2} \DecValTok{0} \DecValTok{1}
+
+\OperatorTok{$}\NormalTok{density}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FloatTok{0.05555556} \FloatTok{0.08333333} \FloatTok{0.11111111} \FloatTok{0.06944444} \FloatTok{0.05555556} \FloatTok{0.04166667}
+\NormalTok{ [}\DecValTok{7}\NormalTok{] }\FloatTok{0.04166667} \FloatTok{0.02777778} \FloatTok{0.00000000} \FloatTok{0.01388889}
+
+\OperatorTok{$}\NormalTok{mids}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{5}  \DecValTok{7}  \DecValTok{9} \DecValTok{11} \DecValTok{13} \DecValTok{15} \DecValTok{17} \DecValTok{19} \DecValTok{21} \DecValTok{23}
+
+\OperatorTok{$}\NormalTok{xname}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"milsa$Salario"}
+
+\OperatorTok{$}\NormalTok{equidist}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{TRUE}
+
+\KeywordTok{attr}\NormalTok{(,}\StringTok{"class"}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"histogram"}
+\end{Highlighting}
+\end{Shaded}
+
+Estas informações podem então ser utilizadas para outros propósitos
+dentro do R.
+
+Os \textbf{boxplots} são úteis para revelar o centro, a dispersão e a
+distribuição dos dados, além de \textbf{outliers}. São construídos da
+seguinte forma:
+
+\begin{itemize}
+\tightlist
+\item
+  A linha central mais escura representa a mediana. Os extremos da caixa
+  são o \(1^{o}\) (\(q1\)) e o \(3^{o}\) (\(q3\)) quartis.
+\item
+  As linhas que se extendem das caixas são definidas como:
+  \[q1-1,5\cdot IQR\ \qquad \mathrm{e}\ \qquad q3+1,5\cdot IQR\] onde
+  \(IQR\) é o intervalo inter-quartil. As linhas vão até os valores
+  máximo e mínimo que ainda se encontram dentro deste intervalo.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-311-1} \end{center}
+
+Existem também vários argumentos que permitem variações do
+\emph{boxplot}, tais como caixas com tamanho proporcional aos tamanhos
+dos grupos (\texttt{varwidth\ =\ TRUE}), e caixas ``acinturadas''
+(\emph{notched boxplot}) (\texttt{notch\ =\ TRUE}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{varwidth =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-312-1} \end{center}
+
+Ambas opções são úteis quando há mais de um grupo e a comparação entre
+os boxplots é facilitada.
+
+Finalmente, podemos obter as medidas de posição e dispersão da mesma
+forma que para variáveis discretas. Veja alguns exemplos a seguir. Note
+que aqui não é necessário o uso do argumento \texttt{na.rm\ =\ TRUE},
+pois não existem \texttt{NA}s nesta variável.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Mediana}
+\KeywordTok{median}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{10.165}
+\NormalTok{## Média}
+\KeywordTok{mean}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{11.12222}
+\NormalTok{## Média aparada}
+\KeywordTok{mean}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{trim =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{10.838}
+\NormalTok{## Quartis}
+\KeywordTok{quantile}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+     \DecValTok{0}\OperatorTok{%     25%}\StringTok{     }\DecValTok{50}\OperatorTok{%     75%}\StringTok{    }\DecValTok{100}\NormalTok{% }
+ \FloatTok{4.0000}  \FloatTok{7.5525} \FloatTok{10.1650} \FloatTok{14.0600} \FloatTok{23.3000} 
+\NormalTok{## Máximo e mínimo}
+\KeywordTok{max}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{23.3}
+\KeywordTok{min}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\NormalTok{## As duas informações juntas}
+\KeywordTok{range}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\FloatTok{4.0} \FloatTok{23.3}
+\NormalTok{## Amplitude é a diferença entre máximo e mínimo}
+\KeywordTok{diff}\NormalTok{(}\KeywordTok{range}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{19.3}
+\NormalTok{## Variância}
+\KeywordTok{var}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{21.04477}
+\NormalTok{## Desvio-padrão}
+\KeywordTok{sd}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{4.587458}
+\NormalTok{## Coeficiente de variação}
+\KeywordTok{sd}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.4124587}
+\NormalTok{## Quartis}
+\NormalTok{salario.qt <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+\NormalTok{## Amplitude interquartílica}
+\NormalTok{salario.qt[}\DecValTok{4}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{salario.qt[}\DecValTok{2}\NormalTok{]}
+   \DecValTok{75}\NormalTok{% }
+\FloatTok{6.5075} 
+\end{Highlighting}
+\end{Shaded}
+
+\section{Análise Bivariada}\label{analise-bivariada}
+
+Na análise bivariada procuramos identificar relações entre duas
+variáveis. Assim como na análise univariada, estas relações podem ser
+resumidas por gráficos, tabelas e/ou medidas estatísticas. O tipo de
+resumo vai depender dos tipos das variáveis envolvidas. Vamos considerar
+três possibilidades:
+
+\begin{itemize}
+\tightlist
+\item
+  Qualitativa \emph{vs} qualitativa
+\item
+  Qualitativa \emph{vs} quantitativa
+\item
+  Quantitativa \emph{vs} quantitativa
+\end{itemize}
+
+Salienta-se ainda que:
+
+\begin{itemize}
+\tightlist
+\item
+  As análise mostradas a seguir não esgotam as possibilidades de
+  análises envolvendo duas variáveis e devem ser vistas apenas como uma
+  sugestão inicial
+\item
+  Relações entre duas variáveis devem ser examinadas com cautela pois
+  podem ser mascaradas por uma ou mais variáveis adicionais não
+  considerada na análise. Estas são chamadas \textbf{variáveis de
+  confundimento}. Análises com variáveis de confundimento não serão
+  discutidas neste ponto.
+\end{itemize}
+
+\begin{quote}
+\textbf{Observação}: de agora em diante, como serão consideradas mais de
+uma variável, usaremos a função \texttt{with()} para chamar a maioria
+das funções.
+\end{quote}
+
+\subsection{\texorpdfstring{Qualitativa \emph{vs}
+qualitativa}{Qualitativa vs qualitativa}}\label{qualitativa-vs-qualitativa}
+
+Vamos considerar as variáveis \texttt{Est.civil} (estado civil), e
+\texttt{Inst} (grau de instrução). A tabela envolvendo duas variáveis é
+chamada \textbf{tabela de cruzamento} ou \textbf{tabela de
+contingência}, e pode ser apresentada de várias formas, conforme
+discutido a seguir.
+
+A forma mais adequada de apresentação vai depender dos objetivos da
+análise e da interpretação desejada para os dados. Inicialmente obtemos
+a tabela de frequências absolutas para o cruzamento das duas variávies,
+usando a função \texttt{table()}. A tabela extendida incluindo os totais
+marginais pode ser obtida com a função \texttt{addmargins()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Tabela de frequências absolutas}
+\NormalTok{civ.inst.tb <-}\StringTok{ }\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{table}\NormalTok{(Est.civil, Inst))}
+\NormalTok{civ.inst.tb}
+\NormalTok{          Inst}
+\NormalTok{Est.civil  1o Grau 2o Grau Superior}
+\NormalTok{  casado         }\DecValTok{5}      \DecValTok{12}        \DecValTok{3}
+\NormalTok{  solteiro       }\DecValTok{7}       \DecValTok{6}        \DecValTok{3}
+\KeywordTok{addmargins}\NormalTok{(civ.inst.tb)}
+\NormalTok{          Inst}
+\NormalTok{Est.civil  1o Grau 2o Grau Superior Sum}
+\NormalTok{  casado         }\DecValTok{5}      \DecValTok{12}        \DecValTok{3}  \DecValTok{20}
+\NormalTok{  solteiro       }\DecValTok{7}       \DecValTok{6}        \DecValTok{3}  \DecValTok{16}
+\NormalTok{  Sum           }\DecValTok{12}      \DecValTok{18}        \DecValTok{6}  \DecValTok{36}
+\end{Highlighting}
+\end{Shaded}
+
+Tabelas de frequências relativas são obtidas com \texttt{prop.table()},
+mas aqui existem três possibilidades para as proporções em cada casela:
+
+\begin{itemize}
+\tightlist
+\item
+  Em relação ao total geral
+\item
+  Em relação aos totais por linha (\texttt{margin\ =\ 1})
+\item
+  Em relação aos totais por coluna (\texttt{margin\ =\ 2})
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frequência relativa global}
+\KeywordTok{prop.table}\NormalTok{(civ.inst.tb)}
+\NormalTok{          Inst}
+\NormalTok{Est.civil     1o Grau    2o Grau   Superior}
+\NormalTok{  casado   }\FloatTok{0.13888889} \FloatTok{0.33333333} \FloatTok{0.08333333}
+\NormalTok{  solteiro }\FloatTok{0.19444444} \FloatTok{0.16666667} \FloatTok{0.08333333}
+\NormalTok{## Frequência relativa por linha}
+\KeywordTok{prop.table}\NormalTok{(civ.inst.tb, }\DataTypeTok{margin =} \DecValTok{1}\NormalTok{)}
+\NormalTok{          Inst}
+\NormalTok{Est.civil  1o Grau 2o Grau Superior}
+\NormalTok{  casado    }\FloatTok{0.2500}  \FloatTok{0.6000}   \FloatTok{0.1500}
+\NormalTok{  solteiro  }\FloatTok{0.4375}  \FloatTok{0.3750}   \FloatTok{0.1875}
+\NormalTok{## Frequência relativa por coluna}
+\KeywordTok{prop.table}\NormalTok{(civ.inst.tb, }\DataTypeTok{margin =} \DecValTok{2}\NormalTok{)}
+\NormalTok{          Inst}
+\NormalTok{Est.civil    1o Grau   2o Grau  Superior}
+\NormalTok{  casado   }\FloatTok{0.4166667} \FloatTok{0.6666667} \FloatTok{0.5000000}
+\NormalTok{  solteiro }\FloatTok{0.5833333} \FloatTok{0.3333333} \FloatTok{0.5000000}
+\end{Highlighting}
+\end{Shaded}
+
+Abaixo são representados quatro tipos de gráficos de barras que podem
+ser usados para representar o cruzamento das variáveis. A transposição
+da tabela com \texttt{t()} permite alterar a variável que define os
+grupos no eixo horizontal. O uso de \texttt{prop.table()} permite o
+obtenção de gráficos com frequências relativas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(civ.inst.tb, }\DataTypeTok{legend =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{t}\NormalTok{(civ.inst.tb), }\DataTypeTok{legend =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(civ.inst.tb, }\DataTypeTok{beside =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{legend =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{t}\NormalTok{(}\KeywordTok{prop.table}\NormalTok{(civ.inst.tb)), }\DataTypeTok{beside =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{legend =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-316-1} \end{center}
+
+\subsection{\texorpdfstring{Qualitativa \emph{vs}
+quantitativa}{Qualitativa vs quantitativa}}\label{qualitativa-vs-quantitativa}
+
+Para exemplificar este caso vamos considerar as variáveis \texttt{Inst}
+e \texttt{Salario}.
+
+Para se obter uma tabela de frequências é necessário agrupar a variável
+quantitativa em classes. No exemplo a seguir vamos agrupar a variável
+salário em 4 classes definidas pelos quartis usando a função
+\texttt{cut()}. Lembre-se que as classes são definidas por intervalos
+abertos à esquerda, então usamos o argumento
+\texttt{include.lowest\ =\ TRUE} para garantir que todos os dados,
+inclusive o menor (mínimo) seja incluído na primeira classe. Após
+agrupar esta variável, obtemos a(s) tabela(s) de cruzamento como
+mostrado no caso anterior.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Quartis de salario}
+\KeywordTok{quantile}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario)}
+     \DecValTok{0}\OperatorTok{%     25%}\StringTok{     }\DecValTok{50}\OperatorTok{%     75%}\StringTok{    }\DecValTok{100}\NormalTok{% }
+ \FloatTok{4.0000}  \FloatTok{7.5525} \FloatTok{10.1650} \FloatTok{14.0600} \FloatTok{23.3000} 
+\NormalTok{## Classificação de acordo com os quartis}
+\NormalTok{salario.cut <-}\StringTok{ }\KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{breaks =}  \KeywordTok{quantile}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario),}
+                   \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{## Tabela de frequências absolutas}
+\NormalTok{inst.sal.tb <-}\StringTok{ }\KeywordTok{table}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst, salario.cut)}
+\NormalTok{inst.sal.tb}
+\NormalTok{          salario.cut}
+\NormalTok{           [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{  1o Grau         }\DecValTok{7}           \DecValTok{3}           \DecValTok{2}           \DecValTok{0}
+\NormalTok{  2o Grau         }\DecValTok{2}           \DecValTok{6}           \DecValTok{5}           \DecValTok{5}
+\NormalTok{  Superior        }\DecValTok{0}           \DecValTok{0}           \DecValTok{2}           \DecValTok{4}
+\KeywordTok{prop.table}\NormalTok{(inst.sal.tb, }\DataTypeTok{margin =} \DecValTok{1}\NormalTok{)}
+\NormalTok{          salario.cut}
+\NormalTok{            [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{  1o Grau  }\FloatTok{0.5833333}   \FloatTok{0.2500000}   \FloatTok{0.1666667}   \FloatTok{0.0000000}
+\NormalTok{  2o Grau  }\FloatTok{0.1111111}   \FloatTok{0.3333333}   \FloatTok{0.2777778}   \FloatTok{0.2777778}
+\NormalTok{  Superior }\FloatTok{0.0000000}   \FloatTok{0.0000000}   \FloatTok{0.3333333}   \FloatTok{0.6666667}
+\end{Highlighting}
+\end{Shaded}
+
+No gráfico vamos considerar que neste exemplo a instrução deve ser a
+variável explicativa e portanto colocada no eixo X, e o salário é a
+variável resposta, e portanto deve ser colocada no eixo Y. Isto é,
+consideramos que a instrução deve explicar, ainda que parcialmente, o
+salário (e não o contrário!).
+
+Vamos então obter um \emph{boxplot} dos salários para cada nível de
+instrução. Note que na função abaixo, usamos a notação de
+\textbf{fórmula} do R, com \texttt{Salario\ \textasciitilde{}\ Inst}
+indicando que a variável \texttt{Salario} é explicada, ou descrita,
+(\(\sim\)) pela variável \texttt{Inst}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(Salario }\OperatorTok{~}\StringTok{ }\NormalTok{Inst, }\DataTypeTok{data =}\NormalTok{ milsa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-318-1} \end{center}
+
+Poderíamos ainda fazer gráficos com a variável \texttt{Salario} agrupada
+em classes, e neste caso os gráficos seriam como no caso anterior com
+duas variáveis qualitativas.
+
+Para as medidas descritivas, o usual é obter um resumo da variável
+quantitativa como mostrado na análise univariada, porém agora informando
+este resumo para cada nível do fator qualitativo de interesse.
+
+A seguir mostramos alguns exemplos de como obter a média, desvio padrão
+e o resumo de cinco números do salário para cada nível de instrução.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{tapply}\NormalTok{(Salario, Inst, mean))}
+\NormalTok{  1o Grau   2o Grau  Superior }
+ \FloatTok{7.836667} \FloatTok{11.528333} \FloatTok{16.475000} 
+\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{tapply}\NormalTok{(Salario, Inst, sd))}
+\NormalTok{ 1o Grau  2o Grau Superior }
+\FloatTok{2.956464} \FloatTok{3.715144} \FloatTok{4.502438} 
+\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{tapply}\NormalTok{(Salario, Inst, quantile))}
+\OperatorTok{$}\StringTok{`}\DataTypeTok{1o Grau}\StringTok{`}
+     \DecValTok{0}\OperatorTok{%     25%}\StringTok{     }\DecValTok{50}\OperatorTok{%     75%}\StringTok{    }\DecValTok{100}\NormalTok{% }
+ \FloatTok{4.0000}  \FloatTok{6.0075}  \FloatTok{7.1250}  \FloatTok{9.1625} \FloatTok{13.8500} 
+
+\OperatorTok{$}\StringTok{`}\DataTypeTok{2o Grau}\StringTok{`}
+     \DecValTok{0}\OperatorTok{%     25%}\StringTok{     }\DecValTok{50}\OperatorTok{%     75%}\StringTok{    }\DecValTok{100}\NormalTok{% }
+ \FloatTok{5.7300}  \FloatTok{8.8375} \FloatTok{10.9100} \FloatTok{14.4175} \FloatTok{19.4000} 
+
+\OperatorTok{$}\NormalTok{Superior}
+     \DecValTok{0}\OperatorTok{%     25%}\StringTok{     }\DecValTok{50}\OperatorTok{%     75%}\StringTok{    }\DecValTok{100}\NormalTok{% }
+\FloatTok{10.5300} \FloatTok{13.6475} \FloatTok{16.7400} \FloatTok{18.3775} \FloatTok{23.3000} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+NOTE que aqui usamos a função \texttt{tapply()}. Para saber mais sobre
+os recursos dessa função e de outras da família \texttt{*apply}, veja o
+\href{scripts/script_gapminder.R}{script\_gapminder.R}.
+\end{quote}
+
+\subsection{\texorpdfstring{Quantitativa \emph{vs}
+Quantitativa}{Quantitativa vs Quantitativa}}\label{quantitativa-vs-quantitativa}
+
+Para ilustrar este caso vamos considerar as variáveis \texttt{Salario} e
+\texttt{Idade}. Para se obter uma tabela é necessário agrupar as
+variáveis em classes conforme fizemos no caso anterior.
+
+Nos comandos abaixo, agrupamos as duas variáveis em classes definidas
+pelos respectivos quartis, gerando portanto uma tabela de cruzamento
+\(4~\times~4\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Classes de Idade}
+\NormalTok{idade.cut <-}\StringTok{ }\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cut}\NormalTok{(Idade, }\DataTypeTok{breaks =} \KeywordTok{quantile}\NormalTok{(Idade),}
+                             \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{))}
+\KeywordTok{table}\NormalTok{(idade.cut)}
+\NormalTok{idade.cut}
+\NormalTok{[}\FloatTok{20.8}\NormalTok{,}\FloatTok{30.7}\NormalTok{] (}\FloatTok{30.7}\NormalTok{,}\FloatTok{34.9}\NormalTok{] (}\FloatTok{34.9}\NormalTok{,}\FloatTok{40.5}\NormalTok{] (}\FloatTok{40.5}\NormalTok{,}\FloatTok{48.9}\NormalTok{] }
+          \DecValTok{9}           \DecValTok{9}           \DecValTok{9}           \DecValTok{9} 
+\NormalTok{## Classes de salario}
+\NormalTok{salario.cut <-}\StringTok{ }\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cut}\NormalTok{(Salario, }\DataTypeTok{breaks =} \KeywordTok{quantile}\NormalTok{(Salario),}
+                               \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{))}
+\KeywordTok{table}\NormalTok{(salario.cut)}
+\NormalTok{salario.cut}
+\NormalTok{   [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{] }
+          \DecValTok{9}           \DecValTok{9}           \DecValTok{9}           \DecValTok{9} 
+\NormalTok{## Tabela cruzada}
+\KeywordTok{table}\NormalTok{(idade.cut, salario.cut)}
+\NormalTok{             salario.cut}
+\NormalTok{idade.cut     [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{  [}\FloatTok{20.8}\NormalTok{,}\FloatTok{30.7}\NormalTok{]        }\DecValTok{4}           \DecValTok{2}           \DecValTok{2}           \DecValTok{1}
+\NormalTok{  (}\FloatTok{30.7}\NormalTok{,}\FloatTok{34.9}\NormalTok{]        }\DecValTok{1}           \DecValTok{3}           \DecValTok{3}           \DecValTok{2}
+\NormalTok{  (}\FloatTok{34.9}\NormalTok{,}\FloatTok{40.5}\NormalTok{]        }\DecValTok{1}           \DecValTok{3}           \DecValTok{2}           \DecValTok{3}
+\NormalTok{  (}\FloatTok{40.5}\NormalTok{,}\FloatTok{48.9}\NormalTok{]        }\DecValTok{3}           \DecValTok{1}           \DecValTok{2}           \DecValTok{3}
+\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(idade.cut, salario.cut), }\DataTypeTok{margin =} \DecValTok{1}\NormalTok{)}
+\NormalTok{             salario.cut}
+\NormalTok{idade.cut      [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{  [}\FloatTok{20.8}\NormalTok{,}\FloatTok{30.7}\NormalTok{] }\FloatTok{0.4444444}   \FloatTok{0.2222222}   \FloatTok{0.2222222}   \FloatTok{0.1111111}
+\NormalTok{  (}\FloatTok{30.7}\NormalTok{,}\FloatTok{34.9}\NormalTok{] }\FloatTok{0.1111111}   \FloatTok{0.3333333}   \FloatTok{0.3333333}   \FloatTok{0.2222222}
+\NormalTok{  (}\FloatTok{34.9}\NormalTok{,}\FloatTok{40.5}\NormalTok{] }\FloatTok{0.1111111}   \FloatTok{0.3333333}   \FloatTok{0.2222222}   \FloatTok{0.3333333}
+\NormalTok{  (}\FloatTok{40.5}\NormalTok{,}\FloatTok{48.9}\NormalTok{] }\FloatTok{0.3333333}   \FloatTok{0.1111111}   \FloatTok{0.2222222}   \FloatTok{0.3333333}
+\end{Highlighting}
+\end{Shaded}
+
+Caso queiramos definir um número menor de classes podemos fazer como no
+exemplo a seguir onde cada variável é dividida em 3 classes e gerando um
+tabela de cruzamento \(3~\times~3\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{idade.cut2 <-}\StringTok{ }\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cut}\NormalTok{(Idade,}
+                              \DataTypeTok{breaks =} \KeywordTok{quantile}\NormalTok{(Idade, }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length =} \DecValTok{4}\NormalTok{)),}
+                              \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{salario.cut2 <-}\StringTok{ }\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cut}\NormalTok{(Salario,}
+                                \DataTypeTok{breaks =} \KeywordTok{quantile}\NormalTok{(Salario, }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length =} \DecValTok{4}\NormalTok{)),}
+                                \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{))}
+\KeywordTok{table}\NormalTok{(idade.cut2, salario.cut2)}
+\NormalTok{             salario.cut2}
+\NormalTok{idade.cut2    [}\DecValTok{4}\NormalTok{,}\FloatTok{8.65}\NormalTok{] (}\FloatTok{8.65}\NormalTok{,}\FloatTok{12.9}\NormalTok{] (}\FloatTok{12.9}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{  [}\FloatTok{20.8}\NormalTok{,}\FloatTok{32.1}\NormalTok{]        }\DecValTok{5}           \DecValTok{5}           \DecValTok{2}
+\NormalTok{  (}\FloatTok{32.1}\NormalTok{,}\FloatTok{37.8}\NormalTok{]        }\DecValTok{4}           \DecValTok{3}           \DecValTok{5}
+\NormalTok{  (}\FloatTok{37.8}\NormalTok{,}\FloatTok{48.9}\NormalTok{]        }\DecValTok{3}           \DecValTok{4}           \DecValTok{5}
+\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(idade.cut2, salario.cut2), }\DataTypeTok{margin =} \DecValTok{1}\NormalTok{)}
+\NormalTok{             salario.cut2}
+\NormalTok{idade.cut2     [}\DecValTok{4}\NormalTok{,}\FloatTok{8.65}\NormalTok{] (}\FloatTok{8.65}\NormalTok{,}\FloatTok{12.9}\NormalTok{] (}\FloatTok{12.9}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{  [}\FloatTok{20.8}\NormalTok{,}\FloatTok{32.1}\NormalTok{] }\FloatTok{0.4166667}   \FloatTok{0.4166667}   \FloatTok{0.1666667}
+\NormalTok{  (}\FloatTok{32.1}\NormalTok{,}\FloatTok{37.8}\NormalTok{] }\FloatTok{0.3333333}   \FloatTok{0.2500000}   \FloatTok{0.4166667}
+\NormalTok{  (}\FloatTok{37.8}\NormalTok{,}\FloatTok{48.9}\NormalTok{] }\FloatTok{0.2500000}   \FloatTok{0.3333333}   \FloatTok{0.4166667}
+\end{Highlighting}
+\end{Shaded}
+
+O gráfico adequado para representar duas variáveis quantitativas é um
+diagrama de dispersão. Note que se as variáveis envolvidas puderem ser
+classificadas como ``explicativa'' e ``resposta'' devemos colocar a
+primeira no eixo X e a segunda no eixo Y. Neste exemplo é razoável
+admitir que a idade deve explicar, ao menos parcialmente, o salário e
+portanto fazemos o gráfico com idade no eixo X. Note que na função
+\texttt{plot()}, podemos usar tanto os argumentos \texttt{x} e
+\texttt{y}, quanto o formato de fórmula (como visto anteriormente).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ milsa}\OperatorTok{$}\NormalTok{Idade, }\DataTypeTok{y =}\NormalTok{ milsa}\OperatorTok{$}\NormalTok{Salario)}
+\KeywordTok{plot}\NormalTok{(Salario }\OperatorTok{~}\StringTok{ }\NormalTok{Idade, }\DataTypeTok{data =}\NormalTok{ milsa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-322-1} \end{center}
+
+Para quantificar a associação entre variáveis deste tipo, usamos o
+coeficiente de correlação. A função \texttt{cor()} possui opção para
+três coeficientes de correlação, tendo como \emph{default} o coeficiente
+de correlação linear de Pearson.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cor}\NormalTok{(Idade, Salario))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.3651397}
+\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cor}\NormalTok{(Idade, Salario, }\DataTypeTok{method =} \StringTok{"kendall"}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.214456}
+\KeywordTok{with}\NormalTok{(milsa, }\KeywordTok{cor}\NormalTok{(Idade, Salario, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.2895939}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Exercícios}\label{exercicios-12}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Experimente as funções \texttt{mean()}, \texttt{var()}, \texttt{sd()},
+  \texttt{median()}, \texttt{quantile()} nos dados mostrados
+  anteriormente (\texttt{milsa}). Veja a documentação das funções e as
+  opções de uso.
+\item
+  Carregue o conjunto de dados \texttt{women} com \texttt{data(women)}.
+  Veja o que são os dados com \texttt{help(women)}, e faça uma análise
+  descritiva adequada.
+\item
+  Carregue o conjunto de dados \texttt{USArrests} com
+  \texttt{data(USArrests)}. Examine a sua documentação com
+  \texttt{help(USArrests)} e responda as perguntas a seguir:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Qual o número médio e mediano de cada um dos crimes?
+  \item
+    Encontre a mediana e quartis para cada crime.
+  \item
+    Encontre o número máximo e mínimo para cada crime.
+  \item
+    Faça um gráfico adequado para o número de assassinatos
+    (\texttt{Murder}).
+  \item
+    Faça um \emph{boxplot} para o número de estupros (\texttt{Rape}).
+  \item
+    Verifique se há correlação entre os diferentes tipos de crime.
+  \item
+    Verifique se há correlação entre os crimes e a proporção de
+    população urbana.
+  \item
+    Encontre os estados com maior e menor ocorrência de cada tipo de
+    crime.
+  \item
+    Encontre os estados com maior e menor ocorrência per capta de cada
+    tipo de crime.
+  \item
+    Encontre os estados com maior e menor ocorrência do total de crimes.
+  \item
+    Calcule a média de crimes (entre \texttt{Murder}, \texttt{Assault} e
+    \texttt{Rape}) para cada estado.
+  \end{enumerate}
+\end{enumerate}
+
+A resolução de todos os exercícios desta página está disponível neste
+\href{scripts/analise-exploratoria-exercicios.R}{script}.
+
 \appendix
 
 
@@ -6076,7 +7352,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7bc0100}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7205780}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -6111,7 +7387,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7bbf6b8}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7204da8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}

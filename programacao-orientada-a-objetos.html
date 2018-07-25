@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="programando-com-dados.html">
+<link rel="prev" href="analise-exploratoria-de-dados.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -193,6 +193,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorizacao"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a></li>
 <li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a></li>
 </ul></li>
+<li class="part"><span><b>II Estatística</b></span></li>
+<li class="chapter" data-level="6" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
+<li class="chapter" data-level="6.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#analise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
+<li class="chapter" data-level="6.2.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
+<li class="chapter" data-level="6.2.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
+<li class="chapter" data-level="6.2.4" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-quantitativa-continua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#analise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
+<li class="chapter" data-level="6.3.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
+<li class="chapter" data-level="6.3.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#exercicios-12"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
 </ul>
@@ -246,7 +262,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean
 <span class="cf">function</span> (x, ...) 
 <span class="kw">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7bc0100</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7205780</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora veja o código fonte da função <code>mean.default</code>, que é o método específico para vetores numéricos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.default
@@ -274,7 +290,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
     }
     <span class="kw">.Internal</span>(<span class="kw">mean</span>(x))
 }
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7bbf6b8</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7204da8</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora suponha que você ddeseja criar uma função que calcule a média para um objeto de uma classe diferente daquelas previamente definidas. Por exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das linhas de uma matriz.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
@@ -325,7 +341,7 @@ dl &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">r
           </div>
         </div>
       </div>
-<a href="programando-com-dados.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analise-exploratoria-de-dados.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

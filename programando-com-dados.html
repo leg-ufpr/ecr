@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="entrada-e-saida-de-dados-no-r.html">
-<link rel="next" href="programacao-orientada-a-objetos.html">
+<link rel="next" href="analise-exploratoria-de-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -192,6 +192,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-selecao-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
 <li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorizacao"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a></li>
 <li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a></li>
+</ul></li>
+<li class="part"><span><b>II Estatística</b></span></li>
+<li class="chapter" data-level="6" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
+<li class="chapter" data-level="6.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#analise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
+<li class="chapter" data-level="6.2.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
+<li class="chapter" data-level="6.2.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
+<li class="chapter" data-level="6.2.4" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-quantitativa-continua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#analise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
+<li class="chapter" data-level="6.3.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
+<li class="chapter" data-level="6.3.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#exercicios-12"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
@@ -609,7 +625,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st1
    user  system elapsed 
-  <span class="fl">0.104</span>   <span class="fl">0.000</span>   <span class="fl">0.106</span> 
+  <span class="fl">0.176</span>   <span class="fl">0.000</span>   <span class="fl">0.176</span> 
 
 ## Tempo de execução usando a regra da reciclagem
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
@@ -617,8 +633,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st2
    user  system elapsed 
-  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </code></pre></div>
-<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.106/0.002 = 53 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
+  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.004</span> </code></pre></div>
+<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.176/0.004 = 44 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
 <div class="panel panel-primary">
 <div class="panel-heading">
 Uma nota de precaução
@@ -642,7 +658,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st1
    user  system elapsed 
-  <span class="fl">0.104</span>   <span class="fl">0.000</span>   <span class="fl">0.106</span> 
+  <span class="fl">0.176</span>   <span class="fl">0.000</span>   <span class="fl">0.176</span> 
 
 ## Cria um objeto de tamanho &quot;zero&quot; e vai &quot;crescendo&quot; esse vetor
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
@@ -653,8 +669,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st2
    user  system elapsed 
-  <span class="fl">0.348</span>   <span class="fl">0.020</span>   <span class="fl">0.369</span> </code></pre></div>
-<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.369/0.106 = 3.48 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
+  <span class="fl">0.532</span>   <span class="fl">0.080</span>   <span class="fl">0.611</span> </code></pre></div>
+<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.611/0.176 = 3.47 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
 <p>Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a memória para esse vetor já foi alocada previamente, de uma única vez.</p>
 <p><img src="img/R_club.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
@@ -804,7 +820,7 @@ soma
         </div>
       </div>
 <a href="entrada-e-saida-de-dados-no-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="programacao-orientada-a-objetos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analise-exploratoria-de-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
