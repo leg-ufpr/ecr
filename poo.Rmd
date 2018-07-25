@@ -1,3 +1,5 @@
+# (APPENDIX) Apêndice {-}
+
 # Programação Orientada a Objetos
 
 Como vimos anteriormente, o R é uma linguagem de programação orientada à
