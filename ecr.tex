@@ -167,7 +167,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 00:29
+Wednesday, 25 July, 2018, 00:45
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -2751,6 +2751,1169 @@ Own Functions and Simulations}. O'Reily Media.
 \hypertarget{ref-Wickham2015}{}
 Wickham, Hadley. 2015. \emph{Advanced R}. CRC Press.
 
+\chapter{Indexação e seleção
+condicional}\label{indexacao-e-selecao-condicional}
+
+\section{Indexação}\label{indexacao}
+
+Existem 6 maneiras diferentes de indexar valores no R. Podemos indexar
+usando:
+
+\begin{itemize}
+\tightlist
+\item
+  Inteiros positivos
+\item
+  Inteiros negativos
+\item
+  Zero
+\item
+  Espaço em branco
+\item
+  Nomes
+\item
+  Valores lógicos
+\end{itemize}
+
+Existem três tipos de operadores que podem ser usados para indexar (e
+selecionar) \textbf{sub-conjuntos} (\emph{subsets}) de objetos no R:
+
+\begin{itemize}
+\tightlist
+\item
+  O operador \texttt{{[}\ {]}} sempre retorna um objeto da mesma classe
+  que o original. Pode ser usado para selecionar múltiplos elementos de
+  um objeto
+\item
+  O operador\texttt{{[}{[}\ {]}{]}} é usado para extrair elementos de
+  uma \textbf{lista} ou \textbf{data frame}. Pode ser usado para extrair
+  um único elemento, e a classe do objeto retornado não precisa
+  necessariamente ser uma lista ou data frame.
+\item
+  O operador \texttt{\$} é usado para extrair elementos
+  \textbf{nomeados} de uma lista ou data frame. É similar ao operador
+  \texttt{{[}{[}\ {]}{]}}.
+\end{itemize}
+
+\subsection{Indexação de vetores}\label{indexacao-de-vetores}
+
+Observe o seguinte vetor de contagens
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{4}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\NormalTok{cont}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8}  \DecValTok{4} \OtherTok{NA}  \DecValTok{9}  \DecValTok{6}  \DecValTok{1}  \DecValTok{7}  \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar o valor que está na posição 4, faça:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\DecValTok{4}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Os colchetes \texttt{{[}\ {]}} são utilizados para \textbf{extração}
+(seleção de um intervalo de dados) ou \textbf{substituição} de
+elementos. O valor dentro dos colchetes é chamado de \textbf{índice}.
+
+Para acessar os valores nas posições 1, 4 e 8 é necessário o uso da
+função \texttt{c()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8} \DecValTok{9} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Ou:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ind <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\NormalTok{cont[ind]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8} \DecValTok{9} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Note que os índices no R começam em 1, e não em 0, como algumas outras
+linguagens.
+
+Para selecionar todos os valores, \textbf{excluindo} aquele da posição
+4, usamos um índice negativo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\OperatorTok{-}\DecValTok{4}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8}  \DecValTok{4} \OtherTok{NA}  \DecValTok{6}  \DecValTok{1}  \DecValTok{7}  \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Da mesma forma se quiséssemos todos os valores, menos aqueles das
+posições 1, 4 e 8:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{4} \OtherTok{NA}  \DecValTok{6}  \DecValTok{1}  \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Também é possível selecionar uma sequência de elementos (com qualquer
+uma das funções de gerar sequências que já vimos antes):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleciona os elementos de 1 a 5}
+\NormalTok{cont[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8}  \DecValTok{4} \OtherTok{NA}  \DecValTok{9}  \DecValTok{6}
+\NormalTok{## Seleciona os elementos nas posições ímpar}
+\NormalTok{cont[}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{by =} \DecValTok{2}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8} \OtherTok{NA}  \DecValTok{6}  \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Mas note que para selecionar todos menos aqueles de uma sequência,
+precisamos colocá-la entre parênteses
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\OperatorTok{-}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{Error }\ControlFlowTok{in}\NormalTok{ cont[}\OperatorTok{-}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}\OperatorTok{:}\StringTok{ }\NormalTok{only }\DecValTok{0}\StringTok{'s may be mixed with negative subscripts}
+\StringTok{cont[-(1:5)]}
+\StringTok{[1] 1 7 9}
+\end{Highlighting}
+\end{Shaded}
+
+Para selecionar todos os elementos que sejam \texttt{NA}, ou todos menos
+os \texttt{NA}s, precisamos usar a função \texttt{is.na()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Para selecionar os NAs}
+\NormalTok{cont[}\KeywordTok{is.na}\NormalTok{(cont)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{NA}
+\NormalTok{## Para selecionar todos menos os NAs}
+\NormalTok{cont[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(cont)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8} \DecValTok{4} \DecValTok{9} \DecValTok{6} \DecValTok{1} \DecValTok{7} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Para substituir os \texttt{NA}s por algum valor (\emph{e.g.} 0):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\KeywordTok{is.na}\NormalTok{(cont)] <-}\StringTok{ }\DecValTok{0}
+\NormalTok{cont}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8} \DecValTok{4} \DecValTok{0} \DecValTok{9} \DecValTok{6} \DecValTok{1} \DecValTok{7} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+E para especificar \texttt{NA} para algum valor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.na}\NormalTok{(cont) <-}\StringTok{ }\DecValTok{3}
+\NormalTok{cont}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8}  \DecValTok{4} \OtherTok{NA}  \DecValTok{9}  \DecValTok{6}  \DecValTok{1}  \DecValTok{7}  \DecValTok{9}
+\NormalTok{## Mais seguro do que}
+\CommentTok{# cont[3] <- NA}
+\end{Highlighting}
+\end{Shaded}
+
+Note que se utilizarmos o operador de atribuição \texttt{\textless{}-}
+em conjunto com uma indexação, estaremos \textbf{substituindo} os
+valores selecionados pelos valores do lado direito do operador de
+atribuição.
+
+Podemos também utilizar mais duas formas de indexação no R: espaços em
+branco e zero:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cont[}\DecValTok{0}\NormalTok{]}
+\KeywordTok{numeric}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\NormalTok{cont[]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8}  \DecValTok{4} \OtherTok{NA}  \DecValTok{9}  \DecValTok{6}  \DecValTok{1}  \DecValTok{7}  \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Note que o índice zero não existe no R, mas ao utilizá-lo é retornado um
+vetor ``vazio'', ou um vetor de comprimento zero. Essa forma de
+indexação é raramente utilizada no R.
+
+Ao deixar um espaço em branco, estamos simplesmente informando que
+queremos todos os valores daquele vetor. Essa forma de indexação será
+particularmente útil para objetos que possuem duas ou mais dimensões,
+como matrizes e data frames.
+
+\subsection*{Exercícios}\label{exercicios-5}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crie um vetor com os valores: \texttt{88,\ 5,\ 12,\ 13}
+\item
+  Selecione o elemento na posição 3
+\item
+  Selecione o valor 88
+\item
+  Selecione os valores 13 e 5
+\item
+  Selecione todos os valores, menos o 88 e o 13
+\item
+  Insira o valor 168 \textbf{entre} os valores 12 e 13, criando um novo
+  objeto
+\end{enumerate}
+
+\subsubsection{Vetores nomeados}\label{vetores-nomeados}
+
+Quando vetores possuem seus componentes \textbf{nomeados}, a indexação
+pode ser realizada pelos nomes destes componentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Atribui as letras "a", "b", ..., "h" para os componentes de cont}
+\KeywordTok{names}\NormalTok{(cont) <-}\StringTok{ }\NormalTok{letters[}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(cont)]}
+\NormalTok{## Acessando o quarto elemento}
+\NormalTok{cont[}\StringTok{"d"}\NormalTok{]}
+\NormalTok{d }
+\DecValTok{9} 
+\NormalTok{## Acessando o sexto e o primeiro elemento}
+\NormalTok{cont[}\KeywordTok{c}\NormalTok{(}\StringTok{"f"}\NormalTok{, }\StringTok{"a"}\NormalTok{)]}
+\NormalTok{f a }
+\DecValTok{1} \DecValTok{8} 
+\end{Highlighting}
+\end{Shaded}
+
+Dica: veja \texttt{?letters}
+
+\subsection{Indexação de matrizes}\label{indexacao-de-matrizes}
+
+Considere a seguinte matriz
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\NormalTok{mat}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{4}    \DecValTok{7}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{5}    \DecValTok{8}
+\NormalTok{[}\DecValTok{3}\NormalTok{,]    }\DecValTok{3}    \DecValTok{6}    \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Acesse o valor que está na linha 2 da coluna 3:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+A indexação de matrizes sempre segue a ordem
+\texttt{{[}linha,\ coluna{]}}
+
+Para acessar todas as linhas da coluna 1, deixamos o espaço em branco
+(que também é uma forma de seleção, como vimos) na posição das linhas e
+especificamos a coluna desejada
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat[, }\DecValTok{1}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{2} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar todas as colunas da linha 1, usamos a mesma lógica
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat[}\DecValTok{1}\NormalTok{, ]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Note que o resultado destas extrações trazem os valores internos das
+matrizes, mas com a dimensão reduzida (nestes casos para uma dimensão).
+Se o objetivo for, por exemplo, extrair uma parte da matriz, mas
+mantendo as duas dimensões, então precisamos usar o argumento
+\texttt{drop} da ``função'' \texttt{{[}} (sim, também é uma função; veja
+\texttt{"?{[}"}). Veja as diferenças:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat[}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{6}
+\NormalTok{mat[}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, drop =}\StringTok{ }\OtherTok{FALSE}\NormalTok{]}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{6}
+\NormalTok{mat[}\DecValTok{1}\NormalTok{, ]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\NormalTok{mat[}\DecValTok{1}\NormalTok{, , drop =}\StringTok{ }\OtherTok{FALSE}\NormalTok{]}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{] [,}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{4}    \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar as linhas 1 e 3 das colunas 2 e 3:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)]}
+\NormalTok{     [,}\DecValTok{1}\NormalTok{] [,}\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{4}    \DecValTok{7}
+\NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{6}    \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+E note que aqui a dimensão já é 2 pois naturalmente o resultado preisa
+ser representado em duas dimensões.
+
+\subsubsection{Matrizes nomeadas}\label{matrizes-nomeadas}
+
+Se as matrizes tiverem linhas e/ou colunas nomeados, a indexação também
+pode ser feita com os nomes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##----------------------------------------------------------------------}
+\NormalTok{## Nomes das colunas}
+\KeywordTok{colnames}\NormalTok{(mat) <-}\StringTok{ }\NormalTok{LETTERS[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{## Todas as linhas da coluna B}
+\NormalTok{mat[, }\StringTok{"B"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{5} \DecValTok{6}
+\NormalTok{## Elemento da linha 1 e coluna C}
+\NormalTok{mat[}\DecValTok{1}\NormalTok{, }\StringTok{"C"}\NormalTok{]}
+\NormalTok{C }
+\DecValTok{7} 
+\NormalTok{##----------------------------------------------------------------------}
+\NormalTok{## Nomes das linhas}
+\KeywordTok{rownames}\NormalTok{(mat) <-}\StringTok{ }\NormalTok{LETTERS[}\DecValTok{24}\OperatorTok{:}\DecValTok{26}\NormalTok{]}
+\NormalTok{## Todas as colunas da linha X}
+\NormalTok{mat[}\StringTok{"X"}\NormalTok{, ]}
+\NormalTok{A B C }
+\DecValTok{1} \DecValTok{4} \DecValTok{7} 
+\NormalTok{## Elemento da linha Y e coluna A}
+\NormalTok{mat[}\StringTok{"Y"}\NormalTok{, }\StringTok{"A"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Indexação de listas}\label{indexacao-de-listas}
+
+Considere a seguinte lista:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{4}\NormalTok{), mat, }\DecValTok{5}\OperatorTok{:}\DecValTok{0}\NormalTok{)}
+\NormalTok{lis}
+\NormalTok{[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{8} \DecValTok{7} \DecValTok{4}
+
+\NormalTok{[[}\DecValTok{2}\NormalTok{]]}
+\NormalTok{  A B C}
+\NormalTok{X }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\NormalTok{Y }\DecValTok{2} \DecValTok{5} \DecValTok{8}
+\NormalTok{Z }\DecValTok{3} \DecValTok{6} \DecValTok{9}
+
+\NormalTok{[[}\DecValTok{3}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+Podemos acessar um componente da lista da maneira usual
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis[}\DecValTok{1}\NormalTok{]}
+\NormalTok{[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{8} \DecValTok{7} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+Mas note que esse objeto continua sendo uma lista
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(lis[}\DecValTok{1}\NormalTok{])}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"list"}
+\end{Highlighting}
+\end{Shaded}
+
+Geralmente o que queremos é acessar os elementos que estão
+\textbf{contidos} nos componentes da lista, e para isso precisamos usar
+\texttt{{[}{[}} no lugar de \texttt{{[}}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{8} \DecValTok{7} \DecValTok{4}
+\KeywordTok{class}\NormalTok{(lis[[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"numeric"}
+\end{Highlighting}
+\end{Shaded}
+
+Isso é importante, por exemplo, se quisessemos aplicar uma função
+qualquer a um componente da lista. No primeiro caso isso não é possível
+pois o conteúdo continua dentro de uma lista, enquanto que no segundo
+caso os valores retornados são os próprios números:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(lis[}\DecValTok{1}\NormalTok{])}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{mean.default}\NormalTok{(lis[}\DecValTok{1}\NormalTok{])}\OperatorTok{:}\StringTok{ }\NormalTok{argument is not numeric or logical}\OperatorTok{:}
+\NormalTok{returning }\OtherTok{NA}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{NA}
+\KeywordTok{mean}\NormalTok{(lis[[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.5}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar o segundo \textbf{componente} da lista:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis[[}\DecValTok{2}\NormalTok{]]}
+\NormalTok{  A B C}
+\NormalTok{X }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\NormalTok{Y }\DecValTok{2} \DecValTok{5} \DecValTok{8}
+\NormalTok{Z }\DecValTok{3} \DecValTok{6} \DecValTok{9}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar o terceiro valor do primeiro componente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis[[}\DecValTok{1}\NormalTok{]][}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Note que o segundo elemento da lista é uma matriz, portanto a indexação
+da matriz \emph{dentro da lista} também segue o mesmo padrão
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis[[}\DecValTok{2}\NormalTok{]][}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Se a lista tiver componentes \textbf{nomeados}, eles podem ser acessados
+com o operador \texttt{\$}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{vetor1 =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{4}\NormalTok{), }\DataTypeTok{mat =}\NormalTok{ mat, }\DataTypeTok{vetor2 =} \DecValTok{5}\OperatorTok{:}\DecValTok{0}\NormalTok{)}
+\NormalTok{## Ou}
+\NormalTok{## names(lis) <- c("vetor1", "mat", "vetor2")}
+\NormalTok{lis}
+\OperatorTok{$}\NormalTok{vetor1}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{8} \DecValTok{7} \DecValTok{4}
+
+\OperatorTok{$}\NormalTok{mat}
+\NormalTok{  A B C}
+\NormalTok{X }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\NormalTok{Y }\DecValTok{2} \DecValTok{5} \DecValTok{8}
+\NormalTok{Z }\DecValTok{3} \DecValTok{6} \DecValTok{9}
+
+\OperatorTok{$}\NormalTok{vetor2}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5} \DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Acesando o segundo componente}
+\NormalTok{lis}\OperatorTok{$}\NormalTok{mat}
+\NormalTok{  A B C}
+\NormalTok{X }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\NormalTok{Y }\DecValTok{2} \DecValTok{5} \DecValTok{8}
+\NormalTok{Z }\DecValTok{3} \DecValTok{6} \DecValTok{9}
+\NormalTok{## Linha 2 e coluna 3}
+\NormalTok{lis}\OperatorTok{$}\NormalTok{mat[}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{8}
+\NormalTok{## Terceiro elemento do primeiro componente}
+\NormalTok{lis}\OperatorTok{$}\NormalTok{vetor1[}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+Ou então
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lis[[}\StringTok{"mat"}\NormalTok{]]}
+\NormalTok{  A B C}
+\NormalTok{X }\DecValTok{1} \DecValTok{4} \DecValTok{7}
+\NormalTok{Y }\DecValTok{2} \DecValTok{5} \DecValTok{8}
+\NormalTok{Z }\DecValTok{3} \DecValTok{6} \DecValTok{9}
+\NormalTok{lis[[}\StringTok{"vetor1"}\NormalTok{]][}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+O símbolo \texttt{\$} é utilizado para acessar componentes
+\textbf{nomeados} de listas ou data frames.
+
+\subsection{Indexação de data frames}\label{indexacao-de-data-frames}
+
+Considere o seguinte data frame
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{A =} \DecValTok{4}\OperatorTok{:}\DecValTok{1}\NormalTok{, }\DataTypeTok{B =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{8}\NormalTok{))}
+\NormalTok{da}
+\NormalTok{  A  B}
+\DecValTok{1} \DecValTok{4}  \DecValTok{2}
+\DecValTok{2} \DecValTok{3} \OtherTok{NA}
+\DecValTok{3} \DecValTok{2}  \DecValTok{5}
+\DecValTok{4} \DecValTok{1}  \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar o segundo elemento da primeira coluna (segue a mesma lógica
+da indexação de matrizes pois também possui duas dimensões):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+Acesse todas as linhas da coluna B:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[, }\DecValTok{2}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{2} \OtherTok{NA}  \DecValTok{5}  \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Ou usando o nome da coluna:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[,}\StringTok{"B"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{2} \OtherTok{NA}  \DecValTok{5}  \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Todas as colunas da linha 1:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[}\DecValTok{1}\NormalTok{, ]}
+\NormalTok{  A B}
+\DecValTok{1} \DecValTok{4} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Ou usando o ``nome'' da linha:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[}\StringTok{"1"}\NormalTok{, ]}
+\NormalTok{  A B}
+\DecValTok{1} \DecValTok{4} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Note que o argumento \texttt{drop=} também é válido se quiser manter a
+dimensão do objeto
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[, }\StringTok{"B"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{2} \OtherTok{NA}  \DecValTok{5}  \DecValTok{8}
+\NormalTok{da[, }\StringTok{"B"}\NormalTok{, drop =}\StringTok{ }\OtherTok{FALSE}\NormalTok{]}
+\NormalTok{   B}
+\DecValTok{1}  \DecValTok{2}
+\DecValTok{2} \OtherTok{NA}
+\DecValTok{3}  \DecValTok{5}
+\DecValTok{4}  \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Como o data frame é um caso particular de uma lista (onde todos os
+componentes tem o mesmo comprimento), as colunas de um data frame também
+podem ser acessadas com \texttt{\$}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da}\OperatorTok{$}\NormalTok{A}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar o terceiro elemento da coluna B:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da}\OperatorTok{$}\NormalTok{B[}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+Para acessar os elementos nas posições 2 e 4 da coluna B:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da}\OperatorTok{$}\NormalTok{B[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{NA}  \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+Assim como nas listas, podemos indexar um data frame usando apenas um
+índice, que nesse caso retorna a coluna (componente) do data frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  A}
+\DecValTok{1} \DecValTok{4}
+\DecValTok{2} \DecValTok{3}
+\DecValTok{3} \DecValTok{2}
+\DecValTok{4} \DecValTok{1}
+\KeywordTok{class}\NormalTok{(da[}\DecValTok{1}\NormalTok{])}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"data.frame"}
+\end{Highlighting}
+\end{Shaded}
+
+Note que dessa forma a classe é mantida. Também podemos indexar os data
+frames usando \texttt{{[}{[}} da mesma forma como em listas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1}
+\NormalTok{da[[}\StringTok{"A"}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1}
+\NormalTok{da[[}\StringTok{"A"}\NormalTok{]][}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Para lidar com \texttt{NA}s em data frames, podemos também usar a função
+\texttt{is.na()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[}\KeywordTok{is.na}\NormalTok{(da), ] }\CommentTok{# nao retorna o resultado esperado}
+\NormalTok{    A  B}
+\OtherTok{NA} \OtherTok{NA} \OtherTok{NA}
+\NormalTok{## Deve ser feito por coluna}
+\NormalTok{da[}\KeywordTok{is.na}\NormalTok{(da}\OperatorTok{$}\NormalTok{A), ]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] A B}
+\OperatorTok{<}\DecValTok{0}\NormalTok{ rows}\OperatorTok{>}\StringTok{ }\NormalTok{(or }\DecValTok{0}\OperatorTok{-}\NormalTok{length row.names)}
+\NormalTok{da[}\KeywordTok{is.na}\NormalTok{(da}\OperatorTok{$}\NormalTok{B), ]}
+\NormalTok{  A  B}
+\DecValTok{2} \DecValTok{3} \OtherTok{NA}
+\NormalTok{## De maneira geral}
+\KeywordTok{is.na}\NormalTok{(da)}
+\NormalTok{         A     B}
+\NormalTok{[}\DecValTok{1}\NormalTok{,] }\OtherTok{FALSE} \OtherTok{FALSE}
+\NormalTok{[}\DecValTok{2}\NormalTok{,] }\OtherTok{FALSE}  \OtherTok{TRUE}
+\NormalTok{[}\DecValTok{3}\NormalTok{,] }\OtherTok{FALSE} \OtherTok{FALSE}
+\NormalTok{[}\DecValTok{4}\NormalTok{,] }\OtherTok{FALSE} \OtherTok{FALSE}
+\KeywordTok{is.na}\NormalTok{(da}\OperatorTok{$}\NormalTok{A)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\KeywordTok{is.na}\NormalTok{(da}\OperatorTok{$}\NormalTok{B)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+Para remover as linhas que possuem \texttt{NA}, note que será necessário
+remover todas as colunas daquela linha, pois data frames não podem ter
+colunas de comprimentos diferentes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(da}\OperatorTok{$}\NormalTok{B), ]}
+\NormalTok{  A B}
+\DecValTok{1} \DecValTok{4} \DecValTok{2}
+\DecValTok{3} \DecValTok{2} \DecValTok{5}
+\DecValTok{4} \DecValTok{1} \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+A função \texttt{complete.cases()} facilita esse processo. Veja o
+resultado
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{complete.cases}\NormalTok{(da)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE}  \OtherTok{TRUE}
+\NormalTok{da[}\KeywordTok{complete.cases}\NormalTok{(da), ]}
+\NormalTok{  A B}
+\DecValTok{1} \DecValTok{4} \DecValTok{2}
+\DecValTok{3} \DecValTok{2} \DecValTok{5}
+\DecValTok{4} \DecValTok{1} \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{A função
+\texttt{with()}}{A função with()}}\label{a-funcao-with}
+
+Para evitar fazer muitas indexações de um mesmo data frame, por exemplo,
+podemos utilizar a função \texttt{with()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(da, A)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+é o mesmo que
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{da}\OperatorTok{$}\NormalTok{A}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{3} \DecValTok{2} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Também é útil para acessar elementos específicos dentro de data frames.
+Por exemplo, o terceiro elemento da coluna B
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(da, B[}\DecValTok{3}\NormalTok{])}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+E também para aplicar funções nas colunas do data frame
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{with}\NormalTok{(da, }\KeywordTok{mean}\NormalTok{(A))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{2.5}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Exercícios}\label{exercicios-6}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crie a seguinte matriz \[\left[ \begin{array}{ccc}
+          4 & 16 & 2 \\
+          10 & 5 & 11 \\
+          9 & 9 & 5 \\
+          2 & 0 & NA
+          \end{array} \right]\]
+\item
+  Acesse o elemento na quarta linha e na segunda coluna
+\item
+  Acesse todos os elementos, com exceção da segunda coluna e da terceira
+  linha
+\item
+  Crie uma lista (nomeada) com 3 componentes: um vetor numérico de
+  comprimento 10, um vetor de caracteres de comprimento 7, e a matriz do
+  exercício anterior
+\item
+  Acesse os elementos nas posições de 5 a 3 do primeiro componente da
+  lista
+\item
+  Acesse os caracteres de todas as posições, menos na 2 e 6
+\item
+  Acesse todas as linhas da coluna 3 da matriz dentro desta lista
+\item
+  ``Crie'' um novo componente nessa lista (usando \texttt{\$}), contendo
+  30 valores aleatórios de uma distribuição normal \(\text{N}(12, 4)\)
+  (veja \texttt{?rnorm})
+\item
+  Crie um data frame que contenha duas colunas: a primeira com as letras
+  de ``A'' até ``J'', e outra com o resultado de uma chamada da função
+  \texttt{runif(7,\ 1,\ 5)}
+\item
+  Extraia as duas primeiras linhas desse data frame
+\item
+  Extraia as duas últimas linhas desse data frame
+\item
+  Qual é o valor que está na linha 6 e coluna 1?
+\item
+  Qual é o valor que está na linha 4 da coluna 2?
+\item
+  Como você faria para contar quantos valores perdidos (\texttt{NA}s)
+  existem nesse data frame?
+\item
+  Elimine os \texttt{NA}s deste data frame.
+\item
+  Crie uma nova coluna neste data frame, com valores numéricos
+  (quaisquer)
+\item
+  Crie mais um componente na lista anterior, que será também uma lista
+  com dois componentes: \texttt{A} com os valores \texttt{1:5}, e
+  \texttt{B} com as letras de ``a'' a ``f''
+\item
+  Acesse o número 4 de \texttt{A}
+\item
+  Acesse a letra ``c'' de \texttt{B}
+\end{enumerate}
+
+\section{Seleção condicional}\label{selecao-condicional}
+
+\subsection{Seleção condicional em
+vetores}\label{selecao-condicional-em-vetores}
+
+A \textbf{seleção condicional} serve para extrair dados que satisfaçam
+algum critério, usando \textbf{expressões condicionais} e
+\textbf{operadores lógicos}.
+
+Considere o seguinte vetor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{42}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{79}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Selecione apenas os valores maiores do que 15:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados }\OperatorTok{>}\StringTok{ }\DecValTok{15}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{42} \DecValTok{28} \DecValTok{79}
+\end{Highlighting}
+\end{Shaded}
+
+Selecione os valores maiores que 15 E menores ou iguais a 35:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{dados }\OperatorTok{<=}\StringTok{ }\DecValTok{35}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{28}
+\end{Highlighting}
+\end{Shaded}
+
+Para entender como funciona a seleção condicional, observe apenas o
+resultado da condição dentro do colchetes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Usando & (e)}
+\NormalTok{dados }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{dados }\OperatorTok{<=}\StringTok{ }\DecValTok{35}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\NormalTok{## Usando | (ou)}
+\NormalTok{dados }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{|}\StringTok{ }\NormalTok{dados }\OperatorTok{<=}\StringTok{ }\DecValTok{35}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{TRUE} \OtherTok{TRUE} \OtherTok{TRUE} \OtherTok{TRUE} \OtherTok{TRUE} \OtherTok{TRUE} \OtherTok{TRUE} \OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+Os valores selecionados serão aqueles em que a condição for
+\texttt{TRUE}, no primeiro caso apenas o quarto elemento do vetor
+\texttt{dados}.
+
+A seleção condicional também é muito útil para selecionar elementos de
+um vetor, baseado em uma condição de outro vetor.
+
+Considere o seguinte vetor de caracteres
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cara <-}\StringTok{ }\NormalTok{letters[}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(dados)]}
+\end{Highlighting}
+\end{Shaded}
+
+Considere que de alguma forma, os objetos \texttt{dados} e \texttt{cara}
+possuem alguma relação. Sendo assim, podemos selecionar elementos de
+\texttt{dados}, baseados em alguma condição de \texttt{cara}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Elemento de dados onde cara é igual a "c"}
+\NormalTok{dados[cara }\OperatorTok{==}\StringTok{ "c"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{42}
+\end{Highlighting}
+\end{Shaded}
+
+Se quisermos selecionar mais de um elemento de \texttt{dados}, baseado
+em uma condição de \texttt{cara}?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Elementos de dados onde cara é igual a "a" e "c"}
+\NormalTok{cara }\OperatorTok{==}\StringTok{ "a"} \OperatorTok{&}\StringTok{ }\NormalTok{cara }\OperatorTok{==}\StringTok{ "c"} \CommentTok{# porque não funciona?}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\NormalTok{cara }\OperatorTok{==}\StringTok{ "a"} \OperatorTok{|}\StringTok{ }\NormalTok{cara }\OperatorTok{==}\StringTok{ "c"}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\NormalTok{dados[cara }\OperatorTok{==}\StringTok{ "a"} \OperatorTok{|}\StringTok{ }\NormalTok{cara }\OperatorTok{==}\StringTok{ "c"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{5} \DecValTok{42}
+\end{Highlighting}
+\end{Shaded}
+
+Uma solução melhor seria se pudessemos usar
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[cara }\OperatorTok{==}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+mas nesse caso só temos o primeiro elemento. Um operador muito útil
+nestes casos é o \texttt{\%in\%}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{5} \DecValTok{42}
+\NormalTok{cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+Veja a diferença
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cara }\OperatorTok{==}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\NormalTok{cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\OtherTok{TRUE} \OtherTok{FALSE}  \OtherTok{TRUE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE} \OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+Também é possível fazer a seleção de \texttt{cara}, baseado em uma
+condição em \texttt{dados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Elemento de cara onde dados é igual a 15}
+\NormalTok{cara[dados }\OperatorTok{==}\StringTok{ }\DecValTok{15}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"b"}
+\NormalTok{## Elemento de cara onde dados for maior do que 30}
+\NormalTok{cara[dados }\OperatorTok{>}\StringTok{ }\DecValTok{30}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"c"} \StringTok{"e"}
+\NormalTok{## Elemento de cara onde dados for igual a 4 ou 14}
+\NormalTok{cara[dados }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{14}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"f"} \StringTok{"h"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{A função
+\texttt{which()}}{A função which()}}\label{a-funcao-which}
+
+Até agora vimos seleções condicionais que nos retornavam o resultado de
+uma expressão condicional em vetores. No entanto, muitas vezes estamos
+interessados em saber a \textbf{posição} do resultado de uma expressão
+condicional, ao invés do resultado em si.
+
+A fução \texttt{which()} retorna as posições dos elementos que
+retornarem \texttt{TRUE} em uma expressão condicional.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Elementos maiores de 15}
+\NormalTok{dados[dados }\OperatorTok{>}\StringTok{ }\DecValTok{15}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{42} \DecValTok{28} \DecValTok{79}
+\KeywordTok{which}\NormalTok{(dados }\OperatorTok{>}\StringTok{ }\DecValTok{15}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3} \DecValTok{4} \DecValTok{5}
+\NormalTok{## Elementos maiores de 15 e menores ou iguais a 35}
+\NormalTok{dados[dados }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{dados }\OperatorTok{<=}\StringTok{ }\DecValTok{35}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{28}
+\KeywordTok{which}\NormalTok{(dados }\OperatorTok{>}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{dados }\OperatorTok{<=}\StringTok{ }\DecValTok{35}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
+\NormalTok{## Elementos de dados onde cara igual a "c"}
+\NormalTok{dados[cara }\OperatorTok{==}\StringTok{ "c"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{42}
+\KeywordTok{which}\NormalTok{(cara }\OperatorTok{==}\StringTok{ "c"}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3}
+\NormalTok{## Elementos de dadaos onde cara igual a "a" ou "c"}
+\NormalTok{dados[cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)]}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{5} \DecValTok{42}
+\KeywordTok{which}\NormalTok{(cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{1} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Exercícios}\label{exercicios-7}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crie um vetor (\texttt{x}) com os valores 3, 8, 10, 4, 9, 7, 1, 9, 2,
+  4.
+\item
+  Selecione os elementos maiores ou iguais a 5
+\item
+  Selecione todos os elementos menos o 4
+\item
+  Selecione os elementos maiores que 4 e menores que 8
+\item
+  Crie um vetor (\texttt{a}) com as letras de A até J
+\item
+  Selecione os elementos de x onde a for igual a ``F''
+\item
+  Selecione os elementos de x onde a for igual a ``B'', ``D'', e ``H''
+\item
+  Qual a posição do número 10 em x?
+\item
+  Quais as posições dos valores maiores ou iguais a 8 e menores ou
+  iguais a 10 em x?
+\item
+  Quais as posições das letras ``A'', ``B'', ``D'' em a?
+\end{enumerate}
+
+\subsection{Seleção condicional em data
+frames}\label{selecao-condicional-em-data-frames}
+
+Considere o seguinte data frame
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{ano =} \KeywordTok{c}\NormalTok{(}\DecValTok{2001}\NormalTok{, }\DecValTok{2002}\NormalTok{, }\DecValTok{2003}\NormalTok{, }\DecValTok{2004}\NormalTok{, }\DecValTok{2005}\NormalTok{),}
+                    \DataTypeTok{captura =} \KeywordTok{c}\NormalTok{(}\DecValTok{26}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{32}\NormalTok{, }\OtherTok{NA}\NormalTok{),}
+                    \DataTypeTok{porto =} \KeywordTok{c}\NormalTok{(}\StringTok{"SP"}\NormalTok{, }\StringTok{"RS"}\NormalTok{, }\StringTok{"SC"}\NormalTok{, }\StringTok{"SC"}\NormalTok{, }\StringTok{"RN"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Extraia deste objeto apenas a linha correspondente ao ano 2004:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{ano }\OperatorTok{==}\StringTok{ }\DecValTok{2004}\NormalTok{, ]}
+\NormalTok{   ano captura porto}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\end{Highlighting}
+\end{Shaded}
+
+Mostre as linhas apenas do porto ``SC'':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{porto }\OperatorTok{==}\StringTok{ "SC"}\NormalTok{, ]}
+\NormalTok{   ano captura porto}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\end{Highlighting}
+\end{Shaded}
+
+Observe as linhas onde a captura seja maior que 20, selecionando apenas
+a coluna \texttt{captura}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{20}\NormalTok{, }\StringTok{"captura"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{26} \DecValTok{25} \DecValTok{32} \OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+Também exclua as linhas com \texttt{NA}s (agora com todas as colunas):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{20} \OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(dados}\OperatorTok{$}\NormalTok{captura), ]}
+\NormalTok{   ano captura porto}
+\DecValTok{1} \DecValTok{2001}      \DecValTok{26}\NormalTok{    SP}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{20} \OperatorTok{&}\StringTok{ }\KeywordTok{complete.cases}\NormalTok{(dados), ]}
+\NormalTok{   ano captura porto}
+\DecValTok{1} \DecValTok{2001}      \DecValTok{26}\NormalTok{    SP}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\end{Highlighting}
+\end{Shaded}
+
+A condição pode ser feita com diferentes colunas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{25} \OperatorTok{&}\StringTok{ }\NormalTok{dados}\OperatorTok{$}\NormalTok{porto }\OperatorTok{==}\StringTok{ "SP"}\NormalTok{, ]}
+\NormalTok{   ano captura porto}
+\DecValTok{1} \DecValTok{2001}      \DecValTok{26}\NormalTok{    SP}
+\end{Highlighting}
+\end{Shaded}
+
+A função \texttt{subset()} serve para os mesmos propósitos, e facilita
+todo o processo de seleção condicional:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{porto }\OperatorTok{==}\StringTok{ "SC"}\NormalTok{, ]}
+\NormalTok{   ano captura porto}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\KeywordTok{subset}\NormalTok{(dados, porto }\OperatorTok{==}\StringTok{ "SC"}\NormalTok{)}
+\NormalTok{   ano captura porto}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{20}\NormalTok{, ]}
+\NormalTok{    ano captura porto}
+\DecValTok{1}  \DecValTok{2001}      \DecValTok{26}\NormalTok{    SP}
+\DecValTok{3}  \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4}  \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\OtherTok{NA}   \OtherTok{NA}      \OtherTok{NA}  \OperatorTok{<}\OtherTok{NA}\OperatorTok{>}
+\KeywordTok{subset}\NormalTok{(dados, captura }\OperatorTok{>}\StringTok{ }\DecValTok{20}\NormalTok{)}
+\NormalTok{   ano captura porto}
+\DecValTok{1} \DecValTok{2001}      \DecValTok{26}\NormalTok{    SP}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{20} \OperatorTok{&}\StringTok{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(dados}\OperatorTok{$}\NormalTok{captura), ]}
+\NormalTok{   ano captura porto}
+\DecValTok{1} \DecValTok{2001}      \DecValTok{26}\NormalTok{    SP}
+\DecValTok{3} \DecValTok{2003}      \DecValTok{25}\NormalTok{    SC}
+\DecValTok{4} \DecValTok{2004}      \DecValTok{32}\NormalTok{    SC}
+\NormalTok{dados[dados}\OperatorTok{$}\NormalTok{captura }\OperatorTok{>}\StringTok{ }\DecValTok{20}\NormalTok{, }\StringTok{"captura"}\NormalTok{]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{26} \DecValTok{25} \DecValTok{32} \OtherTok{NA}
+\KeywordTok{subset}\NormalTok{(dados, captura }\OperatorTok{>}\StringTok{ }\DecValTok{20}\NormalTok{, }\DataTypeTok{select =}\NormalTok{ captura)}
+\NormalTok{  captura}
+\DecValTok{1}      \DecValTok{26}
+\DecValTok{3}      \DecValTok{25}
+\DecValTok{4}      \DecValTok{32}
+\end{Highlighting}
+\end{Shaded}
+
+A grande vantagem é que a função \texttt{subset()} já lida com os
+\texttt{NA}s (se isso for o que você precisa).
+
+\subsection*{Exercícios}\label{exercicios-8}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Você contou 42 caranguejos na Joaquina, 34 no Campeche, 59 na Armação,
+  e 18 na Praia Mole. Crie um data frame para armazenar estas
+  informações (número de caranguejos observados e local).
+\item
+  Com o data frame criado no exercício anterior, mostre qual a praia
+  onde foram coletadas menos de 30 caranguejos (usando seleção
+  condicional!).
+\item
+  Crie uma nova coluna (região) neste data frame indicando que Joaquina
+  e Praia Mole estão localizadas no leste da ilha (leste), e Campeche e
+  Armação estão no sul (sul).
+\item
+  Selecione as praias de região leste que possuem menos de 20
+  caranguejos contados.
+\item
+  Você está interessado em saber em qual das duas praias do sul, o
+  número de caranguejos contados foi maior do que 40. Usando a seleção
+  condicional, mostre essa informação na tela.
+\item
+  Qual região possui praias com mais de 50 caranguejos contados?
+\end{enumerate}
+
 \chapter{Programação Orientada a
 Objetos}\label{programacao-orientada-a-objetos}
 
@@ -2877,7 +4040,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x78b37b0}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x6cbacc8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -2912,7 +4075,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x5c70d20}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x6cba328}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
