@@ -176,7 +176,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 02:52
+Wednesday, 25 July, 2018, 03:01
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -5679,7 +5679,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.096}   \FloatTok{0.004}   \FloatTok{0.101} 
+  \FloatTok{0.100}   \FloatTok{0.004}   \FloatTok{0.103} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5687,13 +5687,13 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.000}   \FloatTok{0.000}   \FloatTok{0.002} 
+  \FloatTok{0.000}   \FloatTok{0.000}   \FloatTok{0.003} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente 0.101/0.002 = 50.5
+regra da reciclagem, o cálculo é aproximadamente 0.103/0.003 = 34.33
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entro o tempo de
 execução das duas formas pode ser muito maior.
@@ -5729,7 +5729,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.104}   \FloatTok{0.000}   \FloatTok{0.104} 
+  \FloatTok{0.100}   \FloatTok{0.004}   \FloatTok{0.103} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5740,12 +5740,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.324}   \FloatTok{0.036}   \FloatTok{0.363} 
+  \FloatTok{0.344}   \FloatTok{0.024}   \FloatTok{0.368} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.363/0.104 = 3.49 vezes. Isso acontece porque,
+forma em aproximadamente 0.368/0.103 = 3.57 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -9013,7 +9013,7 @@ documento \texttt{.Rmd} em um documento com sintaxe Markdown
 
   \OperatorTok{|}\StringTok{                                                                       }
 \StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
-\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{414}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{415}
 
   \OperatorTok{|}\StringTok{                                                                       }
 \StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
@@ -9022,7 +9022,7 @@ documento \texttt{.Rmd} em um documento com sintaxe Markdown
 
   \OperatorTok{|}\StringTok{                                                                       }
 \StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
-\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{415}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{416}
 \NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
 \NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
 
@@ -9088,7 +9088,7 @@ hist(x)
 
 
 
-\begin{center}\includegraphics{figures/unnamed-chunk-415-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-416-1} \end{center}
 
 A média de $X$ é 0.029.
 \end{verbatim}
@@ -9200,7 +9200,7 @@ argumento da função é o nome (e local) do arquivo, e o segundo argumento
 \StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpKX2jUM}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2b211755c934.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpVhK8UZ}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2b235032ab94.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -9278,7 +9278,7 @@ Para renderizar esse aquivo, usamos:
 \StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpKX2jUM}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2b217e411e67.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpVhK8UZ}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2b2310bac74c.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -9716,7 +9716,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x1cbbdc8}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x1f61008}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9751,7 +9751,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x1cbc768}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x1f4cd28}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9851,5 +9851,27 @@ existentes, quanto (inclusive) criar novas classes e funções método para
 elas. Essa é uma das grandes lberdades que o método S3 de orientação à
 objetos permite, e possivelmente um dos motivos pelos quais é
 relativamente simples criar pacotes inteiros no R.
+
+\chapter{Scripts}\label{scripts}
+
+Scripts que faltam ser convertidos para capítulos:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{scripts/inferencia_regressao.Rmd}{inferencia\_regressao.Rmd}
+\item
+  \href{scripts/inferencia_regressao2.Rmd}{inferencia\_regressao2.Rmd}
+\item
+  \href{scripts/script_gapminder.R}{script\_gapminder.R}
+\end{itemize}
+
+Scripts que ainda podem ser úteis
+
+\begin{itemize}
+\tightlist
+\item
+  \href{scripts/probabilidade.R}{probabilidade.R}
+\end{itemize}
 
 \end{document}
