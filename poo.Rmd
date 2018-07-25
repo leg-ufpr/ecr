@@ -1,0 +1,169 @@
+# Programação Orientada a Objetos
+
+Como vimos anteriormente, o R é uma linguagem de programação orientada à
+objetos. Dois conceitos fundamentais desse tipo de linguagem são os de
+**classe** e **método**. Já vimos também que todo objeto no R possui uma
+classe (que define sua estrutura) e analisamos algumas delas. O que
+seria então um método? Para responder essa pergunta precisamos entender
+inicialmente os tipos de orientação a objetos que o R possui.
+
+O R possui 3 sitemas de orientação a objetos: **S3**, **S4**, e **RC**:
+
+- **S3**: implementa um estilo de programação orientada a objeto chamada
+  de *generic-function*. Esse é o estilo mais básico de programação em R
+  (e também o mais utilizado). A ideia é que existam **funções
+  genéricas** que decidem qual método aplicar de acordo com a classe do
+  objeto. Os métodos são definidos da mesma forma que qualquer função,
+  mas chamados de amenira diferente. É um estilo de programação mais
+  "informal", mas possibilita uma grande liberdade para o programador.
+- **S4**: é um estilo mais formal, no sentido que que as funções
+  genéricas devem possuir uma classe formal definida. Além disso, é
+  possível também fazer o **despacho múltiplo de métodos**, ao contrário
+  da classe S3.
+- **RC**: (*Reference Classes*, antes chamado de R5) é o sistema mais
+  novo implementado no R. A principal diferença com os sistemas S3 e
+  S4 é que métodos pertencem à objetos, não à funções. Isso faz com que
+  objetos da classe RC se comportem mais como objetos da maioria das
+  linguagens de programação, como Python, Java, e C#.
+
+Nesta sessão vamos abordar como funcionam os métodos como definidos pelo
+sistema S3, por ser o mais utilizado na prática para se criar novas
+funções no R. Para saber mais sobre os outros métodos, consulte o livro
+[Advanced R](http://adv-r.had.co.nz/OO-essentials.html).
+
+Vamos entender como uma função genérica pode ser criada através de um
+exemplo. Usando a função `methods()`, podemos verificar quais métodos
+estão disponíveis para uma determinada função, por exemplo, para a
+função `mean()`:
+
+```{r}
+methods(mean)
+```
+
+O resultado são expressões do tipo `mean.<classe>`, onde `<classe>` é
+uma classe de objeto como aquelas vistas anteriormente. Isso significa
+que a função `mean()`, quando aplicada à um objeto da classe `Date`, por
+exemplo, pode ter um comportamento diferente quando a mesma função for
+aplicada à um objeto de outra classe (numérica).
+
+Suponha que temos o seguinte vetor numérico:
+
+```{r}
+set.seed(1)
+vec <- rnorm(100)
+class(vec)
+```
+
+e queremos calcular sua média. Basta aplicar a função `mean()` nesse
+objeto para obtermos o resultado esperado
+
+```{r}
+mean(vec)
+```
+
+Mas isso só é possível porque existe um método definido espcificamente
+para um vetor da classe `numeric`, que nesse caso é a função
+`mean.default`. A função genérica nesse caso é a `mean()`, e a função
+método é a `mean.default`. Veja que não precisamos escrever onome
+inteiro da função genérica para que ela seja utilizada, como por exemplo,
+
+```{r}
+mean.default(vec)
+```
+
+Uma vez passado um objeto para uma função, é a classe do objeto que irá
+definir qual método utilizar, de acordo com os métodos disponíveis. Veja
+o que acontece se forcarmos o uso da função `mean.Date()` nesse vetor
+
+```{r}
+mean.Date(vec)
+```
+
+O resultado não faz sentido pois ele é específico para um objeto da
+classe `Date`.
+
+Tudo isso acontece por causa de um mecanismo chamado de **despacho de
+métodos** (*method dispatch*), que é responsável por identificar a
+classe do objeto e utilizar ("despachar") a função método correta para
+aquela classe. Toda função genérica possui a mesma forma: uma chamada
+para a função `UseMethod()`, que especifica o nome genérico e o objeto a
+ser despachado. Por exemplo, veja o código fonte da função `mean()`
+
+```{r}
+mean
+```
+
+Agora veja o código fonte da função `mean.default`, que é o método
+específico para vetores numéricos
+
+```{r}
+mean.default
+```
+
+Agora suponha que você ddeseja criar uma função que calcule a média para
+um objeto de uma classe diferente daquelas previamente definidas. Por
+exemplo, suponha que você quer que a função `mean()` retorne a média das
+linhas de uma matriz.
+
+```{r}
+set.seed(1)
+mat <- matrix(rnorm(50), nrow = 5)
+mean(mat)
+```
+
+O resultado é a média de todos os elementos, e não de cada linha. Nesse
+caso, podemos definir nossa própria função método para fazer o cálculo
+que precisamos. Por exemplo:
+
+```{r}
+mean.matrix <- function(x, ...) rowMeans(x)
+```
+
+Uma função método é sempre definida dessa forma:
+`<funçãogenérica>.<classe>`. Agora podemos ver novamente os métodos
+disponíveis para a função `mean()`
+
+```{r}
+methods(mean)
+```
+
+e simplesmente aplicar a função genérica `mean()` à um objeto da classe
+`matrix` para obter o resultado que desejamos
+
+```{r}
+class(mat)
+mean(mat)
+```
+
+Esse exemplo ilustra como é simples criar funções método para
+diferentes classes de objetos. Poderíamos fazer o mesmo para objetos das
+classes `data.frame` e `list`
+
+```{r}
+mean.data.frame <- function(x, ...) sapply(x, mean, ...)
+mean.list <- function(x, ...) lapply(x, mean)
+```
+
+Aplicando em objetos dessas classes específicas, obtemos:
+
+```{r}
+## Data frame
+set.seed(1)
+da <- data.frame(c1 = rnorm(10),
+                 c2 = runif(10))
+class(da)
+mean(da)
+## Lista
+set.seed(1)
+dl <- list(rnorm(10), runif(50))
+class(dl)
+mean(dl)
+```
+
+Obviamente esse processo todo é extremamente importante ao se criar
+novas funções no R. Podemos tanto criar uma função genérica (como a
+`mean()`) e diversos métodos para ela usando classes de objetos
+existentes, quanto (inclusive) criar novas classes e funções método para
+elas. Essa é uma das grandes lberdades que o método S3 de orientação à
+objetos permite, e possivelmente um dos motivos pelos quais é
+relativamente simples criar pacotes inteiros no R.
