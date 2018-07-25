@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="probabilidade-e-variaveis-aleatorias.html">
+<link rel="prev" href="documentos-dinamicos.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -225,7 +225,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-14"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
+<li class="chapter" data-level="A" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
+<li class="chapter" data-level="A.1" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
+<li class="chapter" data-level="A.2" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#literate-programming-no-r"><i class="fa fa-check"></i><b>A.2</b> Literate Programming no R</a></li>
+<li class="chapter" data-level="A.3" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#sintaxe-do-markdown"><i class="fa fa-check"></i><b>A.3.1</b> Sintaxe do Markdown</a></li>
+<li class="chapter" data-level="A.3.2" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#escrevendo-um-documento-em-markdown"><i class="fa fa-check"></i><b>A.3.2</b> Escrevendo um documento em Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#pandoc"><i class="fa fa-check"></i><b>A.4</b> Pandoc</a></li>
+<li class="chapter" data-level="A.5" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#documentos-dinamicos-com-markdown-e-r"><i class="fa fa-check"></i><b>A.5</b> Documentos dinâmicos com Markdown e R</a></li>
+<li class="chapter" data-level="A.6" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a><ul>
+<li class="chapter" data-level="A.6.1" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#metadados"><i class="fa fa-check"></i><b>A.6.1</b> Metadados</a></li>
+<li class="chapter" data-level="A.6.2" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#convertendo-r-markdown-para-outros-formatos"><i class="fa fa-check"></i><b>A.6.2</b> Convertendo R Markdown para outros formatos</a></li>
+<li class="chapter" data-level="A.6.3" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#opcoes-do-knitr"><i class="fa fa-check"></i><b>A.6.3</b> Opções do knitr</a></li>
+<li class="chapter" data-level="A.6.4" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#citacoes"><i class="fa fa-check"></i><b>A.6.4</b> Citações</a></li>
+<li class="chapter" data-level="A.6.5" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#extraindo-codigo-fonte"><i class="fa fa-check"></i><b>A.6.5</b> Extraindo código-fonte</a></li>
+<li class="chapter" data-level="A.6.6" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#outras-linguagens"><i class="fa fa-check"></i><b>A.6.6</b> Outras linguagens</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>B</b> Programação Orientada a Objetos</a></li>
 </ul>
 
       </nav>
@@ -244,7 +262,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="programacao-orientada-a-objetos" class="section level1">
-<h1><span class="header-section-number">A</span> Programação Orientada a Objetos</h1>
+<h1><span class="header-section-number">B</span> Programação Orientada a Objetos</h1>
 <p>Como vimos anteriormente, o R é uma linguagem de programação orientada à objetos. Dois conceitos fundamentais desse tipo de linguagem são os de <strong>classe</strong> e <strong>método</strong>. Já vimos também que todo objeto no R possui uma classe (que define sua estrutura) e analisamos algumas delas. O que seria então um método? Para responder essa pergunta precisamos entender inicialmente os tipos de orientação a objetos que o R possui.</p>
 <p>O R possui 3 sitemas de orientação a objetos: <strong>S3</strong>, <strong>S4</strong>, e <strong>RC</strong>:</p>
 <ul>
@@ -277,7 +295,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean
 <span class="cf">function</span> (x, ...) 
 <span class="kw">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x567b9f0</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x1cbbdc8</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora veja o código fonte da função <code>mean.default</code>, que é o método específico para vetores numéricos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.default
@@ -305,7 +323,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
     }
     <span class="kw">.Internal</span>(<span class="kw">mean</span>(x))
 }
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x567b050</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x1cbc768</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora suponha que você ddeseja criar uma função que calcule a média para um objeto de uma classe diferente daquelas previamente definidas. Por exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das linhas de uma matriz.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
@@ -356,7 +374,7 @@ dl &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">r
           </div>
         </div>
       </div>
-<a href="probabilidade-e-variaveis-aleatorias.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="documentos-dinamicos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

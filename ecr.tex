@@ -77,6 +77,15 @@
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
 }{% else
@@ -167,7 +176,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 02:25
+Wednesday, 25 July, 2018, 02:52
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -189,14 +198,14 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] MASS_7.3-50  gdata_2.18.0 knitr_1.20  
+[1] rmarkdown_1.10 MASS_7.3-50    gdata_2.18.0   knitr_1.20    
 
 loaded via a namespace (and not attached):
  [1] Rcpp_0.12.18    bookdown_0.7.15 gtools_3.8.1    digest_0.6.15  
  [5] rprojroot_1.3-2 backports_1.1.2 magrittr_1.5    evaluate_0.11  
- [9] highr_0.7       stringi_1.2.4   rstudioapi_0.7  rmarkdown_1.10 
-[13] tools_3.5.0     stringr_1.3.1   xfun_0.3        yaml_2.1.19    
-[17] compiler_3.5.0  htmltools_0.3.6
+ [9] highr_0.7       stringi_1.2.4   rstudioapi_0.7  tools_3.5.0    
+[13] stringr_1.3.1   xfun_0.3        yaml_2.1.19     compiler_3.5.0 
+[17] htmltools_0.3.6
 \end{verbatim}
 
 \part{R básico}\label{part-r-basico}
@@ -881,8 +890,8 @@ No entanto, nem todos são carregados na inicialização do R. Por padrão,
 apenas os seguintes pacotes são carregados automaticamente:
 
 \begin{verbatim}
-[1] "knitr"     "stats"     "graphics"  "grDevices" "utils"     "datasets" 
-[7] "methods"   "base"     
+[1] "gdata"     "knitr"     "stats"     "graphics"  "grDevices" "utils"    
+[7] "datasets"  "methods"   "base"     
 \end{verbatim}
 
 Para listar os pacotes carregados, use a função
@@ -5670,7 +5679,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.176}   \FloatTok{0.004}   \FloatTok{0.178} 
+  \FloatTok{0.096}   \FloatTok{0.004}   \FloatTok{0.101} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5678,13 +5687,13 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.000}   \FloatTok{0.004}   \FloatTok{0.007} 
+  \FloatTok{0.000}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente 0.178/0.007 = 25.43
+regra da reciclagem, o cálculo é aproximadamente 0.101/0.002 = 50.5
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entro o tempo de
 execução das duas formas pode ser muito maior.
@@ -5720,7 +5729,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.172}   \FloatTok{0.000}   \FloatTok{0.171} 
+  \FloatTok{0.104}   \FloatTok{0.000}   \FloatTok{0.104} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5731,12 +5740,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.372}   \FloatTok{0.076}   \FloatTok{0.448} 
+  \FloatTok{0.324}   \FloatTok{0.036}   \FloatTok{0.363} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.448/0.171 = 2.62 vezes. Isso acontece porque,
+forma em aproximadamente 0.363/0.104 = 3.49 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -8349,6 +8358,1238 @@ tipicamente apresentados em um curso de estatística básica.
 \appendix
 
 
+\chapter{Documentos dinâmicos}\label{documentos-dinamicos}
+
+A ideia geral de um documento dinâmico é a de que ele pode ser gerado a
+partir de um \textbf{código-fonte}:
+
+\begin{itemize}
+\tightlist
+\item
+  Da mesma forma que um \emph{software} possui seu código-fonte, um
+  documento dinâmico é o código-fonte de um relatório.
+\item
+  É uma combinação de código de computador e as correspondentes
+  narrativas descrevendo o resultado que o código está gerando (números,
+  tabelas, figuras, \ldots{}).
+\item
+  Quando \textbf{compilamos} o documento dinâmico, o código de
+  computador é executado, e as saídas são apresentadas. Portanto obtemos
+  um documento final que mistura \textbf{código} e \textbf{texto}.
+\end{itemize}
+
+Como gerenciamos apenas o código-fonte do documento, ficamos livres de
+etapas manuais como ter que refazer um gráfico ou uma tabela após
+qualquer alteração na análise.
+
+\section{Literate Programming}\label{literate-programming}
+
+\begin{quote}
+\emph{Instead of imagining that our main task is to instruct a computer
+what to do, let us concentrate rather on explaining to humans what we
+want the computer to do.}
+
+\begin{quote}
+Donald Knuth
+\end{quote}
+\end{quote}
+
+O ideia básica por trás de documentos dinâmicos decorre diretamente do
+conceito de \emph{literate programming} (``programação letrada''), um
+paradigma concebido por
+\href{https://en.wikipedia.org/wiki/Donald_Knuth}{Donald Knuth} em 1984.
+
+O objetivo da \emph{literate programming} é criar um documento que
+``entrelaça'' (mistura) texto e código. O texto é legível para humanos e
+o código é legível para máquinas. A análise é descrita em uma série de
+texto e blocos de código (\emph{code chunks}). Cada bloco de código irá
+executar uma etapa da análise, e estará diretamente associado ao texto
+explicativo acima ou abaixo do bloco.
+
+O processo de \emph{literate programming} ocorre em duas vias, chamadas
+de \textbf{weaving} e \textbf{tangling}. O importante é que, \textbf{com
+um único código-fonte} podemos:
+
+\begin{itemize}
+\tightlist
+\item
+  Produzir documentos para humanos (HTML, PDF, \ldots{}) \(\Rightarrow\)
+  \emph{weave}
+\item
+  Produzir ``documentos'' (\emph{scripts}) para máquinas (código)
+  \(\Rightarrow\) \emph{tangle}
+\end{itemize}
+
+Para podermos usar um sistema como esse, é necessário então uma
+linguagem de documentação para humanos (\emph{e.g.} LaTeX ou Markdown),
+e uma linguagem de programação que será compilada com o documento
+(\emph{e.g.} R ou Python).
+
+Knuth criou inicialmente um sistema chamado \textbf{WEB} para fazer essa
+mistura dos seus textos em \(TeX\) com a linguagem Pascal. Atualmente
+muitos outros sistemas existem para misturar códigos com texto em várias
+linguagens de documentação e de programação.
+
+\section{Literate Programming no R}\label{literate-programming-no-r}
+
+Com a ascensão do R no início dos anos 2000,
+\href{http://www.statistik.lmu.de/~leisch}{Friedrich Leisch} criou o
+\href{https://www.statistik.lmu.de/~leisch/Sweave}{Sweave} em 2002
+
+\begin{itemize}
+\tightlist
+\item
+  S + weave
+\item
+  Permite ``entrelaçar'' textos do LaTeX com códigos do R
+\item
+  Ainda é muito utilizado e já é distribuído como uma função do R dentro
+  do pacote \texttt{utils}
+\end{itemize}
+
+No final de 2011, \href{http://yihui.name/}{Yihui Xie} criou o pacote
+\href{http://yihui.name/knitr}{knitr} como uma extensão do Sweave, e com
+a proposta de ser mais flexível, fácil e \textbf{preparado para a Web}.
+Segundo o próprio autor, o knitr é resultado dessa equação:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr =}\StringTok{ }\NormalTok{Sweave }\OperatorTok{+}\StringTok{ }\NormalTok{cacheSweave }\OperatorTok{+}\StringTok{ }\NormalTok{pgfSweave }\OperatorTok{+}\StringTok{ }\NormalTok{weaver }\OperatorTok{+}
+\StringTok{    }\NormalTok{animation}\OperatorTok{::}\NormalTok{saveLatex }\OperatorTok{+}\StringTok{ }\NormalTok{R2HTML}\OperatorTok{::}\NormalTok{RweaveHTML }\OperatorTok{+}
+\StringTok{    }\NormalTok{highlight}\OperatorTok{::}\NormalTok{HighlightWeaveLatex }\OperatorTok{+}\StringTok{ }\FloatTok{0.2} \OperatorTok{*}\StringTok{ }\NormalTok{brew }\OperatorTok{+}
+\StringTok{    }\FloatTok{0.1} \OperatorTok{*}\StringTok{ }\NormalTok{SweaveListingUtils }\OperatorTok{+}\StringTok{ }\NormalTok{more}
+\end{Highlighting}
+\end{Shaded}
+
+Resumidamente, o knitr possui as seguintes vantagens sob o Sweave:
+
+\begin{itemize}
+\tightlist
+\item
+  knit + R
+\item
+  Uma re-implementação mais moderna do Sweave
+\item
+  Permite ``entrelaçar'' textos do LaTeX, HTML e \textbf{Markdown} com
+  códigos do R
+\item
+  Também permite misturar texto com códigos de \textbf{outras
+  linguagens}: Python, awk, C++, shell.
+\item
+  Adiciona muitas facilidades como
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Cache
+  \item
+    Decoração e formatação automática de códigos
+  \item
+    Geração de gráficos mais direta
+  \end{itemize}
+\end{itemize}
+
+Podemos fazer uma comparação entre arquivos LaTeX escritos em Sweave e
+knitr. Exemplos simples podem ser vistos nos arquivos
+\href{exemplos/Exemplo0-Sweave.Rnw}{Exemplo0-Sweave.Rnw} escrito com
+Sweave e \href{exemplos/Exemplo0-knitr.Rnw}{Exemplo0-knitr.Rnw} escrito
+com a sintaxe do knitr. Para compilar estes documentos, usamos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sweave}\NormalTok{(}\StringTok{"Exemplo0-Sweave.Rnw"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{knit}\NormalTok{(}\StringTok{"Exemplo0-knitr.Rnw"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Posteriormente, os arquivos \texttt{.tex} gerados podem ser compilados
+com qualquer distribuição LaTeX, (\emph{e.g} TeXLive, MikTeX), por
+exemplo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pdflatex}\NormalTok{ Exemplo0-Sweave.Rnw}
+\ExtensionTok{pdflatex}\NormalTok{ Exemplo0-knitr.Rnw}
+\end{Highlighting}
+\end{Shaded}
+
+Os resultados podem ser vistos nos respectivos arquivos:
+\href{exemplos/Exemplo0-Sweave.pdf}{Exemplo0-Sweave.pdf} e
+\href{exemplos/Exemplo0-knitr.pdf}{Exemplo0-knitr.pdf}
+
+\section{Markdown}\label{markdown}
+
+Segundo o próprio criador da linguagem:
+
+\begin{quote}
+\emph{Markdown is a text-to-HTML conversion tool for web writers.
+Markdown allows you to write using an easy-to-read, easy-to-write plain
+text format, then convert it to structurally valid XHTML (or HTML).}
+
+\begin{quote}
+John Gruber
+\end{quote}
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://daringfireball.net/projects/markdown}{Markdown} é uma
+  \href{https://pt.wikipedia.org/wiki/Linguagem_de_marcação/}{linguagem
+  de marcação} simples para escrever textos
+\item
+  O texto pode ser lido sem nenhum processamento, ou seja, da maneira
+  como está escrito
+\item
+  Outras linguagens de marcação como HTML e LaTeX requerem um grande
+  número de \emph{tags} para formatar o texto, muitas vezes dificultando
+  a leitura do código-fonte
+\item
+  A proposta do Markdown é que o escritor se concentre no texto e não na
+  formatação
+\item
+  Pode ser convertido para \textbf{vários outros formatos} além de HTML
+\end{itemize}
+
+\subsection{Sintaxe do Markdown}\label{sintaxe-do-markdown}
+
+A sintaxe do Markdown é muito simples, e pode ser resumida da seguinte
+forma:
+
+\subsubsection*{Cabeçalhos}\label{cabecalhos}
+
+
+\begin{verbatim}
+# Título
+## Sub-título
+### Sub-sub-título
+\end{verbatim}
+
+\subsubsection*{Itálico}\label{italico}
+
+
+\begin{verbatim}
+*Este texto aparecerá em itálico.*
+\end{verbatim}
+
+\emph{Este texto aparecerá em itálico.}
+
+\subsubsection*{Negrito}\label{negrito}
+
+
+\begin{verbatim}
+**Este texto aparecerá em negrito.**
+\end{verbatim}
+
+\textbf{Este texto aparecerá em negrito.}
+
+\subsubsection*{Listas não-ordenadas}\label{listas-nao-ordenadas}
+
+
+\begin{verbatim}
+- Primeiro item
+- Segundo item
+- Terceiro item
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Primeiro item
+\item
+  Segundo item
+\item
+  Terceiro item
+\end{itemize}
+
+\subsubsection*{Listas ordenadas}\label{listas-ordenadas}
+
+
+\begin{verbatim}
+1. Primeiro item
+2. Segundo item
+3. Terceiro item
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Primeiro item
+\item
+  Segundo item
+\item
+  Terceiro item
+\end{enumerate}
+
+\subsubsection*{Sub-listas}\label{sub-listas}
+
+
+Utilize 4 espaços para criar uma sub-lista:
+
+\begin{verbatim}
+1. Primeiro item
+    - Um sub-item
+    - Outro sub-item
+2. Segundo item
+3. Terceiro item
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Primeiro item
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Um sub-item
+  \item
+    Outro sub-item
+  \end{itemize}
+\item
+  Segundo item
+\item
+  Terceiro item
+\end{enumerate}
+
+\subsubsection*{Links}\label{links}
+
+
+Links para endereços Web podem ser inseridos com
+\texttt{{[}texto{]}(link)}:
+
+\begin{verbatim}
+O criador do conceito de "literate programming" foi
+[Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+\end{verbatim}
+
+O criador do conceito de ``literate programming'' foi
+\href{https://en.wikipedia.org/wiki/Donald_Knuth}{Donald Knuth}.
+
+\begin{verbatim}
+Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
+usar o R Markdown.
+\end{verbatim}
+
+Devemos instalar o pacote \href{http://yihui.name/knitr}{knitr} para
+poder usar o R Markdown.
+
+\subsubsection*{Imagens}\label{imagens}
+
+
+Para inserir uma imagem, a sintaxe é a mesma de inserir um link, mas com
+uma exclamação (\texttt{!}) na frente: \texttt{!{[}texto{]}(imagem)}.
+
+O link para a imagem pode ser um enderço Web:
+
+\begin{verbatim}
+![Logo do R](img/Rlogo-5.png)
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{img/Rlogo-5.png}
+\caption{Logo do R}
+\end{figure}
+
+Ou um endereço local:
+
+\begin{verbatim}
+![Logo do Markdown](img/markdown.png)
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{img/markdown.png}
+\caption{Logo do Markdown}
+\end{figure}
+
+\subsubsection*{Parágrafo}\label{paragrafo}
+
+
+Para criar parágrafos basta pular uma linha:
+
+\begin{verbatim}
+O criador do conceito de "literate programming" foi
+[Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+
+Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
+usar o R Markdown.
+\end{verbatim}
+
+O criador do conceito de ``literate programming'' foi
+\href{https://en.wikipedia.org/wiki/Donald_Knuth}{Donald Knuth}.
+
+Devemos instalar o pacote \href{http://yihui.name/knitr}{knitr} para
+poder usar o R Markdown.
+
+\subsubsection*{Códigos}\label{codigos}
+
+
+Para apresentar códigos na própria linha, colocamos o texto entre duas
+crases (\texttt{\textasciigrave{}}):
+
+\begin{verbatim}
+Para gerar números aleatórios de uma distribuição normal no R, use a
+função `rnorm()`.
+\end{verbatim}
+
+Para gerar números aleatórios de uma distribuição normal no R, use a
+função \texttt{rnorm()}.
+
+Para apresentar blocos de código, coloque o texto entre três crases
+seguidas (\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}})
+no início e no final. O bloco
+
+\begin{verbatim}
+```
+x <- rnorm(n = 10, mean = 100, sd = 5)
+hist(x, main = "")
+```
+\end{verbatim}
+
+Irá gerar
+
+\begin{verbatim}
+x <- rnorm(n = 10, mean = 100, sd = 5)
+hist(x, main = "")
+\end{verbatim}
+
+Note que esse código não será interpretado, ele apenas será mostrado no
+texto. Esse será o papel do R aqui mais adiante!
+
+\subsubsection*{Tabelas}\label{tabelas}
+
+
+Tabelas podem ser escritas da seguinte forma:
+
+\begin{verbatim}
+    Caracter | Permissão
+    ---------|----------
+    `r`      | Permissão de leitura (*read*)
+    `w`      | Permissão de escrita (*write*)
+    `x`      | Permissão de execução (*execute*)
+    `-`      | Permissão desabilitada
+\end{verbatim}
+
+Para gerar o seguinte resultado:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Caracter & Permissão\tabularnewline
+\midrule
+\endhead
+\texttt{r} & Permissão de leitura (\emph{read})\tabularnewline
+\texttt{w} & Permissão de escrita (\emph{write})\tabularnewline
+\texttt{x} & Permissão de execução (\emph{execute})\tabularnewline
+\texttt{-} & Permissão desabilitada\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsubsection*{Equações matemáticas}\label{equacoes-matematicas}
+
+
+Equações matemáticas podem ser escritas em formato LaTeX. A página HTML
+resultante irá renderizar as equações através do
+\href{http://www.mathjax.org}{MathJax}.
+
+Equações na própria linha podem ser inseridas entre \texttt{\$}:
+
+\begin{verbatim}
+Um modelo de regressão linear simples:  $Y = \beta_0 + \beta_1 x + \epsilon$.
+\end{verbatim}
+
+Um modelo de regressão linear simples:
+\(Y = \beta_0 + \beta_1 x + \epsilon\).
+
+Equações podem ser exibidas entre \texttt{\$\$} para ficarem
+centralizadas em uma linha própria:
+
+\begin{verbatim}
+$$
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+$$
+\end{verbatim}
+
+\[
+f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
+e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
+\]
+
+\subsection{Escrevendo um documento em
+Markdown}\label{escrevendo-um-documento-em-markdown}
+
+Um documento Markdown possui a extensão \texttt{.md} (embora não seja a
+única possível).
+
+Veja o arquivo de exemplo \href{exemplos/Exemplo1.md}{Exemplo1.md}:
+
+\begin{verbatim}
+# Um documento em Markdown
+
+## Sobre o Markdown
+
+O Markdown é uma linguagem de marcação muito simples, desenvolvida por
+John Gruber.
+
+A ideia básica por trás da linguagem é fazer com que o escritor se
+preocupe mais com o **conteúdo** do texto do que com a *formatação*.
+
+## Mais um título
+
+Aqui vamos tentar descrever uma análise.
+
+## Simulando variáveis aleatórias
+
+No R podemos simular valores de uma distribuição normal padrão através
+da função `rnorm()`.
+
+Seja $X \sim \text{N}(0,1)$, então para gerar 30 valores dessa variável
+aleatório normal, fazemos
+
+```
+(x <- rnorm(30))
+```
+
+Com o resultado dessa simulação, podemos calcular a média e a variância
+dessa VA $X$ para conferir se o resultado fica próximo de 0 e 1,
+respectivamente.
+
+Também podemos fazer um histograma dessa VA $X$ simulada
+
+```
+hist(x)
+```
+\end{verbatim}
+
+Para converter um documento Markdown em HTML (ou outro formato) é
+necessário um \textbf{conversor}. O conversor padrão do Markdown é
+escrito em Perl, e pode ser integrado em diversas ferramentas, mas não é
+apropriado para usuários comuns. Para testar a conversão do documento,
+copie e cole na página do
+\href{http://daringfireball.net/projects/markdown/dingus}{Dingus}.
+
+\section{Pandoc}\label{pandoc}
+
+O \href{http://pandoc.org/}{Pandoc} é um conversor extremamente
+versátil, capaz de converter diversos formatos, incluindo Markdown para
+HTML.
+
+Se o Pandoc estiver instalado no seu sistema (Unix) é possível converter
+o documento na linha de comando (shell) com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pandoc}\NormalTok{ -f markdown -t html Exemplo1.md -o Exemplo1.html}
+\end{Highlighting}
+\end{Shaded}
+
+O pacote \texttt{knitr} possui a função \texttt{pandoc()} que é um
+\emph{wrapper} para executar o programa \texttt{pandoc} no sistema.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pandoc}\NormalTok{(}\DataTypeTok{input =} \StringTok{"exemplos/Exemplo1.md"}\NormalTok{, }\DataTypeTok{format =} \StringTok{"html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
+\href{exemplos/Exemplo1.html}{Exemplo1.html} no navegador.
+
+\section{Documentos dinâmicos com Markdown e
+R}\label{documentos-dinamicos-com-markdown-e-r}
+
+No exemplo anterior, escrevemos um documento em Markdown (\texttt{.md})
+e inserimos códigos do R, que são apenas apresentados no documento
+final. Desse forma temos um documento \textbf{estático}, pois os códigos
+não são interpretados. Para fazermos esse documento ser
+\textbf{dinâmico}, vamos usar o pacote \textbf{knitr} a nosso favor,
+fazedo com que ele interprete e retorne resultados dos códigos que
+inserimos. Vamos denominar genericamente essa combinação de texto em
+Markdown e códigos do R de ``R Markdown''.
+
+Arquivos escritos em R Markdown não podem ser compilados usando
+ferramentas padrão de conversão de Markdown. O código R deve ser
+avaliado antes da conversão usando o Pandoc, por exemplo. R Markdown
+pode ser convertido para Markdown através do knitr. Os resultados de
+códigos do R são inseridos entre o texto em Markdown, que pode então ser
+convertido para HTML (ou outros formatos) usando o Pandoc.
+
+O uso do R Markdown para criar documentos dinâmicos tem se tornado uma
+ferramenta chave atualmente em \emph{literate statistical programming},
+e substituiu largamente ferramentas anteriores como o Sweave.
+
+Os detalhes e opções do pacote knitr serão descritas mais adiante. Por
+enquanto, o que precisamos fazer para tornar esse documento dinâmico é
+alterar a extensão do arquivo de \texttt{.md} para \texttt{.Rmd}, e
+alterar a forma dos blocos de código. Os blocos de códigos (ou
+\emph{chunks}) agora devem conter uma marcação especial para indicar que
+devem ser interpretados pelo R, através do knitr. Para isso, colocamos
+\texttt{\{r\}} no início de cada bloco, que agora ficam
+
+\begin{verbatim}
+```{r}
+x <- rnorm(30)
+```
+\end{verbatim}
+
+Usando o mesmo exemplo anterior, vamos renomear o arquivo
+\texttt{Exemplo1.md} para \texttt{Exemplo1-knitr.Rmd} e incluir a marção
+\texttt{\{r\}} nos blocos de código.
+
+Também é possível colocar códigos do R para serem renderizados na
+própria linha de texto com
+\texttt{\textasciigrave{}r\ \textasciigrave{}}. Por exemplo,
+\texttt{\textasciigrave{}r\ 2+2\textasciigrave{}} gera o resultado 4 no
+documento.
+
+Veja o arquivo \href{exemplos/Exemplo1-knitr.Rmd}{Exemplo1-knitr.Rmd}.
+
+\begin{verbatim}
+# Um documento em Markdown
+
+## Sobre o Markdown
+
+O Markdown é uma linguagem de marcação muito simples, desenvolvida por
+John Gruber.
+
+A ideia básica por trás da linguagem é fazer com que o escritor se
+preocupe mais com o **conteúdo** do texto do que com a *formatação*.
+
+## Mais um título
+
+Aqui vamos tentar descrever uma análise.
+
+## Simulando variáveis aleatórias
+
+No R podemos simular valores de uma distribuição normal padrão através
+da função `rnorm()`.
+
+Seja $X \sim \text{N}(0,1)$, então para gerar 30 valores dessa variável
+aleatório normal, fazemos
+
+```{r}
+(x <- rnorm(30))
+```
+
+## Comentários
+
+Com o resultado dessa simulação, podemos calcular a média e a variância
+dessa VA $X$ para conferir se o resultado fica próximo de 0 e 1,
+respectivamente.
+
+## Visualização
+
+Também podemos fazer um histograma dessa VA $X$ simulada
+
+```{r}
+hist(x)
+```
+
+A média de $X$ é `r round(mean(x), 3)`.
+\end{verbatim}
+
+Agora usamos o knitr, através da função \texttt{knit()} para compilar o
+documento \texttt{.Rmd} em um documento com sintaxe Markdown
+\texttt{.md}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{knit}\NormalTok{(}\StringTok{"exemplos/Exemplo1-knitr.Rmd"}\NormalTok{, }\DataTypeTok{output =} \StringTok{"exemplos/Exemplo1-knitr.md"}\NormalTok{)}
+
+
+\NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{exemplos}\OperatorTok{/}\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{knitr.Rmd}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+\NormalTok{  ordinary text without R code}
+
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{414}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+\NormalTok{  ordinary text without R code}
+
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{415}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
+\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+\NormalTok{   inline R code fragments}
+\NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{exemplos}\OperatorTok{/}\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{knitr.md}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"exemplos/Exemplo1-knitr.md"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{img/knit} \end{center}
+
+O resultado da compilação pode ser vista no arquivo
+\href{exemplos/Exemplo1-knitr.md}{Exemplo1-knitr.md}.
+
+\begin{verbatim}
+# Um documento em Markdown
+
+## Sobre o Markdown
+
+O Markdown é uma linguagem de marcação muito simples, desenvolvida por
+John Gruber.
+
+A ideia básica por trás da linguagem é fazer com que o escritor se
+preocupe mais com o **conteúdo** do texto do que com a *formatação*.
+
+## Mais um título
+
+Aqui vamos tentar descrever uma análise.
+
+## Simulando variáveis aleatórias
+
+No R podemos simular valores de uma distribuição normal padrão através
+da função `rnorm()`.
+
+Seja $X \sim \text{N}(0,1)$, então para gerar 30 valores dessa variável
+aleatório normal, fazemos
+
+```r
+(x <- rnorm(30))
+ [1] -0.50219235  0.13153117 -0.07891709  0.88678481  0.11697127
+ [6]  0.31863009 -0.58179068  0.71453271 -0.82525943 -0.35986213
+[11]  0.08988614  0.09627446 -0.20163395  0.73984050  0.12337950
+[16] -0.02931671 -0.38885425  0.51085626 -0.91381419  2.31029682
+[21] -0.43808998  0.76406062  0.26196129  0.77340460 -0.81437912
+[26] -0.43845057 -0.72022155  0.23094453 -1.15772946  0.24707599
+```
+
+## Comentários
+
+Com o resultado dessa simulação, podemos calcular a média e a variância
+dessa VA $X$ para conferir se o resultado fica próximo de 0 e 1,
+respectivamente.
+
+## Visualização
+
+Também podemos fazer um histograma dessa VA $X$ simulada
+
+```r
+hist(x)
+```
+
+
+
+\begin{center}\includegraphics{figures/unnamed-chunk-415-1} \end{center}
+
+A média de $X$ é 0.029.
+\end{verbatim}
+
+Agora temos um documento em Markdown com os códigos do R avaliados. Mas
+ainda precisamos processar esse arquivo para gerar o arquivo
+\texttt{.html} através do Pandoc
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pandoc}\NormalTok{(}\DataTypeTok{input =} \StringTok{"exemplos/Exemplo1-knitr.md"}\NormalTok{, }\DataTypeTok{format =} \StringTok{"html"}\NormalTok{)}
+\NormalTok{executing pandoc   }\OperatorTok{-}\NormalTok{t html }\OperatorTok{-}\NormalTok{o exemplos}\OperatorTok{/}\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{knitr.html }\StringTok{'exemplos/Exemplo1-knitr_utf8.md'}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"exemplos/Exemplo1-knitr.html"}
+\end{Highlighting}
+\end{Shaded}
+
+que gera o arquivo
+\href{exemplos/Exemplo1-knitr.html}{Exemplo1-knitr.html} que pode ser
+visualizado no navegador.
+
+\section{R Markdown e knitr}\label{r-markdown-e-knitr}
+
+O pacote knitr, como já mencionado, é uma combinação de várias ideias
+desenvolvidas separadamente em pacotes do R para \emph{literate
+programming}, especialmente o Sweave. Este pacote suporta LaTeX,
+Markdown e HTML como \textbf{linguagem de documentação}, e algumas
+linguagens de programação, além do R, como por exemplo shell e Python. O
+resultado destes documentos pode ser exportado para PDF, HTML, ou até
+mesmo arquivos do MS Word. Daqui em diante, o nosso foco será no uso do
+knitr com Markdown e R, pela simplicidade e versatilidade dessa
+linguagem, gerando documentos dinâmicos em HTML. No entanto, a maioria
+das opções e o funcionamento geral do pacote é similar para LaTeX (e
+compilação para PDF) e HTML.
+
+Na seção anterior, nós criamos um arquivo com a extensão \texttt{.Rmd},
+que é apropriada para documentos escritos em Markdown com R. Nós também
+usamos as funções \texttt{knitr()} para converter o documento para
+Markdown, e posteriormente a função \texttt{pandoc()} para gerar o HTML
+resultante. Esse é o processo básico para gerar documentos dinâmicos no
+R. No entanto, podemos estender esse processo para incorporar mais
+controle tanto sob os códigos que são gerados, quanto na apresentação do
+documento final.
+
+Para facilitar a criação de documentos dinâmicos no R, a equipe do
+RStudio desenvolveu o pacote
+\href{http://rmarkdown.rstudio.com}{rmarkdown}, que é baseado no knitr e
+Pandoc, e contém opções padrão para gerar documentos em vários formatos
+de maneira mais aprimorada.
+
+A principal função para gerar documentos em R Markdown do pacote
+rmarkdown é a \texttt{render()}. A função \texttt{render()} é uma
+\emph{wrapper} que internamente chama a \texttt{knitr::knit()} e
+posteriormente converte o documento para \texttt{.html} usando o Pandoc.
+A diferença é que, além de ser um processo mais direto, a saída em
+formato HTML utiliza temas mais amigáveis, como o Twitter Bootstrap, que
+possibilita grandes opções de configuração mais avançada.
+
+Para usar esse função você precisa:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Instalar o pacote \texttt{rmarkdown} com
+  \texttt{install.packages("rmarkdown")}
+\item
+  Instalar o Pandoc no seu sistema
+\end{enumerate}
+
+No RStudio, esse pacote já vem instalado, assim como uma versão embutida
+do Pandoc.
+
+Usando o exemplo anterior, vamos compilar o arquivo
+\href{exemplos/Exemplo2-knitr.Rmd}{Exemplo2-knitr.Rmd}. O primeiro
+argumento da função é o nome (e local) do arquivo, e o segundo argumento
+é o formato de saída, que por padrão é HTML.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rmarkdown)}
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo2-knitr.Rmd"}\NormalTok{,  }\DataTypeTok{output_format =} \StringTok{"html_document"}\NormalTok{)}
+
+
+\NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.Rmd}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+\NormalTok{  ordinary text without R code}
+
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{1}\OperatorTok{-}\DecValTok{2}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+\NormalTok{  ordinary text without R code}
+
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{3}\OperatorTok{-}\DecValTok{4}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
+\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+\NormalTok{   inline R code fragments}
+\NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.knit.md}
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpKX2jUM}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2b211755c934.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+
+\NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.html}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{img/split_apply_combine} \end{center}
+
+E o resultado pode ser visto no arquivo
+\href{exemplos/Exemplo2-knitr.html}{Exemplo2-knitr.html}.
+
+No RStudio, esse processo todo pode ser feito pelo botão Knit.
+
+\subsection{Metadados}\label{metadados}
+
+Uma opção interessante ao utilizar o Pandoc é incluir metados no formato
+\href{http://yaml.org/}{YAML} (\emph{Yet Another Markup Language}). Os
+metadados em YAML são escritos em formato de lista aninhada, e o Pandoc
+usa essas informações para incluir, por exemplo, título, autor, e data
+em um documento.
+
+A opção mais importante para o \texttt{rmarkdown} é o campo
+\texttt{output}, que permite especificar o formato desejado de saída, o
+mesmo especificado no argumento \texttt{output\_format\ =} da função
+\texttt{render()}.
+
+Os metadados em YAML são colocados sempre no \textbf{início} de um
+documento, e são delimitados por \texttt{-\/-\/-}. Um exemplo típico
+seria:
+
+\begin{verbatim}
+---
+title: "Meu primeiro documento em R Markdown"
+author: "Fernando Mayer"
+date: "Abril, 2018"
+output: html_document
+---
+\end{verbatim}
+
+Com isso, não é mais necessário especificar o argumento
+\texttt{output\_format\ =} na chamada da função \texttt{render()}.
+
+Veja o arquivo \href{exemplos/Exemplo1-yaml.Rmd}{Exemplo1-yaml.Rmd}.
+Para renderizar esse aquivo, usamos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo1-yaml.Rmd"}\NormalTok{)}
+
+
+\NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.Rmd}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+\NormalTok{  ordinary text without R code}
+
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{1}\OperatorTok{-}\DecValTok{2}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+\NormalTok{  ordinary text without R code}
+
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{3}\OperatorTok{-}\DecValTok{4}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
+\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+\NormalTok{   inline R code fragments}
+\NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.knit.md}
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpKX2jUM}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2b217e411e67.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+
+\NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.html}
+\end{Highlighting}
+\end{Shaded}
+
+O resultado final pode ser visto no arquivo
+\href{exemplos/Exemplo1-yaml.html}{Exemplo1-yaml.html}.
+
+\subsection{Convertendo R Markdown para outros
+formatos}\label{convertendo-r-markdown-para-outros-formatos}
+
+Por padrão, a função \texttt{render()} gera um arquivo \texttt{.html},
+mas existem outros formatos finais possíveis graças ao \textbf{Pandoc}.
+
+O pacote \texttt{rmarkdown} possui uma série de formatos de saída, que
+possuem os sufixos \texttt{\_document} para documentos, e
+\texttt{\_presentation} para apresentações (slides). Alguns deles:
+
+\begin{itemize}
+\tightlist
+\item
+  Documentos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{html\_document}
+  \item
+    \texttt{pdf\_document}
+  \item
+    \texttt{word\_document}
+  \end{itemize}
+\item
+  Apresentações:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{ioslides\_presentation}
+  \item
+    \texttt{slidy\_presentation}
+  \item
+    \texttt{beamer\_presentation}
+  \end{itemize}
+\end{itemize}
+
+Podemos converter um documento em R Markdown para PDF com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo1-yaml.Rmd"}\NormalTok{, }\DataTypeTok{output_format =} \StringTok{"pdf_document"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+O resultado é o arquivo
+\href{exemplos/Exemplo1-yaml.pdf}{Exemplo1-yaml.pdf}. A função
+\texttt{render()} usa o Pandoc para converter Markdown para LaTeX, e
+depois para PDF.
+
+Um documento do Word pode ser gerado com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo1-yaml.Rmd"}\NormalTok{, }\DataTypeTok{output_format =} \StringTok{"word_document"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Para gerar \href{exemplos/Exemplo1-knitr.docx}{Exemplo1-yaml.docx}.
+
+Apresentações em slides HTML podem ser geradas em diversos formatos, um
+deles é o \texttt{ioslides}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo1-yaml.Rmd"}\NormalTok{,}
+       \DataTypeTok{output_format =} \StringTok{"ioslides_presentation"}\NormalTok{,}
+       \DataTypeTok{output_file =} \StringTok{"Exemplo1-yaml-ioslides.html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Veja o resultado em
+\href{exemplos/Exemplo1-knitr-ioslides.html}{Exemplo1-knitr-ioslides.html}.
+
+Apresentações em Beamer também podem ser geradas com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo1-yaml.Rmd"}\NormalTok{,}
+       \DataTypeTok{output_format =} \StringTok{"beamer_presentation"}\NormalTok{,}
+       \DataTypeTok{output_file =} \StringTok{"Exemplo1-yaml-beamer.pdf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Com resultado no arquivo
+\href{exemplos/Exemplo1-yaml-beamer.pdf}{Exemplo1-yaml-beamer.pdf}.
+
+\subsection{Opções do knitr}\label{opcoes-do-knitr}
+
+O pacote knitr possui diversas opções para controlar a saída dos
+resultados de códigos do R. Estas opções funcionam igualmente em blocos
+de código inseridos entre texto escrito em Markdown ou LaTeX.
+
+Para controlar a saída de código de um único \emph{chunk}, coloque as
+opções individualmente
+
+Para controlar globalmente \textbf{todos} os \emph{chunks} de um
+documento, use a função \texttt{knitr::opts\_chunk\$set()}:
+
+As opções mais importantes são:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{eval\ =\ FALSE} para não avaliar o código, apenas mostrar
+\item
+  \texttt{echo\ =\ FALSE} para não mostrar o código, apenas as saídas
+\item
+  \texttt{results\ =\ "hide"} para não mostrar as saídas
+\item
+  \texttt{warning\ =\ FALSE} e \texttt{message\ =\ FALSE} para suprimir
+  as mensagens de aviso
+\item
+  \texttt{fig.width\ =\ 5} and \texttt{fig.height\ =\ 5} para alterar o
+  tamanho dos gráficos gerados pelo R (em polegadas)
+\item
+  \texttt{out.width\ =\ "80\%"} para dimensionar a largura dos gráficos
+\item
+  \texttt{cache\ =\ TRUE} para armazenar os resultados, e evitar com que
+  eles sejam executados todas as vezes que o documento é compilado
+\end{itemize}
+
+Tabelas podem ser também geradas automaticamente a partir de resultados
+de funções do R. Para gerar uma tabela a partir de um objeto do R,
+podemos usar a função \texttt{knitr::kable()}. Para isso, também é
+necesário utilizar a opção \texttt{results\ =\ "asis"} no \emph{chunk},
+para que o resultado seja tratado como texto literal em Markdown.
+
+\begin{tabular}{r|r|r|r|l}
+\hline
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\hline
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+\hline
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+\hline
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+\hline
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+\hline
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\hline
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+\hline
+\end{tabular}
+
+A lista completa de opções está em
+\url{http://yihui.name/knitr/options}.
+
+Utilizando a opção \texttt{output:} um cabeçalho YAML, podemos informar
+mais de um formato para ser \textbf{gerado ao mesmo tempo} pelo
+rmarkdown. Por exemplo, para gerar documentos de saída em HTML e PDF,
+podemos especificar
+
+\begin{verbatim}
+---
+title: "Meu primeiro documento em R Markdown"
+author: "Fernando Mayer"
+date: "Abril, 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+\end{verbatim}
+
+E compilar todos eles ao mesmo tempo com
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo1-yaml2.Rmd"}\NormalTok{, }\DataTypeTok{output_format =} \StringTok{"all"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Veja \href{exemplos/Exemplo1-yaml2.html}{Exemplo1-yaml2.html}, e
+\href{exemplos/Exemplo1-yaml2.pdf}{Exemplo1-yaml2.pdf}.
+
+Existem ainda alguns outros formatos disponíveis pelo pacote
+\textbf{rmarkdown}, que podem ser consultados
+\href{https://rmarkdown.rstudio.com/formats.html}{aqui}. Para cada
+formato, ainda existem diversas opções que podem ser modificadas através
+do YAML. Estas opções podem ser conferidas nos links específicos de cada
+formato na página citada anteriormente.
+
+\subsection{Citações}\label{citacoes}
+
+Também é possível escrever documentos que com referências
+bibliográficas. Isso é possível pois o Pandoc suporta arquivos
+\textbf{BibTeX} (\texttt{.bib}), que é o formato padrão de armazenamento
+e gerenciamento de referências no LaTeX.
+
+Para isso, basta então especificar o arquivo \texttt{.bib} no YAML com a
+\emph{tag}:
+
+\begin{verbatim}
+bibliography: referencias.bib
+\end{verbatim}
+
+As citações são então feitas com
+\texttt{@\textless{}identificador\textgreater{}}. Veja o arquivo
+\href{exemplos/Exemplo3-knitr.Rmd}{Exemplo3-knitr.Rmd}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{render}\NormalTok{(}\StringTok{"exemplos/Exemplo3-knitr.Rmd"}\NormalTok{, }\DataTypeTok{output_format =} \StringTok{"all"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Dessa forma serão gerados 3 formatos diferentes: HTML, PDF e MS Word.
+Note que o tema usado para o HTML (\texttt{journal}) é uma possibilidade
+entre algumas disponíveis em \url{https://bootswatch.com/}.
+
+\subsection{Extraindo código-fonte}\label{extraindo-codigo-fonte}
+
+Uma característica importante do \textbf{knitr} é a habilidade de
+extrair somente o código R de um documento dinâmico (\emph{tangle}).
+Muitas vezes você só precisa do código e não do texto (e.g.~para enviar
+para um colaborador).
+
+Para fazer isso, use a função \texttt{purl()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{purl}\NormalTok{(}\StringTok{"exemplos/Exemplo3-knitr.Rmd"}\NormalTok{)}
+
+
+\NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{exemplos}\OperatorTok{/}\NormalTok{Exemplo3}\OperatorTok{-}\NormalTok{knitr.Rmd}
+
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                       }
+\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+\NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo3}\OperatorTok{-}\NormalTok{knitr.R}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Exemplo3-knitr.R"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+Isso criará um script R
+\href{exemplos/Exemplo3-knitr.R}{Exemplo3-knitr.R} com apenas os códigos
+presentes nos \emph{chunks} do documento.
+
+\subsection{Outras linguagens}\label{outras-linguagens}
+
+O R Markdown (por meio do pacote \textbf{knitr}) suporta também o uso de
+outras linguagens diferentes do R, como:
+
+\begin{itemize}
+\tightlist
+\item
+  Python
+\item
+  C (Rcpp)
+\item
+  Fortran
+\item
+  SQL
+\item
+  awk
+\item
+  ruby
+\item
+  Haskell
+\item
+  Bash
+\item
+  Perl
+\item
+  Dot
+\item
+  tikz
+\item
+  SAS
+\item
+  Coffeescript
+\end{itemize}
+
+Para isso, basta mudar a \emph{engine} (primeira definição do chunk)
+para a linguagem desejada.
+
+Exemplos do uso de diferentes \emph{engines} podem ser consultadas
+\href{https://yihui.name/knitr/demo/engines/}{aqui}. Este outro
+\href{https://rmarkdown.rstudio.com/authoring_knitr_engines.html}{link}
+mostra mais alguns exemplos.
+
+No arquivo \href{exemplos/Exemplo-python.Rmd}{Exemplo-python.Rmd}
+pode-se ver um exemplo de documento que mistura códigos em Python e R.
+Também é utilizado o pacote
+\href{https://blog.rstudio.com/2016/03/29/feather/}{feather} do Python e
+do R, para exportar/importar data frames de uma linguagem para outra
+dentro do mesmo documento.
+
 \chapter{Programação Orientada a
 Objetos}\label{programacao-orientada-a-objetos}
 
@@ -8475,7 +9716,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x567b9f0}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x1cbbdc8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -8510,7 +9751,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x567b050}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x1cbc768}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
