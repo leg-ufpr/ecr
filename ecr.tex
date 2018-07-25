@@ -167,7 +167,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 01:37
+Wednesday, 25 July, 2018, 01:48
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -5670,7 +5670,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.164}   \FloatTok{0.004}   \FloatTok{0.170} 
+  \FloatTok{0.100}   \FloatTok{0.000}   \FloatTok{0.102} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5678,14 +5678,14 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.004}   \FloatTok{0.000}   \FloatTok{0.006} 
+  \FloatTok{0.000}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente 0.17/0.006 = 28.33
-vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
+regra da reciclagem, o cálculo é aproximadamente 0.102/0.002 = 51 vezes
+mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entro o tempo de
 execução das duas formas pode ser muito maior.
 
@@ -5720,7 +5720,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.132}   \FloatTok{0.004}   \FloatTok{0.136} 
+  \FloatTok{0.096}   \FloatTok{0.004}   \FloatTok{0.101} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5731,12 +5731,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.508}   \FloatTok{0.048}   \FloatTok{0.556} 
+  \FloatTok{0.328}   \FloatTok{0.040}   \FloatTok{0.369} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.556/0.136 = 4.09 vezes. Isso acontece porque,
+forma em aproximadamente 0.369/0.101 = 3.65 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -7223,6 +7223,1129 @@ de correlação linear de Pearson.
 A resolução de todos os exercícios desta página está disponível neste
 \href{scripts/analise-exploratoria-exercicios.R}{script}.
 
+\chapter{Probabilidade e variáveis
+aleatórias}\label{probabilidade-e-variaveis-aleatorias}
+
+\section{Conceitos básicos sobre distribuições de
+probabilidade}\label{conceitos-basicos-sobre-distribuicoes-de-probabilidade}
+
+O objetivo desta sessão é mostrar o uso de funções do R em problemas de
+probabilidade. Exercícios que podem (e devem!) ser resolvidos
+analiticamente, serão utilizados para ilustrar o uso do programa e
+alguns de seus recursos para análises numéricas.
+
+Os problemas desta sessão foram retirados do livro de
+\href{https://www.ime.usp.br/~pam/EstBas.html}{Bussab e Morettin
+(2017)}. Veja também os códigos do R dos exemplos do livro para os
+capítulos 6 e 7, disponíveis
+\href{https://rpubs.com/EstatBasica/Introd}{aqui}.
+
+\textbf{Exemplo 1}: (Adaptado de Bussab e Morettin, cap. 7 ex. 1)
+
+Dada a função
+
+\[
+\
+  f(x) = \left\{ \begin{array}{ll}
+      2 e^{-2x} & \mbox{ , se $ \; x \geq 0$} \cr
+      0   & \mbox{ , se  $ \; x < 0$}
+    \end{array} \right.
+\
+\]
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Mostre que está função é uma f.d.p.
+\item
+  Calcule a probabilidade de que \(X > 1\)
+\item
+  calcule a probabilidade de que \(0.2 < X < 0.8\)
+\end{enumerate}
+
+Para ser f.d.p.~a função não deve ter valores negativos e deve integrar
+1 em seu domínio. Vamos começar definindo esta função como uma
+\emph{função} no R para qual daremos o nome de \texttt{f1}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f1 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}
+\NormalTok{    fx <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(x }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{x))}
+    \KeywordTok{return}\NormalTok{(fx)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+A seguir fazemos o gráfico da função. Como a função tem valores
+positivos para \(x\) no intervalo de zero a infinito, temos que definir
+um limite em \(x\) até onde vai o gráfico da função. Vamos achar este
+limite tentando vários valores, conforme mostram os comandos abaixo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(f1)}
+\KeywordTok{plot}\NormalTok{(f1, }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{5}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(f1, }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{7}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(f1, }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-326-1} \end{center}
+
+Para verificar que a a integral da função é igual a 1 podemos usar a
+função \texttt{integrate()}, que efetua integração numérica. A função
+recebe como argumentos o objeto com a função a ser integrada e os
+limites de integração. Neste exemplo o objeto é \texttt{f1} definido
+acima, e o domínio da função é \([0, \infty)\). A saída da função mostra
+o valor da integral acima, e o erro máximo da aproximação numérica.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(f1, }\DataTypeTok{lower =} \DecValTok{0}\NormalTok{, }\DataTypeTok{upper =} \OtherTok{Inf}\NormalTok{)}
+\DecValTok{1}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{5e-07}
+\end{Highlighting}
+\end{Shaded}
+
+Para fazer cálculos pedidos nos itens (b) e (c) lembramos que a
+probabilidade é dada pela área sob a curva da função no intervalo
+pedido. Desta forma as soluções seriam dadas pelas expressões
+
+\begin{eqnarray*}
+ p_b & = & P(X > 1) = \int_1^\infty f(x) dx = \int_1^\infty 2\,e^{-2x} dx \\
+ p_c & = & P(0,2 < X < 0,8) = \int_{0,2}^{0,8} f(x) dx = \int_{0.2}^{0.8} 2\,e^{-2x} dx \,
+\end{eqnarray*}
+
+cuja representação gráfica é mostrada na abaixo.
+
+Os comandos a seguir mostram como fazer o gráfico dessas funções. O
+comando \texttt{plot()} desenha o gráfico principal, e para destacar as
+áreas que correspondem às probabilidades pedidas vamos usar a função
+\texttt{polygon()}. Esta função adiciona a um gráfico um polígono que é
+definido pelas coordenadas de seus vértices. Para sombrear a área usa-se
+o argumento \texttt{density}. Finalmente, para escrever um texto no
+gráfico usamos a função \texttt{text()} com as coordenadas de posição do
+texto.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(f1, }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{5}\NormalTok{)}
+\KeywordTok{polygon}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{20}\NormalTok{)),}
+        \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{f1}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{,}\DataTypeTok{length.out =} \DecValTok{20}\NormalTok{))),}
+        \DataTypeTok{density =} \DecValTok{10}\NormalTok{)}
+\KeywordTok{polygon}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{20}\NormalTok{), }\FloatTok{0.8}\NormalTok{),}
+        \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{f1}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{20}\NormalTok{)), }\DecValTok{0}\NormalTok{),}
+        \DataTypeTok{col =} \StringTok{"gray"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{),}
+     \KeywordTok{c}\NormalTok{(}\KeywordTok{expression}\NormalTok{(p[b], p[c])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-328-1} \end{center}
+
+E para obter as probabilidades pedidas usamos \texttt{integrate()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(f1, }\DataTypeTok{lower =} \DecValTok{1}\NormalTok{, }\DataTypeTok{upper =} \OtherTok{Inf}\NormalTok{)}
+\FloatTok{0.1353353}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{2.1e-05}
+\KeywordTok{integrate}\NormalTok{(f1, }\DataTypeTok{lower =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{upper =} \FloatTok{0.8}\NormalTok{)}
+\FloatTok{0.4684235}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{5.2e-15}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemplo 2}: (Adaptado de Bussab e Morettin, cap. 7 ex. 10)
+
+A demanda diária de arroz em um supermercado, em centenas de quilos, é
+uma VA \(X\) com f.d.p.~dada por
+
+\begin{eqnarray}
+  f(x) = \left\{ \begin{array}{ll}
+      \frac{2}{3}x \mbox{ , se $0 \leq x < 1$} \cr
+      -\frac{x}{3} + 1 \mbox{ , se $ 1 \leq x < 3$} \cr
+      0            \mbox{ , se $x < 0$  ou  $x \geq 3$}
+    \end{array} \right.
+\end{eqnarray}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Calcular a probabilidade de que sejam vendidos mais que 150 kg.
+\item
+  Calcular a venda esperada em 30 dias.
+\end{enumerate}
+
+Novamente começamos definindo um objeto do R que contém a função dada
+acima.
+
+Neste caso definimos um vetor do mesmo tamanho do argumento \texttt{x}
+para armazenar os valores de \(f(x)\) e a seguir preenchemos os valores
+deste vetor para cada faixa de valor de \(x\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}
+\NormalTok{  fx <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\KeywordTok{length}\NormalTok{(x))}
+\NormalTok{  fx[x }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+\NormalTok{  fx[x }\OperatorTok{>=}\StringTok{ }\DecValTok{0} \OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\DecValTok{2}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{x[x }\OperatorTok{>=}\StringTok{ }\DecValTok{0} \OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{1}\NormalTok{]}
+\NormalTok{  fx[x }\OperatorTok{>=}\StringTok{ }\DecValTok{1} \OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{3}\NormalTok{] <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{x[x }\OperatorTok{>=}\StringTok{ }\DecValTok{1} \OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<}\StringTok{ }\DecValTok{3}\NormalTok{] }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{  fx[x }\OperatorTok{>=}\StringTok{ }\DecValTok{3}\NormalTok{] <-}\StringTok{ }\DecValTok{0}
+  \KeywordTok{return}\NormalTok{(fx)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+A seguir verificamos que a integral da função é 1 e fazemos o seu
+gráfico mostrado abaixo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(f2, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{) ## verificando que a integral vale 1}
+\DecValTok{1}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{1.1e-15}
+\KeywordTok{plot}\NormalTok{(f2, }\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{)     ## fazendo o gráfico da função}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-331-1} \end{center}
+
+Agora vamos responder às questões levantadas. Na questão (a) pede-se a
+probabilidade de que sejam vendidos mais que 150 kg (1,5 centenas de
+quilos), portanto a probabilidade \(P[X > 1,5]\). A probabilidade
+corresponde à área sob a função no intervalo pedido, ou seja,
+\(P[X > 1,5] = \int_{1,5}^\infty f(x) dx\), que pode ser vista na figura
+abaixo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(f2, }\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\KeywordTok{polygon}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\DecValTok{3}\NormalTok{), }\DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{f2}\NormalTok{(}\FloatTok{1.5}\NormalTok{), }\DecValTok{0}\NormalTok{), }\DataTypeTok{dens =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-332-1} \end{center}
+
+A integral pode então ser resolvida numericamente com o comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(f2, }\FloatTok{1.5}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\FloatTok{0.375}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{4.2e-15}
+\end{Highlighting}
+\end{Shaded}
+
+A venda esperada em trinta dias é 30 vezes o valor esperado de venda em
+um dia. Para calcular a esperança \(E[X] = \int x f(x) dx\) definimos
+uma nova função e resolvemos a integral. A função \texttt{integrate()}
+retorna uma lista onde um dos elementos (\texttt{value}) é o valor da
+integral.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ef2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{ x }\OperatorTok{*}\StringTok{ }\KeywordTok{f2}\NormalTok{(x) \}}
+\KeywordTok{integrate}\NormalTok{(ef2, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\FloatTok{1.333333}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{7.3e-05}
+\DecValTok{30} \OperatorTok{*}\StringTok{ }\KeywordTok{integrate}\NormalTok{(ef2, }\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{)}\OperatorTok{$}\NormalTok{value}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{40}
+\end{Highlighting}
+\end{Shaded}
+
+Finalmente lembramos que os exemplos discutidos aqui são simples e não
+requerem soluções numéricas, devendo ser resolvidos analiticamente.
+Utilizamos estes exemplos somente para ilustrar a obtenção de soluções
+numéricas com o uso do R, que na prática deve ser utilizado em problemas
+mais complexos onde soluções analíticas não são triviais ou mesmo
+impossíveis.
+
+\section*{Exercícios}\label{exercicios-13}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  (Adaptado de Bussab e Morettin, cap. 7, ex. 28). Em uma determinada
+  localidade a distribuição de renda, em u.m. (unidade monetária) é uma
+  variável aleatória \(X\) com função de distribuição de probabilidade:
+  \[
+  f(x) = \left\{ \begin{array}{ll}
+      \frac{1}{10}x + \frac{1}{10} & \mbox{ se $0 \leq x \leq 2$} \cr
+      -\frac{3}{40}x + \frac{9}{20} & \mbox{ se $ 2 < x \leq 6$} \cr
+      0      &      \mbox{ se $x < 0$  ou  $x > 6$}
+    \end{array} \right.
+  \]
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Mostre que \(f(x)\) é uma f.d.p.
+  \item
+    Qual a renda média nesta localidade?
+  \item
+    Calcule a probabilidade de encontrar uma pessoa com renda acima de
+    4,5 u.m. e indique o resultado no gráfico da distribuição.
+  \end{enumerate}
+\end{enumerate}
+
+\section{Distribuições de
+Probabilidade}\label{distribuicoes-de-probabilidade}
+
+O R inclui funcionalidade para operações com distribuições de
+probabilidades. Para cada distribuição há 4 operações básicas indicadas
+pelas letras:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{d} calcula a densidade de probabilidade \(f(x)\) no ponto
+  \(x\)
+\item
+  \texttt{p} calcula a função de probabilidade acumulada \(F(x)\) no
+  ponto \(x\)
+\item
+  \texttt{q} calcula o quantil correspondente a uma dada probabilidade
+\item
+  \texttt{r} retira uma amostra aleatória da distribuição
+\end{itemize}
+
+Para usar os funções deve-se combinar uma das letras acima com uma
+abreviatura do nome da distribuição. Por exemplo, para calcular
+probabilidades usamos: \texttt{pnorm()} para normal, \texttt{pexp()}
+para exponencial, \texttt{pbinom()} para binomial, \texttt{ppois()} para
+Poisson e assim por diante.
+
+Vamos ver com mais detalhes algumas distribuições de probabilidades.
+
+\subsection{Distribuição Normal}\label{distribuicao-normal}
+
+A funcionalidade para distribuição normal é implementada por argumentos
+que combinam as letras acima com o termo \texttt{norm}. Vamos ver alguns
+exemplos com a distribuição normal padrão. Por \texttt{default} as
+funções assumem a distribuição normal padrão \(N(\mu=0, \sigma^2=1)\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dnorm}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.2419707}
+\KeywordTok{pnorm}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.1586553}
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.959964}
+\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\OperatorTok{-}\FloatTok{0.50219235}  \FloatTok{0.13153117} \OperatorTok{-}\FloatTok{0.07891709}  \FloatTok{0.88678481}  \FloatTok{0.11697127}
+\NormalTok{ [}\DecValTok{6}\NormalTok{]  }\FloatTok{0.31863009} \OperatorTok{-}\FloatTok{0.58179068}  \FloatTok{0.71453271} \OperatorTok{-}\FloatTok{0.82525943} \OperatorTok{-}\FloatTok{0.35986213}
+\end{Highlighting}
+\end{Shaded}
+
+O primeiro valor acima, de \texttt{dnorm(-1)}, corresponde ao valor da
+densidade da normal
+
+\[
+f(x) = \frac{1}{\sigma\sqrt{2 \pi}}\exp \left[ -\frac{1}{2}
+    \left( \frac{x - \mu}{\sigma} \right)^2 \right]
+\]
+
+com parâmetros \((\mu=0, \sigma^2=1)\) no ponto \(x = -1\). Portanto, o
+mesmo valor seria obtido substituindo \(x\) por \(-1\) na expressão da
+normal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu <-}\StringTok{ }\DecValTok{0}
+\NormalTok{sigma <-}\StringTok{ }\DecValTok{1}
+\NormalTok{x <-}\StringTok{ }\OperatorTok{-}\DecValTok{1}
+\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{(sigma }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi))) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{((}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{((x }\OperatorTok{-}\StringTok{ }\NormalTok{mu)}\OperatorTok{/}\NormalTok{sigma)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.2419707}
+\end{Highlighting}
+\end{Shaded}
+
+A função \texttt{pnorm(-1)} calcula a probabilidade \(P(X \leq -1)\). O
+comando \texttt{qnorm(0.975)} calcula o valor de \(a\) tal que
+\(P(X \leq a) = 0.975\). Finalmente, o comando \texttt{rnorm(10)} gera
+uma amostra aleatória de 10 elementos da normal padrão. Note que os
+valores que você obtém rodando este comando podem ser diferentes dos
+mostrados acima.
+
+As funções acima possuem argumentos adicionais, para os quais valores
+padrão (\emph{default}) foram assumidos, e que podem ser modificados.
+Usamos \texttt{args()} para ver os argumentos de uma função e
+\texttt{help()} para visualizar a documentação detalhada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(rnorm)}
+\ControlFlowTok{function}\NormalTok{ (n, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }
+\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+As funções relacionadas à distribuição normal possuem os argumentos
+\texttt{mean} e \texttt{sd} para definir média e desvio padrão da
+distribuição que podem ser modificados como nos exemplos a seguir. Note
+nestes exemplos que os argumentos podem ser passados de diferentes
+formas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{8}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{115.6797}
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{m =} \DecValTok{100}\NormalTok{, }\DataTypeTok{s =} \DecValTok{8}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{115.6797}
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{115.6797}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Observação}: na segunda linha de comando acima, foi utilizado um
+recurso do R chamado \emph{partial matching}. Isso significa que nomes
+de argumentos de funções podem ser especificados pelo seu nome parcial,
+ou seja, com apenas o início do nome, desde que não haja ambiguação com
+outros argumentos.
+\end{quote}
+
+Para informações mais detalhadas pode-se usar \texttt{help()}. O comando
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(rnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+irá exibir em uma janela a documentação da função que pode também ser
+chamada com \texttt{?rnorm}. Note que ao final da documentação são
+apresentados exemplos que podem ser rodados pelo usuário e que auxiliam
+na compreensão da funcionalidade. Note também que as 4 funções
+relacionadas à distribuição normal são documentadas conjuntamente,
+portanto \texttt{help(rnorm)}, \texttt{help(qnorm)},
+\texttt{help(dnorm)} e \texttt{help(pnorm)} irão exibir a mesma
+documentação.
+
+Cálculos de probabilidades usuais, para os quais utilizávamos tabelas
+estatísticas podem ser facilmente obtidos como no exemplo a seguir.
+
+Seja \(X\) uma VA com distribuição \(N(100, 100)\). Calcular as
+probabilidades:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P[X < 95]\)
+\item
+  \(P[90 < X < 110]\)
+\item
+  \(P[X > 95]\)
+\end{itemize}
+
+Calcule estas probabilidades de forma usual, usando a tabela da normal.
+Depois compare com os resultados fornecidos pelo R. Os comandos do para
+obter as probabilidades pedidas são:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## P[X < 95]}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.3085375}
+\NormalTok{## P[90 < X < 110]}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{) }\OperatorTok{-}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DecValTok{90}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.6826895}
+\NormalTok{## P[X > 95] = 1 - P[X < 95]}
+\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.6914625}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{) }\CommentTok{# melhor}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.6914625}
+\end{Highlighting}
+\end{Shaded}
+
+Note que a última probabilidade foi calculada de duas formas diferentes,
+a segunda usando o argumento \texttt{lower.tail} que implementa um
+algorítmo de cálculo de probabilidades mais estável numericamente, e
+essa forma é preferida no lugar de usar o complementar.
+
+A seguir vamos ver comandos para fazer gráficos de distribuições de
+probabilidade. Vamos fazer gráficos de funções de densidade e de
+probabilidade acumulada. Estude cuidadosamente os comandos abaixo e
+verifique os gráficos por eles produzidos.
+
+A figura abaixo mostra gráficos da densidade (esquerda) e probabilidade
+acumulada (direita) da normal padrão, produzidos com os comandos a
+seguir. Para fazer o gráfico consideramos valores de \(X\) entre -3 e 3
+que correspondem a +/- três desvios padrões da média, faixa que
+concentra 99,73\% da massa de probabilidade da distribuição normal.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(dnorm, }\DataTypeTok{from =} \OperatorTok{-}\DecValTok{3}\NormalTok{, }\DataTypeTok{to =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(pnorm, }\DataTypeTok{from =} \OperatorTok{-}\DecValTok{3}\NormalTok{, }\DataTypeTok{to =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-341-1} \end{center}
+
+\begin{quote}
+VEJA a página de ajuda da função \texttt{plot.function()} para entender
+os argumentos e demais funcionalidades desta função gráfica para plotar
+gráficos de funções
+\end{quote}
+
+A seguinte figura mostra gráficos da densidade (esquerda) e
+probabilidade acumulada (direita) da \(N(100, 64)\). Para fazer estes
+gráficos tomamos uma sequência de valores de \(X\) entre 70 e 130 e para
+cada um deles calculamos o valor das funções \(f(x)\) e \(F(x)\). Depois
+unimos os pontos \((x,f(x))\) em um gráfico e \((x,F(x))\) no outro.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{70}\NormalTok{, }\DecValTok{130}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
+\NormalTok{fx <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, fx, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{)}
+\NormalTok{Fx <-}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(x, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, Fx, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-342-1} \end{center}
+
+Note que, alternativamente, os mesmos gráficos poderiam ser produzidos
+com os comandos a seguir, onde fazemos usa da função
+\texttt{plot.function()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{dnorm}\NormalTok{(x, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{from =} \DecValTok{70}\NormalTok{, }\DataTypeTok{to =} \DecValTok{130}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{pnorm}\NormalTok{(x, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DataTypeTok{from =} \DecValTok{70}\NormalTok{, }\DataTypeTok{to =} \DecValTok{130}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-343-1} \end{center}
+
+Comandos usuais do R podem ser usados para modificar a aparência dos
+gráficos. Por exemplo, podemos incluir títulos e mudar texto dos eixos
+conforme mostrado abaixo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(dnorm, }\DataTypeTok{from =} \OperatorTok{-}\DecValTok{3}\NormalTok{, }\DataTypeTok{to =} \DecValTok{3}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Valores de X"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Densidade de probabilidade"}\NormalTok{)}
+\KeywordTok{title}\NormalTok{(}\StringTok{"Distribuicão Normal}\CharTok{\textbackslash{}n}\StringTok{X ~ N(100, 64)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-344-1} \end{center}
+
+Os demais comandos abaixo mostram como colocar diferentes densidades em
+um mesmo gráfico, usando o argumento \texttt{add\ =\ TRUE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{dnorm}\NormalTok{(x, }\DecValTok{100}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DecValTok{60}\NormalTok{, }\DecValTok{140}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{'f(x)'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{dnorm}\NormalTok{(x, }\DecValTok{90}\NormalTok{, }\DecValTok{8}\NormalTok{), }\DecValTok{60}\NormalTok{, }\DecValTok{140}\NormalTok{, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{dnorm}\NormalTok{(x, }\DecValTok{100}\NormalTok{, }\DecValTok{15}\NormalTok{), }\DecValTok{60}\NormalTok{, }\DecValTok{140}\NormalTok{, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\DecValTok{120}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\DataTypeTok{fill =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"N(100,64)"}\NormalTok{, }\StringTok{"N(90,64)"}\NormalTok{, }\StringTok{"N(100,225)"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-345-1} \end{center}
+
+\subsection{Distribuição Binomial}\label{distribuicao-binomial}
+
+Cálculos para a distribuição binomial são implementados combinando as
+letras básicas vistas acima com o termo \texttt{binom}. Vamos primeiro
+investigar argumentos e documentação com \texttt{args()} e
+\texttt{help()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(dbinom)}
+\ControlFlowTok{function}\NormalTok{ (x, size, prob, }\DataTypeTok{log =} \OtherTok{FALSE}\NormalTok{) }
+\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(dbinom)}
+\end{Highlighting}
+\end{Shaded}
+
+Seja \(X\) uma VA com distribuição Binomial, com \(n=10\) e \(p=0.35\).
+Vamos ver os comandos do R para:
+
+\begin{itemize}
+\tightlist
+\item
+  Fazer o gráfico da função de densidade
+\item
+  Idem para a função de probabilidade
+\item
+  Calcular \(P[X = 7]\)
+\item
+  Calcular \(P[X \leq 7]\)
+\item
+  Calcular \(P[X > 7]\)
+\item
+  Calcular \(P[3 < X \leq 6]\)
+\end{itemize}
+
+Note que sendo uma distribuição discreta de probabilidades os gráficos
+são diferentes dos obtidos para distribuição normal e os cálculos de
+probabilidades devem considerar as probabilidades nos pontos. Os
+gráficos das funções de densidade e probabilidade são mostrados abaixo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{10}
+\NormalTok{fx <-}\StringTok{ }\KeywordTok{dbinom}\NormalTok{(x, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, fx, }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{)}
+\NormalTok{Fx <-}\StringTok{ }\KeywordTok{pbinom}\NormalTok{(x, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, Fx, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-348-1} \end{center}
+
+As probabilidades pedidas são obtidas com os comandos a seguir.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## P[X = 7]}
+\KeywordTok{dbinom}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.02120302}
+\NormalTok{## P[X <= 7]}
+\KeywordTok{pbinom}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.9951787}
+\CommentTok{# OU}
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{dbinom}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{7}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.9951787}
+\NormalTok{## P[X > 7]}
+\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{pbinom}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.004821265}
+\KeywordTok{pbinom}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.35}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{) }\CommentTok{# melhor}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.004821265}
+\NormalTok{## P[3 < X <= 6]}
+\KeywordTok{pbinom}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.35}\NormalTok{) }\OperatorTok{-}\StringTok{ }\KeywordTok{pbinom}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.35}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.4601487}
+\CommentTok{# OU}
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{dbinom}\NormalTok{(}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DecValTok{10}\NormalTok{, }\FloatTok{0.35}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.4601487}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Distribuição de Poisson}\label{distribuicao-de-poisson}
+
+\textbf{Definição:} Seja um experimento realizado nas seguintes
+condições: i. As ocorrências são independentes ii. As ocorrências são
+aleatórias iii. A variável aleatória \(X\) é o número de ocorrências de
+um evento \textbf{ao longo de algum intervalo}\} (de tempo ou espaço)
+
+Denominamos esse experimento de \textbf{processo de Poisson}. Vamos
+associar a V.A. \(X\) o número de ocorrências em um intervalo. Portanto
+\(X\) poderá assumir os valores \(0, 1, \ldots,\) (sem limite superior).
+
+A distribuição de Poisson é utilizada para descrever a probabilidade do
+\textbf{número de ocorrências} em um \textbf{intervalo contínuo} (de
+tempo ou espaço). No caso da distribuição binomial, a variável de
+interesse era o número de sucessos em um \textbf{intervalo discreto}
+(\(n\) ensaios de Bernoulli). A unidade de medida (tempo ou espaço) é
+uma variável contínua, mas a \emph{variável aleatória}, o \textbf{número
+de ocorrências}\}, é discreta.
+
+Uma V.A. \(X\) segue o modelo de Poisson se surge a partir de um
+processo de Poisson, e sua \textbf{função de probabilidade}\} for dada
+por
+
+\[
+    P[X = x] = \frac{e^{-\mu} \mu^x}{x!}, \quad \quad x = 0, 1, \ldots
+\]
+
+onde
+
+\[
+    \mu = \lambda \cdot t
+\]
+
+O parâmetro \(\mu\) indica a taxa de ocorrência (\(\lambda\)) por
+unidade de medida (\(t\)), ou seja,
+
+\[
+    \lambda = \text{taxa de ocorrência} \quad \text{e} \quad t =
+    \text{intervalo de tempo ou espaço}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Notação: \(X \sim \text{Pois}(\mu)\)
+\item
+  Esperança e variância: \(\text{E}(X) = \mu = \text{Var}(X)\)
+\end{itemize}
+
+Alguns exemplos de gráficos da distribuição de Poisson com diferentes
+valores do parâmetro \(\mu\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\KeywordTok{dpois}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{1}\NormalTok{), }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"X"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"P[X = x]"}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{expression}\NormalTok{(mu }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{),}
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{4}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\KeywordTok{dpois}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{5}\NormalTok{), }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"X"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"P[X = x]"}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{expression}\NormalTok{(mu }\OperatorTok{==}\StringTok{ }\DecValTok{5}\NormalTok{),}
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{4}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\KeywordTok{dpois}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{10}\NormalTok{), }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"X"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"P[X = x]"}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{expression}\NormalTok{(mu }\OperatorTok{==}\StringTok{ }\DecValTok{10}\NormalTok{),}
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{4}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\KeywordTok{dpois}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{15}\NormalTok{), }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"X"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"P[X = x]"}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{expression}\NormalTok{(mu }\OperatorTok{==}\StringTok{ }\DecValTok{15}\NormalTok{),}
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-350-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo}: As chamadas telefônicas chegam a uma delegacia de
+  polícia à uma taxa de 8 chamadas por hora, em dias úteis.
+
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi}.}
+  \tightlist
+  \item
+    Quantas chamadas de emergência são esperadas em um período de 15
+    minutos?
+  \item
+    Qual a probabilidade de nenhuma chamada em um período de 15 minutos?
+  \item
+    Qual a probabilidade de ocorrer pelo menos duas chamadas no período
+    de 15 minutos?
+  \item
+    Qual a probabilidade de ocorrer exatamente duas chamadas em 20
+    minutos?
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## a) E(X) = mu = lambda . t}
+\NormalTok{lambda <-}\StringTok{ }\DecValTok{8}\OperatorTok{/}\DecValTok{60} \CommentTok{# 8 chamadas/60 minutos}
+\NormalTok{t <-}\StringTok{ }\DecValTok{15} \CommentTok{# 15 minutos}
+\NormalTok{(mu <-}\StringTok{ }\NormalTok{lambda }\OperatorTok{*}\StringTok{ }\NormalTok{t)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
+\NormalTok{## b) P[x = 0]}
+\KeywordTok{ppois}\NormalTok{(}\DecValTok{0}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.1353353}
+\KeywordTok{dpois}\NormalTok{(}\DecValTok{0}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.1353353}
+\NormalTok{## c) P[X >= 2] = 1 - P[X < 2]}
+\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{ppois}\NormalTok{(}\DecValTok{1}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.5939942}
+\KeywordTok{ppois}\NormalTok{(}\DecValTok{1}\NormalTok{, mu, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.5939942}
+\NormalTok{## d) P[X = 2]}
+\NormalTok{t <-}\StringTok{ }\DecValTok{20}
+\NormalTok{(mu <-}\StringTok{ }\NormalTok{lambda }\OperatorTok{*}\StringTok{ }\NormalTok{t)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{2.666667}
+\KeywordTok{dpois}\NormalTok{(}\DecValTok{2}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.2470523}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo:} Suponha que 150 erros de impressão são distribuídos
+  aleatoriamente em um livro de 200 páginas. Encontre a probabilidade de
+  que em 2 páginas contenham:
+
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi}.}
+  \tightlist
+  \item
+    nenhum erro de impressão
+  \item
+    três erros de impressão
+  \item
+    um ou mais erros de impressão
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## lambda = taxa de ocorrência por página}
+\NormalTok{lambda <-}\StringTok{ }\DecValTok{150}\OperatorTok{/}\DecValTok{200}
+\NormalTok{## intervalo de interesse}
+\NormalTok{t <-}\StringTok{ }\DecValTok{2}
+\NormalTok{## Parâmetro mu = lambda . t}
+\NormalTok{(mu <-}\StringTok{ }\NormalTok{lambda }\OperatorTok{*}\StringTok{ }\NormalTok{t)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.5}
+\NormalTok{## a) P[X = 0]}
+\KeywordTok{dpois}\NormalTok{(}\DecValTok{0}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.2231302}
+\NormalTok{## b) P[X = 3]}
+\KeywordTok{dpois}\NormalTok{(}\DecValTok{3}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.1255107}
+\NormalTok{## c) P[X >= 1] = 1 - P[X < 1]}
+\DecValTok{1} \OperatorTok{-}\StringTok{ }\KeywordTok{ppois}\NormalTok{(}\DecValTok{0}\NormalTok{, mu)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.7768698}
+\KeywordTok{ppois}\NormalTok{(}\DecValTok{0}\NormalTok{, mu, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.7768698}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Distribuição Uniforme}\label{distribuicao-uniforme}
+
+\subsubsection{Uniforme Contínua}\label{uniforme-continua}
+
+Para a distribuição uniforme \emph{contínua} usa-se as funções
+\texttt{*unif()} onde \texttt{*} deve ser \(p\), \(q\), \(d\) ou \(r\)
+como mencionado anteriormente. Nos comandos a seguir inspecionamos os
+argumentos, sorteamos 5 valores da \(U(0,1)\) e calculamos a
+probabilidade acumulada até 0,75.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(runif)}
+\ControlFlowTok{function}\NormalTok{ (n, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{1}\NormalTok{) }
+\OtherTok{NULL}
+\KeywordTok{runif}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.5358112} \FloatTok{0.7108038} \FloatTok{0.5383487} \FloatTok{0.7489722} \FloatTok{0.4201015}
+\KeywordTok{punif}\NormalTok{(}\FloatTok{0.75}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.75}
+\end{Highlighting}
+\end{Shaded}
+
+Portanto, o \emph{default} é uma distribuição uniforme no intervalo
+\([0,1]\) e os argumentos opcionais são \texttt{min} e \texttt{max}. Por
+exemplo, para simular 5 valores de \(X \sim U(5, 20)\) usamos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{runif}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DataTypeTok{min =} \DecValTok{5}\NormalTok{, }\DataTypeTok{max =} \DecValTok{20}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\FloatTok{7.571303} \FloatTok{16.554524} \FloatTok{18.229304} \FloatTok{13.236451}  \FloatTok{9.165856}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Uniforme Discreta}\label{uniforme-discreta}
+
+Não há entre as funções básicas do R uma função específica para a
+distribuição uniforme discreta com opções de prefixos \(r,d,p\) e \(d\),
+provavelmente devido a sua simplicidade, embora algumas outras funções
+possam ser usadas. Por exemplo para sortear números pode-se usar
+\texttt{sample()}, como no exemplo a seguir onde são sorteados 15
+valores de uma uniforma discreta com valores (inteiros) entre 1 e 10
+(\(X \sim U_d(1,10)\)).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{15}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{5} \DecValTok{10}  \DecValTok{4} \DecValTok{10}  \DecValTok{7}  \DecValTok{9}  \DecValTok{2}  \DecValTok{7} \DecValTok{10}  \DecValTok{2}  \DecValTok{4}  \DecValTok{9}  \DecValTok{8}  \DecValTok{9}  \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{A função
+\texttt{sample()}}{A função sample()}}\label{a-funcao-sample}
+
+A função \texttt{sample()} \textbf{não} é restrita à distribuição
+uniforme discreta, podendo ser usada para sorteios, com ou sem reposição
+(argumento \texttt{replace}, que por padrão é \texttt{FALSE}, ou seja,
+sem reposição), com a possibilidade de associar diferentes
+probabilidades a cada elemento (argumento \texttt{prob}, que por padrão
+associa probabilidades iguais para todos os elementos).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(sample)}
+\ControlFlowTok{function}\NormalTok{ (x, size, }\DataTypeTok{replace =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{prob =} \OtherTok{NULL}\NormalTok{) }
+\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+Vejamos alguns exemplos:
+
+\begin{itemize}
+\tightlist
+\item
+  Sorteio de 3 números entre os inteiros de 0 a 20
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sample}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{20}\NormalTok{, }\DataTypeTok{size =} \DecValTok{3}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{10} \DecValTok{15} \DecValTok{16}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Sorteio de 5 números entre os elementos de um certo vetor \texttt{x}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{18}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(x, }\DataTypeTok{size =} \DecValTok{5}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{12} \DecValTok{22} \DecValTok{18} \DecValTok{34} \DecValTok{19}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Sorteio de 10 números entre os possíveis resultados do lançamento de
+  um dado, com reposição
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{2} \DecValTok{4} \DecValTok{2} \DecValTok{1} \DecValTok{2} \DecValTok{4} \DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Idem ao anterior, porém agora com a probabilidade de cada face
+  proporcional ao valor da face.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{,  }\DataTypeTok{prob =} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{5} \DecValTok{5} \DecValTok{5} \DecValTok{5} \DecValTok{6} \DecValTok{4} \DecValTok{5} \DecValTok{5} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+Este último exemplo ilustra ainda que os valores passados para o
+argumento \texttt{prob} não precisam ser probabilidades, são apenas
+entendidos como \textbf{pesos}. A própria função trata isto internamente
+fazendo a ponderação adequada.
+
+\section{Complementos sobre distribuições de
+probabilidade}\label{complementos-sobre-distribuicoes-de-probabilidade}
+
+Agora que já nos familiarizamos com o uso das distribuições de
+probabilidade vamos ver alguns detalhes adicionais sobre seu
+funcionamento.
+
+\subsection{Probabilidades e
+integrais}\label{probabilidades-e-integrais}
+
+A probabilidade de um evento em uma distribuição contínua é uma área sob
+a curva da distribuição. Vamos reforçar esta idéia revisitando um
+exemplo visto na distribuição normal.
+
+Seja \(X\) uma VA com distribuição \(N(100, 100)\). Para calcular a
+probabilidade \(P[X < 95]\) usamos o comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{10}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.3085375}
+\end{Highlighting}
+\end{Shaded}
+
+Vamos agora ``esquecer'' o comando \texttt{pnorm()} e ver uma outra
+forma de resolver usando integração numérica. Lembrando que a normal tem
+a função de densidade dada por
+
+\[
+f(x) = \frac{1}{\sigma\sqrt{2 \pi}}\exp \left[ -\frac{1}{2}
+    \left( \frac{x - \mu}{\sigma} \right)^2 \right]
+\]
+
+Podemos então definir uma função no R para calcular qualquer densidade
+em \(x\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fn <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, mu, sigma)\{}
+\NormalTok{    (}\DecValTok{1}\OperatorTok{/}\NormalTok{(sigma }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{pi))) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{((}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{((x }\OperatorTok{-}\StringTok{ }\NormalTok{mu)}\OperatorTok{/}\NormalTok{sigma)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Para obter o gráfico desta distribuição, usamos o fato que a maior parte
+da função está no intervalo entre a média +/- três desvios padrões,
+portanto entre 70 e 130. Podemos então fazer como nos comandos que se
+seguem. Para marcar no gráfico a área que corresponde a probabilidade
+pedida criamos um polígono com coordenadas \texttt{ax} e \texttt{ay}
+definindo o perímetro desta área.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{70}\NormalTok{, }\DecValTok{130}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{200}\NormalTok{)}
+\NormalTok{fx <-}\StringTok{ }\KeywordTok{fn}\NormalTok{(x, }\DataTypeTok{mu =} \DecValTok{100}\NormalTok{, }\DataTypeTok{sigma =} \DecValTok{10}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, fx, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{)}
+\NormalTok{ax <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{70}\NormalTok{, }\DecValTok{70}\NormalTok{, x[x }\OperatorTok{<}\StringTok{ }\DecValTok{95}\NormalTok{], }\DecValTok{95}\NormalTok{, }\DecValTok{95}\NormalTok{)}
+\NormalTok{ay <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{fn}\NormalTok{(}\DecValTok{70}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{), fx[x }\OperatorTok{<}\StringTok{ }\DecValTok{95}\NormalTok{], }\KeywordTok{fn}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{),}\DecValTok{0}\NormalTok{)}
+\KeywordTok{polygon}\NormalTok{(ax, ay, }\DataTypeTok{density =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-363-1} \end{center}
+
+Para calcular a área pedida sem usar a função \texttt{pnorm()} podemos
+usar a função de integração numérica. Note que esta função,
+diferentemente da \texttt{pnorm()} reporta ainda o erro de aproximação
+numérica.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(fn, }\DataTypeTok{mu =} \DecValTok{100}\NormalTok{, }\DataTypeTok{sigma =} \DecValTok{10}\NormalTok{, }\DataTypeTok{lower =} \OperatorTok{-}\OtherTok{Inf}\NormalTok{, }\DataTypeTok{upper =} \DecValTok{95}\NormalTok{)}
+\FloatTok{0.3085375}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{2.1e-06}
+\end{Highlighting}
+\end{Shaded}
+
+Portanto para os demais ítens do problema, \(P[90 < X < 110]\), e
+\(P[X > 95]\) fazemos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{integrate}\NormalTok{(fn, }\DataTypeTok{mu =} \DecValTok{100}\NormalTok{, }\DataTypeTok{sigma =} \DecValTok{10}\NormalTok{, }\DataTypeTok{lower =} \DecValTok{90}\NormalTok{, }\DataTypeTok{upper =} \DecValTok{110}\NormalTok{)}
+\FloatTok{0.6826895}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{7.6e-15}
+\KeywordTok{integrate}\NormalTok{(fn, }\DataTypeTok{mu =} \DecValTok{100}\NormalTok{, }\DataTypeTok{sigma =} \DecValTok{10}\NormalTok{, }\DataTypeTok{lower =} \DecValTok{95}\NormalTok{, }\DataTypeTok{upper =} \OperatorTok{+}\OtherTok{Inf}\NormalTok{)}
+\FloatTok{0.6914625}\NormalTok{ with absolute error }\OperatorTok{<}\StringTok{ }\FloatTok{8.1e-05}
+\end{Highlighting}
+\end{Shaded}
+
+e os resultados acima evidentemente coincidem com os obtidos
+anterioriormente usando \texttt{pnorm()},
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{) }\OperatorTok{-}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DecValTok{90}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.6826895}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{95}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.6914625}
+\end{Highlighting}
+\end{Shaded}
+
+Note ainda que na prática não precisamos definir e usar a função
+\texttt{fn()}, pois ela fornece o mesmo resultado que a função
+\texttt{dnorm()}.
+
+\section*{Exercícios}\label{exercicios-14}
+
+
+Nos exercícios abaixo iremos também usar o R como uma calculadora
+estatística para resolver alguns exemplos/exercícios de probabilidade
+tipicamente apresentados em um curso de estatística básica.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Para \(X \sim N(90, 100)\), obtenha:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    \(P(X \leq 115)\)
+  \item
+    \(P(X \geq 80)\)
+  \item
+    \(P(X \leq 75)\)
+  \item
+    \(P(85 \leq X \leq 110)\) 
+  \end{enumerate}
+\item
+  Sendo \(X\) uma variável seguindo o modelo Binomial com parâmetros
+  \(n = 15\) e \(p = 0.4\), pergunta-se:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    \(P(X \geq 14)\)
+  \item
+    \(P(8 < X \leq 10)\) 
+  \end{enumerate}
+\item
+  Uma empresa informa que 30\% de suas contas a receber de outras
+  empresas encontram-se vencidas. Se o contador da empresa seleciona
+  aleatoriamente 5 contas, determine a probabilidade de:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Nenhuma conta estar vencida
+  \item
+    Exatamente duas contas estarem vencidas
+  \item
+    Três ou mais contas estarem vencidas
+  \end{enumerate}
+\item
+  Uma empresa recebe 720 emails em um intervalo de 8 horas. Qual a
+  probabilidade de que:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Em 6 minutos receba pelo menos 3 emails?
+  \item
+    Em 4 minutos não receba nenhum email?
+  \end{enumerate}
+\item
+  O processo de empacotamento de uma fábrica de cereais foi ajustado de
+  maneira que uma média de \(\mu = 13,0\) kg de cereal seja colocado em
+  cada caixa. Sabe-se que existe uma pequena variabilidade no enchimento
+  dos pacotes devido à fatores aleatórios, e que o desvio-padrão do peso
+  de enchimento é de \(\sigma = 0,1\) kg. Assume-se que a distribuição
+  dos pesos tem distribuição normal. Com isso, determine as
+  probabilidades de que uma caixa escolhida ao acaso:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Pese entre 13,0 e 13,2 kg.
+  \item
+    Tenha um peso maior do que 13,25 kg.
+  \item
+    Pese entre 12,8 e 13,1 kg.
+  \item
+    Pese entre 13,1 e 13,2 kg.
+  \end{enumerate}
+\item
+  Faça os seguintes gráficos:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    da função de densidade de uma variável com distribuição de Poisson
+    com parâmetro \(\lambda = 5\)
+  \item
+    da densidade de uma variável \(X \sim N(90, 100)\)
+  \item
+    sobreponha ao gráfico anterior a densidade de uma variável
+    \(Y \sim N(90, 80)\) e outra \(Z \sim N(85, 100)\)
+  \item
+    densidades de distribuições \(\chi^2\) com 1, 2 e 5 graus de
+    liberdade.
+  \end{enumerate}
+\end{enumerate}
+
 \appendix
 
 
@@ -7352,7 +8475,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7205780}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x4ba8b00}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -7387,7 +8510,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x7204da8}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x4ba8160}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}

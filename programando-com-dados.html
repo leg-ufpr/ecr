@@ -209,6 +209,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#exercicios-12"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
+<li class="chapter" data-level="7.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#conceitos-basicos-sobre-distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
+<li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-13"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="7.2" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
+<li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
+<li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
+<li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
+<li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#a-funcao-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#complementos-sobre-distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-14"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
 </ul>
@@ -625,7 +640,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st1
    user  system elapsed 
-  <span class="fl">0.176</span>   <span class="fl">0.000</span>   <span class="fl">0.176</span> 
+  <span class="fl">0.100</span>   <span class="fl">0.000</span>   <span class="fl">0.101</span> 
 
 ## Tempo de execução usando a regra da reciclagem
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
@@ -633,8 +648,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st2
    user  system elapsed 
-  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.004</span> </code></pre></div>
-<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.176/0.004 = 44 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
+  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </code></pre></div>
+<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.101/0.002 = 50.5 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
 <div class="panel panel-primary">
 <div class="panel-heading">
 Uma nota de precaução
@@ -658,7 +673,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st1
    user  system elapsed 
-  <span class="fl">0.176</span>   <span class="fl">0.000</span>   <span class="fl">0.176</span> 
+  <span class="fl">0.100</span>   <span class="fl">0.000</span>   <span class="fl">0.102</span> 
 
 ## Cria um objeto de tamanho &quot;zero&quot; e vai &quot;crescendo&quot; esse vetor
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
@@ -669,8 +684,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st2
    user  system elapsed 
-  <span class="fl">0.532</span>   <span class="fl">0.080</span>   <span class="fl">0.611</span> </code></pre></div>
-<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.611/0.176 = 3.47 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
+  <span class="fl">0.364</span>   <span class="fl">0.032</span>   <span class="fl">0.395</span> </code></pre></div>
+<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.395/0.102 = 3.87 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
 <p>Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a memória para esse vetor já foi alocada previamente, de uma única vez.</p>
 <p><img src="img/R_club.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>

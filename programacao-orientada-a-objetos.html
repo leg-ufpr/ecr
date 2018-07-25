@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="analise-exploratoria-de-dados.html">
+<link rel="prev" href="probabilidade-e-variaveis-aleatorias.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -209,6 +209,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#exercicios-12"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
+<li class="chapter" data-level="7.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#conceitos-basicos-sobre-distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
+<li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-13"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="7.2" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
+<li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
+<li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
+<li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
+<li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#a-funcao-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#complementos-sobre-distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-14"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>A</b> Programação Orientada a Objetos</a></li>
 </ul>
@@ -262,7 +277,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean
 <span class="cf">function</span> (x, ...) 
 <span class="kw">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7205780</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x4ba8b00</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora veja o código fonte da função <code>mean.default</code>, que é o método específico para vetores numéricos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.default
@@ -290,7 +305,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
     }
     <span class="kw">.Internal</span>(<span class="kw">mean</span>(x))
 }
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7204da8</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x4ba8160</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora suponha que você ddeseja criar uma função que calcule a média para um objeto de uma classe diferente daquelas previamente definidas. Por exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das linhas de uma matriz.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
@@ -341,7 +356,7 @@ dl &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">r
           </div>
         </div>
       </div>
-<a href="analise-exploratoria-de-dados.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probabilidade-e-variaveis-aleatorias.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
