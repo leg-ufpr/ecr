@@ -2,7 +2,7 @@
 
 ## Funções e argumentos
 
-```{r external-code, cache=FALSE, include=FALSE}
+```{r external-code-cap2, cache=FALSE, include=FALSE}
 knitr::read_chunk("scripts/objetos-classes-exercicios.R")
 ```
 
