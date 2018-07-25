@@ -1275,7 +1275,7 @@ matrizes e data frames.
 6. Crie um data frame para armazenar duas variáveis: local (`A`, `B`,
    `C`, `D`), e contagem (42, 34, 59 e 18).
 7. Crie um data frame com as seguintes colunas:
-  - Nome,
+  - Nome
   - Sobrenome
   - Se possui animal de estimação
   - Caso possua, dizer o número de animais (caso contrário, colocar 0)

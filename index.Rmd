@@ -25,9 +25,13 @@ link-citations: yes
 
 # Prefácio {-}
 
-Alguma coisa aqui.
+Essa apostila é destinada inicialmente  aos alunos da disciplina CE083 -
+Estatística Computacional I, do curso de Estatística da UFPR.
 
-## Informação de Sessão
+## Informação de sessão {-}
+
+Abaixo seguem as informações do ambiente em que o documento foi gerado
+pela última vez.
 
 ```{r, echo = FALSE, results = "hold"}
 cat(format(Sys.time(), format = "%A, %d %B, %Y, %H:%M"),
