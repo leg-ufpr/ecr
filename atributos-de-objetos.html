@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="computacao-cientifica-e-interacao-com-o-r.html">
+<link rel="prev" href="outras-classes.html">
+<link rel="next" href="programacao-orientada-a-objetos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -174,29 +174,177 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estatística Computacional com R</h1>
-<p class="author"><em>Fernando P. Mayer</em></p>
-<p class="author"><em>Wagner H. Bonat</em></p>
-<p class="date"><em><div style="white-space: pre-line;">Laboratório de Estatística e Geoinformação (LEG)
-Departamento de Estatística (DEST)
-Universidade Federal do Paraná (UFPR)
+<div id="atributos-de-objetos" class="section level1">
+<h1><span class="header-section-number">8</span> Atributos de objetos</h1>
+<p>Um atributo é um pedaço de informação que pode ser “anexado” à qualquer objeto, e não irá interferir nos valores daquele objeto. Os atributos podem ser vistos como “metadados”, alguma descrição associada à um objeto. Os principais atributos são:</p>
+<ul>
+<li><code>names</code></li>
+<li><code>dimnames</code></li>
+<li><code>dim</code></li>
+<li><code>class</code></li>
+</ul>
+<p>Alguns atributos também podem ser visualizados de uma só vez através da função <code>attributes()</code>.</p>
+<p>Por exemplo, considere o seguinte vetor</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
+<span class="kw">attributes</span>(x)
+<span class="ot">NULL</span></code></pre></div>
+<p>Mostra que o objeto <code>x</code> não possui nenhum atributo. Mas podemos definir nomes, por exemplo, para cada componente desse vetor</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x)
+<span class="ot">NULL</span>
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;um&quot;</span>, <span class="st">&quot;dois&quot;</span>, <span class="st">&quot;tres&quot;</span>, <span class="st">&quot;quatro&quot;</span>, <span class="st">&quot;cinco&quot;</span>, <span class="st">&quot;seis&quot;</span>)
+<span class="kw">names</span>(x)
+[<span class="dv">1</span>] <span class="st">&quot;um&quot;</span>     <span class="st">&quot;dois&quot;</span>   <span class="st">&quot;tres&quot;</span>   <span class="st">&quot;quatro&quot;</span> <span class="st">&quot;cinco&quot;</span>  <span class="st">&quot;seis&quot;</span>  
+<span class="kw">attributes</span>(x)
+<span class="op">$</span>names
+[<span class="dv">1</span>] <span class="st">&quot;um&quot;</span>     <span class="st">&quot;dois&quot;</span>   <span class="st">&quot;tres&quot;</span>   <span class="st">&quot;quatro&quot;</span> <span class="st">&quot;cinco&quot;</span>  <span class="st">&quot;seis&quot;</span>  </code></pre></div>
+<p>Nesse caso específico, o R irá mostrar os nomes acima dos componentes, mas isso não altera como as opraçõs serão realizadas</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
+    um   dois   tres quatro  cinco   seis 
+     <span class="dv">1</span>      <span class="dv">2</span>      <span class="dv">3</span>      <span class="dv">4</span>      <span class="dv">5</span>      <span class="dv">6</span> 
+x <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
+    um   dois   tres quatro  cinco   seis 
+     <span class="dv">3</span>      <span class="dv">4</span>      <span class="dv">5</span>      <span class="dv">6</span>      <span class="dv">7</span>      <span class="dv">8</span> </code></pre></div>
+<p>Os nomes então podem ser definidos através da função <em>auxiliar</em> <code>names()</code>, sendo assim, também podemos remover esse atributo declarando ele como nulo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<span class="kw">attributes</span>(x)
+<span class="ot">NULL</span>
+x
+[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></code></pre></div>
+<p>Outros atributos também podem ser definidos de maneira similar. Veja os exemplos abaixo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(x)
+[<span class="dv">1</span>] <span class="dv">6</span>
+## Altera o comprimento (preenche com NA)
+<span class="kw">length</span>(x) &lt;-<span class="st"> </span><span class="dv">10</span>
+x
+ [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span> <span class="ot">NA</span> <span class="ot">NA</span> <span class="ot">NA</span> <span class="ot">NA</span>
+## Altera a dimensão
+<span class="kw">length</span>(x) &lt;-<span class="st"> </span><span class="dv">6</span>
+<span class="kw">dim</span>(x)
+<span class="ot">NULL</span>
+<span class="kw">dim</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)
+x
+     [,<span class="dv">1</span>] [,<span class="dv">2</span>]
+[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">4</span>
+[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">5</span>
+[<span class="dv">3</span>,]    <span class="dv">3</span>    <span class="dv">6</span>
+<span class="kw">attributes</span>(x)
+<span class="op">$</span>dim
+[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">2</span>
+## Remove dimensão
+<span class="kw">dim</span>(x) &lt;-<span class="st"> </span><span class="ot">NULL</span>
+x
+[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></code></pre></div>
+<p>Assim como vimos em data frames, listas também podem ter nomes</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Curitiba =</span> <span class="dv">1</span>, Paraná =<span class="st"> </span><span class="dv">2</span>, <span class="dt">Brasil =</span> <span class="dv">3</span>)
+x
+<span class="op">$</span>Curitiba
+[<span class="dv">1</span>] <span class="dv">1</span>
 
-2018-07-24
-Última atualização: 2018-07-24</div></em></p>
+<span class="op">$</span>Paraná
+[<span class="dv">1</span>] <span class="dv">2</span>
+
+<span class="op">$</span>Brasil
+[<span class="dv">1</span>] <span class="dv">3</span>
+<span class="kw">names</span>(x)
+[<span class="dv">1</span>] <span class="st">&quot;Curitiba&quot;</span> <span class="st">&quot;Paraná&quot;</span>   <span class="st">&quot;Brasil&quot;</span>  </code></pre></div>
+<p>Podemos também associar nomes às <em>linhas</em> e <em>colunas</em> de uma matriz:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matriz
+     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>]
+[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">3</span>    <span class="dv">4</span>
+[<span class="dv">2</span>,]    <span class="dv">5</span>    <span class="dv">6</span>    <span class="dv">7</span>    <span class="dv">8</span>
+[<span class="dv">3</span>,]    <span class="dv">9</span>   <span class="dv">10</span>   <span class="dv">11</span>   <span class="dv">12</span>
+<span class="kw">attributes</span>(matriz)
+<span class="op">$</span>dim
+[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span>
+<span class="kw">rownames</span>(matriz) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>)
+<span class="kw">colnames</span>(matriz) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T3&quot;</span>,<span class="st">&quot;T4&quot;</span>)
+matriz
+  T1 T2 T3 T4
+A  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>
+B  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>
+C  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span>
+<span class="kw">attributes</span>(matriz)
+<span class="op">$</span>dim
+[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span>
+
+<span class="op">$</span>dimnames
+<span class="op">$</span>dimnames[[<span class="dv">1</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;A&quot;</span> <span class="st">&quot;B&quot;</span> <span class="st">&quot;C&quot;</span>
+
+<span class="op">$</span>dimnames[[<span class="dv">2</span>]]
+[<span class="dv">1</span>] <span class="st">&quot;T1&quot;</span> <span class="st">&quot;T2&quot;</span> <span class="st">&quot;T3&quot;</span> <span class="st">&quot;T4&quot;</span></code></pre></div>
+<p>Para data frames existe uma função especial para os nomes de linhas, <code>row.names()</code>. Data frames também não possuem nomes de colunas, apenas nomes, já que é um caso particular de lista. Então para verificar/alterar nomes de colunas de um data frame também use <code>names()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da
+   nome sexo idade
+<span class="dv">1</span>  João    M    <span class="dv">32</span>
+<span class="dv">2</span>  José    M    <span class="dv">34</span>
+<span class="dv">3</span> Maria    F    <span class="dv">30</span>
+<span class="kw">attributes</span>(da)
+<span class="op">$</span>names
+[<span class="dv">1</span>] <span class="st">&quot;nome&quot;</span>  <span class="st">&quot;sexo&quot;</span>  <span class="st">&quot;idade&quot;</span>
+
+<span class="op">$</span>class
+[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span>
+
+<span class="op">$</span>row.names
+[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>
+<span class="kw">names</span>(da)
+[<span class="dv">1</span>] <span class="st">&quot;nome&quot;</span>  <span class="st">&quot;sexo&quot;</span>  <span class="st">&quot;idade&quot;</span>
+<span class="kw">row.names</span>(da)
+[<span class="dv">1</span>] <span class="st">&quot;1&quot;</span> <span class="st">&quot;2&quot;</span> <span class="st">&quot;3&quot;</span></code></pre></div>
+<p>Um resumo das funções para alterar/acessar nomes de linhas e colunas em matrizes e data frames.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Nomes de colunas</th>
+<th>Nomes de linhas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>data.frame</code></td>
+<td><code>names()</code></td>
+<td><code>row.names()</code></td>
+</tr>
+<tr class="even">
+<td><code>matrix</code></td>
+<td><code>colnames()</code></td>
+<td><code>rownames()</code></td>
+</tr>
+</tbody>
+</table>
+<div id="exercicios-4" class="section level2">
+<h2><span class="header-section-number">8.1</span> Exercícios 4</h2>
+<ol style="list-style-type: decimal">
+<li>Crie um objeto para armazenar a seguinte matriz <span class="math display">\[\left[ \begin{array}{ccc}
+        2 &amp; 8 &amp; 4 \\
+        0 &amp; 4 &amp; 1 \\
+        9 &amp; 7 &amp; 5
+        \end{array} \right]\]</span></li>
+<li>Atribua nomes para as linhas e colunas dessa matriz.</li>
+<li>Crie uma lista (<strong>não nomeada</strong>) com dois componentes: (1) um vetor com as letras <code>A</code>, <code>B</code>, e <code>C</code>, repetidas 2, 5, e 4 vezes respectivamente; e (2) a matriz do exemplo anterior.</li>
+<li>Atribua nomes para estes dois componentes da lista.</li>
+<li>Inclua mais um componente nesta lista, com o nome de <code>fator</code>, e que seja um vetor da classe <code>factor</code>, idêntico ao objeto <code>caracter</code> criado acima (que possui apenas os nomes <code>brava</code>, <code>joaquina</code>, <code>armação</code>).</li>
+<li>Crie um data frame para armazenar duas variáveis: local (<code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>), e contagem (42, 34, 59 e 18).</li>
+<li>Crie um data frame com as seguintes colunas:</li>
+</ol>
+<ul>
+<li>Nome,</li>
+<li>Sobrenome</li>
+<li>Se possui animal de estimação</li>
+<li>Caso possua, dizer o número de animais (caso contrário, colocar 0)</li>
+</ul>
+<p>Para criar o data frame, a primeira linha deve ser preenchida com as suas próprias informação (use a função <code>data.frame()</code>). Depois, pergunte essas mesmas informações para dois colegas ao seu lado, e adicione as informações deles à esse data frame (use <code>rbind()</code>). Acresente mais uma coluna com o nome do time de futebol de cada um.</p>
 </div>
-<div id="prefacio" class="section level1 unnumbered">
-<h1>Prefácio</h1>
-<p>Alguma coisa aqui.</p>
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="computacao-cientifica-e-interacao-com-o-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="outras-classes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programacao-orientada-a-objetos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="computacao-cientifica-e-interacao-com-o-r.html">
+<link rel="prev" href="computacao-cientifica-e-interacao-com-o-r.html">
+<link rel="next" href="mecanismos-de-ajuda.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -174,29 +174,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estatística Computacional com R</h1>
-<p class="author"><em>Fernando P. Mayer</em></p>
-<p class="author"><em>Wagner H. Bonat</em></p>
-<p class="date"><em><div style="white-space: pre-line;">Laboratório de Estatística e Geoinformação (LEG)
-Departamento de Estatística (DEST)
-Universidade Federal do Paraná (UFPR)
-
-2018-07-24
-Última atualização: 2018-07-24</div></em></p>
+<div id="funcoes-e-argumentos" class="section level1">
+<h1><span class="header-section-number">2</span> Funções e argumentos</h1>
+<p>As funções no R são definidas como:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nome</span>(argumento1, argumento2, ...)</code></pre></div>
+<p>Exemplo: função <code>runif()</code> (para gerar valores aleatórios de uma distribuição uniforme):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(n, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">100</span>)
+ [<span class="dv">1</span>] <span class="fl">31.468845</span> <span class="fl">26.509578</span> <span class="fl">55.679921</span>  <span class="fl">6.581932</span> <span class="fl">47.386379</span> <span class="fl">48.893303</span> <span class="fl">81.427859</span>
+ [<span class="dv">8</span>] <span class="fl">37.661733</span> <span class="fl">55.109301</span> <span class="fl">17.855943</span></code></pre></div>
+<p>Argumentos que já possuem um valor especificado (como <code>max</code> e <code>min</code>) podem ser omitidos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">10</span>)</code></pre></div>
+<p>Se os argumentos forem nomeados, a ordem deles dentro da função não tem mais importância:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">100</span>, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
+<p>Argumentos nomeados e não nomeados podem ser utilizados, desde que os não nomeados estejam na posição correta:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">max =</span> <span class="dv">100</span>, <span class="dt">min =</span> <span class="dv">1</span>)</code></pre></div>
+<div id="outros-tipos-de-argumentos" class="section level2">
+<h2><span class="header-section-number">2.1</span> Outros tipos de argumentos</h2>
+<p>Exemplo: função <code>sample()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(x, size, <span class="dt">replace =</span> <span class="ot">FALSE</span>, <span class="dt">prob =</span> <span class="ot">NULL</span>)</code></pre></div>
+<ul>
+<li><code>x</code> e <code>size</code> devem ser obrigatoriamente especificados</li>
+<li><code>replace</code> é lógico: <code>TRUE</code> (<code>T</code>) ou <code>FALSE</code> (<code>F</code>)</li>
+<li><code>prob</code> é um argumento vazio ou ausente (“opcional”)</li>
+</ul>
+<p>Exemplo: função <code>plot()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y, ...)</code></pre></div>
+<ul>
+<li>“<code>...</code>” permite especificar argumentos de outras funções (por exemplo <code>par()</code>)</li>
+</ul>
+<p>Para ver todos os argumentos disponíveis de uma função, podemos usar a função <code>args()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(sample)
+<span class="cf">function</span> (x, size, <span class="dt">replace =</span> <span class="ot">FALSE</span>, <span class="dt">prob =</span> <span class="ot">NULL</span>) 
+<span class="ot">NULL</span></code></pre></div>
 </div>
-<div id="prefacio" class="section level1 unnumbered">
-<h1>Prefácio</h1>
-<p>Alguma coisa aqui.</p>
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="computacao-cientifica-e-interacao-com-o-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="computacao-cientifica-e-interacao-com-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mecanismos-de-ajuda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

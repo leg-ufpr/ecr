@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="computacao-cientifica-e-interacao-com-o-r.html">
+<link rel="prev" href="mecanismos-de-ajuda.html">
+<link rel="next" href="objetos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -174,29 +174,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estatística Computacional com R</h1>
-<p class="author"><em>Fernando P. Mayer</em></p>
-<p class="author"><em>Wagner H. Bonat</em></p>
-<p class="date"><em><div style="white-space: pre-line;">Laboratório de Estatística e Geoinformação (LEG)
-Departamento de Estatística (DEST)
-Universidade Federal do Paraná (UFPR)
-
-2018-07-24
-Última atualização: 2018-07-24</div></em></p>
+<div id="criando-uma-funcao" class="section level1">
+<h1><span class="header-section-number">4</span> Criando uma função</h1>
+<p>A ideia original do R é transformar usuários em programadores</p>
+<blockquote>
+<p><em>“… to turn ideas into software, quickly and faithfully.”</em></p>
+<p>– John M. Chambers</p>
+</blockquote>
+<p>Criar funções para realizar trabalhos específicos é um dos grandes poderes do R</p>
+<p>Por exemplo, podemos criar a famosa função</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ola.mundo &lt;-<span class="st"> </span><span class="cf">function</span>(){
+    <span class="kw">writeLines</span>(<span class="st">&quot;Olá mundo&quot;</span>)
+}</code></pre></div>
+<p>E chama-la através de</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ola.mundo</span>()
+Olá mundo</code></pre></div>
+<p>A função acima não permite alterar o resultado de saída. Podemos fazer isso incluindo um <strong>argumento</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ola.mundo &lt;-<span class="st"> </span><span class="cf">function</span>(texto){
+    <span class="kw">writeLines</span>(texto)
+}</code></pre></div>
+<p>E fazer por exemplo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ola.mundo</span>(<span class="st">&quot;Funções são legais&quot;</span>)
+Funções são legais</code></pre></div>
+<p>(Veremos detalhes de funções mais adiante)</p>
+<div id="exercicios-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Exercícios 1</h2>
+<ol style="list-style-type: decimal">
+<li>Usando a função <code>runif()</code> gere <span class="math inline">\(30\)</span> números aleatórios entre:
+<ul>
+<li>0 e 1</li>
+<li>-5 e 5</li>
+<li>10 e 500</li>
+</ul></li>
+</ol>
+<p>alternando a posição dos argumentos da função.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Veja o help da função (?) <code>&quot;+&quot;</code></li>
+<li>Crie uma função para fazer a soma de dois números: <code>x</code> e <code>y</code></li>
+<li>Crie uma função para simular a jogada de um dado.</li>
+<li>Crie uma função para simular a jogada de dois dados.</li>
+</ol>
 </div>
-<div id="prefacio" class="section level1 unnumbered">
-<h1>Prefácio</h1>
-<p>Alguma coisa aqui.</p>
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="computacao-cientifica-e-interacao-com-o-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="mecanismos-de-ajuda.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="objetos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="computacao-cientifica-e-interacao-com-o-r.html">
+<link rel="prev" href="funcoes-e-argumentos.html">
+<link rel="next" href="criando-uma-funcao.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -174,29 +174,65 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estatística Computacional com R</h1>
-<p class="author"><em>Fernando P. Mayer</em></p>
-<p class="author"><em>Wagner H. Bonat</em></p>
-<p class="date"><em><div style="white-space: pre-line;">Laboratório de Estatística e Geoinformação (LEG)
-Departamento de Estatística (DEST)
-Universidade Federal do Paraná (UFPR)
-
-2018-07-24
-Última atualização: 2018-07-24</div></em></p>
-</div>
-<div id="prefacio" class="section level1 unnumbered">
-<h1>Prefácio</h1>
-<p>Alguma coisa aqui.</p>
-
+<div id="mecanismos-de-ajuda" class="section level1">
+<h1><span class="header-section-number">3</span> Mecanismos de ajuda</h1>
+<p>Argumentos e detalhes do funcionamento das funções:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?runif</code></pre></div>
+<p>ou</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(runif)</code></pre></div>
+<p>A documentação contém os campos:</p>
+<ul>
+<li><strong>Description:</strong> breve descrição</li>
+<li><strong>Usage:</strong> função e todos seus argumentos</li>
+<li><strong>Arguments:</strong> lista descrevendo cada argumento</li>
+<li><strong>Details:</strong> descrição detalhada</li>
+<li><strong>Value:</strong> o que a função retorna</li>
+<li><strong>References:</strong> bibliografia relacionada</li>
+<li><strong>See Also:</strong> funções relacionadas</li>
+<li><strong>Examples:</strong> exemplos práticos</li>
+</ul>
+<p>Procura por nomes de funções que contenham algum termo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apropos</span>(<span class="st">&quot;mod&quot;</span>)
+<span class="kw">apropos</span>(<span class="st">&quot;model&quot;</span>)</code></pre></div>
+<p>Procura por funções que contenham <code>palavra</code> em qualquer parte de sua documentação:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help.search</span>(<span class="st">&quot;palavra&quot;</span>)</code></pre></div>
+<p>Ajuda através do navegador (também contém manuais, …):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help.start</span>()</code></pre></div>
+<p>Sites para busca na documentação dos diversos pacotes:</p>
+<ul>
+<li>RDocumentation <a href="https://www.rdocumentation.org/" class="uri">https://www.rdocumentation.org/</a></li>
+<li>R Package Documentation <a href="https://rdrr.io/" class="uri">https://rdrr.io/</a></li>
+<li>R Contributed Documentation (várias línguas) <a href="https://cran.r-project.org/other-docs.html" class="uri">https://cran.r-project.org/other-docs.html</a></li>
+</ul>
+<p>Os pacotes do R contém funções específicas para determinadas tarefas, e estendem a instalação básica do R. Atualmente existem mais de 10000 pacotes disponíveis no <a href="http://cran-r.c3sl.ufpr.br/web/packages/index.html">CRAN</a>, além de diversos outros hospedados em sites como <a href="https://github.com">Github</a>, por exemplo.</p>
+<p>Ao instalar o R, os seguintes pacotes já vêm instalados (fazem parte do chamado “R core”):</p>
+<pre><code>NULL</code></pre>
+<p>No entanto, nem todos são carregados na inicialização do R. Por padrão, apenas os seguintes pacotes são carregados automaticamente:</p>
+<pre><code>[1] &quot;graphics&quot;  &quot;grDevices&quot; &quot;utils&quot;     &quot;datasets&quot;  &quot;methods&quot;   &quot;base&quot;     </code></pre>
+<p>Para listar os pacotes carregados, use a função</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">search</span>()</code></pre></div>
+<p>Note que o primeiro elemento, <code>.GlobalEnv</code>, será sempre carregado pois ele é o <em>ambiente</em> queirá armazenar (e deixar disponível) os objetos criados pelo usuário. Para carregar um pacote instalado, usamos a função <code>library()</code>, por exemplo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lattice)
+<span class="kw">search</span>()</code></pre></div>
+<p>Isso tornará todas as funções do pacote <code>lattice</code> disponíveis para uso.</p>
+<p>Para instalar um pacote usamos a função <code>install.packages()</code>. Sabendo o nome do pacote, por exemplo, <code>mvtnorm</code>, fazemos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;mvtnorm&quot;</span>)</code></pre></div>
+<p>Se o diretório padrão de instalação de um pacote for de acesso restrito (root por exemplo), o R irá perguntar se você gostaria de instalar o pacote em uma biblioteca pessoal, e sugerirá um diretório que possui as permissões necessárias. Você pode se antecipar e já definir e criar um diretório na sua pasta pessoal, e instalar os pacotes sempre nesse local. Por exemplo, defina <code>~/R/library</code> como sua biblioteca pessoal. Para instalar os pacotes sempre nesse diretório faça:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;mvtnorm&quot;</span>, <span class="dt">lib =</span> <span class="st">&quot;~/R/library&quot;</span>)</code></pre></div>
+<p>Para verificar as bibliotecas disponíveis e se existem pacotes para ser atualizados, use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packageStatus</span>()</code></pre></div>
+<p>Para atualizar automaticamente todos os pacotes faça</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update.packages</span>(<span class="dt">ask =</span> <span class="ot">FALSE</span>)
+Updating HTML index of packages <span class="cf">in</span> <span class="st">&#39;.Library&#39;</span>
+Making <span class="st">&#39;packages.html&#39;</span> ... done</code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="computacao-cientifica-e-interacao-com-o-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="funcoes-e-argumentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="criando-uma-funcao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
