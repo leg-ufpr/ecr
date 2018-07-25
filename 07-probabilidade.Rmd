@@ -818,6 +818,4 @@ pnorm(13.2, 13, 0.1) - pnorm(13.1, 13, 0.1)
 	d. densidades de distribuições $\chi^2$ com 1, 2 e
 	5 graus de liberdade.
 
-
-
 <!-- Referencias -->
