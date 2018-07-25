@@ -1,0 +1,23 @@
+<h1 id="um-documento-em-markdown">Um documento em Markdown</h1>
+<h2 id="sobre-o-markdown">Sobre o Markdown</h2>
+<p>O Markdown é uma linguagem de marcação muito simples, desenvolvida por John Gruber.</p>
+<p>A ideia básica por trás da linguagem é fazer com que o escritor se preocupe mais com o <strong>conteúdo</strong> do texto do que com a <em>formatação</em>.</p>
+<h2 id="mais-um-título">Mais um título</h2>
+<p>Aqui vamos tentar descrever uma análise.</p>
+<h2 id="simulando-variáveis-aleatórias">Simulando variáveis aleatórias</h2>
+<p>No R podemos simular valores de uma distribuição normal padrão através da função <code>rnorm()</code>.</p>
+<p>Seja <span class="math inline"><em>X</em> ∼ N(0, 1)</span>, então para gerar 30 valores dessa variável aleatório normal, fazemos</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">(x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>))</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"> [<span class="dv">1</span>] <span class="fl">-0.50219235</span>  <span class="fl">0.13153117</span> <span class="fl">-0.07891709</span>  <span class="fl">0.88678481</span>  <span class="fl">0.11697127</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"> [<span class="dv">6</span>]  <span class="fl">0.31863009</span> <span class="fl">-0.58179068</span>  <span class="fl">0.71453271</span> <span class="fl">-0.82525943</span> <span class="fl">-0.35986213</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">[<span class="dv">11</span>]  <span class="fl">0.08988614</span>  <span class="fl">0.09627446</span> <span class="fl">-0.20163395</span>  <span class="fl">0.73984050</span>  <span class="fl">0.12337950</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">[<span class="dv">16</span>] <span class="fl">-0.02931671</span> <span class="fl">-0.38885425</span>  <span class="fl">0.51085626</span> <span class="fl">-0.91381419</span>  <span class="fl">2.31029682</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">[<span class="dv">21</span>] <span class="fl">-0.43808998</span>  <span class="fl">0.76406062</span>  <span class="fl">0.26196129</span>  <span class="fl">0.77340460</span> <span class="fl">-0.81437912</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">[<span class="dv">26</span>] <span class="fl">-0.43845057</span> <span class="fl">-0.72022155</span>  <span class="fl">0.23094453</span> <span class="fl">-1.15772946</span>  <span class="fl">0.24707599</span></a></code></pre></div>
+<h2 id="comentários">Comentários</h2>
+<p>Com o resultado dessa simulação, podemos calcular a média e a variância dessa VA <span class="math inline"><em>X</em></span> para conferir se o resultado fica próximo de 0 e 1, respectivamente.</p>
+<h2 id="visualização">Visualização</h2>
+<p>Também podemos fazer um histograma dessa VA <span class="math inline"><em>X</em></span> simulada</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">hist</span>(x)</a></code></pre></div>
+<p><img src="figures/unnamed-chunk-415-1.png" style="display: block; margin: auto;" /></p>
+<p>A média de <span class="math inline"><em>X</em></span> é 0.029.</p>

@@ -10,4 +10,5 @@ rmd_files: ["index.Rmd",
     "05-programacao.Rmd",
     "06-analise-exploratoria.Rmd",
     "07-probabilidade.Rmd",
+    "documentos-dinamicos.Rmd",
     "poo.Rmd"]
