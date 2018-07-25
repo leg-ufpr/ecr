@@ -3,6 +3,9 @@ title: "Estatística Computacional com R"
 author:
 - "Fernando P. Mayer"
 - "Wagner H. Bonat"
+- "Walmes M. Zeviani"
+- "Elias T. Krainski"
+- "Paulo J. Ribeiro Jr."
 date: |
    | Laboratório de Estatística e Geoinformação (LEG)
    | Departamento de Estatística (DEST)
