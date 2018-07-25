@@ -46,6 +46,6 @@ Também podemos fazer um histograma dessa VA $X$ simulada
 hist(x)
 ```
 
-<img src="figures/unnamed-chunk-415-1.png" style="display: block; margin: auto;" />
+<img src="figures/unnamed-chunk-416-1.png" style="display: block; margin: auto;" />
 
 A média de $X$ é 0.029.

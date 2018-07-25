@@ -1,0 +1,11 @@
+# Scripts
+
+Scripts que faltam ser convertidos para capítulos:
+
+- [inferencia_regressao.Rmd](scripts/inferencia_regressao.Rmd)
+- [inferencia_regressao2.Rmd](scripts/inferencia_regressao2.Rmd)
+- [script_gapminder.R](scripts/script_gapminder.R)
+
+Scripts que ainda podem ser úteis
+
+- [probabilidade.R](scripts/probabilidade.R)
