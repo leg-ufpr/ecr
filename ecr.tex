@@ -167,7 +167,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 25 July, 2018, 01:48
+Wednesday, 25 July, 2018, 02:05
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -5670,7 +5670,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.100}   \FloatTok{0.000}   \FloatTok{0.102} 
+  \FloatTok{0.104}   \FloatTok{0.004}   \FloatTok{0.110} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5684,7 +5684,7 @@ regra da reciclagem.
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente 0.102/0.002 = 51 vezes
+regra da reciclagem, o cálculo é aproximadamente 0.11/0.002 = 55 vezes
 mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entro o tempo de
 execução das duas formas pode ser muito maior.
@@ -5720,7 +5720,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.096}   \FloatTok{0.004}   \FloatTok{0.101} 
+  \FloatTok{0.104}   \FloatTok{0.004}   \FloatTok{0.108} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5731,12 +5731,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.328}   \FloatTok{0.040}   \FloatTok{0.369} 
+  \FloatTok{0.328}   \FloatTok{0.012}   \FloatTok{0.343} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.369/0.101 = 3.65 vezes. Isso acontece porque,
+forma em aproximadamente 0.343/0.108 = 3.18 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -8475,7 +8475,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x4ba8b00}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x569b8b8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -8510,7 +8510,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x4ba8160}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x569af18}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}

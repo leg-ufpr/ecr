@@ -640,7 +640,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st1
    user  system elapsed 
-  <span class="fl">0.100</span>   <span class="fl">0.000</span>   <span class="fl">0.101</span> 
+  <span class="fl">0.116</span>   <span class="fl">0.000</span>   <span class="fl">0.118</span> 
 
 ## Tempo de execução usando a regra da reciclagem
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
@@ -648,8 +648,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st2
    user  system elapsed 
-  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </code></pre></div>
-<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.101/0.002 = 50.5 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
+  <span class="fl">0.004</span>   <span class="fl">0.000</span>   <span class="fl">0.004</span> </code></pre></div>
+<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente 0.118/0.004 = 29.5 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entro o tempo de execução das duas formas pode ser muito maior.</p>
 <div class="panel panel-primary">
 <div class="panel-heading">
 Uma nota de precaução
@@ -673,7 +673,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st1
    user  system elapsed 
-  <span class="fl">0.100</span>   <span class="fl">0.000</span>   <span class="fl">0.102</span> 
+  <span class="fl">0.112</span>   <span class="fl">0.000</span>   <span class="fl">0.115</span> 
 
 ## Cria um objeto de tamanho &quot;zero&quot; e vai &quot;crescendo&quot; esse vetor
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
@@ -684,8 +684,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st2
    user  system elapsed 
-  <span class="fl">0.364</span>   <span class="fl">0.032</span>   <span class="fl">0.395</span> </code></pre></div>
-<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.395/0.102 = 3.87 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
+  <span class="fl">0.376</span>   <span class="fl">0.048</span>   <span class="fl">0.422</span> </code></pre></div>
+<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.422/0.115 = 3.67 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
 <p>Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a memória para esse vetor já foi alocada previamente, de uma única vez.</p>
 <p><img src="img/R_club.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
