@@ -134,7 +134,7 @@ Ao instalar o R, os seguintes pacotes já vêm instalados (fazem parte do
 chamado "R core"):
 
 ```{r, echo=FALSE}
-rownames(installed.packages(lib.loc = .libPaths()[2]))
+rownames(installed.packages(lib.loc = paste0(R.home(), "/library")))
 ```
 
 No entanto, nem todos são carregados na inicialização do R. Por padrão,
