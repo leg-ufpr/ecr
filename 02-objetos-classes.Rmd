@@ -429,6 +429,7 @@ vetores:
   - `raw`
 
   Os tipos `integer` e `double` são chamados conjuntamente de `numeric`.
+
 - **Listas**: também chamadas de *vetores recursivos* pois listas podem
   conter outras listas.
 
