@@ -176,7 +176,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Tuesday, 14 August, 2018, 19:41
+Tuesday, 14 August, 2018, 19:50
 ----------------------------------------
 R version 3.5.0 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -1314,8 +1314,14 @@ vetores:
 \end{itemize}
 
 Os tipos \texttt{integer} e \texttt{double} são chamados conjuntamente
-de \texttt{numeric}. - \textbf{Listas}: também chamadas de \emph{vetores
-recursivos} pois listas podem conter outras listas.
+de \texttt{numeric}.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Listas}: também chamadas de \emph{vetores recursivos} pois
+  listas podem conter outras listas.
+\end{itemize}
 
 A principal diferença entre vetores atômicos e listas é que o primeiro é
 \textbf{homogêneo} (cada vetor só pode conter um tipo), enquanto que o
@@ -5684,7 +5690,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.104}   \FloatTok{0.000}   \FloatTok{0.106} 
+  \FloatTok{0.112}   \FloatTok{0.000}   \FloatTok{0.109} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5692,13 +5698,13 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.000}   \FloatTok{0.004}   \FloatTok{0.001} 
+  \FloatTok{0.004}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente \(0.106/0.001 = 106\)
+regra da reciclagem, o cálculo é aproximadamente \(0.109/0.002 = 54.5\)
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entro o tempo de
 execução das duas formas pode ser muito maior.
@@ -5734,7 +5740,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.108}   \FloatTok{0.000}   \FloatTok{0.105} 
+  \FloatTok{0.108}   \FloatTok{0.000}   \FloatTok{0.108} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5745,13 +5751,13 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.328}   \FloatTok{0.036}   \FloatTok{0.365} 
+  \FloatTok{0.348}   \FloatTok{0.052}   \FloatTok{0.400} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.365/0.105 = 3.48 vezes. Isso acontece porque,
-da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
+forma em aproximadamente 0.4/0.108 = 3.7 vezes. Isso acontece porque, da
+segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
 então copiar o vetor de saída e apagar sua versão anterior antes de
@@ -9205,7 +9211,7 @@ argumento da função é o nome (e local) do arquivo, e o segundo argumento
 \StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpX5c0gP}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2cee6e33b1a4.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpZN2Mw0}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2c916e3f5c0a.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -9283,7 +9289,7 @@ Para renderizar esse aquivo, usamos:
 \StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpX5c0gP}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2cee43cf869e.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpZN2Mw0}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2c914e3c5466.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -9721,7 +9727,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x562fc00}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x32f3640}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9756,7 +9762,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x562f228}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x3d770f8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
