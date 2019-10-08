@@ -12,7 +12,7 @@ digitados diretamente no R.
 A seguir são descritas as formas de entrada de dados com
 indicação de quando cada uma das formas deve ser usada. Os três
 primeiros casos são adequados para entrada de dados diretamente no R, os
-seguintes descrevem como importar dados já disponíveis eletronicamentede
+seguintes descrevem como importar dados já disponíveis eletronicamente de
 um arquivo texto, em outro sistema ou no próprio R.
 
 Posteriormente também será mostrado como fazer para exportar bases de
@@ -35,7 +35,7 @@ As funções básicas de entrada de dados são:
 - `seq()` ou `:`
 
 A partir destas funções básicas podemos criar objetos de classes mais
-específicas com
+específicas como
 
 - `matrix()`
 - `list()`
@@ -133,7 +133,7 @@ valores:
 Esta função é particularmente útil para ler entradas na forma de texto
 (*strings*). Por exemplo, para ler uma linha a ser digitada na tela do
 R, siga o comando abaixo e digite o texto indicado. Ao terminar pressione
-a tecla <kbd>Enter</kbd>  e o texto será armazanado no objeto texto.
+a tecla <kbd>Enter</kbd>  e o texto será armazenado no objeto texto.
 
 ```{r, eval=FALSE}
 texto <- readLines(n = 1)
@@ -150,7 +150,7 @@ texto
 
 Um possível uso é dentro que funções que solicitem que o usuário
 responda e/ou entre com informações na medida que são
-solicitadas. Experimente definir e rodar o função a seguir.
+solicitadas. Experimente definir e rodar a função a seguir.
 
 ```{r}
 fn.ex <- function() {
@@ -209,14 +209,14 @@ detalhes e exemplos.
 ### Entrada de dados em arquivos texto
 
 Se os dados já estão disponíveis em formato eletrônico, isto é, já foram
-digitados em outro programa, voce pode importar os dados para o R sem a
+digitados em outro programa, você pode importar os dados para o R sem a
 necessidade de digitá-los novamente.
 
 A forma mais fácil de fazer isto é usar dados em formato texto (arquivo
 do tipo ASCII). Por exemplo, se seus dados estão disponíveis em uma
 planilha eletrônica como LibreOffice Calc, MS Excel ou similar, você
 pode escolher a opção <kbd>Salvar como...</kbd> e gravar os dados em um
-arquivo em formato texto. Os dois prncipais formatos de texto são:
+arquivo em formato texto. Os dois principais formatos de texto são:
 
 - `txt`: arquivo de texto puro, onde as colunas são separadas geralmente
   por uma tabulação (<kbd>Tab</kbd>) ou espaço (<kbd>Spc</kbd>)
@@ -254,16 +254,16 @@ dados <- read.table("dados/crabs.csv", header = TRUE,
 
 Argumentos:
 
-- `"crabs.csv"`: nome do arquivo. (Considerando  que o arquivo
+- `"crabs.csv"`: nome do arquivo. (Considerando que o arquivo
   `crabs.csv` está dentro do diretório `dados`).
 - `header = TRUE`: significa que a primeira linha do arquivo deve ser
-    interpretada como os nomes das colunas
+    interpretada como os nomes das colunas.
 - `sep = ";"`: o separador de colunas (também pode ser `","`, `"\t"`
-  para tabulação e `""` para espaços)
-- `dec = ","`: o separador de decimais (também pode ser `"."`)
+  para tabulação e `""` para espaços).
+- `dec = ","`: o separador de decimais (também pode ser `"."`).
 
 As funções `read.csv()` e `read.csv2()` são chamadas de *wrappers*
-(envelopes) que tornam o usa da função `read.table()` um pouco mais
+(envelopes) que tornam o uso da função `read.table()` um pouco mais
 direta, alterando alguns argumentos. Por exemplo, o comando acima
 poderia ser substituído por
 
@@ -308,11 +308,11 @@ dados <- read.csv2("http://www.leg.ufpr.br/~fernandomayer/data/crabs.csv")
 
 Para maiores informações consulte a documentação desta função com
 `?read.table()`.  Embora `read.table()` seja provavelmente a função mais
-utilizada existem outras que podem ser úteis e determinadas situações:
+utilizada existem outras que podem ser úteis em determinadas situações:
 
-- `read.fwf()` é conveniente para ler *fixed width formats*
+- `read.fwf()` é conveniente para ler *fixed width formats*.
 - `read.fortran()` é semelhante à anterior porém usando o estilo Fortran
-  de especificação das colunas
+  de especificação das colunas.
 - `read.csv()`, `read.csv2()`, `read.delim()` e `read.delim2()`: estas
   funções são praticamente iguais a `read.table()` porém com diferentes
   opções padrão. Em geral (mas não sempre) dados em formato `csv` usado
@@ -351,7 +351,7 @@ desejados em algum aplicativo (editor, planilha, página web, etc),
 usa-se o mecanismo de COPIAR (opção no menu do programa que muitas vezes
 corresponde o teclar <kbd>Ctrl</kbd> + <kbd>c</kbd>), o que transfere
 os dados para a área de transferência. Funções como `scan()`,
-`read.table()` e outras podem ser usades apra ler os dados diretamente
+`read.table()` e outras podem ser usadas para ler os dados diretamente
 da área de transferência passando-se a opção `"clipboard"` ao
 primeiro argumento. Por exemplo, os seguintes dados:
 
@@ -405,7 +405,7 @@ Outros pacotes que possuem funções similares são: **openxlsx**, **xlsx**, e
 
 Estruturas de dados mais complexas são tipicamente armazenadas nos
 chamados DBMS (*database management system*) ou RDBMS (*relational
-database management system*). Aguns exemplos são Oracle, Microsoft SQL
+database management system*). Alguns exemplos são Oracle, Microsoft SQL
 server, MySQL, PostgreSQL, Microsoft Access, dentre outros. O R possui
 ferramentas implementadas em pacotes para acesso a estes sistemas
 gerenciadores.
@@ -436,9 +436,9 @@ str(teste5)
 
 ### Carregando dados já disponíveis no R
 
-O R já possui alguns conjuntos de dados que estão disponíeis logo após a
+O R já possui alguns conjuntos de dados que estão disponíveis logo após a
 instalação. Estes dados são também objetos que precisam ser carregados
-para ficarem disponiveis para o usuário. Normalmente, estes conjuntos de
+para ficarem disponíveis para o usuário. Normalmente, estes conjuntos de
 dados são para uso de exemplo de funções.
 
 Para carregar conjuntos de dados que são disponibilizados com o R, use
@@ -499,7 +499,7 @@ str(topo)
 ```
 
 A função `data()` pode ainda ser usada para listar os conjutos de dados
-disponíveis.
+disponíveis,
 
 ```{r, eval=FALSE}
 data()
@@ -524,15 +524,15 @@ programas são implementadas no pacote **foreign**.
 
 A seguir listamos algumas (não todas!) destas funções:
 
-- `read.dbf()` para arquivos DBASE
-- `read.epiinfo()` para arquivos .REC do Epi-Info
-- `read.mtp()` para arquivos "Minitab Portable Worksheet"
+- `read.dbf()` para arquivos DBASE.
+- `read.epiinfo()` para arquivos .REC do Epi-Info.
+- `read.mtp()` para arquivos "Minitab Portable Worksheet".
 - `read.S()` para arquivos do S-PLUS, e `restore.data()` para "dumps" do
-S-PLUS
-- `read.spss()` para dados do SPSS
-- `read.systat()` para dados do SYSTAT
-- `read.dta()` para dados do STATA
-- `read.octave()` para dados do OCTAVE (um clone do MATLAB)
+S-PLUS.
+- `read.spss()` para dados do SPSS.
+- `read.systat()` para dados do SYSTAT.
+- `read.dta()` para dados do STATA.
+- `read.octave()` para dados do OCTAVE (um clone do MATLAB).
 - Para dados do SAS há ao menos duas alternativas:
 	- O pacote **foreign** disponibiliza `read.xport()` para ler do
 	formato TRANSPORT do SAS e `read.ssd()` pode escrever dados
@@ -555,7 +555,7 @@ argumentos parecidos com aqueles da função `read.table()`.
 A função `write.table()` é capaz de criar um arquivo de texto no formato
 `txt` ou `csv`, com as especificações definidas pelos argumentos.
 
-Para ilustrar o uso desta função, considerer o conjunto de dados `iris`
+Para ilustrar o uso desta função, considere o conjunto de dados `iris`
 
 ```{r}
 data(iris)
@@ -570,8 +570,8 @@ write.table(iris, file = "dados/iris.csv")
 
 Por padrão, o arquivo resultante tem colunas separadas por espaço, o
 separador de decimal é ponto, e os nomes das linhas são também
-incluídos (o que geralmente é desnecessário). Para alterar essa
-configuração podemos fazer
+incluídos (o que geralmente é desnecessário). 
+Para alterar essa configuração podemos fazer
 
 ```{r}
 write.table(iris, file = "dados/iris.csv", row.names = FALSE,
@@ -580,14 +580,14 @@ write.table(iris, file = "dados/iris.csv", row.names = FALSE,
 
 Os argumentos são
 
-- `iris`: o nome do objeto a ser exportado (matriz ou data frame)
+- `iris`: o nome do objeto a ser exportado (matriz ou data frame).
 - `"iris.csv"`: nome do arquivo a ser gerado. (Considerando  que o
   arquivo  `iris.csv` será criado dentro do diretório `dados`).
 - `row.names = FALSE`: para eliminar o nome das linhas do objeto
-  (geralmente desnecessário), como retornado por `row.names()`
+  (geralmente desnecessário), como retornado por `row.names()`.
 - `sep = ";"`: o separador de colunas (também pode ser `","`, `"\t"`
-  para tabulação e `""` para espaços)
-- `dec = ","`: o separador de decimais (também pode ser `"."`)
+  para tabulação e `""` para espaços).
+- `dec = ","`: o separador de decimais (também pode ser `"."`).
 
 Note que o objeto a ser exportado (nesse caso `iris`) deve ser em
 formato tabular, ou seja, uma matriz ou data frame. Outras classes de
@@ -719,7 +719,7 @@ avaliou o número de fumates e não fumantes por sexo.
 As formas mais comuns de entrada de dados no R são através da entrada
 direta pelo teclado (e.g. `c()` ou `scan()`), ou pela importação de
 arquivos de texto (e.g. `read.table()`). No etanto, ainda existem mais
-dois formatos par armazenar dados para leitura no R: o textual e o
+dois formatos para armazenar dados para leitura no R: o textual e o
 binário.
 
 O **formato binário** é aquele armazenado em um arquivo binário, ou

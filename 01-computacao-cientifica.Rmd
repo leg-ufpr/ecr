@@ -12,61 +12,61 @@ knitr::include_graphics("img/excelcsvgrey.png")
 
 - É um documento do Microsoft Excel?
 - É um arquivo de **texto pleno**, separado por vírgulas (CSV *comma
-  separated values*)
-- De fato, o nome do arquivo é `final.csv` e não `final`
+  separated values*);
+- De fato, o nome do arquivo é `final.csv` e não `final`;
 - O Excel pode sim abrir este arquivo... assim como milhares de outros
   programas!
 
 O que está acontecendo?
 
 - O computador (leia-se, nesse caso, o sistema operacional Windows)
-  "proteje" o usuário dos detalhes sujos
+  "proteje" o usuário dos detalhes sujos.
 - Isso é ruim? **Sim!**
-- O usuário se acostuma com o computador ditando as regras
+- O usuário se acostuma com o computador ditando as regras.
 - É importante lembrar que é você quem deve dizer o que o computador
-  deve fazer (nesse caso, com qual programa abrir certo arquivo)
+  deve fazer (nesse caso, com qual programa abrir certo arquivo).
 
 O que deve acontecer?
 
 - Para a maioria dos usuários, a interação com o computador se limita a
-  clicar em links, selecionar menus e caixas de diálogo
+  clicar em links, selecionar menus e caixas de diálogo.
 - O problema com essa abordagem é que parece que o usuário é controlado
-  pelo computador
+  pelo computador.
 - A verdade deve ser o oposto!
 - É o usuário que possui o controle e deve dizer para o computador
-  exatamente o que fazer
+  exatamente o que fazer.
 - Escrever código ainda tem a vantagem de deixar registrado tudo o que
-  foi feito
+  foi feito, possibilitando a reprodução e auditoria.
 
 ## Editores de texto
 
 Uma característica importante de códigos de programação é que eles são
-em **texto puro**, por isso precisamos de um bom **editor de textos**
+em **texto puro**, por isso precisamos de um bom **editor de textos**.
 
 Características de um bom editor:
 
-- **Identação automática**
-- **Complementação de parênteses**
-- **Destaque de sintaxe** (*syntax highlighting*)
-- **Numeração de linhas**
-- **Auto completar comandos**
+- **Identação automática**;
+- **Complementação de parênteses**;
+- **Destaque de sintaxe** (*syntax highlighting*);
+- **Numeração de linhas**;
+- **Auto completar comandos**.
 
 ### Editores para R
 
 Windows:
 
-- Interface padrão: pouco recomendado
-- Tinn-R
+- Interface padrão: pouco recomendado.
+- Tinn-R.
 
 Linux:
 
-- Vim-R-plugin
-- Gedit-R-plugin
+- Vim-R-plugin.
+- Gedit-R-plugin.
 
 Todas as plataformas:
 
-- Rstudio: recomendado para iniciantes
-- Emacs + ESS: altamente recomendado
+- Rstudio: recomendado para iniciantes.
+- Emacs + ESS: altamente recomendado.
 
 ## R
 
@@ -79,27 +79,27 @@ Todas as plataformas:
 
 O R é um dialeto do S e:
 
-- *Ambiente* estatístico para análise de dados e produção de gráficos
-- Uma completa linguagem de programação:
-	- Interpretada (contrário de compilada)
-	- Orientada a objetos:
+- *Ambiente* estatístico para análise de dados e produção de gráficos.
+- Uma linguagem de programação completa:
+	- Interpretada (contrário de compilada).
+	- Orientada a objetos.
 
 	*Tudo no R é um objeto...*
 
-- Livre distribuição (código-aberto)
-- Mais de 10000 pacotes adicionais
+- Livre distribuição (código-aberto).
+- Mais de 10000 pacotes adicionais.
 
 Pequeno histórico:
 
 - 1980: Linguagem S: desenvolvida por R. Becker, J. Chambers e A. Wilks
-(AT&T Bell Laboratories)
-- 1980: Versão comercial: S-Plus (Insightful Corporation)
+(AT&T Bell Laboratories);
+- 1980: Versão comercial: S-Plus (Insightful Corporation);
 - 1996: Versão livre: R desenvolvido por R. Ihaka e R. Gentleman
-(Universidade de Auckland)
-- 1997: R Development Core Team
+(Universidade de Auckland);
+- 1997: R Development Core Team;
 - Hoje: 20 desenvolvedores principais e muitos outros colaboradores em
-todo o mundo
-- Estatísticos, matemáticos e programadores
+todo o mundo;
+- Estatísticos, matemáticos e programadores.
 
 ### Configuração inicial
 
@@ -153,7 +153,7 @@ knitr::include_graphics("img/script-commandlinedata.png")
 ```
 
 - Note que o resultado é apenas mostrado na tela, nada é salvo na
-  memória (por enquanto)
+  memória (por enquanto).
 
 ### O editor de scripts
 
@@ -189,9 +189,9 @@ Operador | Significado
 
 As operações são realizadas sempre seguindo as prioridades:
 
-1. De dentro para fora de parênteses `()`
-2. Multiplicação e divisão
-3. Adição e subtração
+1. De dentro para fora de parênteses `()`.
+2. Multiplicação e divisão.
+3. Adição e subtração.
 
 ```{r, prompt=TRUE, comment=NA}
 5 * 2 - 10 + 7
@@ -226,19 +226,19 @@ Quando criamos uma variável (`x`, `y`), ela fica armazenada
 knitr::include_graphics("img/script-assign.png")
 ```
 
-Para saber quais objetos estão criados, usamos a **função** `ls()`
+Para saber quais objetos foram criados, usamos a **função** `ls()`
 
 ```{r, prompt=TRUE, comment=NA}
 ls()
 ```
 
-Estas variáveis ficam armazenadas no chamado *workspace* do R
+Estas variáveis ficam armazenadas no chamado *workspace* do R.
 
-- O *workspace* consiste de tudo que or criado durante uma sessão do R,
-  armazenado na memória RAM
+- O *workspace* consiste de tudo que foi criado durante uma sessão do R,
+  e fica armazenado na memória RAM.
 
-Para efetivamente salvar esas variáveis, podemos armazenar esse *workspace*
-do R em disco, em um arquivo chamdo `.Rdata`
+Para efetivamente salvar essas variáveis, podemos armazenar esse *workspace*
+do R em disco, em um arquivo chamado `.Rdata`
 
 ```{r, echo=FALSE, out.width='50%'}
 knitr::include_graphics("img/script-workspace.png")
@@ -248,15 +248,15 @@ knitr::include_graphics("img/script-workspacedata.png")
 ```
 
 - Quando o R é iniciado em um diretório com um arquivo `.Rdata`, as
-  variáveis salvas são automaticamente carregadas
+  variáveis salvas são automaticamente carregadas.
 - No entanto, é sempre melhor salvar os dados e o **script**, assim é
   possível gerar os resultados novamente, sem salvar nada sem
-  necessidade
+  necessidade.
 - Veremos mais pra frente como salvar variáveis específicas, por
   exemplo, resultados de uma análise que leva muito tempo para ser
-  executada
+  executada.
 - O mais importante é salvar o **código**, assim sabemos **como**
-  chegamos a determinado resultado, e podemos recriá-lo depois
+  chegamos a determinado resultado, e podemos recriá-lo.
 
 ### Finalizando o programa
 
@@ -269,10 +269,10 @@ No RStudio:
 
 - `File > Save As...`
 - Na janela que abrir, digite o nome do arquivo (por exemplo
-  `script_aula1`) e salve
+  `script_aula1`) e salve.
 - Automaticamente o script será salvo com a extensão `.R`
   (nesse caso `script_aula1.R`) no diretório de trabalho que você
-  configurou no início
+  configurou no início.
 
 Alternativamente, você pode também salvar toda sua área de trabalho,
 clicando em `Workspace > Save As Default Workspace`. Este

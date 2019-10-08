@@ -1,11 +1,11 @@
 ---
 title: "Estatística Computacional com R"
 author:
-- "Fernando P. Mayer"
-- "Wagner H. Bonat"
-- "Walmes M. Zeviani"
-- "Elias T. Krainski"
-- "Paulo J. Ribeiro Jr."
+- "Prof. Fernando P. Mayer"
+- "Prof. Wagner H. Bonat"
+- "Prof. Walmes M. Zeviani"
+- "Prof. Elias T. Krainski"
+- "Prof. Paulo J. Ribeiro Jr."
 date: |
    | Laboratório de Estatística e Geoinformação (LEG)
    | Departamento de Estatística (DEST)
@@ -28,8 +28,23 @@ link-citations: yes
 
 # Prefácio {-}
 
-Essa apostila é destinada inicialmente  aos alunos da disciplina CE083 -
-Estatística Computacional I, do curso de Estatística da UFPR.
+Esta apostila foi delineada para servir como material de apoio à disciplina
+CE083- Estatística Computacional I. Tal disciplina é ministrada no segundo
+semestre do curso de bacharelado em Estatística da UFPR.
+O principal objetivo do curso é introduzir os aspectos básico do software estatístico R. O curso é dividido em duas etapas: a primeira etapa é
+destinada a aspectos básicos da linguagem R e sua operacionalização. 
+Esta etapa complempla os Capítulos 1 a 5. A segunda etapa objetiva 
+exemplificar o uso do software R através de técnicas de estatística básica.
+Nesta etapa revisamos as principais técnicas para resumo e apresentação
+de dados através de gráficos e tabelas, bem como, sua implementação computacional através do software R. Os principais aspectos ligados à
+distribuições de probabilidades são discutidos no Capítulo 7, incluindo
+tópicos em integração numérica. Por fim, no Capítulo 8 apresentamos um conjunto de técnicas para a construção de intervalos de confiança e testes de hipóteses e exemplificamos as as principais técnicas através de sua implementação em R.
+Alguns tópicos adicionais como documentos dinâmicos e programação orientada a objetos são apresentados no Apêndice.
+
+## Para quem este material é destinado? {-}
+
+Este material é destinado prioritariamente aos alunos do curso de bacharelado em Estatística da UFPR. Porém, o material pode ser usado por qualquer pessoa que tenha interesse em aprender os aspectos básicos da linguagem R com aplicações em estatística. É assumido que o estudante tem um conhecimento minimo de análise exploratória de dados (gráficos e tabela), distribuições de probabilidade e noções de inferência estatística, em particular construção de intervalos de confiança e testes de hipóteses baseados na distribuiçao normal. Tais requisitos são facilmente obtidos em disciplinas tais como CE081 - Estatística Descritiva e Inferencial Básica e CE003 - Estatistica Básica.
+Além disso, é assumido que o aluno tenha alguma familiaridade com o uso de computadores.
 
 ## Informação de sessão {-}
 

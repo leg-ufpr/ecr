@@ -51,9 +51,9 @@ Exemplo: função `sample()`:
 sample(x, size, replace = FALSE, prob = NULL)
 ```
 
-- `x` e `size` devem ser obrigatoriamente especificados
-- `replace` é lógico: `TRUE` (`T`) ou `FALSE` (`F`)
-- `prob` é um argumento vazio ou ausente (“opcional”)
+- `x` e `size` devem ser obrigatoriamente especificados.
+- `replace` é lógico: `TRUE` (`T`) ou `FALSE` (`F`).
+- `prob` é um argumento vazio ou ausente (“opcional”).
 
 Exemplo: função `plot()`:
 
@@ -62,10 +62,10 @@ plot(x, y, ...)
 ```
 
 - "`...`" permite especificar argumentos de outras funções (por exemplo
-  `par()`)
+  `par()`).
 
 Para ver todos os argumentos disponíveis de uma função, podemos usar a
-função `args()`
+função `args()`.
 
 ```{r}
 args(sample)
@@ -87,14 +87,14 @@ help(runif)
 
 A documentação contém os campos:
 
-- **Description:** breve descrição
-- **Usage:** função e todos seus argumentos
-- **Arguments:** lista descrevendo cada argumento
-- **Details:** descrição detalhada
-- **Value:** o que a função retorna
-- **References:** bibliografia relacionada
-- **See Also:** funções relacionadas
-- **Examples:** exemplos práticos
+- **Description:** breve descrição.
+- **Usage:** função e todos seus argumentos.
+- **Arguments:** lista descrevendo cada argumento.
+- **Details:** descrição detalhada.
+- **Value:** o que a função retorna.
+- **References:** bibliografia relacionada.
+- **See Also:** funções relacionadas.
+- **Examples:** exemplos práticos.
 
 Procura por nomes de funções que contenham algum termo:
 
@@ -118,12 +118,12 @@ help.start()
 
 Sites para busca na documentação dos diversos pacotes:
 
-- RDocumentation https://www.rdocumentation.org/
-- R Package Documentation https://rdrr.io/
-- R Contributed Documentation (várias línguas)
-  https://cran.r-project.org/other-docs.html
+- RDocumentation https://www.rdocumentation.org/.
+- R Package Documentation https://rdrr.io/.
+- R Contributed Documentation (várias línguas).
+  https://cran.r-project.org/other-docs.html.
 
-Os pacotes do R contém funções específicas para determinadas tarefas, e
+Os pacotes do R contêm funções específicas para determinadas tarefas, e
 estendem a instalação básica do R. Atualmente existem mais de 10000
 pacotes disponíveis no
 [CRAN](http://cran-r.c3sl.ufpr.br/web/packages/index.html), além de
@@ -151,7 +151,7 @@ search()
 ```
 
 Note que o primeiro elemento, `.GlobalEnv`, será sempre carregado pois
-ele é o *ambiente* queirá armazenar (e deixar disponível) os objetos
+ele é o *ambiente* que irá armazenar (e deixar disponível) os objetos
 criados pelo usuário. Para carregar um pacote instalado, usamos a função
 `library()`, por exemplo
 
@@ -181,7 +181,7 @@ Para instalar os pacotes sempre nesse diretório faça:
 install.packages("mvtnorm", lib = "~/R/library")
 ```
 
-Para verificar as bibliotecas disponíveis e se existem pacotes para ser
+Para verificar as bibliotecas disponíveis e se existem pacotes para serem
 atualizados, use
 
 ```{r, eval=FALSE}
@@ -190,7 +190,7 @@ packageStatus()
 
 Para atualizar automaticamente todos os pacotes faça
 
-```{r}
+```{r, eval = FALSE}
 update.packages(ask = FALSE)
 ```
 
@@ -200,10 +200,10 @@ A ideia original do R é transformar usuários em programadores
 
 > *"... to turn ideas into software, quickly and faithfully."*
 >
-> -- John M. Chambers
+> -- John M. Chambers.
 
 Criar funções para realizar trabalhos específicos é um dos grandes
-poderes do R
+poderes do R.
 
 Por exemplo, podemos criar a famosa função
 
@@ -219,7 +219,7 @@ E chama-la através de
 ola.mundo()
 ```
 
-A função acima não permite alterar o resultado de saída. Podemos fazer
+A função acima não permite alterar o resultado da saída. Podemos fazer
 isso incluindo um **argumento**
 
 ```{r }
@@ -258,28 +258,28 @@ ola.mundo("Funções são legais")
 O que é um objeto?
 
 - Um **símbolo** ou uma **variável** capaz de armazenar qualquer valor
-  ou estrutura de dados
+  ou estrutura de dados.
 
 Por quê objetos?
 
 - Uma maneira simples de acessar os dados armazenados na memória (o R
-  não permite acesso direto à memória)
+  não permite acesso direto à memória).
 
 Programação:
 
-- Objetos $\Rightarrow$ Classes $\Rightarrow$ Métodos
+- Objetos $\Rightarrow$ Classes $\Rightarrow$ Métodos.
 
 > *“Tudo no R é um objeto.”*
 
-> *“Todo objeto no R tem uma classe”*
+> *“Todo objeto no R tem uma classe.”*
 
 - **Classe:** é a definição de um objeto. Descreve a forma do objeto e
-  como ele será manipulado pelas diferentes funções
+  como ele será manipulado pelas diferentes funções.
 - **Método:** são **funções genéricas** que executam suas tarefas de
   acordo com cada classe. Duas das funções genéricas mais importantes
   são:
-    - `summary()`
-    - `plot()`
+    - `summary().`
+    - `plot().`
 
 Veja o resultado de
 
@@ -349,21 +349,21 @@ y
 
 Note que cada objeto só pode armazenar uma estrutura (um número ou uma
 sequência de valores) de cada vez! (Aqui, o valor $4$ que estava
-armazenado em `y` foi sobrescrito pelos valores acima.)
+armazenado em `y` foi sobrescrito pelos valores acima).
 
 ### Nomes de objetos
 
-- Podem ser formados por letras, números, "`_`", e "`.`"
-- Não podem começar com número e/ou ponto
-- Não podem conter espaços
-- Evite usar acentos
+- Podem ser formados por letras, números, "`_`", e "`.`".
+- Não podem começar com número e/ou ponto.
+- Não podem conter espaços.
+- Evite usar acentos.
 - Evite usar nomes de funções como:
 
 `c q t C D F I T diff df data var pt`
 
 - O R é *case-sensitive*, portanto:
 
-`dados` $\neq$ `Dados` $\neq$ `DADOS`
+`dados` $\neq$ `Dados` $\neq$ `DADOS`.
 
 ### Gerenciando a área de trabalho
 
@@ -394,17 +394,17 @@ rm(list = ls())
 <div class="alert alert-danger">
 **Cuidado!** O comando acima apaga todos os objetos na sua área de
 trabalho sem perguntar. Depois só é possível recuperar os objetos ao
-rodar os script novamente.
+rodar o script novamente.
 </div>
 
 ## Exercícios {-}
 
-1. Armazene o resultado da equação $32 + 16^2 - 25^3$ no objeto `x`
-2. Divida `x` por $345$ e armazene em `y`
+1. Armazene o resultado da equação $32 + 16^2 - 25^3$ no objeto `x`.
+2. Divida `x` por $345$ e armazene em `y`.
 3. Crie um objeto (com o nome que você quiser) para armazenar $30$
-   valores aleatórios de uma distribuição uniforme entre $10$ e $50$
-4. Remova o objeto `y`
-5. Remova os demais objetos de uma única vez
+   valores aleatórios de uma distribuição uniforme entre $10$ e $50$.
+4. Remova o objeto `y`.
+5. Remova os demais objetos de uma única vez.
 6. Procure a função utilizada para gerar numeros aleatórios de uma
    distribuição de Poisson, e gere $100$ valores para a VA $X \sim
    \text{Poisson}(5)$.
@@ -421,12 +421,12 @@ complexas podem ser construídas. O R possui dois tipos básicos de
 vetores:
 
 - **Vetores atômicos**: existem seis tipos básicos:
-  - `double`
-  - `integer`
-  - `character`
-  - `logical`
-  - `complex`
-  - `raw`
+  - `double`.
+  - `integer`.
+  - `character`.
+  - `logical`.
+  - `complex`.
+  - `raw`.
 
   Os tipos `integer` e `double` são chamados conjuntamente de `numeric`.
 
@@ -439,7 +439,7 @@ segundo pode ser **heterogêneo** (cada vetor pode conter mais de um
 tipo).
 
 <div class="alert alert-warning">
-Um vetor atômico só pode conter elementos de um mesmo tipo
+Um vetor atômico só pode conter elementos de um mesmo tipo.
 </div>
 
 Um vetor, como o próprio nome diz, é uma estrutura unidimensional, mas
@@ -487,8 +487,8 @@ class(x)
 
 Características:
 
-- Coleção ordenada de valores
-- Estrutura unidimensional
+- Coleção ordenada de valores.
+- Estrutura unidimensional.
 
 Usando a função `c()` para criar vetores:
 
@@ -529,8 +529,8 @@ números.
 #### Representação numérica dentro do R
 
 Os números que aparecem na tela do console do R são apenas
-representações simplificadas do número real armazenado na memória. Por
-exemplo,
+representações simplificadas do número real armazenado na memória. 
+Por exemplo,
 
 ```{r, echo = -1}
 set.seed(123)
@@ -580,7 +580,7 @@ equal?](http://cran-r.c3sl.ufpr.br/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-th
 No R os números podem ser representados com até 22 casas decimais. Você
 pode ver o número com toda sua precisão usando a função `print()` e
 especificando o número de casas decimais com o argumento `digits` (de 1
-a 22)
+a 22).
 
 ```{r}
 print(x, digits = 1)
@@ -721,7 +721,7 @@ z <- c("a", T)
 Lembre-se da regra:
 
 <div class="alert alert-warning">
-Um vetor só pode conter elementos do mesmo tipo
+Um vetor só pode conter elementos do mesmo tipo!
 </div>
 
 Quando objetos de diferentes tipos são misturados, ocorre a
@@ -850,8 +850,8 @@ tratados de maneira diferente.
 
 Características:
 
-- Coleção de categorias ou **níveis** (*levels*)
-- Estrutura unidimensional
+- Coleção de categorias ou **níveis** (*levels*).
+- Estrutura unidimensional.
 
 Utilizando as funções `factor()` e `c()`:
 
@@ -908,7 +908,7 @@ typeof(fator)
 class(fator)
 ```
 
-(Veja que um objeto pode ter mais de uma classe). Isso geralmente só
+Veja que um objeto pode ter mais de uma classe. Isso geralmente só
 será útil em casos especificos.
 
 As seguintes funções são úteis para verificar os níveis e o número de
@@ -963,7 +963,7 @@ rbind(matriz, rep(99, 4))
 ```
 
 Matrizes também podem ser criadas a partir de vetores adicionando um
-**atributo** de dimensão
+**atributo** de dimensão, por exemplo,
 
 ```{r}
 m <- 1:10
@@ -998,9 +998,9 @@ dimensões.
 
 Características:
 
-- Estrutura $n$-dimensional
+- Estrutura $n$-dimensional.
 - Assim como as matrizes, podem conter apenas um tipo de informação
-  (números, caracteres)
+  (números, caracteres).
 
 Para criar um array, usamos a função `array()`, passando como primeiro
 argumento um vetor atômico, e especificamos a dimensão com o argumento
@@ -1030,12 +1030,12 @@ inclusive outras listas.
 Características:
 
 - Pode combinar uma coleção de objetos de diferentes tipos ou classes (é
-  um tipo básico de vetor, assim como os vetores atômicos)
+  um tipo básico de vetor, assim como os vetores atômicos).
 - Estrutura “unidimensional”: apenas o número de elementos na lista é
-  contado
+  contado.
 
-Ppor exemplo, podemos criar uma lista com uma sequência de números, um
-caracter e outra lista
+Por exemplo, podemos criar uma lista com uma sequência de números, um
+caracter e outra lista.
 
 ```{r }
 lista <- list(1:30, "R", list(TRUE, FALSE))
@@ -1045,7 +1045,7 @@ typeof(lista)
 ```
 
 Para melhor visualizar a estrutura dessa lista (ou de qualquer outro
-objeto) poddemos usar a função `str()`
+objeto) podemos usar a função `str()`
 
 ```{r}
 str(lista)
@@ -1070,7 +1070,7 @@ length(lista)
 ### Data frame
 
 Data frame é a versão bidimensional de uma lista. Data frames **são**
-listas, mas onde cada componente dever ter obrigatoriamente o mesmo
+listas, mas onde cada componente deve ter obrigatoriamente o mesmo
 comprimento. Cada vetor da lista vira uma coluna em um data frame,
 permitindo então que as "colunas" sejam de diferentes tipos.
 
@@ -1079,9 +1079,9 @@ no R.
 
 Características:
 
-- Uma lista de vetores e/ou fatores, de **mesmo comprimento**
-- Pode conter diferentes tipos de dados (numérico, fator, ...)
-- Estrutura bidimensional
+- Uma lista de vetores e/ou fatores, de **mesmo comprimento**.
+- Pode conter diferentes tipos de dados (numérico, fator, ...).
+- Estrutura bidimensional.
 
 Utilizando a função `data.frame()`:
 
@@ -1138,7 +1138,7 @@ Geralmente é o resultado de `data.matrix()` o que você está procurando.
 
 <div class="alert alert-warning">
 Lembre que os níveis de um fator são armazenados internamente como
-números: $1^\circ$ nível = 1, $2^\circ$ nível = 2, $\ldots$
+números: $1^\circ$ nível = 1, $2^\circ$ nível = 2, $\ldots$.
 ```{r}
 fator
 str(fator)
@@ -1179,7 +1179,7 @@ attributes(x)
 ```
 
 Nesse caso específico, o R irá mostrar os nomes acima dos componentes,
-mas isso não altera como as opraçõs serão realizadas
+mas isso não altera como as operaçõs serão realizadas.
 
 ```{r}
 x
@@ -1187,8 +1187,8 @@ x + 2
 ```
 
 Os nomes então podem ser definidos através da função *auxiliar*
-`names()`,  sendo assim, também podemos remover esse atributo declarando
-ele como nulo
+`names()`, sendo assim, também podemos remover esse atributo declarando
+ele como nulo.
 
 ```{r}
 names(x) <- NULL
@@ -1196,8 +1196,8 @@ attributes(x)
 x
 ```
 
-Outros atributos também podem ser definidos de maneira similar. Veja os
-exemplos abaixo:
+Outros atributos também podem ser definidos de maneira similar. 
+Veja os exemplos abaixo:
 
 ```{r}
 length(x)
