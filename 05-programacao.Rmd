@@ -4,7 +4,7 @@ Por quê programar?
 
 - Evitar repetições desnecessárias de análises ou cálculos que são
 repetidos com frequência.
-- Fica documentado as etapas que você realizou para chegar a um
+- Documentar as etapas que você realizou para chegar a um
 resultado.
 - Fácil recuperação e modificação de programas.
 
@@ -48,8 +48,8 @@ for(j in 1:10){
 ```
 
 Veja que o índice não precisa ser `i`, na verdade pode ser qualquer
-letra ou palavra. Nesse caso, veja que utilizamos os valores como índice
-para selecionar elementos de `x` naquelas posições específicas.
+letra ou palavra. Nesse caso, utilizamos os valores como índice
+para selecionar elementos de `x` nas posições específicadas.
 
 Um outro exemplo seria se quisessemos imprimir o quadrado de alguns
 números (não necessariamente em sequência):
@@ -190,7 +190,7 @@ o propósito de cada função.
 </div>
 
 Antes de aplicar a função dentro de um `for()` devemos testá-la para ver
-se ela está funcioanando de maneira correta. Por exemplo, o CV para as
+se ela está funcionando de maneira correta. Por exemplo, o CV para as
 notas do primeiro aluno pode ser calculado "manualmente" por
 
 ```{r }
@@ -232,7 +232,7 @@ $$
 $$
 
 onde $w_i$ são os pesos, e $N = \sum_{i=1}^{n} w_i$ é a soma dos pesos.
-Como já vimos que criar uma função é uma forma mais prática (e elegante)
+Como já vimos, criar uma função é uma forma mais prática (e elegante)
 de executar determinada tarefa, vamos criar uma função que calcule as
 médias ponderadas.
 
@@ -282,11 +282,11 @@ head(notas)
 <div class="alert alert-warning">
 NOTA: uma função para calcular a média ponderada já existe
 implementada no R. Veja `?weighted.mean()` e confira os resultados
-obtidos aqui
+obtidos aqui.
 </div>
 
 Repare na construção da função acima: agora usamos dois argumentos,
-`notas` e `pesos`, pois precisamos dos doiss vetores para calcular a média
+`notas` e `pesos`, pois precisamos dos dois vetores para calcular a média
 ponderada. Repare também que ambos argumentos não possuem um valor
 padrão. Poderíamos, por exemplo, assumir valores padrão para os pesos, e
 deixar para que o usuário mude apenas se achar necessário.
@@ -321,6 +321,15 @@ for(i in 1:nlinhas){
 ## Confere
 head(notas)
 ```
+
+### Exercícios {-}
+
+1. Escreva um loop for que percorre os números de 1 a 700 e imprime o cubo de cada número.
+1. Escreva um loop for que percorre os nomes das colunas do conjunto de dados iris e imprime cada um junto com o número de caracteres na coluna nomes entre parênteses. Example de output Sepal.Length (12). Dica: Use as seguintes funções print(), paste0() e nchar().
+1. Escreva um loop while que imprime o erro padrão de amostras da distribuição
+normal padrão (use rnorm()) e para (break) se o erro padrão obtido for maior que 1.
+1. Usando o comando next adapte o loop do exercício (3) para que números menores que 0.75 não sejam mostrados.
+1. Use um loop for para simular o lançamento de uma moeda (1 - cara, 0 - coroa) e armazene os resultados em um vetor pré-especificado.
 
 ## Estrutura de seleção `if()`
 
@@ -395,7 +404,7 @@ head(notas)
 
 As funções vetorizadas do R, além de facilitar e resumir a execução de
 tarefas repetitivas, também são computacionalmente mais eficientes,
-*i.e.* o tempo de execução das rotinas é muito mais rápido.
+*i.e.* o tempo de execução das rotinas é menor.
 
 Já vimos que a **regra da reciclagem** é uma forma de vetorizar cálculos
 no R. Os cálculos feitos com funções vetorizadas (ou usando a regra de
@@ -428,7 +437,7 @@ identical(y1, y2)
 
 Note que os resultados são exatamente iguais, mas então porque se
 prefere o formato vetorial? Primeiro porque é muito mais simples de
-escrever, e segundo (e princiapalmente) porque a forma vetorizada é
+escrever, e segundo (e principalmente) porque a forma vetorizada é
 muito mais **eficiente computacionalmente**. A eficiência computacional
 pode ser medida de várias formas (alocação de memória, tempo de
 execução, etc), mas apenas para comparação, vamos medir o tempo de
@@ -457,7 +466,7 @@ função medido por `system.time()`, notamos que usando a regra da
 reciclagem, o cálculo é aproximadamente
 $`r st1[3]`/`r st2[3]` = `r round(st1[3]/st2[3], 2)`$ vezes mais rápido.
 Claramente esse é só um exemplo de um cálculo muito simples. Mas em
-situações mais complexas, a diferença entro o tempo de execução das duas
+situações mais complexas, a diferença entre o tempo de execução das duas
 formas pode ser muito maior.
 
 <div class="panel panel-primary">
@@ -465,9 +474,9 @@ formas pode ser muito maior.
 <div class="panel-body">
 Existem duas formas básicas de tornar um loop `for` no R mais rápido:
 
-1. Faça o máximo possível fora do loop
+1. Faça o máximo possível fora do loop.
 2. Crie um objeto com tamanho suficiente para armazenar *todos* os
-   resultados do loop **antes** de executá-lo
+   resultados do loop **antes** de executá-lo.
 
 Veja este exemplo:
 
@@ -515,7 +524,7 @@ knitr::include_graphics("img/R_club.jpg")
 </div>
 
 Voltando ao exemplo das notas, por exemplo, o cálculo da média simples
-poderia ser feita diretamente com a função `apply()`
+poderia ser feito diretamente com a função `apply()`
 
 ```{r }
 notas$media.apply <- apply(X = notas[, provas], MARGIN = 1, FUN = mean)
@@ -577,6 +586,14 @@ notas$situacao2 <- ifelse(notas$MP >= 7, "aprovado", "reprovado")
 head(notas)
 ```
 
+### Exercícios {-}
+
+1. Faça uma função usando loop for que recebe duas matrizes de mesma dimensão e retorna a soma das matrizes. Note que é necessário verificar se as matrizes fornecidas pelo usuário podem ser somadas, caso contrário retorne uma mensagem de erro dizendo que as matrizes não podem ser somadas.
+1. Faça uma função usando loop for para multiplicar duas matrizes compatíveis. Note que é necessário verificar se as matrizes fornecidas pelo usuário podem ser multiplicadas, caso contrário retorne uma mensagem de erro dizendo que as matrizes não podem ser multiplicadas.
+1. Faça uma função para resolver sistemas lineares 2 x 2 usando o método de decomposição de Gauss. Veja esta página se você não conhece o método https://matrixcalc.org/pt/slu.html.
+1. Faça uma função que encontra o máximo de uma função fornecida pelo usuário em um intervalo e precisão pré-determinado pelo usuário.
+1. Faça uma função que resolve uma equação não-linear de um único parâmetro em um intervalo e precisão pré-determinado pelo usuário.
+
 ## Outras estruturas: while e repeat
 
 O `while` executa comandos enquanto uma determinada condição permanece
@@ -607,3 +624,12 @@ repeat{
 }
 soma
 ```
+
+
+### Exercícios {-}
+
+1. Crie uma função que retorna o absoluto de um vetor de inteiros.
+1. Crie uma função em R que retorna o maior valor em um vetor de elementos númericos.
+1. Crie uma função que retorna o número de valores maiores que a média de um vetor. Você pode usar a função mean().
+1. Crie uma função que dado um vetor de tamanho 3 retorna os seus valores em ordem crescente e decrescente.
+1. Crie uma função que calcula o fatorial de um número.
