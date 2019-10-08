@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Estatística Computacional com R</title>
-  <meta name="description" content="Estatística Computacional com R" />
+  <title>B Programação Orientada a Objetos | Estatística Computacional com R</title>
+  <meta name="description" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
   <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Estatística Computacional com R" />
+  <meta property="og:title" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Estatística Computacional com R" />
+  <meta name="twitter:title" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
   
   
   
@@ -34,8 +34,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="computação-científica-e-interação-com-o-r.html"/>
+<link rel="prev" href="documentos-dinâmicos.html"/>
+<link rel="next" href="scripts.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -284,72 +284,122 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estatística Computacional com R</h1>
-<p class="author"><em>Prof. Fernando P. Mayer</em></p>
-<p class="author"><em>Prof. Wagner H. Bonat</em></p>
-<p class="author"><em>Prof. Walmes M. Zeviani</em></p>
-<p class="author"><em>Prof. Elias T. Krainski</em></p>
-<p class="author"><em>Prof. Paulo J. Ribeiro Jr.</em></p>
-<p class="date"><em><div style="white-space: pre-line;">Laboratório de Estatística e Geoinformação (LEG)
-Departamento de Estatística (DEST)
-Universidade Federal do Paraná (UFPR)
+<div id="programação-orientada-a-objetos" class="section level1">
+<h1><span class="header-section-number">B</span> Programação Orientada a Objetos</h1>
+<p>Como vimos anteriormente, o R é uma linguagem de programação orientada à objetos. Dois conceitos fundamentais desse tipo de linguagem são os de <strong>classe</strong> e <strong>método</strong>. Já vimos também que todo objeto no R possui uma classe (que define sua estrutura) e analisamos algumas delas. O que seria então um método? Para responder essa pergunta precisamos entender inicialmente os tipos de orientação a objetos que o R possui.</p>
+<p>O R possui 3 sitemas de orientação a objetos: <strong>S3</strong>, <strong>S4</strong>, e <strong>RC</strong>:</p>
+<ul>
+<li><strong>S3</strong>: implementa um estilo de programação orientada a objeto chamada de <em>generic-function</em>. Esse é o estilo mais básico de programação em R (e também o mais utilizado). A ideia é que existam <strong>funções genéricas</strong> que decidem qual método aplicar de acordo com a classe do objeto. Os métodos são definidos da mesma forma que qualquer função, mas chamados de amenira diferente. É um estilo de programação mais “informal”, mas possibilita uma grande liberdade para o programador.</li>
+<li><strong>S4</strong>: é um estilo mais formal, no sentido que que as funções genéricas devem possuir uma classe formal definida. Além disso, é possível também fazer o <strong>despacho múltiplo de métodos</strong>, ao contrário da classe S3.</li>
+<li><strong>RC</strong>: (<em>Reference Classes</em>, antes chamado de R5) é o sistema mais novo implementado no R. A principal diferença com os sistemas S3 e S4 é que métodos pertencem à objetos, não à funções. Isso faz com que objetos da classe RC se comportem mais como objetos da maioria das linguagens de programação, como Python, Java, e C#.</li>
+</ul>
+<p>Nesta sessão vamos abordar como funcionam os métodos como definidos pelo sistema S3, por ser o mais utilizado na prática para se criar novas funções no R. Para saber mais sobre os outros métodos, consulte o livro <a href="http://adv-r.had.co.nz/OO-essentials.html">Advanced R</a>.</p>
+<p>Vamos entender como uma função genérica pode ser criada através de um exemplo. Usando a função <code>methods()</code>, podemos verificar quais métodos estão disponíveis para uma determinada função, por exemplo, para a função <code>mean()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(mean)
+[<span class="dv">1</span>] mean.Date     mean.default  mean.difftime mean.POSIXct  mean.POSIXlt 
+[<span class="dv">6</span>] mean.quosure<span class="op">*</span>
+see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</code></pre></div>
+<p>O resultado são expressões do tipo <code>mean.&lt;classe&gt;</code>, onde <code>&lt;classe&gt;</code> é uma classe de objeto como aquelas vistas anteriormente. Isso significa que a função <code>mean()</code>, quando aplicada à um objeto da classe <code>Date</code>, por exemplo, pode ter um comportamento diferente quando a mesma função for aplicada à um objeto de outra classe (numérica).</p>
+<p>Suponha que temos o seguinte vetor numérico:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
+<span class="kw">class</span>(vec)
+[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
+<p>e queremos calcular sua média. Basta aplicar a função <code>mean()</code> nesse objeto para obtermos o resultado esperado</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(vec)
+[<span class="dv">1</span>] <span class="fl">0.1088874</span></code></pre></div>
+<p>Mas isso só é possível porque existe um método definido espcificamente para um vetor da classe <code>numeric</code>, que nesse caso é a função <code>mean.default</code>. A função genérica nesse caso é a <code>mean()</code>, e a função método é a <code>mean.default</code>. Veja que não precisamos escrever onome inteiro da função genérica para que ela seja utilizada, como por exemplo,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean.default</span>(vec)
+[<span class="dv">1</span>] <span class="fl">0.1088874</span></code></pre></div>
+<p>Uma vez passado um objeto para uma função, é a classe do objeto que irá definir qual método utilizar, de acordo com os métodos disponíveis. Veja o que acontece se forcarmos o uso da função <code>mean.Date()</code> nesse vetor</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean.Date</span>(vec)
+[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></code></pre></div>
+<p>O resultado não faz sentido pois ele é específico para um objeto da classe <code>Date</code>.</p>
+<p>Tudo isso acontece por causa de um mecanismo chamado de <strong>despacho de métodos</strong> (<em>method dispatch</em>), que é responsável por identificar a classe do objeto e utilizar (“despachar”) a função método correta para aquela classe. Toda função genérica possui a mesma forma: uma chamada para a função <code>UseMethod()</code>, que especifica o nome genérico e o objeto a ser despachado. Por exemplo, veja o código fonte da função <code>mean()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean
+<span class="cf">function</span> (x, ...) 
+<span class="kw">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x33fc2d8</span><span class="op">&gt;</span>
+<span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
+<p>Agora veja o código fonte da função <code>mean.default</code>, que é o método específico para vetores numéricos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.default
+<span class="cf">function</span> (x, <span class="dt">trim =</span> <span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>, ...) 
+{
+    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(x) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.complex</span>(x) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.logical</span>(x)) {
+        <span class="kw">warning</span>(<span class="st">&quot;argument is not numeric or logical: returning NA&quot;</span>)
+        <span class="kw">return</span>(<span class="ot">NA_real_</span>)
+    }
+    <span class="cf">if</span> (na.rm) 
+        x &lt;-<span class="st"> </span>x[<span class="op">!</span><span class="kw">is.na</span>(x)]
+    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(trim) <span class="op">||</span><span class="st"> </span><span class="kw">length</span>(trim) <span class="op">!=</span><span class="st"> </span>1L) 
+        <span class="kw">stop</span>(<span class="st">&quot;&#39;trim&#39; must be numeric of length one&quot;</span>)
+    n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
+    <span class="cf">if</span> (trim <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>n) {
+        <span class="cf">if</span> (<span class="kw">is.complex</span>(x)) 
+            <span class="kw">stop</span>(<span class="st">&quot;trimmed means are not defined for complex data&quot;</span>)
+        <span class="cf">if</span> (<span class="kw">anyNA</span>(x)) 
+            <span class="kw">return</span>(<span class="ot">NA_real_</span>)
+        <span class="cf">if</span> (trim <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.5</span>) 
+            <span class="kw">return</span>(stats<span class="op">::</span><span class="kw">median</span>(x, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>))
+        lo &lt;-<span class="st"> </span><span class="kw">floor</span>(n <span class="op">*</span><span class="st"> </span>trim) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+        hi &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>lo
+        x &lt;-<span class="st"> </span><span class="kw">sort.int</span>(x, <span class="dt">partial =</span> <span class="kw">unique</span>(<span class="kw">c</span>(lo, hi)))[lo<span class="op">:</span>hi]
+    }
+    <span class="kw">.Internal</span>(<span class="kw">mean</span>(x))
+}
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x72e8650</span><span class="op">&gt;</span>
+<span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
+<p>Agora suponha que você ddeseja criar uma função que calcule a média para um objeto de uma classe diferente daquelas previamente definidas. Por exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das linhas de uma matriz.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
+mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">50</span>), <span class="dt">nrow =</span> <span class="dv">5</span>)
+<span class="kw">mean</span>(mat)
+[<span class="dv">1</span>] <span class="fl">0.1004483</span></code></pre></div>
+<p>O resultado é a média de todos os elementos, e não de cada linha. Nesse caso, podemos definir nossa própria função método para fazer o cálculo que precisamos. Por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.matrix &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">rowMeans</span>(x)</code></pre></div>
+<p>Uma função método é sempre definida dessa forma: <code>&lt;funçãogenérica&gt;.&lt;classe&gt;</code>. Agora podemos ver novamente os métodos disponíveis para a função <code>mean()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(mean)
+[<span class="dv">1</span>] mean.Date     mean.default  mean.difftime mean.matrix   mean.POSIXct 
+[<span class="dv">6</span>] mean.POSIXlt  mean.quosure<span class="op">*</span>
+see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</code></pre></div>
+<p>e simplesmente aplicar a função genérica <code>mean()</code> à um objeto da classe <code>matrix</code> para obter o resultado que desejamos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mat)
+[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span>
+<span class="kw">mean</span>(mat)
+[<span class="dv">1</span>]  <span class="fl">0.09544402</span>  <span class="fl">0.12852087</span>  <span class="fl">0.06229588</span> <span class="op">-</span><span class="fl">0.01993810</span>  <span class="fl">0.23591872</span></code></pre></div>
+<p>Esse exemplo ilustra como é simples criar funções método para diferentes classes de objetos. Poderíamos fazer o mesmo para objetos das classes <code>data.frame</code> e <code>list</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.data.frame &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">sapply</span>(x, mean, ...)
+mean.list &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">lapply</span>(x, mean)</code></pre></div>
+<p>Aplicando em objetos dessas classes específicas, obtemos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Data frame
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+da &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">c1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),
+                 <span class="dt">c2 =</span> <span class="kw">runif</span>(<span class="dv">10</span>))
+<span class="kw">class</span>(da)
+[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span>
+<span class="kw">mean</span>(da)
+       c1        c2 
+<span class="fl">0.1322028</span> <span class="fl">0.4183230</span> 
+## Lista
+<span class="kw">set.seed</span>(<span class="dv">1</span>)
+dl &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="kw">runif</span>(<span class="dv">50</span>))
+<span class="kw">class</span>(dl)
+[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span>
+<span class="kw">mean</span>(dl)
+[[<span class="dv">1</span>]]
+[<span class="dv">1</span>] <span class="fl">0.1322028</span>
 
-2018-07-24
-Última atualização: 2019-10-08</div></em></p>
+[[<span class="dv">2</span>]]
+[<span class="dv">1</span>] <span class="fl">0.4946632</span></code></pre></div>
+<p>Obviamente esse processo todo é extremamente importante ao se criar novas funções no R. Podemos tanto criar uma função genérica (como a <code>mean()</code>) e diversos métodos para ela usando classes de objetos existentes, quanto (inclusive) criar novas classes e funções método para elas. Essa é uma das grandes lberdades que o método S3 de orientação à objetos permite, e possivelmente um dos motivos pelos quais é relativamente simples criar pacotes inteiros no R.</p>
+
 </div>
-<div id="prefácio" class="section level1 unnumbered">
-<h1>Prefácio</h1>
-<p>Esta apostila foi delineada para servir como material de apoio à disciplina CE083- Estatística Computacional I. Tal disciplina é ministrada no segundo semestre do curso de bacharelado em Estatística da UFPR. O principal objetivo do curso é introduzir os aspectos básico do software estatístico R. O curso é dividido em duas etapas: a primeira etapa é destinada a aspectos básicos da linguagem R e sua operacionalização. Esta etapa complempla os Capítulos 1 a 5. A segunda etapa objetiva exemplificar o uso do software R através de técnicas de estatística básica. Nesta etapa revisamos as principais técnicas para resumo e apresentação de dados através de gráficos e tabelas, bem como, sua implementação computacional através do software R. Os principais aspectos ligados à distribuições de probabilidades são discutidos no Capítulo 7, incluindo tópicos em integração numérica. Por fim, no Capítulo 8 apresentamos um conjunto de técnicas para a construção de intervalos de confiança e testes de hipóteses e exemplificamos as as principais técnicas através de sua implementação em R. Alguns tópicos adicionais como documentos dinâmicos e programação orientada a objetos são apresentados no Apêndice.</p>
-<div id="para-quem-este-material-é-destinado" class="section level2 unnumbered">
-<h2>Para quem este material é destinado?</h2>
-<p>Este material é destinado prioritariamente aos alunos do curso de bacharelado em Estatística da UFPR. Porém, o material pode ser usado por qualquer pessoa que tenha interesse em aprender os aspectos básicos da linguagem R com aplicações em estatística. É assumido que o estudante tem um conhecimento minimo de análise exploratória de dados (gráficos e tabela), distribuições de probabilidade e noções de inferência estatística, em particular construção de intervalos de confiança e testes de hipóteses baseados na distribuiçao normal. Tais requisitos são facilmente obtidos em disciplinas tais como CE081 - Estatística Descritiva e Inferencial Básica e CE003 - Estatistica Básica. Além disso, é assumido que o aluno tenha alguma familiaridade com o uso de computadores.</p>
-</div>
-<div id="informação-de-sessão" class="section level2 unnumbered">
-<h2>Informação de sessão</h2>
-<p>Abaixo seguem as informações do ambiente em que o documento foi gerado pela última vez.</p>
-<pre><code>Tuesday, 08 October, 2019, 19:10
-----------------------------------------
-R version 3.6.1 (2017-01-27)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 16.04.6 LTS
-
-Matrix products: default
-BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
-LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
-
-locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] knitr_1.25
-
-loaded via a namespace (and not attached):
- [1] compiler_3.6.1  magrittr_1.5    bookdown_0.14.1 htmltools_0.4.0
- [5] tools_3.6.1     yaml_2.2.0      Rcpp_1.0.2      stringi_1.4.3  
- [9] rmarkdown_1.16  stringr_1.4.0   digest_0.6.21   xfun_0.10      
-[13] rlang_0.4.0     evaluate_0.14  </code></pre>
-
-</div>
-</div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="computação-científica-e-interação-com-o-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="documentos-dinâmicos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scripts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

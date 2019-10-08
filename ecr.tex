@@ -26,7 +26,7 @@
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 \hypersetup{
             pdftitle={Estatística Computacional com R},
-            pdfauthor={Fernando P. Mayer; Wagner H. Bonat; Walmes M. Zeviani; Elias T. Krainski; Paulo J. Ribeiro Jr.},
+            pdfauthor={Prof.~Fernando P. Mayer; Prof.~Wagner H. Bonat; Prof.~Walmes M. Zeviani; Prof.~Elias T. Krainski; Prof.~Paulo J. Ribeiro Jr.},
             colorlinks=true,
             linkcolor=Maroon,
             citecolor=Blue,
@@ -149,11 +149,11 @@
 %%----------------------------------------------------------------------
 
 \title{Estatística Computacional com R}
-\author{Fernando P. Mayer \and Wagner H. Bonat \and Walmes M. Zeviani \and Elias T. Krainski \and Paulo J. Ribeiro Jr.}
+\author{Prof.~Fernando P. Mayer \and Prof.~Wagner H. Bonat \and Prof.~Walmes M. Zeviani \and Prof.~Elias T. Krainski \and Prof.~Paulo J. Ribeiro Jr.}
 \date{Laboratório de Estatística e Geoinformação (LEG)\\
 Departamento de Estatística (DEST)\\
 Universidade Federal do Paraná (UFPR)\\[2\baselineskip]2018-07-24\\
-Última atualização: 2018-08-14}
+Última atualização: 2019-10-08}
 
 \begin{document}
 \maketitle
@@ -163,27 +163,60 @@ Universidade Federal do Paraná (UFPR)\\[2\baselineskip]2018-07-24\\
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\chapter*{Prefácio}\label{prefacio}
+\chapter*{Prefácio}\label{prefuxe1cio}
 
 
-Essa apostila é destinada inicialmente aos alunos da disciplina CE083 -
-Estatística Computacional I, do curso de Estatística da UFPR.
+Esta apostila foi delineada para servir como material de apoio à
+disciplina CE083- Estatística Computacional I. Tal disciplina é
+ministrada no segundo semestre do curso de bacharelado em Estatística da
+UFPR. O principal objetivo do curso é introduzir os aspectos básico do
+software estatístico R. O curso é dividido em duas etapas: a primeira
+etapa é destinada a aspectos básicos da linguagem R e sua
+operacionalização. Esta etapa complempla os Capítulos 1 a 5. A segunda
+etapa objetiva exemplificar o uso do software R através de técnicas de
+estatística básica. Nesta etapa revisamos as principais técnicas para
+resumo e apresentação de dados através de gráficos e tabelas, bem como,
+sua implementação computacional através do software R. Os principais
+aspectos ligados à distribuições de probabilidades são discutidos no
+Capítulo 7, incluindo tópicos em integração numérica. Por fim, no
+Capítulo 8 apresentamos um conjunto de técnicas para a construção de
+intervalos de confiança e testes de hipóteses e exemplificamos as as
+principais técnicas através de sua implementação em R. Alguns tópicos
+adicionais como documentos dinâmicos e programação orientada a objetos
+são apresentados no Apêndice.
 
-\section*{Informação de sessão}\label{informacao-de-sessao}
+\section*{Para quem este material é
+destinado?}\label{para-quem-este-material-uxe9-destinado}
+
+
+Este material é destinado prioritariamente aos alunos do curso de
+bacharelado em Estatística da UFPR. Porém, o material pode ser usado por
+qualquer pessoa que tenha interesse em aprender os aspectos básicos da
+linguagem R com aplicações em estatística. É assumido que o estudante
+tem um conhecimento minimo de análise exploratória de dados (gráficos e
+tabela), distribuições de probabilidade e noções de inferência
+estatística, em particular construção de intervalos de confiança e
+testes de hipóteses baseados na distribuiçao normal. Tais requisitos são
+facilmente obtidos em disciplinas tais como CE081 - Estatística
+Descritiva e Inferencial Básica e CE003 - Estatistica Básica. Além
+disso, é assumido que o aluno tenha alguma familiaridade com o uso de
+computadores.
+
+\section*{Informação de sessão}\label{informauxe7uxe3o-de-sessuxe3o}
 
 
 Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Tuesday, 14 August, 2018, 19:50
+Tuesday, 08 October, 2019, 19:10
 ----------------------------------------
-R version 3.5.0 (2017-01-27)
+R version 3.6.1 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 14.04.5 LTS
+Running under: Ubuntu 16.04.6 LTS
 
 Matrix products: default
-BLAS: /home/travis/R-bin/lib/R/lib/libRblas.so
+BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
 LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
 
 locale:
@@ -198,20 +231,19 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] rmarkdown_1.10 MASS_7.3-50    gdata_2.18.0   knitr_1.20    
+[1] rmarkdown_1.16 MASS_7.3-51.4  gdata_2.18.0   knitr_1.25    
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.18    bookdown_0.7.17 gtools_3.8.1    digest_0.6.15  
- [5] rprojroot_1.3-2 backports_1.1.2 magrittr_1.5    evaluate_0.11  
- [9] highr_0.7       stringi_1.2.4   rstudioapi_0.7  tools_3.5.0    
-[13] stringr_1.3.1   xfun_0.3        yaml_2.2.0      compiler_3.5.0 
-[17] htmltools_0.3.6
+ [1] Rcpp_1.0.2      bookdown_0.14.1 gtools_3.8.1    digest_0.6.21  
+ [5] magrittr_1.5    evaluate_0.14   highr_0.8       rlang_0.4.0    
+ [9] stringi_1.4.3   tools_3.6.1     stringr_1.4.0   xfun_0.10      
+[13] yaml_2.2.0      compiler_3.6.1  htmltools_0.4.0
 \end{verbatim}
 
-\part{R básico}\label{part-r-basico}
+\part{R básico}\label{part-r-buxe1sico}
 
 \chapter{Computação científica e interação com o
-R}\label{computacao-cientifica-e-interacao-com-o-r}
+R}\label{computauxe7uxe3o-cientuxedfica-e-interauxe7uxe3o-com-o-r}
 
 \section{Interagindo com o
 computador}\label{interagindo-com-o-computador}
@@ -226,9 +258,9 @@ O que significa este ícone?
   É um documento do Microsoft Excel?
 \item
   É um arquivo de \textbf{texto pleno}, separado por vírgulas (CSV
-  \emph{comma separated values})
+  \emph{comma separated values});
 \item
-  De fato, o nome do arquivo é \texttt{final.csv} e não \texttt{final}
+  De fato, o nome do arquivo é \texttt{final.csv} e não \texttt{final};
 \item
   O Excel pode sim abrir este arquivo\ldots{} assim como milhares de
   outros programas!
@@ -240,14 +272,14 @@ O que está acontecendo?
 \tightlist
 \item
   O computador (leia-se, nesse caso, o sistema operacional Windows)
-  ``proteje'' o usuário dos detalhes sujos
+  ``proteje'' o usuário dos detalhes sujos.
 \item
   Isso é ruim? \textbf{Sim!}
 \item
-  O usuário se acostuma com o computador ditando as regras
+  O usuário se acostuma com o computador ditando as regras.
 \item
   É importante lembrar que é você quem deve dizer o que o computador
-  deve fazer (nesse caso, com qual programa abrir certo arquivo)
+  deve fazer (nesse caso, com qual programa abrir certo arquivo).
 \end{itemize}
 
 O que deve acontecer?
@@ -256,40 +288,40 @@ O que deve acontecer?
 \tightlist
 \item
   Para a maioria dos usuários, a interação com o computador se limita a
-  clicar em links, selecionar menus e caixas de diálogo
+  clicar em links, selecionar menus e caixas de diálogo.
 \item
   O problema com essa abordagem é que parece que o usuário é controlado
-  pelo computador
+  pelo computador.
 \item
   A verdade deve ser o oposto!
 \item
   É o usuário que possui o controle e deve dizer para o computador
-  exatamente o que fazer
+  exatamente o que fazer.
 \item
   Escrever código ainda tem a vantagem de deixar registrado tudo o que
-  foi feito
+  foi feito, possibilitando a reprodução e auditoria.
 \end{itemize}
 
 \section{Editores de texto}\label{editores-de-texto}
 
 Uma característica importante de códigos de programação é que eles são
 em \textbf{texto puro}, por isso precisamos de um bom \textbf{editor de
-textos}
+textos}.
 
 Características de um bom editor:
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Identação automática}
+  \textbf{Identação automática};
 \item
-  \textbf{Complementação de parênteses}
+  \textbf{Complementação de parênteses};
 \item
-  \textbf{Destaque de sintaxe} (\emph{syntax highlighting})
+  \textbf{Destaque de sintaxe} (\emph{syntax highlighting});
 \item
-  \textbf{Numeração de linhas}
+  \textbf{Numeração de linhas};
 \item
-  \textbf{Auto completar comandos}
+  \textbf{Auto completar comandos}.
 \end{itemize}
 
 \subsection{Editores para R}\label{editores-para-r}
@@ -299,9 +331,9 @@ Windows:
 \begin{itemize}
 \tightlist
 \item
-  Interface padrão: pouco recomendado
+  Interface padrão: pouco recomendado.
 \item
-  Tinn-R
+  Tinn-R.
 \end{itemize}
 
 Linux:
@@ -309,9 +341,9 @@ Linux:
 \begin{itemize}
 \tightlist
 \item
-  Vim-R-plugin
+  Vim-R-plugin.
 \item
-  Gedit-R-plugin
+  Gedit-R-plugin.
 \end{itemize}
 
 Todas as plataformas:
@@ -319,9 +351,9 @@ Todas as plataformas:
 \begin{itemize}
 \tightlist
 \item
-  Rstudio: recomendado para iniciantes
+  Rstudio: recomendado para iniciantes.
 \item
-  Emacs + ESS: altamente recomendado
+  Emacs + ESS: altamente recomendado.
 \end{itemize}
 
 \section{R}\label{r}
@@ -342,23 +374,23 @@ O R é um dialeto do S e:
 \begin{itemize}
 \item
   \emph{Ambiente} estatístico para análise de dados e produção de
-  gráficos
+  gráficos.
 \item
-  Uma completa linguagem de programação:
+  Uma linguagem de programação completa:
 
   \begin{itemize}
   \tightlist
   \item
-    Interpretada (contrário de compilada)
+    Interpretada (contrário de compilada).
   \item
-    Orientada a objetos:
+    Orientada a objetos.
   \end{itemize}
 
   \emph{Tudo no R é um objeto\ldots{}}
 \item
-  Livre distribuição (código-aberto)
+  Livre distribuição (código-aberto).
 \item
-  Mais de 10000 pacotes adicionais
+  Mais de 10000 pacotes adicionais.
 \end{itemize}
 
 Pequeno histórico:
@@ -367,22 +399,22 @@ Pequeno histórico:
 \tightlist
 \item
   1980: Linguagem S: desenvolvida por R. Becker, J. Chambers e A. Wilks
-  (AT\&T Bell Laboratories)
+  (AT\&T Bell Laboratories);
 \item
-  1980: Versão comercial: S-Plus (Insightful Corporation)
+  1980: Versão comercial: S-Plus (Insightful Corporation);
 \item
   1996: Versão livre: R desenvolvido por R. Ihaka e R. Gentleman
-  (Universidade de Auckland)
+  (Universidade de Auckland);
 \item
-  1997: R Development Core Team
+  1997: R Development Core Team;
 \item
   Hoje: 20 desenvolvedores principais e muitos outros colaboradores em
-  todo o mundo
+  todo o mundo;
 \item
-  Estatísticos, matemáticos e programadores
+  Estatísticos, matemáticos e programadores.
 \end{itemize}
 
-\subsection{Configuração inicial}\label{configuracao-inicial}
+\subsection{Configuração inicial}\label{configurauxe7uxe3o-inicial}
 
 \begin{itemize}
 \item
@@ -450,7 +482,7 @@ Espaços entre os números não fazem diferença:
 \end{Shaded}
 
 \subsection{Para onde vão os
-resultados?}\label{para-onde-vao-os-resultados}
+resultados?}\label{para-onde-vuxe3o-os-resultados}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -467,7 +499,7 @@ resultados?}\label{para-onde-vao-os-resultados}
 \tightlist
 \item
   Note que o resultado é apenas mostrado na tela, nada é salvo na
-  memória (por enquanto)
+  memória (por enquanto).
 \end{itemize}
 
 \subsection{O editor de scripts}\label{o-editor-de-scripts}
@@ -497,7 +529,7 @@ resultados?}\label{para-onde-vao-os-resultados}
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Operadores aritméticos}\label{operadores-aritmeticos}
+\subsection{Operadores aritméticos}\label{operadores-aritmuxe9ticos}
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
@@ -517,7 +549,7 @@ logaritmos\tabularnewline
 \bottomrule
 \end{longtable}
 
-\subsection{Ordens de execução}\label{ordens-de-execucao}
+\subsection{Ordens de execução}\label{ordens-de-execuuxe7uxe3o}
 
 As operações são realizadas sempre seguindo as prioridades:
 
@@ -525,11 +557,11 @@ As operações são realizadas sempre seguindo as prioridades:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  De dentro para fora de parênteses \texttt{()}
+  De dentro para fora de parênteses \texttt{()}.
 \item
-  Multiplicação e divisão
+  Multiplicação e divisão.
 \item
-  Adição e subtração
+  Adição e subtração.
 \end{enumerate}
 
 \begin{Shaded}
@@ -545,7 +577,7 @@ As operações são realizadas sempre seguindo as prioridades:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection*{Exercícios}\label{exercicios}
+\subsection*{Exercícios}\label{exercuxedcios}
 
 
 \begin{enumerate}
@@ -585,7 +617,7 @@ armazenada \textbf{temporariamente} na memória RAM.
 
 \begin{center}\includegraphics[width=0.5\linewidth]{img/script-assign} \end{center}
 
-Para saber quais objetos estão criados, usamos a \textbf{função}
+Para saber quais objetos foram criados, usamos a \textbf{função}
 \texttt{ls()}
 
 \begin{Shaded}
@@ -595,17 +627,17 @@ Para saber quais objetos estão criados, usamos a \textbf{função}
 \end{Highlighting}
 \end{Shaded}
 
-Estas variáveis ficam armazenadas no chamado \emph{workspace} do R
+Estas variáveis ficam armazenadas no chamado \emph{workspace} do R.
 
 \begin{itemize}
 \tightlist
 \item
-  O \emph{workspace} consiste de tudo que or criado durante uma sessão
-  do R, armazenado na memória RAM
+  O \emph{workspace} consiste de tudo que foi criado durante uma sessão
+  do R, e fica armazenado na memória RAM.
 \end{itemize}
 
-Para efetivamente salvar esas variáveis, podemos armazenar esse
-\emph{workspace} do R em disco, em um arquivo chamdo \texttt{.Rdata}
+Para efetivamente salvar essas variáveis, podemos armazenar esse
+\emph{workspace} do R em disco, em um arquivo chamado \texttt{.Rdata}
 
 \begin{center}\includegraphics[width=0.5\linewidth]{img/script-workspace} \end{center}
 
@@ -615,19 +647,18 @@ Para efetivamente salvar esas variáveis, podemos armazenar esse
 \tightlist
 \item
   Quando o R é iniciado em um diretório com um arquivo \texttt{.Rdata},
-  as variáveis salvas são automaticamente carregadas
+  as variáveis salvas são automaticamente carregadas.
 \item
   No entanto, é sempre melhor salvar os dados e o \textbf{script}, assim
   é possível gerar os resultados novamente, sem salvar nada sem
-  necessidade
+  necessidade.
 \item
   Veremos mais pra frente como salvar variáveis específicas, por
   exemplo, resultados de uma análise que leva muito tempo para ser
-  executada
+  executada.
 \item
   O mais importante é salvar o \textbf{código}, assim sabemos
-  \textbf{como} chegamos a determinado resultado, e podemos recriá-lo
-  depois
+  \textbf{como} chegamos a determinado resultado, e podemos recriá-lo.
 \end{itemize}
 
 \subsection{Finalizando o programa}\label{finalizando-o-programa}
@@ -648,11 +679,11 @@ No RStudio:
   \texttt{File\ \textgreater{}\ Save\ As...}
 \item
   Na janela que abrir, digite o nome do arquivo (por exemplo
-  \texttt{script\_aula1}) e salve
+  \texttt{script\_aula1}) e salve.
 \item
   Automaticamente o script será salvo com a extensão \texttt{.R} (nesse
   caso \texttt{script\_aula1.R}) no diretório de trabalho que você
-  configurou no início
+  configurou no início.
 \end{itemize}
 
 Alternativamente, você pode também salvar toda sua área de trabalho,
@@ -672,7 +703,7 @@ processo irá gerar dois arquivos:
   foram digitados no console.
 \end{itemize}
 
-\section*{Referências}\label{referencias}
+\section*{Referências}\label{referuxeancias}
 
 
 \begin{itemize}
@@ -691,7 +722,7 @@ processo irá gerar dois arquivos:
 
 \chapter{Objetos e classes}\label{objetos-e-classes}
 
-\section{Funções e argumentos}\label{funcoes-e-argumentos}
+\section{Funções e argumentos}\label{funuxe7uxf5es-e-argumentos}
 
 As funções no R são definidas como:
 
@@ -759,12 +790,12 @@ Exemplo: função \texttt{sample()}:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{x} e \texttt{size} devem ser obrigatoriamente especificados
+  \texttt{x} e \texttt{size} devem ser obrigatoriamente especificados.
 \item
   \texttt{replace} é lógico: \texttt{TRUE} (\texttt{T}) ou
-  \texttt{FALSE} (\texttt{F})
+  \texttt{FALSE} (\texttt{F}).
 \item
-  \texttt{prob} é um argumento vazio ou ausente (``opcional'')
+  \texttt{prob} é um argumento vazio ou ausente (``opcional'').
 \end{itemize}
 
 Exemplo: função \texttt{plot()}:
@@ -779,11 +810,11 @@ Exemplo: função \texttt{plot()}:
 \tightlist
 \item
   ``\texttt{...}'' permite especificar argumentos de outras funções (por
-  exemplo \texttt{par()})
+  exemplo \texttt{par()}).
 \end{itemize}
 
 Para ver todos os argumentos disponíveis de uma função, podemos usar a
-função \texttt{args()}
+função \texttt{args()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -816,21 +847,21 @@ A documentação contém os campos:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Description:} breve descrição
+  \textbf{Description:} breve descrição.
 \item
-  \textbf{Usage:} função e todos seus argumentos
+  \textbf{Usage:} função e todos seus argumentos.
 \item
-  \textbf{Arguments:} lista descrevendo cada argumento
+  \textbf{Arguments:} lista descrevendo cada argumento.
 \item
-  \textbf{Details:} descrição detalhada
+  \textbf{Details:} descrição detalhada.
 \item
-  \textbf{Value:} o que a função retorna
+  \textbf{Value:} o que a função retorna.
 \item
-  \textbf{References:} bibliografia relacionada
+  \textbf{References:} bibliografia relacionada.
 \item
-  \textbf{See Also:} funções relacionadas
+  \textbf{See Also:} funções relacionadas.
 \item
-  \textbf{Examples:} exemplos práticos
+  \textbf{Examples:} exemplos práticos.
 \end{itemize}
 
 Procura por nomes de funções que contenham algum termo:
@@ -864,15 +895,15 @@ Sites para busca na documentação dos diversos pacotes:
 \begin{itemize}
 \tightlist
 \item
-  RDocumentation \url{https://www.rdocumentation.org/}
+  RDocumentation \url{https://www.rdocumentation.org/}.
 \item
-  R Package Documentation \url{https://rdrr.io/}
+  R Package Documentation \url{https://rdrr.io/}.
 \item
-  R Contributed Documentation (várias línguas)
-  \url{https://cran.r-project.org/other-docs.html}
+  R Contributed Documentation (várias línguas).
+  \url{https://cran.r-project.org/other-docs.html}.
 \end{itemize}
 
-Os pacotes do R contém funções específicas para determinadas tarefas, e
+Os pacotes do R contêm funções específicas para determinadas tarefas, e
 estendem a instalação básica do R. Atualmente existem mais de 10000
 pacotes disponíveis no
 \href{http://cran-r.c3sl.ufpr.br/web/packages/index.html}{CRAN}, além de
@@ -908,7 +939,7 @@ Para listar os pacotes carregados, use a função
 \end{Shaded}
 
 Note que o primeiro elemento, \texttt{.GlobalEnv}, será sempre carregado
-pois ele é o \emph{ambiente} queirá armazenar (e deixar disponível) os
+pois ele é o \emph{ambiente} que irá armazenar (e deixar disponível) os
 objetos criados pelo usuário. Para carregar um pacote instalado, usamos
 a função \texttt{library()}, por exemplo
 
@@ -946,8 +977,8 @@ faça:
 \end{Highlighting}
 \end{Shaded}
 
-Para verificar as bibliotecas disponíveis e se existem pacotes para ser
-atualizados, use
+Para verificar as bibliotecas disponíveis e se existem pacotes para
+serem atualizados, use
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -963,18 +994,18 @@ Para atualizar automaticamente todos os pacotes faça
 \end{Highlighting}
 \end{Shaded}
 
-\section{Criando uma função}\label{criando-uma-funcao}
+\section{Criando uma função}\label{criando-uma-funuxe7uxe3o}
 
 A ideia original do R é transformar usuários em programadores
 
 \begin{quote}
 \emph{``\ldots{} to turn ideas into software, quickly and faithfully.''}
 
--- John M. Chambers
+-- John M. Chambers.
 \end{quote}
 
 Criar funções para realizar trabalhos específicos é um dos grandes
-poderes do R
+poderes do R.
 
 Por exemplo, podemos criar a famosa função
 
@@ -995,7 +1026,7 @@ E chama-la através de
 \end{Highlighting}
 \end{Shaded}
 
-A função acima não permite alterar o resultado de saída. Podemos fazer
+A função acima não permite alterar o resultado da saída. Podemos fazer
 isso incluindo um \textbf{argumento}
 
 \begin{Shaded}
@@ -1017,7 +1048,7 @@ E fazer por exemplo
 
 (Veremos detalhes de funções mais adiante)
 
-\section*{Exercícios}\label{exercicios-1}
+\section*{Exercícios}\label{exercuxedcios-1}
 
 
 \begin{enumerate}
@@ -1062,7 +1093,7 @@ O que é um objeto?
 \tightlist
 \item
   Um \textbf{símbolo} ou uma \textbf{variável} capaz de armazenar
-  qualquer valor ou estrutura de dados
+  qualquer valor ou estrutura de dados.
 \end{itemize}
 
 Por quê objetos?
@@ -1071,7 +1102,7 @@ Por quê objetos?
 \tightlist
 \item
   Uma maneira simples de acessar os dados armazenados na memória (o R
-  não permite acesso direto à memória)
+  não permite acesso direto à memória).
 \end{itemize}
 
 Programação:
@@ -1079,7 +1110,7 @@ Programação:
 \begin{itemize}
 \tightlist
 \item
-  Objetos \(\Rightarrow\) Classes \(\Rightarrow\) Métodos
+  Objetos \(\Rightarrow\) Classes \(\Rightarrow\) Métodos.
 \end{itemize}
 
 \begin{quote}
@@ -1087,14 +1118,14 @@ Programação:
 \end{quote}
 
 \begin{quote}
-\emph{``Todo objeto no R tem uma classe''}
+\emph{``Todo objeto no R tem uma classe.''}
 \end{quote}
 
 \begin{itemize}
 \tightlist
 \item
   \textbf{Classe:} é a definição de um objeto. Descreve a forma do
-  objeto e como ele será manipulado pelas diferentes funções
+  objeto e como ele será manipulado pelas diferentes funções.
 \item
   \textbf{Método:} são \textbf{funções genéricas} que executam suas
   tarefas de acordo com cada classe. Duas das funções genéricas mais
@@ -1103,9 +1134,9 @@ Programação:
   \begin{itemize}
   \tightlist
   \item
-    \texttt{summary()}
+    \texttt{summary().}
   \item
-    \texttt{plot()}
+    \texttt{plot().}
   \end{itemize}
 \end{itemize}
 
@@ -1195,7 +1226,7 @@ Objetos podem armazenar diferentes estruturas de dados:
 
 Note que cada objeto só pode armazenar uma estrutura (um número ou uma
 sequência de valores) de cada vez! (Aqui, o valor \(4\) que estava
-armazenado em \texttt{y} foi sobrescrito pelos valores acima.)
+armazenado em \texttt{y} foi sobrescrito pelos valores acima).
 
 \subsection{Nomes de objetos}\label{nomes-de-objetos}
 
@@ -1203,13 +1234,13 @@ armazenado em \texttt{y} foi sobrescrito pelos valores acima.)
 \tightlist
 \item
   Podem ser formados por letras, números, ``\texttt{\_}'', e
-  ``\texttt{.}''
+  ``\texttt{.}''.
 \item
-  Não podem começar com número e/ou ponto
+  Não podem começar com número e/ou ponto.
 \item
-  Não podem conter espaços
+  Não podem conter espaços.
 \item
-  Evite usar acentos
+  Evite usar acentos.
 \item
   Evite usar nomes de funções como:
 \end{itemize}
@@ -1222,10 +1253,10 @@ armazenado em \texttt{y} foi sobrescrito pelos valores acima.)
   O R é \emph{case-sensitive}, portanto:
 \end{itemize}
 
-\texttt{dados} \(\neq\) \texttt{Dados} \(\neq\) \texttt{DADOS}
+\texttt{dados} \(\neq\) \texttt{Dados} \(\neq\) \texttt{DADOS}.
 
 \subsection{Gerenciando a área de
-trabalho}\label{gerenciando-a-area-de-trabalho}
+trabalho}\label{gerenciando-a-uxe1rea-de-trabalho}
 
 Liste os objetos criados com a função \texttt{ls()}:
 
@@ -1261,9 +1292,9 @@ Para remover todos os objetos:
 
 \textbf{Cuidado!} O comando acima apaga todos os objetos na sua área de
 trabalho sem perguntar. Depois só é possível recuperar os objetos ao
-rodar os script novamente.
+rodar o script novamente.
 
-\section*{Exercícios}\label{exercicios-2}
+\section*{Exercícios}\label{exercuxedcios-2}
 
 
 \begin{enumerate}
@@ -1271,16 +1302,16 @@ rodar os script novamente.
 \tightlist
 \item
   Armazene o resultado da equação \(32 + 16^2 - 25^3\) no objeto
-  \texttt{x}
+  \texttt{x}.
 \item
-  Divida \texttt{x} por \(345\) e armazene em \texttt{y}
+  Divida \texttt{x} por \(345\) e armazene em \texttt{y}.
 \item
   Crie um objeto (com o nome que você quiser) para armazenar \(30\)
-  valores aleatórios de uma distribuição uniforme entre \(10\) e \(50\)
+  valores aleatórios de uma distribuição uniforme entre \(10\) e \(50\).
 \item
-  Remova o objeto \texttt{y}
+  Remova o objeto \texttt{y}.
 \item
-  Remova os demais objetos de uma única vez
+  Remova os demais objetos de uma única vez.
 \item
   Procure a função utilizada para gerar numeros aleatórios de uma
   distribuição de Poisson, e gere \(100\) valores para a VA
@@ -1300,17 +1331,17 @@ vetores:
 \item
   \textbf{Vetores atômicos}: existem seis tipos básicos:
 \item
-  \texttt{double}
+  \texttt{double}.
 \item
-  \texttt{integer}
+  \texttt{integer}.
 \item
-  \texttt{character}
+  \texttt{character}.
 \item
-  \texttt{logical}
+  \texttt{logical}.
 \item
-  \texttt{complex}
+  \texttt{complex}.
 \item
-  \texttt{raw}
+  \texttt{raw}.
 \end{itemize}
 
 Os tipos \texttt{integer} e \texttt{double} são chamados conjuntamente
@@ -1328,7 +1359,7 @@ A principal diferença entre vetores atômicos e listas é que o primeiro é
 segundo pode ser \textbf{heterogêneo} (cada vetor pode conter mais de um
 tipo).
 
-Um vetor atômico só pode conter elementos de um mesmo tipo
+Um vetor atômico só pode conter elementos de um mesmo tipo.
 
 Um vetor, como o próprio nome diz, é uma estrutura unidimensional, mas
 na maioria das vezes iremos trabalhar com estruturas de dados
@@ -1385,16 +1416,16 @@ Vejamos alguns exemplos:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Vetores numéricos}\label{vetores-numericos}
+\subsection{Vetores numéricos}\label{vetores-numuxe9ricos}
 
 Características:
 
 \begin{itemize}
 \tightlist
 \item
-  Coleção ordenada de valores
+  Coleção ordenada de valores.
 \item
-  Estrutura unidimensional
+  Estrutura unidimensional.
 \end{itemize}
 
 Usando a função \texttt{c()} para criar vetores:
@@ -1448,7 +1479,7 @@ computacional quando os vetores são formados por milhares ou milhões de
 números.
 
 \subsubsection{Representação numérica dentro do
-R}\label{representacao-numerica-dentro-do-r}
+R}\label{representauxe7uxe3o-numuxe9rica-dentro-do-r}
 
 Os números que aparecem na tela do console do R são apenas
 representações simplificadas do número real armazenado na memória. Por
@@ -1515,7 +1546,7 @@ doesn't R think these numbers are equal?}.
 No R os números podem ser representados com até 22 casas decimais. Você
 pode ver o número com toda sua precisão usando a função \texttt{print()}
 e especificando o número de casas decimais com o argumento
-\texttt{digits} (de 1 a 22)
+\texttt{digits} (de 1 a 22).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1548,7 +1579,7 @@ científico, usando a função \texttt{format()}
 Nessa representação, o valor 2.875775e-01 = \(2.875775 \times 10^{-01}\)
 = \(0.2875775\).
 
-\subsubsection{Sequências de números}\label{sequencias-de-numeros}
+\subsubsection{Sequências de números}\label{sequuxeancias-de-nuxfameros}
 
 Usando a função \texttt{seq()}
 
@@ -1608,7 +1639,7 @@ Para repetir um número da sequência várias vezes
 \end{Shaded}
 
 \subsubsection{Operações matemáticas em vetores
-numéricos}\label{operacoes-matematicas-em-vetores-numericos}
+numéricos}\label{operauxe7uxf5es-matemuxe1ticas-em-vetores-numuxe9ricos}
 
 Operações podem ser feitas entre um vetor e um número:
 
@@ -1738,7 +1769,7 @@ O que acontece aqui?
 
 Lembre-se da regra:
 
-Um vetor só pode conter elementos do mesmo tipo
+Um vetor só pode conter elementos do mesmo tipo!
 
 Quando objetos de diferentes tipos são misturados, ocorre a
 \textbf{coerção}, para que cada elemento possua a mesma classe.
@@ -1865,7 +1896,7 @@ A função \texttt{is.infinite()} testa se há valores infinitos
 \end{Highlighting}
 \end{Shaded}
 
-\section*{Exercícios}\label{exercicios-3}
+\section*{Exercícios}\label{exercuxedcios-3}
 
 
 \begin{enumerate}
@@ -1953,9 +1984,9 @@ Características:
 \begin{itemize}
 \tightlist
 \item
-  Coleção de categorias ou \textbf{níveis} (\emph{levels})
+  Coleção de categorias ou \textbf{níveis} (\emph{levels}).
 \item
-  Estrutura unidimensional
+  Estrutura unidimensional.
 \end{itemize}
 
 Utilizando as funções \texttt{factor()} e \texttt{c()}:
@@ -2040,8 +2071,8 @@ ordenados
 \end{Highlighting}
 \end{Shaded}
 
-(Veja que um objeto pode ter mais de uma classe). Isso geralmente só
-será útil em casos especificos.
+Veja que um objeto pode ter mais de uma classe. Isso geralmente só será
+útil em casos especificos.
 
 As seguintes funções são úteis para verificar os níveis e o número de
 níveis de um fator:
@@ -2134,7 +2165,7 @@ Adicionando linhas com \texttt{rbind()}
 \end{Shaded}
 
 Matrizes também podem ser criadas a partir de vetores adicionando um
-\textbf{atributo} de dimensão
+\textbf{atributo} de dimensão, por exemplo,
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2158,7 +2189,7 @@ Matrizes também podem ser criadas a partir de vetores adicionando um
 \end{Shaded}
 
 \subsubsection{Operações matemáticas em
-matrizes}\label{operacoes-matematicas-em-matrizes}
+matrizes}\label{operauxe7uxf5es-matemuxe1ticas-em-matrizes}
 
 Matriz multiplicada por um escalar
 
@@ -2195,10 +2226,10 @@ Características:
 \begin{itemize}
 \tightlist
 \item
-  Estrutura \(n\)-dimensional
+  Estrutura \(n\)-dimensional.
 \item
   Assim como as matrizes, podem conter apenas um tipo de informação
-  (números, caracteres)
+  (números, caracteres).
 \end{itemize}
 
 Para criar um array, usamos a função \texttt{array()}, passando como
@@ -2267,14 +2298,14 @@ Características:
 \tightlist
 \item
   Pode combinar uma coleção de objetos de diferentes tipos ou classes (é
-  um tipo básico de vetor, assim como os vetores atômicos)
+  um tipo básico de vetor, assim como os vetores atômicos).
 \item
   Estrutura ``unidimensional'': apenas o número de elementos na lista é
-  contado
+  contado.
 \end{itemize}
 
-Ppor exemplo, podemos criar uma lista com uma sequência de números, um
-caracter e outra lista
+Por exemplo, podemos criar uma lista com uma sequência de números, um
+caracter e outra lista.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2301,7 +2332,7 @@ caracter e outra lista
 \end{Shaded}
 
 Para melhor visualizar a estrutura dessa lista (ou de qualquer outro
-objeto) poddemos usar a função \texttt{str()}
+objeto) podemos usar a função \texttt{str()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2350,7 +2381,7 @@ exemplo, usando objetos criados anteriormente
 \subsection{Data frame}\label{data-frame}
 
 Data frame é a versão bidimensional de uma lista. Data frames
-\textbf{são} listas, mas onde cada componente dever ter obrigatoriamente
+\textbf{são} listas, mas onde cada componente deve ter obrigatoriamente
 o mesmo comprimento. Cada vetor da lista vira uma coluna em um data
 frame, permitindo então que as ``colunas'' sejam de diferentes tipos.
 
@@ -2362,11 +2393,11 @@ Características:
 \begin{itemize}
 \tightlist
 \item
-  Uma lista de vetores e/ou fatores, de \textbf{mesmo comprimento}
+  Uma lista de vetores e/ou fatores, de \textbf{mesmo comprimento}.
 \item
-  Pode conter diferentes tipos de dados (numérico, fator, \ldots{})
+  Pode conter diferentes tipos de dados (numérico, fator, \ldots{}).
 \item
-  Estrutura bidimensional
+  Estrutura bidimensional.
 \end{itemize}
 
 Utilizando a função \texttt{data.frame()}:
@@ -2488,7 +2519,7 @@ Geralmente é o resultado de \texttt{data.matrix()} o que você está
 procurando.
 
 Lembre que os níveis de um fator são armazenados internamente como
-números: \(1^\circ\) nível = 1, \(2^\circ\) nível = 2, \(\ldots\)
+números: \(1^\circ\) nível = 1, \(2^\circ\) nível = 2, \(\ldots\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2551,7 +2582,7 @@ definir nomes, por exemplo, para cada componente desse vetor
 \end{Shaded}
 
 Nesse caso específico, o R irá mostrar os nomes acima dos componentes,
-mas isso não altera como as opraçõs serão realizadas
+mas isso não altera como as operaçõs serão realizadas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2566,7 +2597,7 @@ mas isso não altera como as opraçõs serão realizadas
 
 Os nomes então podem ser definidos através da função \emph{auxiliar}
 \texttt{names()}, sendo assim, também podemos remover esse atributo
-declarando ele como nulo
+declarando ele como nulo.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2705,7 +2736,7 @@ Classe & Nomes de colunas & Nomes de linhas\tabularnewline
 \bottomrule
 \end{longtable}
 
-\section*{Exercícios}\label{exercicios-4}
+\section*{Exercícios}\label{exercuxedcios-4}
 
 
 \begin{enumerate}
@@ -2756,7 +2787,7 @@ pergunte essas mesmas informações para dois colegas ao seu lado, e
 adicione as informações deles à esse data frame (use \texttt{rbind()}).
 Acresente mais uma coluna com o nome do time de futebol de cada um.
 
-\section*{Referências}\label{referencias-1}
+\section*{Referências}\label{referuxeancias-1}
 
 
 Para mais detalhes e exemplos dos assuntos abordados aqui, veja
@@ -2775,9 +2806,9 @@ Own Functions and Simulations}. O'Reily Media.
 Wickham, Hadley. 2015. \emph{Advanced R}. CRC Press.
 
 \chapter{Indexação e seleção
-condicional}\label{indexacao-e-selecao-condicional}
+condicional}\label{indexauxe7uxe3o-e-seleuxe7uxe3o-condicional}
 
-\section{Indexação}\label{indexacao}
+\section{Indexação}\label{indexauxe7uxe3o}
 
 Existem 6 maneiras diferentes de indexar valores no R. Podemos indexar
 usando:
@@ -2785,17 +2816,17 @@ usando:
 \begin{itemize}
 \tightlist
 \item
-  Inteiros positivos
+  Inteiros positivos.
 \item
-  Inteiros negativos
+  Inteiros negativos.
 \item
-  Zero
+  Zero.
 \item
-  Espaço em branco
+  Espaço em branco.
 \item
-  Nomes
+  Nomes.
 \item
-  Valores lógicos
+  Valores lógicos.
 \end{itemize}
 
 Existem três tipos de operadores que podem ser usados para indexar (e
@@ -2806,7 +2837,7 @@ selecionar) \textbf{sub-conjuntos} (\emph{subsets}) de objetos no R:
 \item
   O operador \texttt{{[}\ {]}} sempre retorna um objeto da mesma classe
   que o original. Pode ser usado para selecionar múltiplos elementos de
-  um objeto
+  um objeto.
 \item
   O operador\texttt{{[}{[}\ {]}{]}} é usado para extrair elementos de
   uma \textbf{lista} ou \textbf{data frame}. Pode ser usado para extrair
@@ -2818,7 +2849,7 @@ selecionar) \textbf{sub-conjuntos} (\emph{subsets}) de objetos no R:
   \texttt{{[}{[}\ {]}{]}}.
 \end{itemize}
 
-\subsection{Indexação de vetores}\label{indexacao-de-vetores}
+\subsection{Indexação de vetores}\label{indexauxe7uxe3o-de-vetores}
 
 Observe o seguinte vetor de contagens
 
@@ -2863,8 +2894,8 @@ Ou:
 \end{Highlighting}
 \end{Shaded}
 
-Note que os índices no R começam em 1, e não em 0, como algumas outras
-linguagens.
+Note que os índices no R começam em 1, e não em 0, como em algumas
+outras linguagens.
 
 Para selecionar todos os valores, \textbf{excluindo} aquele da posição
 4, usamos um índice negativo
@@ -2974,25 +3005,25 @@ queremos todos os valores daquele vetor. Essa forma de indexação será
 particularmente útil para objetos que possuem duas ou mais dimensões,
 como matrizes e data frames.
 
-\subsection*{Exercícios}\label{exercicios-5}
+\subsection*{Exercícios}\label{exercuxedcios-5}
 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Crie um vetor com os valores: \texttt{88,\ 5,\ 12,\ 13}
+  Crie um vetor com os valores: \texttt{88,\ 5,\ 12,\ 13}.
 \item
-  Selecione o elemento na posição 3
+  Selecione o elemento na posição 3.
 \item
-  Selecione o valor 88
+  Selecione o valor 88.
 \item
-  Selecione os valores 13 e 5
+  Selecione os valores 13 e 5.
 \item
-  Selecione todos os valores, menos o 88 e o 13
+  Selecione todos os valores, menos o 88 e o 13.
 \item
   Insira o valor 168 \textbf{entre} os valores 12 e 13, criando um novo
-  objeto
+  objeto.
 \end{enumerate}
 
 \subsubsection{Vetores nomeados}\label{vetores-nomeados}
@@ -3017,7 +3048,7 @@ pode ser realizada pelos nomes destes componentes.
 
 Dica: veja \texttt{?letters}
 
-\subsection{Indexação de matrizes}\label{indexacao-de-matrizes}
+\subsection{Indexação de matrizes}\label{indexauxe7uxe3o-de-matrizes}
 
 Considere a seguinte matriz
 
@@ -3097,12 +3128,12 @@ Para acessar as linhas 1 e 3 das colunas 2 e 3:
 \end{Highlighting}
 \end{Shaded}
 
-E note que aqui a dimensão já é 2 pois naturalmente o resultado preisa
+E note que aqui a dimensão já é 2 pois naturalmente o resultado precisa
 ser representado em duas dimensões.
 
 \subsubsection{Matrizes nomeadas}\label{matrizes-nomeadas}
 
-Se as matrizes tiverem linhas e/ou colunas nomeados, a indexação também
+Se as matrizes tiverem linhas e/ou colunas nomeadas, a indexação também
 pode ser feita com os nomes.
 
 \begin{Shaded}
@@ -3130,7 +3161,7 @@ pode ser feita com os nomes.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Indexação de listas}\label{indexacao-de-listas}
+\subsection{Indexação de listas}\label{indexauxe7uxe3o-de-listas}
 
 Considere a seguinte lista:
 
@@ -3288,7 +3319,8 @@ Ou então
 O símbolo \texttt{\$} é utilizado para acessar componentes
 \textbf{nomeados} de listas ou data frames.
 
-\subsection{Indexação de data frames}\label{indexacao-de-data-frames}
+\subsection{Indexação de data
+frames}\label{indexauxe7uxe3o-de-data-frames}
 
 Considere o seguinte data frame
 
@@ -3486,7 +3518,7 @@ resultado
 \end{Shaded}
 
 \subsubsection{\texorpdfstring{A função
-\texttt{with()}}{A função with()}}\label{a-funcao-with}
+\texttt{with()}}{A função with()}}\label{a-funuxe7uxe3o-with}
 
 Para evitar fazer muitas indexações de um mesmo data frame, por exemplo,
 podemos utilizar a função \texttt{with()}
@@ -3526,7 +3558,7 @@ E também para aplicar funções nas colunas do data frame
 \end{Highlighting}
 \end{Shaded}
 
-\section*{Exercícios}\label{exercicios-6}
+\section*{Exercícios}\label{exercuxedcios-6}
 
 
 \begin{enumerate}
@@ -3538,35 +3570,35 @@ E também para aplicar funções nas colunas do data frame
           10 & 5 & 11 \\
           9 & 9 & 5 \\
           2 & 0 & NA
-          \end{array} \right]\]
+          \end{array} \right].\]
 \item
-  Acesse o elemento na quarta linha e na segunda coluna
+  Acesse o elemento na quarta linha e na segunda coluna.
 \item
   Acesse todos os elementos, com exceção da segunda coluna e da terceira
-  linha
+  linha.
 \item
   Crie uma lista (nomeada) com 3 componentes: um vetor numérico de
-  comprimento 10, um vetor de caracteres de comprimento 7, e a matriz do
-  exercício anterior
+  comprimento 10, um vetor de caracteres de comprimento 7 e a matriz do
+  exercício anterior.
 \item
   Acesse os elementos nas posições de 5 a 3 do primeiro componente da
-  lista
+  lista.
 \item
-  Acesse os caracteres de todas as posições, menos na 2 e 6
+  Acesse os caracteres de todas as posições, menos da 2 e 6.
 \item
-  Acesse todas as linhas da coluna 3 da matriz dentro desta lista
+  Acesse todas as linhas da coluna 3 da matriz dentro desta lista.
 \item
   ``Crie'' um novo componente nessa lista (usando \texttt{\$}), contendo
   30 valores aleatórios de uma distribuição normal \(\text{N}(12, 4)\)
-  (veja \texttt{?rnorm})
+  (veja \texttt{?rnorm}).
 \item
   Crie um data frame que contenha duas colunas: a primeira com as letras
   de ``A'' até ``J'', e outra com o resultado de uma chamada da função
-  \texttt{runif(7,\ 1,\ 5)}
+  \texttt{runif(7,\ 1,\ 5)}.
 \item
-  Extraia as duas primeiras linhas desse data frame
+  Extraia as duas primeiras linhas desse data frame.
 \item
-  Extraia as duas últimas linhas desse data frame
+  Extraia as duas últimas linhas desse data frame.
 \item
   Qual é o valor que está na linha 6 e coluna 1?
 \item
@@ -3578,21 +3610,21 @@ E também para aplicar funções nas colunas do data frame
   Elimine os \texttt{NA}s deste data frame.
 \item
   Crie uma nova coluna neste data frame, com valores numéricos
-  (quaisquer)
+  (quaisquer).
 \item
   Crie mais um componente na lista anterior, que será também uma lista
   com dois componentes: \texttt{A} com os valores \texttt{1:5}, e
-  \texttt{B} com as letras de ``a'' a ``f''
+  \texttt{B} com as letras de ``a'' a ``f''.
 \item
-  Acesse o número 4 de \texttt{A}
+  Acesse o número 4 de \texttt{A}.
 \item
-  Acesse a letra ``c'' de \texttt{B}
+  Acesse a letra ``c'' de \texttt{B}.
 \end{enumerate}
 
-\section{Seleção condicional}\label{selecao-condicional}
+\section{Seleção condicional}\label{seleuxe7uxe3o-condicional}
 
 \subsection{Seleção condicional em
-vetores}\label{selecao-condicional-em-vetores}
+vetores}\label{seleuxe7uxe3o-condicional-em-vetores}
 
 A \textbf{seleção condicional} serve para extrair dados que satisfaçam
 algum critério, usando \textbf{expressões condicionais} e
@@ -3730,7 +3762,7 @@ condição em \texttt{dados}
 \end{Shaded}
 
 \subsection{\texorpdfstring{A função
-\texttt{which()}}{A função which()}}\label{a-funcao-which}
+\texttt{which()}}{A função which()}}\label{a-funuxe7uxe3o-which}
 
 Até agora vimos seleções condicionais que nos retornavam o resultado de
 uma expressão condicional em vetores. No entanto, muitas vezes estamos
@@ -3757,7 +3789,7 @@ retornarem \texttt{TRUE} em uma expressão condicional.
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{42}
 \KeywordTok{which}\NormalTok{(cara }\OperatorTok{==}\StringTok{ "c"}\NormalTok{)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{3}
-\NormalTok{## Elementos de dadaos onde cara igual a "a" ou "c"}
+\NormalTok{## Elementos de dados onde cara é igual a "a" ou "c"}
 \NormalTok{dados[cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{)]}
 \NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{5} \DecValTok{42}
 \KeywordTok{which}\NormalTok{(cara }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
@@ -3765,7 +3797,7 @@ retornarem \texttt{TRUE} em uma expressão condicional.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection*{Exercícios}\label{exercicios-7}
+\subsection*{Exercícios}\label{exercuxedcios-7}
 
 
 \begin{enumerate}
@@ -3775,17 +3807,17 @@ retornarem \texttt{TRUE} em uma expressão condicional.
   Crie um vetor (\texttt{x}) com os valores 3, 8, 10, 4, 9, 7, 1, 9, 2,
   4.
 \item
-  Selecione os elementos maiores ou iguais a 5
+  Selecione os elementos maiores ou iguais a 5.
 \item
-  Selecione todos os elementos menos o 4
+  Selecione todos os elementos menos o 4.
 \item
-  Selecione os elementos maiores que 4 e menores que 8
+  Selecione os elementos maiores que 4 e menores que 8.
 \item
-  Crie um vetor (\texttt{a}) com as letras de A até J
+  Crie um vetor (\texttt{a}) com as letras de A até J.
 \item
-  Selecione os elementos de x onde a for igual a ``F''
+  Selecione os elementos de x onde a for igual a ``F''.
 \item
-  Selecione os elementos de x onde a for igual a ``B'', ``D'', e ``H''
+  Selecione os elementos de x onde a for igual a ``B'', ``D'', e ``H''.
 \item
   Qual a posição do número 10 em x?
 \item
@@ -3796,7 +3828,7 @@ retornarem \texttt{TRUE} em uma expressão condicional.
 \end{enumerate}
 
 \subsection{Seleção condicional em data
-frames}\label{selecao-condicional-em-data-frames}
+frames}\label{seleuxe7uxe3o-condicional-em-data-frames}
 
 Considere o seguinte data frame
 
@@ -3908,14 +3940,14 @@ todo o processo de seleção condicional:
 A grande vantagem é que a função \texttt{subset()} já lida com os
 \texttt{NA}s (se isso for o que você precisa).
 
-\subsection*{Exercícios}\label{exercicios-8}
+\subsection*{Exercícios}\label{exercuxedcios-8}
 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Você contou 42 caranguejos na Joaquina, 34 no Campeche, 59 na Armação,
+  Você contou 42 caranguejos na Joaquina, 34 no Campeche, 59 na Armação
   e 18 na Praia Mole. Crie um data frame para armazenar estas
   informações (número de caranguejos observados e local).
 \item
@@ -3924,7 +3956,7 @@ A grande vantagem é que a função \texttt{subset()} já lida com os
   condicional!).
 \item
   Crie uma nova coluna (região) neste data frame indicando que Joaquina
-  e Praia Mole estão localizadas no leste da ilha (leste), e Campeche e
+  e Praia Mole estão localizadas no leste da ilha (leste) e Campeche e
   Armação estão no sul (sul).
 \item
   Selecione as praias de região leste que possuem menos de 20
@@ -3938,7 +3970,7 @@ A grande vantagem é que a função \texttt{subset()} já lida com os
 \end{enumerate}
 
 \chapter{Entrada e saída de dados no
-R}\label{entrada-e-saida-de-dados-no-r}
+R}\label{entrada-e-sauxedda-de-dados-no-r}
 
 A entrada de dados no R pode ser realizada de diferentes formas. O
 formato mais adequado vai depender do tamanho do conjunto de dados, e se
@@ -3948,7 +3980,7 @@ digitados diretamente no R.
 A seguir são descritas as formas de entrada de dados com indicação de
 quando cada uma das formas deve ser usada. Os três primeiros casos são
 adequados para entrada de dados diretamente no R, os seguintes descrevem
-como importar dados já disponíveis eletronicamentede um arquivo texto,
+como importar dados já disponíveis eletronicamente de um arquivo texto,
 em outro sistema ou no próprio R.
 
 Posteriormente também será mostrado como fazer para exportar bases de
@@ -3978,7 +4010,7 @@ As funções básicas de entrada de dados são:
 \end{itemize}
 
 A partir destas funções básicas podemos criar objetos de classes mais
-específicas com
+específicas como
 
 \begin{itemize}
 \tightlist
@@ -3993,7 +4025,7 @@ específicas com
 \subsection{Entrada via teclado}\label{entrada-via-teclado}
 
 \subsubsection{\texorpdfstring{Usando a função
-\texttt{scan()}}{Usando a função scan()}}\label{usando-a-funcao-scan}
+\texttt{scan()}}{Usando a função scan()}}\label{usando-a-funuxe7uxe3o-scan}
 
 Esta função lê dados diretamento do console, isto é, coloca o R em modo
 \emph{prompt} onde o usuário deve digitar cada dado seguido da tecla
@@ -4081,7 +4113,7 @@ Outras classe possíveis para o argumento \texttt{what} são:
 \texttt{logical}, \texttt{integer}, \texttt{numeric}, \texttt{complex},
 \texttt{character}, \texttt{raw} e \texttt{list}.
 
-\subsection*{Exercícios}\label{exercicios-9}
+\subsection*{Exercícios}\label{exercuxedcios-9}
 
 
 \begin{enumerate}
@@ -4106,12 +4138,12 @@ Outras classe possíveis para o argumento \texttt{what} são:
 \end{enumerate}
 
 \subsubsection{\texorpdfstring{Usando a função
-\texttt{readLines()}}{Usando a função readLines()}}\label{usando-a-funcao-readlines}
+\texttt{readLines()}}{Usando a função readLines()}}\label{usando-a-funuxe7uxe3o-readlines}
 
 Esta função é particularmente útil para ler entradas na forma de texto
 (\emph{strings}). Por exemplo, para ler uma linha a ser digitada na tela
 do R, siga o comando abaixo e digite o texto indicado. Ao terminar
-pressione a tecla Enter e o texto será armazanado no objeto texto.
+pressione a tecla Enter e o texto será armazenado no objeto texto.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4134,7 +4166,7 @@ pressione a tecla Enter e o texto será armazanado no objeto texto.
 
 Um possível uso é dentro que funções que solicitem que o usuário
 responda e/ou entre com informações na medida que são solicitadas.
-Experimente definir e rodar o função a seguir.
+Experimente definir e rodar a função a seguir.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4165,14 +4197,14 @@ maiores detalhes e exemplos.
 texto}\label{entrada-de-dados-em-arquivos-texto}
 
 Se os dados já estão disponíveis em formato eletrônico, isto é, já foram
-digitados em outro programa, voce pode importar os dados para o R sem a
+digitados em outro programa, você pode importar os dados para o R sem a
 necessidade de digitá-los novamente.
 
 A forma mais fácil de fazer isto é usar dados em formato texto (arquivo
 do tipo ASCII). Por exemplo, se seus dados estão disponíveis em uma
 planilha eletrônica como LibreOffice Calc, MS Excel ou similar, você
 pode escolher a opção Salvar como\ldots{} e gravar os dados em um
-arquivo em formato texto. Os dois prncipais formatos de texto são:
+arquivo em formato texto. Os dois principais formatos de texto são:
 
 \begin{itemize}
 \tightlist
@@ -4212,7 +4244,7 @@ Antes de importar para o R:
 \end{itemize}
 
 \subsubsection{\texorpdfstring{A função
-\texttt{read.table()}}{A função read.table()}}\label{a-funcao-read.table}
+\texttt{read.table()}}{A função read.table()}}\label{a-funuxe7uxe3o-read.table}
 
 O método mais comum de importação de dados para o R, é utilizando a
 função \texttt{read.table()}. Como exemplo, baixe o arquivo
@@ -4238,18 +4270,18 @@ Argumentos:
   \texttt{crabs.csv} está dentro do diretório \texttt{dados}).
 \item
   \texttt{header\ =\ TRUE}: significa que a primeira linha do arquivo
-  deve ser interpretada como os nomes das colunas
+  deve ser interpretada como os nomes das colunas.
 \item
   \texttt{sep\ =\ ";"}: o separador de colunas (também pode ser
   \texttt{","}, \texttt{"\textbackslash{}t"} para tabulação e
-  \texttt{""} para espaços)
+  \texttt{""} para espaços).
 \item
   \texttt{dec\ =\ ","}: o separador de decimais (também pode ser
-  \texttt{"."})
+  \texttt{"."}).
 \end{itemize}
 
 As funções \texttt{read.csv()} e \texttt{read.csv2()} são chamadas de
-\emph{wrappers} (envelopes) que tornam o usa da função
+\emph{wrappers} (envelopes) que tornam o uso da função
 \texttt{read.table()} um pouco mais direta, alterando alguns argumentos.
 Por exemplo, o comando acima poderia ser substituído por
 
@@ -4334,16 +4366,16 @@ os dados para algum local no computador do usuário:
 
 Para maiores informações consulte a documentação desta função com
 \texttt{?read.table()}. Embora \texttt{read.table()} seja provavelmente
-a função mais utilizada existem outras que podem ser úteis e
+a função mais utilizada existem outras que podem ser úteis em
 determinadas situações:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{read.fwf()} é conveniente para ler \emph{fixed width formats}
+  \texttt{read.fwf()} é conveniente para ler \emph{fixed width formats}.
 \item
   \texttt{read.fortran()} é semelhante à anterior porém usando o estilo
-  Fortran de especificação das colunas
+  Fortran de especificação das colunas.
 \item
   \texttt{read.csv()}, \texttt{read.csv2()}, \texttt{read.delim()} e
   \texttt{read.delim2()}: estas funções são praticamente iguais a
@@ -4352,7 +4384,7 @@ determinadas situações:
   lidos diretamente com \texttt{read.csv2()}.
 \end{itemize}
 
-\subsection*{Exercícios}\label{exercicios-10}
+\subsection*{Exercícios}\label{exercuxedcios-10}
 
 
 \begin{enumerate}
@@ -4393,7 +4425,7 @@ determinadas situações:
 \end{enumerate}
 
 \subsection{Entrada de dados através da área de
-transferência}\label{entrada-de-dados-atraves-da-area-de-transferencia}
+transferência}\label{entrada-de-dados-atravuxe9s-da-uxe1rea-de-transferuxeancia}
 
 Um mecanismos comum para copiar dados de um programa para o outro é
 usando a \textbf{área de transferência} (ou \emph{clipboard}).
@@ -4402,7 +4434,7 @@ marca-se os dados desejados em algum aplicativo (editor, planilha,
 página web, etc), usa-se o mecanismo de COPIAR (opção no menu do
 programa que muitas vezes corresponde o teclar Ctrl + c), o que
 transfere os dados para a área de transferência. Funções como
-\texttt{scan()}, \texttt{read.table()} e outras podem ser usades apra
+\texttt{scan()}, \texttt{read.table()} e outras podem ser usadas para
 ler os dados diretamente da área de transferência passando-se a opção
 \texttt{"clipboard"} ao primeiro argumento. Por exemplo, os seguintes
 dados:
@@ -4474,7 +4506,7 @@ Outros pacotes que possuem funções similares são: \textbf{openxlsx},
 
 Estruturas de dados mais complexas são tipicamente armazenadas nos
 chamados DBMS (\emph{database management system}) ou RDBMS
-(\emph{relational database management system}). Aguns exemplos são
+(\emph{relational database management system}). Alguns exemplos são
 Oracle, Microsoft SQL server, MySQL, PostgreSQL, Microsoft Access,
 dentre outros. O R possui ferramentas implementadas em pacotes para
 acesso a estes sistemas gerenciadores.
@@ -4487,11 +4519,11 @@ funcionalidade. Alguns destes pacotes disponíveis são: \textbf{RODBC},
 \textbf{RNetCDF}, \textbf{RSQLite}, dentre outros.
 
 \subsection{Carregando dados já disponíveis no
-R}\label{carregando-dados-ja-disponiveis-no-r}
+R}\label{carregando-dados-juxe1-disponuxedveis-no-r}
 
-O R já possui alguns conjuntos de dados que estão disponíeis logo após a
-instalação. Estes dados são também objetos que precisam ser carregados
-para ficarem disponiveis para o usuário. Normalmente, estes conjuntos de
+O R já possui alguns conjuntos de dados que estão disponíveis logo após
+a instalação. Estes dados são também objetos que precisam ser carregados
+para ficarem disponíveis para o usuário. Normalmente, estes conjuntos de
 dados são para uso de exemplo de funções.
 
 Para carregar conjuntos de dados que são disponibilizados com o R, use o
@@ -4581,7 +4613,7 @@ e agora podemos carregar o objeto \texttt{topo} com
 \end{Shaded}
 
 A função \texttt{data()} pode ainda ser usada para listar os conjutos de
-dados disponíveis.
+dados disponíveis,
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4614,22 +4646,22 @@ A seguir listamos algumas (não todas!) destas funções:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{read.dbf()} para arquivos DBASE
+  \texttt{read.dbf()} para arquivos DBASE.
 \item
-  \texttt{read.epiinfo()} para arquivos .REC do Epi-Info
+  \texttt{read.epiinfo()} para arquivos .REC do Epi-Info.
 \item
-  \texttt{read.mtp()} para arquivos ``Minitab Portable Worksheet''
+  \texttt{read.mtp()} para arquivos ``Minitab Portable Worksheet''.
 \item
   \texttt{read.S()} para arquivos do S-PLUS, e \texttt{restore.data()}
-  para ``dumps'' do S-PLUS
+  para ``dumps'' do S-PLUS.
 \item
-  \texttt{read.spss()} para dados do SPSS
+  \texttt{read.spss()} para dados do SPSS.
 \item
-  \texttt{read.systat()} para dados do SYSTAT
+  \texttt{read.systat()} para dados do SYSTAT.
 \item
-  \texttt{read.dta()} para dados do STATA
+  \texttt{read.dta()} para dados do STATA.
 \item
-  \texttt{read.octave()} para dados do OCTAVE (um clone do MATLAB)
+  \texttt{read.octave()} para dados do OCTAVE (um clone do MATLAB).
 \item
   Para dados do SAS há ao menos duas alternativas:
 
@@ -4652,10 +4684,10 @@ Para mais detalhes consulte a documentação de cada função e/ou o manual
 \href{http://cran-r.c3sl.ufpr.br/doc/manuals/r-release/R-data.html}{R
 Data Import/Export}.
 
-\section{Saída de dados do R}\label{saida-de-dados-do-r}
+\section{Saída de dados do R}\label{sauxedda-de-dados-do-r}
 
 \subsection{\texorpdfstring{Usando a função
-\texttt{write.table()}}{Usando a função write.table()}}\label{usando-a-funcao-write.table}
+\texttt{write.table()}}{Usando a função write.table()}}\label{usando-a-funuxe7uxe3o-write.table}
 
 Para exportar objetos do R, usamos a função \texttt{write.table()}, que
 possui argumentos parecidos com aqueles da função \texttt{read.table()}.
@@ -4664,7 +4696,7 @@ A função \texttt{write.table()} é capaz de criar um arquivo de texto no
 formato \texttt{txt} ou \texttt{csv}, com as especificações definidas
 pelos argumentos.
 
-Para ilustrar o uso desta função, considerer o conjunto de dados
+Para ilustrar o uso desta função, considere o conjunto de dados
 \texttt{iris}
 
 \begin{Shaded}
@@ -4705,7 +4737,8 @@ Os argumentos são
 \begin{itemize}
 \tightlist
 \item
-  \texttt{iris}: o nome do objeto a ser exportado (matriz ou data frame)
+  \texttt{iris}: o nome do objeto a ser exportado (matriz ou data
+  frame).
 \item
   \texttt{"iris.csv"}: nome do arquivo a ser gerado. (Considerando que o
   arquivo \texttt{iris.csv} será criado dentro do diretório
@@ -4713,14 +4746,14 @@ Os argumentos são
 \item
   \texttt{row.names\ =\ FALSE}: para eliminar o nome das linhas do
   objeto (geralmente desnecessário), como retornado por
-  \texttt{row.names()}
+  \texttt{row.names()}.
 \item
   \texttt{sep\ =\ ";"}: o separador de colunas (também pode ser
   \texttt{","}, \texttt{"\textbackslash{}t"} para tabulação e
-  \texttt{""} para espaços)
+  \texttt{""} para espaços).
 \item
   \texttt{dec\ =\ ","}: o separador de decimais (também pode ser
-  \texttt{"."})
+  \texttt{"."}).
 \end{itemize}
 
 Note que o objeto a ser exportado (nesse caso \texttt{iris}) deve ser em
@@ -4748,7 +4781,7 @@ variedade de formatos. Veja a documentação em
 diretamente de arquivos do MS Excel mencionados acima também possuem
 funções para exportar diretamente para esse formato.
 
-\subsection*{Exercícios}\label{exercicios-11}
+\subsection*{Exercícios}\label{exercuxedcios-11}
 
 
 \begin{enumerate}
@@ -4825,12 +4858,12 @@ funções para exportar diretamente para esse formato.
 \end{enumerate}
 
 \subsection{Usando os formatos textual e binário para ler/escrever
-dados}\label{usando-os-formatos-textual-e-binario-para-lerescrever-dados}
+dados}\label{usando-os-formatos-textual-e-binuxe1rio-para-lerescrever-dados}
 
 As formas mais comuns de entrada de dados no R são através da entrada
 direta pelo teclado (e.g. \texttt{c()} ou \texttt{scan()}), ou pela
 importação de arquivos de texto (e.g. \texttt{read.table()}). No etanto,
-ainda existem mais dois formatos par armazenar dados para leitura no R:
+ainda existem mais dois formatos para armazenar dados para leitura no R:
 o textual e o binário.
 
 O \textbf{formato binário} é aquele armazenado em um arquivo binário, ou
@@ -4942,7 +4975,7 @@ usamos a função \texttt{source()},
 que já cria os objetos na sua área de trabalho com os mesmos nomes e
 atributos como foram armazenados.
 
-\subsubsection{Formato binário}\label{formato-binario}
+\subsubsection{Formato binário}\label{formato-binuxe1rio}
 
 Armazenar dados em formato binário é vantajoso quando não há uma forma
 ``fácil'' de armazenar os dados em formato de texto puro ou textual.
@@ -5006,7 +5039,7 @@ armazenados em formato binário, usamos a função \texttt{load()}
 Dessa forma, os objetos já estarão disponíveis na sua área de trabalho.
 
 \section{Informações sobre diretórios e
-arquivos}\label{informacoes-sobre-diretorios-e-arquivos}
+arquivos}\label{informauxe7uxf5es-sobre-diretuxf3rios-e-arquivos}
 
 O R possui uma variedade de funções para mostrar informações sobre
 arquivos e diretórios. Alguns exemplos são:
@@ -5040,8 +5073,7 @@ Por quê programar?
   Evitar repetições desnecessárias de análises ou cálculos que são
   repetidos com frequência.
 \item
-  Fica documentado as etapas que você realizou para chegar a um
-  resultado.
+  Documentar as etapas que você realizou para chegar a um resultado.
 \item
   Fácil recuperação e modificação de programas.
 \end{itemize}
@@ -5062,7 +5094,7 @@ Como programar?
 \end{itemize}
 
 \section{\texorpdfstring{Estrutura de repetição
-\texttt{for()}}{Estrutura de repetição for()}}\label{estrutura-de-repeticao-for}
+\texttt{for()}}{Estrutura de repetição for()}}\label{estrutura-de-repetiuxe7uxe3o-for}
 
 Serve para repetir um ou mais comandos diversas vezes. Para ver como
 funciona, considere o seguinte exemplo:
@@ -5121,9 +5153,8 @@ Veja outro exemplo em como podemos aplicar o índice:
 \end{Shaded}
 
 Veja que o índice não precisa ser \texttt{i}, na verdade pode ser
-qualquer letra ou palavra. Nesse caso, veja que utilizamos os valores
-como índice para selecionar elementos de \texttt{x} naquelas posições
-específicas.
+qualquer letra ou palavra. Nesse caso, utilizamos os valores como índice
+para selecionar elementos de \texttt{x} nas posições específicadas.
 
 Um outro exemplo seria se quisessemos imprimir o quadrado de alguns
 números (não necessariamente em sequência):
@@ -5334,7 +5365,7 @@ do CV. Os argumentos colocados dentro de \texttt{function()} devem ser
 apropriados para o propósito de cada função.
 
 Antes de aplicar a função dentro de um \texttt{for()} devemos testá-la
-para ver se ela está funcioanando de maneira correta. Por exemplo, o CV
+para ver se ela está funcionando de maneira correta. Por exemplo, o CV
 para as notas do primeiro aluno pode ser calculado ``manualmente'' por
 
 \begin{Shaded}
@@ -5397,7 +5428,7 @@ Usando a fórmula:
 \]
 
 onde \(w_i\) são os pesos, e \(N = \sum_{i=1}^{n} w_i\) é a soma dos
-pesos. Como já vimos que criar uma função é uma forma mais prática (e
+pesos. Como já vimos, criar uma função é uma forma mais prática (e
 elegante) de executar determinada tarefa, vamos criar uma função que
 calcule as médias ponderadas.
 
@@ -5463,10 +5494,10 @@ através do \texttt{for()}
 
 NOTA: uma função para calcular a média ponderada já existe implementada
 no R. Veja \texttt{?weighted.mean()} e confira os resultados obtidos
-aqui
+aqui.
 
 Repare na construção da função acima: agora usamos dois argumentos,
-\texttt{notas} e \texttt{pesos}, pois precisamos dos doiss vetores para
+\texttt{notas} e \texttt{pesos}, pois precisamos dos dois vetores para
 calcular a média ponderada. Repare também que ambos argumentos não
 possuem um valor padrão. Poderíamos, por exemplo, assumir valores padrão
 para os pesos, e deixar para que o usuário mude apenas se achar
@@ -5521,8 +5552,34 @@ média comum.
 \end{Highlighting}
 \end{Shaded}
 
+\subsection*{Exercícios}\label{exercuxedcios-12}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Escreva um loop for que percorre os números de 1 a 700 e imprime o
+  cubo de cada número.
+\item
+  Escreva um loop for que percorre os nomes das colunas do conjunto de
+  dados iris e imprime cada um junto com o número de caracteres na
+  coluna nomes entre parênteses. Example de output Sepal.Length (12).
+  Dica: Use as seguintes funções print(), paste0() e nchar().
+\item
+  Escreva um loop while que imprime o erro padrão de amostras da
+  distribuição normal padrão (use rnorm()) e para (break) se o erro
+  padrão obtido for maior que 1.
+\item
+  Usando o comando next adapte o loop do exercício (3) para que números
+  menores que 0.75 não sejam mostrados.
+\item
+  Use um loop for para simular o lançamento de uma moeda (1 - cara, 0 -
+  coroa) e armazene os resultados em um vetor pré-especificado.
+\end{enumerate}
+
 \section{\texorpdfstring{Estrutura de seleção
-\texttt{if()}}{Estrutura de seleção if()}}\label{estrutura-de-selecao-if}
+\texttt{if()}}{Estrutura de seleção if()}}\label{estrutura-de-seleuxe7uxe3o-if}
 
 Uma estrutura de seleção serve para executar algum comando apenas se
 alguma condição (em forma de \textbf{expressão condicional}) seja
@@ -5630,11 +5687,11 @@ nota é maior do que 7), e verificar se ela é verdadeira.
 \end{Highlighting}
 \end{Shaded}
 
-\section{O modo R: vetorização}\label{o-modo-r-vetorizacao}
+\section{O modo R: vetorização}\label{o-modo-r-vetorizauxe7uxe3o}
 
 As funções vetorizadas do R, além de facilitar e resumir a execução de
 tarefas repetitivas, também são computacionalmente mais eficientes,
-\emph{i.e.} o tempo de execução das rotinas é muito mais rápido.
+\emph{i.e.} o tempo de execução das rotinas é menor.
 
 Já vimos que a \textbf{regra da reciclagem} é uma forma de vetorizar
 cálculos no R. Os cálculos feitos com funções vetorizadas (ou usando a
@@ -5672,11 +5729,11 @@ pode ser feita apenas com
 
 Note que os resultados são exatamente iguais, mas então porque se
 prefere o formato vetorial? Primeiro porque é muito mais simples de
-escrever, e segundo (e princiapalmente) porque a forma vetorizada é
-muito mais \textbf{eficiente computacionalmente}. A eficiência
-computacional pode ser medida de várias formas (alocação de memória,
-tempo de execução, etc), mas apenas para comparação, vamos medir o tempo
-de execução destas mesmas operações usando o \texttt{for()} e usando a
+escrever, e segundo (e principalmente) porque a forma vetorizada é muito
+mais \textbf{eficiente computacionalmente}. A eficiência computacional
+pode ser medida de várias formas (alocação de memória, tempo de
+execução, etc), mas apenas para comparação, vamos medir o tempo de
+execução destas mesmas operações usando o \texttt{for()} e usando a
 regra da reciclagem.
 
 \begin{Shaded}
@@ -5690,7 +5747,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.112}   \FloatTok{0.000}   \FloatTok{0.109} 
+  \FloatTok{0.079}   \FloatTok{0.000}   \FloatTok{0.079} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5698,15 +5755,15 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.004}   \FloatTok{0.000}   \FloatTok{0.002} 
+  \FloatTok{0.002}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente \(0.109/0.002 = 54.5\)
+regra da reciclagem, o cálculo é aproximadamente \(0.079/0.002 = 39.5\)
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
-simples. Mas em situações mais complexas, a diferença entro o tempo de
+simples. Mas em situações mais complexas, a diferença entre o tempo de
 execução das duas formas pode ser muito maior.
 
 Uma nota de precaução
@@ -5718,10 +5775,10 @@ rápido:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Faça o máximo possível fora do loop
+  Faça o máximo possível fora do loop.
 \item
   Crie um objeto com tamanho suficiente para armazenar \emph{todos} os
-  resultados do loop \textbf{antes} de executá-lo
+  resultados do loop \textbf{antes} de executá-lo.
 \end{enumerate}
 
 Veja este exemplo:
@@ -5740,7 +5797,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.108}   \FloatTok{0.000}   \FloatTok{0.108} 
+  \FloatTok{0.077}   \FloatTok{0.000}   \FloatTok{0.076} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5751,13 +5808,13 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.348}   \FloatTok{0.052}   \FloatTok{0.400} 
+  \FloatTok{0.313}   \FloatTok{0.032}   \FloatTok{0.345} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.4/0.108 = 3.7 vezes. Isso acontece porque, da
-segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
+forma em aproximadamente 0.345/0.076 = 4.54 vezes. Isso acontece porque,
+da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
 então copiar o vetor de saída e apagar sua versão anterior antes de
@@ -5770,7 +5827,7 @@ memória para esse vetor já foi alocada previamente, de uma única vez.
 \begin{center}\includegraphics[width=0.9\linewidth]{img/R_club} \end{center}
 
 Voltando ao exemplo das notas, por exemplo, o cálculo da média simples
-poderia ser feita diretamente com a função \texttt{apply()}
+poderia ser feito diretamente com a função \texttt{apply()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5929,6 +5986,35 @@ seguinte forma:
 \end{Highlighting}
 \end{Shaded}
 
+\subsection*{Exercícios}\label{exercuxedcios-13}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Faça uma função usando loop for que recebe duas matrizes de mesma
+  dimensão e retorna a soma das matrizes. Note que é necessário
+  verificar se as matrizes fornecidas pelo usuário podem ser somadas,
+  caso contrário retorne uma mensagem de erro dizendo que as matrizes
+  não podem ser somadas.
+\item
+  Faça uma função usando loop for para multiplicar duas matrizes
+  compatíveis. Note que é necessário verificar se as matrizes fornecidas
+  pelo usuário podem ser multiplicadas, caso contrário retorne uma
+  mensagem de erro dizendo que as matrizes não podem ser multiplicadas.
+\item
+  Faça uma função para resolver sistemas lineares 2 x 2 usando o método
+  de decomposição de Gauss. Veja esta página se você não conhece o
+  método \url{https://matrixcalc.org/pt/slu.html}.
+\item
+  Faça uma função que encontra o máximo de uma função fornecida pelo
+  usuário em um intervalo e precisão pré-determinado pelo usuário.
+\item
+  Faça uma função que resolve uma equação não-linear de um único
+  parâmetro em um intervalo e precisão pré-determinado pelo usuário.
+\end{enumerate}
+
 \section{Outras estruturas: while e
 repeat}\label{outras-estruturas-while-e-repeat}
 
@@ -5967,10 +6053,31 @@ você explicitamente pare a execução com o comando \texttt{break}.
 \end{Highlighting}
 \end{Shaded}
 
-\part{Estatística}\label{part-estatistica}
+\subsection*{Exercícios}\label{exercuxedcios-14}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crie uma função que retorna o absoluto de um vetor de inteiros.
+\item
+  Crie uma função em R que retorna o maior valor em um vetor de
+  elementos númericos.
+\item
+  Crie uma função que retorna o número de valores maiores que a média de
+  um vetor. Você pode usar a função mean().
+\item
+  Crie uma função que dado um vetor de tamanho 3 retorna os seus valores
+  em ordem crescente e decrescente.
+\item
+  Crie uma função que calcula o fatorial de um número.
+\end{enumerate}
+
+\part{Estatística}\label{part-estatuxedstica}
 
 \chapter{Análise exploratória de
-dados}\label{analise-exploratoria-de-dados}
+dados}\label{anuxe1lise-exploratuxf3ria-de-dados}
 
 Nesta sessão vamos ver alguns (mas não todos!) comandos do R para fazer
 uma análise exploratória descritiva de um conjunto de dados.
@@ -6250,7 +6357,7 @@ resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab \&
 Morettin, relacionados com este exemplo. Veja os scripts do livro
 \href{https://rpubs.com/EstatBasica/Introd}{aqui}.
 
-\section{Análise univariada}\label{analise-univariada}
+\section{Análise univariada}\label{anuxe1lise-univariada}
 
 A análise univariada consiste basicamente em, para cada uma das
 variáveis individualmente:
@@ -6271,7 +6378,7 @@ Para isto vamos selecionar uma variável de cada tipo para que o leitor
 possa, por analogia, obter resultados para as demais.
 
 \subsection{Variável Qualitativa
-Nominal}\label{variavel-qualitativa-nominal}
+Nominal}\label{variuxe1vel-qualitativa-nominal}
 
 A variável \texttt{Est.civil} é uma qualitativa nominal. Desta forma
 podemos obter: (i) uma tabela de frequências (absolutas e/ou relativas),
@@ -6333,7 +6440,7 @@ de funções básicas. Uma opção seria usar os comandos abaixo:
 Deixamos a cargo do leitor entender e interpretar esse comando.
 
 \subsection{Variável Qualitativa
-Ordinal}\label{variavel-qualitativa-ordinal}
+Ordinal}\label{variuxe1vel-qualitativa-ordinal}
 
 Para exemplificar como obter análises para uma variável qualitativa
 ordinal vamos selecionar a variável \texttt{Inst}.
@@ -6408,7 +6515,7 @@ por isso usamos o comando seguinte.
 \end{Shaded}
 
 \subsection{Variável quantitativa
-discreta}\label{variavel-quantitativa-discreta}
+discreta}\label{variuxe1vel-quantitativa-discreta}
 
 Vamos agora usar a variável \texttt{Filhos} (número de filhos) para
 ilustrar algumas análises que podem ser feitas com uma quantitativa
@@ -6554,7 +6661,7 @@ para resumir od dados de uma só vez
 \end{Shaded}
 
 \subsection{Variável quantitativa
-contínua}\label{variavel-quantitativa-continua}
+contínua}\label{variuxe1vel-quantitativa-contuxednua}
 
 Para concluir os exemplos para análise univariada vamos considerar a
 variável quantitativa contínua \texttt{Salario}.
@@ -6852,7 +6959,7 @@ pois não existem \texttt{NA}s nesta variável.
 \end{Highlighting}
 \end{Shaded}
 
-\section{Análise Bivariada}\label{analise-bivariada}
+\section{Análise Bivariada}\label{anuxe1lise-bivariada}
 
 Na análise bivariada procuramos identificar relações entre duas
 variáveis. Assim como na análise univariada, estas relações podem ser
@@ -7188,7 +7295,7 @@ de correlação linear de Pearson.
 \end{Highlighting}
 \end{Shaded}
 
-\section*{Exercícios}\label{exercicios-12}
+\section*{Exercícios}\label{exercuxedcios-15}
 
 
 \begin{enumerate}
@@ -7244,10 +7351,10 @@ A resolução de todos os exercícios desta página está disponível neste
 \href{scripts/analise-exploratoria-exercicios.R}{script}.
 
 \chapter{Probabilidade e variáveis
-aleatórias}\label{probabilidade-e-variaveis-aleatorias}
+aleatórias}\label{probabilidade-e-variuxe1veis-aleatuxf3rias}
 
 \section{Conceitos básicos sobre distribuições de
-probabilidade}\label{conceitos-basicos-sobre-distribuicoes-de-probabilidade}
+probabilidade}\label{conceitos-buxe1sicos-sobre-distribuiuxe7uxf5es-de-probabilidade}
 
 O objetivo desta sessão é mostrar o uso de funções do R em problemas de
 probabilidade. Exercícios que podem (e devem!) ser resolvidos
@@ -7479,7 +7586,7 @@ numéricas com o uso do R, que na prática deve ser utilizado em problemas
 mais complexos onde soluções analíticas não são triviais ou mesmo
 impossíveis.
 
-\section*{Exercícios}\label{exercicios-13}
+\section*{Exercícios}\label{exercuxedcios-16}
 
 
 \begin{enumerate}
@@ -7511,7 +7618,7 @@ impossíveis.
 \end{enumerate}
 
 \section{Distribuições de
-Probabilidade}\label{distribuicoes-de-probabilidade}
+Probabilidade}\label{distribuiuxe7uxf5es-de-probabilidade}
 
 O R inclui funcionalidade para operações com distribuições de
 probabilidades. Para cada distribuição há 4 operações básicas indicadas
@@ -7539,7 +7646,7 @@ Poisson e assim por diante.
 
 Vamos ver com mais detalhes algumas distribuições de probabilidades.
 
-\subsection{Distribuição Normal}\label{distribuicao-normal}
+\subsection{Distribuição Normal}\label{distribuiuxe7uxe3o-normal}
 
 A funcionalidade para distribuição normal é implementada por argumentos
 que combinam as letras acima com o termo \texttt{norm}. Vamos ver alguns
@@ -7778,7 +7885,7 @@ um mesmo gráfico, usando o argumento \texttt{add\ =\ TRUE}.
 
 \begin{center}\includegraphics{figures/unnamed-chunk-345-1} \end{center}
 
-\subsection{Distribuição Binomial}\label{distribuicao-binomial}
+\subsection{Distribuição Binomial}\label{distribuiuxe7uxe3o-binomial}
 
 Cálculos para a distribuição binomial são implementados combinando as
 letras básicas vistas acima com o termo \texttt{binom}. Vamos primeiro
@@ -7864,7 +7971,8 @@ As probabilidades pedidas são obtidas com os comandos a seguir.
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Distribuição de Poisson}\label{distribuicao-de-poisson}
+\subsection{Distribuição de
+Poisson}\label{distribuiuxe7uxe3o-de-poisson}
 
 \textbf{Definição:} Seja um experimento realizado nas seguintes
 condições: i. As ocorrências são independentes ii. As ocorrências são
@@ -8027,9 +8135,9 @@ valores do parâmetro \(\mu\).
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Distribuição Uniforme}\label{distribuicao-uniforme}
+\subsection{Distribuição Uniforme}\label{distribuiuxe7uxe3o-uniforme}
 
-\subsubsection{Uniforme Contínua}\label{uniforme-continua}
+\subsubsection{Uniforme Contínua}\label{uniforme-contuxednua}
 
 Para a distribuição uniforme \emph{contínua} usa-se as funções
 \texttt{*unif()} onde \texttt{*} deve ser \(p\), \(q\), \(d\) ou \(r\)
@@ -8073,12 +8181,12 @@ valores de uma uniforma discreta com valores (inteiros) entre 1 e 10
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{15}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{5} \DecValTok{10}  \DecValTok{4} \DecValTok{10}  \DecValTok{7}  \DecValTok{9}  \DecValTok{2}  \DecValTok{7} \DecValTok{10}  \DecValTok{2}  \DecValTok{4}  \DecValTok{9}  \DecValTok{8}  \DecValTok{9}  \DecValTok{7}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{4} \DecValTok{4} \DecValTok{5} \DecValTok{7} \DecValTok{9} \DecValTok{4} \DecValTok{2} \DecValTok{6} \DecValTok{7} \DecValTok{1} \DecValTok{6} \DecValTok{9}
 \end{Highlighting}
 \end{Shaded}
 
 \subsection{\texorpdfstring{A função
-\texttt{sample()}}{A função sample()}}\label{a-funcao-sample}
+\texttt{sample()}}{A função sample()}}\label{a-funuxe7uxe3o-sample}
 
 A função \texttt{sample()} \textbf{não} é restrita à distribuição
 uniforme discreta, podendo ser usada para sorteios, com ou sem reposição
@@ -8106,7 +8214,7 @@ Vejamos alguns exemplos:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{0}\OperatorTok{:}\DecValTok{20}\NormalTok{, }\DataTypeTok{size =} \DecValTok{3}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{10} \DecValTok{15} \DecValTok{16}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{8} \DecValTok{20} \DecValTok{10}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8120,7 +8228,7 @@ Vejamos alguns exemplos:
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{18}\NormalTok{)}
 \KeywordTok{sample}\NormalTok{(x, }\DataTypeTok{size =} \DecValTok{5}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{12} \DecValTok{22} \DecValTok{18} \DecValTok{34} \DecValTok{19}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{18} \DecValTok{23} \DecValTok{20} \DecValTok{28} \DecValTok{22}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8134,7 +8242,7 @@ Vejamos alguns exemplos:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{2} \DecValTok{4} \DecValTok{2} \DecValTok{1} \DecValTok{2} \DecValTok{4} \DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{6}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{6} \DecValTok{3} \DecValTok{5} \DecValTok{6} \DecValTok{3} \DecValTok{6} \DecValTok{4} \DecValTok{3} \DecValTok{3} \DecValTok{3}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8148,7 +8256,7 @@ Vejamos alguns exemplos:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{,  }\DataTypeTok{prob =} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{4} \DecValTok{5} \DecValTok{5} \DecValTok{5} \DecValTok{5} \DecValTok{6} \DecValTok{4} \DecValTok{5} \DecValTok{5} \DecValTok{4}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{6} \DecValTok{4} \DecValTok{3} \DecValTok{6} \DecValTok{5} \DecValTok{3} \DecValTok{2} \DecValTok{6} \DecValTok{5} \DecValTok{5}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8158,7 +8266,7 @@ entendidos como \textbf{pesos}. A própria função trata isto internamente
 fazendo a ponderação adequada.
 
 \section{Complementos sobre distribuições de
-probabilidade}\label{complementos-sobre-distribuicoes-de-probabilidade}
+probabilidade}\label{complementos-sobre-distribuiuxe7uxf5es-de-probabilidade}
 
 Agora que já nos familiarizamos com o uso das distribuições de
 probabilidade vamos ver alguns detalhes adicionais sobre seu
@@ -8261,7 +8369,7 @@ Note ainda que na prática não precisamos definir e usar a função
 \texttt{fn()}, pois ela fornece o mesmo resultado que a função
 \texttt{dnorm()}.
 
-\section*{Exercícios}\label{exercicios-14}
+\section*{Exercícios}\label{exercuxedcios-17}
 
 
 Nos exercícios abaixo iremos também usar o R como uma calculadora
@@ -8369,7 +8477,7 @@ tipicamente apresentados em um curso de estatística básica.
 \appendix
 
 
-\chapter{Documentos dinâmicos}\label{documentos-dinamicos}
+\chapter{Documentos dinâmicos}\label{documentos-dinuxe2micos}
 
 A ideia geral de um documento dinâmico é a de que ele pode ser gerado a
 partir de um \textbf{código-fonte}:
@@ -8568,7 +8676,7 @@ John Gruber
 A sintaxe do Markdown é muito simples, e pode ser resumida da seguinte
 forma:
 
-\subsubsection*{Cabeçalhos}\label{cabecalhos}
+\subsubsection*{Cabeçalhos}\label{cabeuxe7alhos}
 
 
 \begin{verbatim}
@@ -8577,7 +8685,7 @@ forma:
 ### Sub-sub-título
 \end{verbatim}
 
-\subsubsection*{Itálico}\label{italico}
+\subsubsection*{Itálico}\label{ituxe1lico}
 
 
 \begin{verbatim}
@@ -8595,7 +8703,7 @@ forma:
 
 \textbf{Este texto aparecerá em negrito.}
 
-\subsubsection*{Listas não-ordenadas}\label{listas-nao-ordenadas}
+\subsubsection*{Listas não-ordenadas}\label{listas-nuxe3o-ordenadas}
 
 
 \begin{verbatim}
@@ -8718,7 +8826,7 @@ Ou um endereço local:
 \caption{Logo do Markdown}
 \end{figure}
 
-\subsubsection*{Parágrafo}\label{paragrafo}
+\subsubsection*{Parágrafo}\label{paruxe1grafo}
 
 
 Para criar parágrafos basta pular uma linha:
@@ -8737,7 +8845,7 @@ O criador do conceito de ``literate programming'' foi
 Devemos instalar o pacote \href{http://yihui.name/knitr}{knitr} para
 poder usar o R Markdown.
 
-\subsubsection*{Códigos}\label{codigos}
+\subsubsection*{Códigos}\label{cuxf3digos}
 
 
 Para apresentar códigos na própria linha, colocamos o texto entre duas
@@ -8800,7 +8908,8 @@ Caracter & Permissão\tabularnewline
 \bottomrule
 \end{longtable}
 
-\subsubsection*{Equações matemáticas}\label{equacoes-matematicas}
+\subsubsection*{Equações
+matemáticas}\label{equauxe7uxf5es-matemuxe1ticas}
 
 
 Equações matemáticas podem ser escritas em formato LaTeX. A página HTML
@@ -8912,7 +9021,7 @@ Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
 \href{exemplos/Exemplo1.html}{Exemplo1.html} no navegador.
 
 \section{Documentos dinâmicos com Markdown e
-R}\label{documentos-dinamicos-com-markdown-e-r}
+R}\label{documentos-dinuxe2micos-com-markdown-e-r}
 
 No exemplo anterior, escrevemos um documento em Markdown (\texttt{.md})
 e inserimos códigos do R, que são apenas apresentados no documento
@@ -9111,7 +9220,7 @@ ainda precisamos processar esse arquivo para gerar o arquivo
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{pandoc}\NormalTok{(}\DataTypeTok{input =} \StringTok{"exemplos/Exemplo1-knitr.md"}\NormalTok{, }\DataTypeTok{format =} \StringTok{"html"}\NormalTok{)}
-\NormalTok{executing pandoc   }\OperatorTok{-}\NormalTok{t html }\OperatorTok{-}\NormalTok{o exemplos}\OperatorTok{/}\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{knitr.html }\StringTok{'exemplos/Exemplo1-knitr_utf8.md'}
+\NormalTok{Executing}\OperatorTok{:}\StringTok{ }\NormalTok{pandoc }\OperatorTok{-}\NormalTok{t html }\OperatorTok{-}\NormalTok{o }\StringTok{'exemplos/Exemplo1-knitr.html'} \StringTok{'exemplos/Exemplo1-knitr.md'}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"exemplos/Exemplo1-knitr.html"}
 \end{Highlighting}
 \end{Shaded}
@@ -9211,7 +9320,7 @@ argumento da função é o nome (e local) do arquivo, e o segundo argumento
 \StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpZN2Mw0}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2c916e3f5c0a.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpsGVj0u}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str3e276414ab09.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -9289,7 +9398,7 @@ Para renderizar esse aquivo, usamos:
 \StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{ascii_identifiers}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpZN2Mw0}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str2c914e3c5466.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpsGVj0u}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str3e276aad975c.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -9386,7 +9495,7 @@ Apresentações em Beamer também podem ser geradas com
 Com resultado no arquivo
 \href{exemplos/Exemplo1-yaml-beamer.pdf}{Exemplo1-yaml-beamer.pdf}.
 
-\subsection{Opções do knitr}\label{opcoes-do-knitr}
+\subsection{Opções do knitr}\label{opuxe7uxf5es-do-knitr}
 
 O pacote knitr possui diversas opções para controlar a saída dos
 resultados de códigos do R. Estas opções funcionam igualmente em blocos
@@ -9482,7 +9591,7 @@ formato, ainda existem diversas opções que podem ser modificadas através
 do YAML. Estas opções podem ser conferidas nos links específicos de cada
 formato na página citada anteriormente.
 
-\subsection{Citações}\label{citacoes}
+\subsection{Citações}\label{citauxe7uxf5es}
 
 Também é possível escrever documentos que com referências
 bibliográficas. Isso é possível pois o Pandoc suporta arquivos
@@ -9510,7 +9619,7 @@ Dessa forma serão gerados 3 formatos diferentes: HTML, PDF e MS Word.
 Note que o tema usado para o HTML (\texttt{journal}) é uma possibilidade
 entre algumas disponíveis em \url{https://bootswatch.com/}.
 
-\subsection{Extraindo código-fonte}\label{extraindo-codigo-fonte}
+\subsection{Extraindo código-fonte}\label{extraindo-cuxf3digo-fonte}
 
 Uma característica importante do \textbf{knitr} é a habilidade de
 extrair somente o código R de um documento dinâmico (\emph{tangle}).
@@ -9602,7 +9711,7 @@ do R, para exportar/importar data frames de uma linguagem para outra
 dentro do mesmo documento.
 
 \chapter{Programação Orientada a
-Objetos}\label{programacao-orientada-a-objetos}
+Objetos}\label{programauxe7uxe3o-orientada-a-objetos}
 
 Como vimos anteriormente, o R é uma linguagem de programação orientada à
 objetos. Dois conceitos fundamentais desse tipo de linguagem são os de
@@ -9652,6 +9761,7 @@ a função \texttt{mean()}:
 \begin{Highlighting}[]
 \KeywordTok{methods}\NormalTok{(mean)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] mean.Date     mean.default  mean.difftime mean.POSIXct  mean.POSIXlt }
+\NormalTok{[}\DecValTok{6}\NormalTok{] mean.quosure}\OperatorTok{*}
 \NormalTok{see }\StringTok{'?methods'} \ControlFlowTok{for}\NormalTok{ accessing help and source code}
 \end{Highlighting}
 \end{Shaded}
@@ -9727,7 +9837,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x32f3640}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x33fc2d8}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9762,7 +9872,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x3d770f8}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x72e8650}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9800,7 +9910,7 @@ Agora podemos ver novamente os métodos disponíveis para a função
 \begin{Highlighting}[]
 \KeywordTok{methods}\NormalTok{(mean)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] mean.Date     mean.default  mean.difftime mean.matrix   mean.POSIXct }
-\NormalTok{[}\DecValTok{6}\NormalTok{] mean.POSIXlt }
+\NormalTok{[}\DecValTok{6}\NormalTok{] mean.POSIXlt  mean.quosure}\OperatorTok{*}
 \NormalTok{see }\StringTok{'?methods'} \ControlFlowTok{for}\NormalTok{ accessing help and source code}
 \end{Highlighting}
 \end{Shaded}

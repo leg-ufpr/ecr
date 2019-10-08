@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Estatística Computacional com R</title>
-  <meta name="description" content="Estatística Computacional com R">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Objetos e classes | Estatística Computacional com R</title>
+  <meta name="description" content="2 Objetos e classes | Estatística Computacional com R" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Estatística Computacional com R" />
+  <meta property="og:title" content="2 Objetos e classes | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,32 +16,36 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Estatística Computacional com R" />
+  <meta name="twitter:title" content="2 Objetos e classes | Estatística Computacional com R" />
   
   
   
 
-<meta name="author" content="Fernando P. Mayer">
-<meta name="author" content="Wagner H. Bonat">
-<meta name="author" content="Walmes M. Zeviani">
-<meta name="author" content="Elias T. Krainski">
-<meta name="author" content="Paulo J. Ribeiro Jr.">
+<meta name="author" content="Prof. Fernando P. Mayer" />
+<meta name="author" content="Prof. Wagner H. Bonat" />
+<meta name="author" content="Prof. Walmes M. Zeviani" />
+<meta name="author" content="Prof. Elias T. Krainski" />
+<meta name="author" content="Prof. Paulo J. Ribeiro Jr." />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="computacao-cientifica-e-interacao-com-o-r.html">
-<link rel="next" href="indexacao-e-selecao-condicional.html">
+<link rel="prev" href="computação-científica-e-interação-com-o-r.html"/>
+<link rel="next" href="indexação-e-seleção-condicional.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -112,46 +115,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#informacao-de-sessao"><i class="fa fa-check"></i>Informação de sessão</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-quem-este-material-é-destinado"><i class="fa fa-check"></i>Para quem este material é destinado?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#informação-de-sessão"><i class="fa fa-check"></i>Informação de sessão</a></li>
 </ul></li>
 <li class="part"><span><b>I R básico</b></span></li>
-<li class="chapter" data-level="1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
-<li class="chapter" data-level="1.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
-<li class="chapter" data-level="1.2" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
+<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
+<li class="chapter" data-level="1.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
+<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#configuracao-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
-<li class="chapter" data-level="1.3.2" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
-<li class="chapter" data-level="1.3.3" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#para-onde-vao-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
-<li class="chapter" data-level="1.3.4" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#o-editor-de-scripts"><i class="fa fa-check"></i><b>1.3.4</b> O editor de scripts</a></li>
-<li class="chapter" data-level="1.3.5" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#operadores-aritmeticos"><i class="fa fa-check"></i><b>1.3.5</b> Operadores aritméticos</a></li>
-<li class="chapter" data-level="1.3.6" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#ordens-de-execucao"><i class="fa fa-check"></i><b>1.3.6</b> Ordens de execução</a></li>
-<li class="chapter" data-level="" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#exercicios"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="1.3.7" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#salvando-resultados"><i class="fa fa-check"></i><b>1.3.7</b> “Salvando” resultados</a></li>
-<li class="chapter" data-level="1.3.8" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#finalizando-o-programa"><i class="fa fa-check"></i><b>1.3.8</b> Finalizando o programa</a></li>
+<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#configuração-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
+<li class="chapter" data-level="1.3.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
+<li class="chapter" data-level="1.3.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#para-onde-vão-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
+<li class="chapter" data-level="1.3.4" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#o-editor-de-scripts"><i class="fa fa-check"></i><b>1.3.4</b> O editor de scripts</a></li>
+<li class="chapter" data-level="1.3.5" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#operadores-aritméticos"><i class="fa fa-check"></i><b>1.3.5</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="1.3.6" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#ordens-de-execução"><i class="fa fa-check"></i><b>1.3.6</b> Ordens de execução</a></li>
+<li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#exercícios"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="1.3.7" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#salvando-resultados"><i class="fa fa-check"></i><b>1.3.7</b> “Salvando” resultados</a></li>
+<li class="chapter" data-level="1.3.8" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#finalizando-o-programa"><i class="fa fa-check"></i><b>1.3.8</b> Finalizando o programa</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="computacao-cientifica-e-interacao-com-o-r.html"><a href="computacao-cientifica-e-interacao-com-o-r.html#referencias"><i class="fa fa-check"></i>Referências</a></li>
+<li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#referências"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a><ul>
-<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funcoes-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
+<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-argumentos"><i class="fa fa-check"></i><b>2.1.1</b> Outros tipos de argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#mecanismos-de-ajuda"><i class="fa fa-check"></i><b>2.2</b> Mecanismos de ajuda</a></li>
-<li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-funcao"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
-<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-1"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-função"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-1"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#nomes-de-objetos"><i class="fa fa-check"></i><b>2.4.1</b> Nomes de objetos</a></li>
-<li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-area-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
+<li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-área-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-2"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-2"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numericos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
+<li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numéricos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
 <li class="chapter" data-level="2.5.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-vetores"><i class="fa fa-check"></i><b>2.5.2</b> Outros tipos de vetores</a></li>
 <li class="chapter" data-level="2.5.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#misturando-classes-de-objetos"><i class="fa fa-check"></i><b>2.5.3</b> Misturando classes de objetos</a></li>
 <li class="chapter" data-level="2.5.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#valores-perdidos-e-especiais"><i class="fa fa-check"></i><b>2.5.4</b> Valores perdidos e especiais</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-3"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-3"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a><ul>
 <li class="chapter" data-level="2.6.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#fator"><i class="fa fa-check"></i><b>2.6.1</b> Fator</a></li>
 <li class="chapter" data-level="2.6.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#matriz"><i class="fa fa-check"></i><b>2.6.2</b> Matriz</a></li>
@@ -160,102 +164,108 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#data-frame"><i class="fa fa-check"></i><b>2.6.5</b> Data frame</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#atributos-de-objetos"><i class="fa fa-check"></i><b>2.7</b> Atributos de objetos</a></li>
-<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercicios-4"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referencias-1"><i class="fa fa-check"></i>Referências</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-4"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referências-1"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
-<li class="chapter" data-level="3.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
-<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-5"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="3.1.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
-<li class="chapter" data-level="3.1.3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-listas"><i class="fa fa-check"></i><b>3.1.3</b> Indexação de listas</a></li>
-<li class="chapter" data-level="3.1.4" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#indexacao-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
+<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
+<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
+<li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-5"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.1.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
+<li class="chapter" data-level="3.1.3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-listas"><i class="fa fa-check"></i><b>3.1.3</b> Indexação de listas</a></li>
+<li class="chapter" data-level="3.1.4" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-6"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="3.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
-<li class="chapter" data-level="3.2.2" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#a-funcao-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
-<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-7"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="3.2.3" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#selecao-condicional-em-data-frames"><i class="fa fa-check"></i><b>3.2.3</b> Seleção condicional em data frames</a></li>
-<li class="chapter" data-level="" data-path="indexacao-e-selecao-condicional.html"><a href="indexacao-e-selecao-condicional.html#exercicios-8"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-6"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
+<li class="chapter" data-level="3.2.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#a-função-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
+<li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-7"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="3.2.3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional-em-data-frames"><i class="fa fa-check"></i><b>3.2.3</b> Seleção condicional em data frames</a></li>
+<li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-8"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
-<li class="chapter" data-level="4.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
-<li class="chapter" data-level="4.1.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
-<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-9"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="4.1.3" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-em-arquivos-texto"><i class="fa fa-check"></i><b>4.1.3</b> Entrada de dados em arquivos texto</a></li>
-<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-10"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="4.1.4" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#entrada-de-dados-atraves-da-area-de-transferencia"><i class="fa fa-check"></i><b>4.1.4</b> Entrada de dados através da área de transferência</a></li>
-<li class="chapter" data-level="4.1.5" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#importando-dados-diretamente-de-planilhas"><i class="fa fa-check"></i><b>4.1.5</b> Importando dados diretamente de planilhas</a></li>
-<li class="chapter" data-level="4.1.6" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#carregando-dados-ja-disponiveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
-<li class="chapter" data-level="4.1.7" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
+<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
+<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-9"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.1.3" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados-em-arquivos-texto"><i class="fa fa-check"></i><b>4.1.3</b> Entrada de dados em arquivos texto</a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-10"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.1.4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados-através-da-área-de-transferência"><i class="fa fa-check"></i><b>4.1.4</b> Entrada de dados através da área de transferência</a></li>
+<li class="chapter" data-level="4.1.5" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#importando-dados-diretamente-de-planilhas"><i class="fa fa-check"></i><b>4.1.5</b> Importando dados diretamente de planilhas</a></li>
+<li class="chapter" data-level="4.1.6" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#carregando-dados-já-disponíveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
+<li class="chapter" data-level="4.1.7" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#saida-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#usando-a-funcao-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
-<li class="chapter" data-level="" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#exercicios-11"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="4.2.2" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#usando-os-formatos-textual-e-binario-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
+<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-a-função-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
+<li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-11"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="4.2.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-os-formatos-textual-e-binário-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="entrada-e-saida-de-dados-no-r.html"><a href="entrada-e-saida-de-dados-no-r.html#informacoes-sobre-diretorios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
+<li class="chapter" data-level="4.3" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#informações-sobre-diretórios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repeticao-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a></li>
-<li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-selecao-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
-<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorizacao"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a></li>
-<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a></li>
+<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a><ul>
+<li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-12"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-seleção-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a><ul>
+<li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-13"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a><ul>
+<li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-14"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Estatística</b></span></li>
-<li class="chapter" data-level="6" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
-<li class="chapter" data-level="6.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
-<li class="chapter" data-level="6.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#analise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
-<li class="chapter" data-level="6.2.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
-<li class="chapter" data-level="6.2.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
-<li class="chapter" data-level="6.2.4" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#variavel-quantitativa-continua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
+<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
+<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
+<li class="chapter" data-level="6.2.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
+<li class="chapter" data-level="6.2.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
+<li class="chapter" data-level="6.2.4" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-contínua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#analise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
-<li class="chapter" data-level="6.3.2" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
-<li class="chapter" data-level="6.3.3" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
+<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
+<li class="chapter" data-level="6.3.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
+<li class="chapter" data-level="6.3.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="analise-exploratoria-de-dados.html"><a href="analise-exploratoria-de-dados.html#exercicios-12"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#exercícios-15"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
-<li class="chapter" data-level="7.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#conceitos-basicos-sobre-distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
-<li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-13"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="7.2" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
-<li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
-<li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
-<li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#distribuicao-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
-<li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#a-funcao-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
+<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
+<li class="chapter" data-level="7.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#conceitos-básicos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
+<li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-16"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
+<li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
+<li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
+<li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
+<li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#a-função-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#complementos-sobre-distribuicoes-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
+<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="probabilidade-e-variaveis-aleatorias.html"><a href="probabilidade-e-variaveis-aleatorias.html#exercicios-14"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
-<li class="chapter" data-level="A.1" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
-<li class="chapter" data-level="A.2" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#literate-programming-no-r"><i class="fa fa-check"></i><b>A.2</b> Literate Programming no R</a></li>
-<li class="chapter" data-level="A.3" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#sintaxe-do-markdown"><i class="fa fa-check"></i><b>A.3.1</b> Sintaxe do Markdown</a></li>
-<li class="chapter" data-level="A.3.2" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#escrevendo-um-documento-em-markdown"><i class="fa fa-check"></i><b>A.3.2</b> Escrevendo um documento em Markdown</a></li>
+<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
+<li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
+<li class="chapter" data-level="A.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming-no-r"><i class="fa fa-check"></i><b>A.2</b> Literate Programming no R</a></li>
+<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#sintaxe-do-markdown"><i class="fa fa-check"></i><b>A.3.1</b> Sintaxe do Markdown</a></li>
+<li class="chapter" data-level="A.3.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#escrevendo-um-documento-em-markdown"><i class="fa fa-check"></i><b>A.3.2</b> Escrevendo um documento em Markdown</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#pandoc"><i class="fa fa-check"></i><b>A.4</b> Pandoc</a></li>
-<li class="chapter" data-level="A.5" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#documentos-dinamicos-com-markdown-e-r"><i class="fa fa-check"></i><b>A.5</b> Documentos dinâmicos com Markdown e R</a></li>
-<li class="chapter" data-level="A.6" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a><ul>
-<li class="chapter" data-level="A.6.1" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#metadados"><i class="fa fa-check"></i><b>A.6.1</b> Metadados</a></li>
-<li class="chapter" data-level="A.6.2" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#convertendo-r-markdown-para-outros-formatos"><i class="fa fa-check"></i><b>A.6.2</b> Convertendo R Markdown para outros formatos</a></li>
-<li class="chapter" data-level="A.6.3" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#opcoes-do-knitr"><i class="fa fa-check"></i><b>A.6.3</b> Opções do knitr</a></li>
-<li class="chapter" data-level="A.6.4" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#citacoes"><i class="fa fa-check"></i><b>A.6.4</b> Citações</a></li>
-<li class="chapter" data-level="A.6.5" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#extraindo-codigo-fonte"><i class="fa fa-check"></i><b>A.6.5</b> Extraindo código-fonte</a></li>
-<li class="chapter" data-level="A.6.6" data-path="documentos-dinamicos.html"><a href="documentos-dinamicos.html#outras-linguagens"><i class="fa fa-check"></i><b>A.6.6</b> Outras linguagens</a></li>
+<li class="chapter" data-level="A.4" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#pandoc"><i class="fa fa-check"></i><b>A.4</b> Pandoc</a></li>
+<li class="chapter" data-level="A.5" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#documentos-dinâmicos-com-markdown-e-r"><i class="fa fa-check"></i><b>A.5</b> Documentos dinâmicos com Markdown e R</a></li>
+<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a><ul>
+<li class="chapter" data-level="A.6.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#metadados"><i class="fa fa-check"></i><b>A.6.1</b> Metadados</a></li>
+<li class="chapter" data-level="A.6.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#convertendo-r-markdown-para-outros-formatos"><i class="fa fa-check"></i><b>A.6.2</b> Convertendo R Markdown para outros formatos</a></li>
+<li class="chapter" data-level="A.6.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#opções-do-knitr"><i class="fa fa-check"></i><b>A.6.3</b> Opções do knitr</a></li>
+<li class="chapter" data-level="A.6.4" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#citações"><i class="fa fa-check"></i><b>A.6.4</b> Citações</a></li>
+<li class="chapter" data-level="A.6.5" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#extraindo-código-fonte"><i class="fa fa-check"></i><b>A.6.5</b> Extraindo código-fonte</a></li>
+<li class="chapter" data-level="A.6.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#outras-linguagens"><i class="fa fa-check"></i><b>A.6.6</b> Outras linguagens</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="programacao-orientada-a-objetos.html"><a href="programacao-orientada-a-objetos.html"><i class="fa fa-check"></i><b>B</b> Programação Orientada a Objetos</a></li>
+<li class="chapter" data-level="B" data-path="programação-orientada-a-objetos.html"><a href="programação-orientada-a-objetos.html"><i class="fa fa-check"></i><b>B</b> Programação Orientada a Objetos</a></li>
 <li class="chapter" data-level="C" data-path="scripts.html"><a href="scripts.html"><i class="fa fa-check"></i><b>C</b> Scripts</a></li>
 </ul>
 
@@ -276,7 +286,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="objetos-e-classes" class="section level1">
 <h1><span class="header-section-number">2</span> Objetos e classes</h1>
-<div id="funcoes-e-argumentos" class="section level2">
+<div id="funções-e-argumentos" class="section level2">
 <h2><span class="header-section-number">2.1</span> Funções e argumentos</h2>
 <p>As funções no R são definidas como:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nome</span>(argumento1, argumento2, ...)</code></pre></div>
@@ -296,16 +306,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Exemplo: função <code>sample()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(x, size, <span class="dt">replace =</span> <span class="ot">FALSE</span>, <span class="dt">prob =</span> <span class="ot">NULL</span>)</code></pre></div>
 <ul>
-<li><code>x</code> e <code>size</code> devem ser obrigatoriamente especificados</li>
-<li><code>replace</code> é lógico: <code>TRUE</code> (<code>T</code>) ou <code>FALSE</code> (<code>F</code>)</li>
-<li><code>prob</code> é um argumento vazio ou ausente (“opcional”)</li>
+<li><code>x</code> e <code>size</code> devem ser obrigatoriamente especificados.</li>
+<li><code>replace</code> é lógico: <code>TRUE</code> (<code>T</code>) ou <code>FALSE</code> (<code>F</code>).</li>
+<li><code>prob</code> é um argumento vazio ou ausente (“opcional”).</li>
 </ul>
 <p>Exemplo: função <code>plot()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y, ...)</code></pre></div>
 <ul>
-<li>“<code>...</code>” permite especificar argumentos de outras funções (por exemplo <code>par()</code>)</li>
+<li>“<code>...</code>” permite especificar argumentos de outras funções (por exemplo <code>par()</code>).</li>
 </ul>
-<p>Para ver todos os argumentos disponíveis de uma função, podemos usar a função <code>args()</code></p>
+<p>Para ver todos os argumentos disponíveis de uma função, podemos usar a função <code>args()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(sample)
 <span class="cf">function</span> (x, size, <span class="dt">replace =</span> <span class="ot">FALSE</span>, <span class="dt">prob =</span> <span class="ot">NULL</span>) 
 <span class="ot">NULL</span></code></pre></div>
@@ -319,14 +329,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(runif)</code></pre></div>
 <p>A documentação contém os campos:</p>
 <ul>
-<li><strong>Description:</strong> breve descrição</li>
-<li><strong>Usage:</strong> função e todos seus argumentos</li>
-<li><strong>Arguments:</strong> lista descrevendo cada argumento</li>
-<li><strong>Details:</strong> descrição detalhada</li>
-<li><strong>Value:</strong> o que a função retorna</li>
-<li><strong>References:</strong> bibliografia relacionada</li>
-<li><strong>See Also:</strong> funções relacionadas</li>
-<li><strong>Examples:</strong> exemplos práticos</li>
+<li><strong>Description:</strong> breve descrição.</li>
+<li><strong>Usage:</strong> função e todos seus argumentos.</li>
+<li><strong>Arguments:</strong> lista descrevendo cada argumento.</li>
+<li><strong>Details:</strong> descrição detalhada.</li>
+<li><strong>Value:</strong> o que a função retorna.</li>
+<li><strong>References:</strong> bibliografia relacionada.</li>
+<li><strong>See Also:</strong> funções relacionadas.</li>
+<li><strong>Examples:</strong> exemplos práticos.</li>
 </ul>
 <p>Procura por nomes de funções que contenham algum termo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apropos</span>(<span class="st">&quot;mod&quot;</span>)
@@ -337,11 +347,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help.start</span>()</code></pre></div>
 <p>Sites para busca na documentação dos diversos pacotes:</p>
 <ul>
-<li>RDocumentation <a href="https://www.rdocumentation.org/" class="uri">https://www.rdocumentation.org/</a></li>
-<li>R Package Documentation <a href="https://rdrr.io/" class="uri">https://rdrr.io/</a></li>
-<li>R Contributed Documentation (várias línguas) <a href="https://cran.r-project.org/other-docs.html" class="uri">https://cran.r-project.org/other-docs.html</a></li>
+<li>RDocumentation <a href="https://www.rdocumentation.org/" class="uri">https://www.rdocumentation.org/</a>.</li>
+<li>R Package Documentation <a href="https://rdrr.io/" class="uri">https://rdrr.io/</a>.</li>
+<li>R Contributed Documentation (várias línguas). <a href="https://cran.r-project.org/other-docs.html" class="uri">https://cran.r-project.org/other-docs.html</a>.</li>
 </ul>
-<p>Os pacotes do R contém funções específicas para determinadas tarefas, e estendem a instalação básica do R. Atualmente existem mais de 10000 pacotes disponíveis no <a href="http://cran-r.c3sl.ufpr.br/web/packages/index.html">CRAN</a>, além de diversos outros hospedados em sites como <a href="https://github.com">Github</a>, por exemplo.</p>
+<p>Os pacotes do R contêm funções específicas para determinadas tarefas, e estendem a instalação básica do R. Atualmente existem mais de 10000 pacotes disponíveis no <a href="http://cran-r.c3sl.ufpr.br/web/packages/index.html">CRAN</a>, além de diversos outros hospedados em sites como <a href="https://github.com">Github</a>, por exemplo.</p>
 <p>Ao instalar o R, os seguintes pacotes já vêm instalados (fazem parte do chamado “R core”):</p>
 <pre><code> [1] &quot;base&quot;       &quot;boot&quot;       &quot;class&quot;      &quot;cluster&quot;    &quot;codetools&quot; 
  [6] &quot;compiler&quot;   &quot;datasets&quot;   &quot;foreign&quot;    &quot;graphics&quot;   &quot;grDevices&quot; 
@@ -353,7 +363,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>[1] &quot;graphics&quot;  &quot;grDevices&quot; &quot;utils&quot;     &quot;datasets&quot;  &quot;methods&quot;   &quot;base&quot;     </code></pre>
 <p>Para listar os pacotes carregados, use a função</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">search</span>()</code></pre></div>
-<p>Note que o primeiro elemento, <code>.GlobalEnv</code>, será sempre carregado pois ele é o <em>ambiente</em> queirá armazenar (e deixar disponível) os objetos criados pelo usuário. Para carregar um pacote instalado, usamos a função <code>library()</code>, por exemplo</p>
+<p>Note que o primeiro elemento, <code>.GlobalEnv</code>, será sempre carregado pois ele é o <em>ambiente</em> que irá armazenar (e deixar disponível) os objetos criados pelo usuário. Para carregar um pacote instalado, usamos a função <code>library()</code>, por exemplo</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lattice)
 <span class="kw">search</span>()</code></pre></div>
 <p>Isso tornará todas as funções do pacote <code>lattice</code> disponíveis para uso.</p>
@@ -361,21 +371,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;mvtnorm&quot;</span>)</code></pre></div>
 <p>Se o diretório padrão de instalação de um pacote for de acesso restrito (root por exemplo), o R irá perguntar se você gostaria de instalar o pacote em uma biblioteca pessoal, e sugerirá um diretório que possui as permissões necessárias. Você pode se antecipar e já definir e criar um diretório na sua pasta pessoal, e instalar os pacotes sempre nesse local. Por exemplo, defina <code>~/R/library</code> como sua biblioteca pessoal. Para instalar os pacotes sempre nesse diretório faça:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;mvtnorm&quot;</span>, <span class="dt">lib =</span> <span class="st">&quot;~/R/library&quot;</span>)</code></pre></div>
-<p>Para verificar as bibliotecas disponíveis e se existem pacotes para ser atualizados, use</p>
+<p>Para verificar as bibliotecas disponíveis e se existem pacotes para serem atualizados, use</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packageStatus</span>()</code></pre></div>
 <p>Para atualizar automaticamente todos os pacotes faça</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update.packages</span>(<span class="dt">ask =</span> <span class="ot">FALSE</span>)
-Updating HTML index of packages <span class="cf">in</span> <span class="st">&#39;.Library&#39;</span>
-Making <span class="st">&#39;packages.html&#39;</span> ... done</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update.packages</span>(<span class="dt">ask =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
-<div id="criando-uma-funcao" class="section level2">
+<div id="criando-uma-função" class="section level2">
 <h2><span class="header-section-number">2.3</span> Criando uma função</h2>
 <p>A ideia original do R é transformar usuários em programadores</p>
 <blockquote>
 <p><em>“… to turn ideas into software, quickly and faithfully.”</em></p>
-<p>– John M. Chambers</p>
+<p>– John M. Chambers.</p>
 </blockquote>
-<p>Criar funções para realizar trabalhos específicos é um dos grandes poderes do R</p>
+<p>Criar funções para realizar trabalhos específicos é um dos grandes poderes do R.</p>
 <p>Por exemplo, podemos criar a famosa função</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ola.mundo &lt;-<span class="st"> </span><span class="cf">function</span>(){
     <span class="kw">writeLines</span>(<span class="st">&quot;Olá mundo&quot;</span>)
@@ -383,7 +391,7 @@ Making <span class="st">&#39;packages.html&#39;</span> ... done</code></pre></di
 <p>E chama-la através de</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ola.mundo</span>()
 Olá mundo</code></pre></div>
-<p>A função acima não permite alterar o resultado de saída. Podemos fazer isso incluindo um <strong>argumento</strong></p>
+<p>A função acima não permite alterar o resultado da saída. Podemos fazer isso incluindo um <strong>argumento</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ola.mundo &lt;-<span class="st"> </span><span class="cf">function</span>(texto){
     <span class="kw">writeLines</span>(texto)
 }</code></pre></div>
@@ -392,7 +400,7 @@ Olá mundo</code></pre></div>
 Funções são legais</code></pre></div>
 <p>(Veremos detalhes de funções mais adiante)</p>
 </div>
-<div id="exercicios-1" class="section level2 unnumbered">
+<div id="exercícios-1" class="section level2 unnumbered">
 <h2>Exercícios</h2>
 <ol style="list-style-type: decimal">
 <li>Usando a função <code>runif()</code> gere <span class="math inline">\(30\)</span> números aleatórios entre:
@@ -414,28 +422,28 @@ Funções são legais</code></pre></div>
 <h2><span class="header-section-number">2.4</span> Objetos</h2>
 <p>O que é um objeto?</p>
 <ul>
-<li>Um <strong>símbolo</strong> ou uma <strong>variável</strong> capaz de armazenar qualquer valor ou estrutura de dados</li>
+<li>Um <strong>símbolo</strong> ou uma <strong>variável</strong> capaz de armazenar qualquer valor ou estrutura de dados.</li>
 </ul>
 <p>Por quê objetos?</p>
 <ul>
-<li>Uma maneira simples de acessar os dados armazenados na memória (o R não permite acesso direto à memória)</li>
+<li>Uma maneira simples de acessar os dados armazenados na memória (o R não permite acesso direto à memória).</li>
 </ul>
 <p>Programação:</p>
 <ul>
-<li>Objetos <span class="math inline">\(\Rightarrow\)</span> Classes <span class="math inline">\(\Rightarrow\)</span> Métodos</li>
+<li>Objetos <span class="math inline">\(\Rightarrow\)</span> Classes <span class="math inline">\(\Rightarrow\)</span> Métodos.</li>
 </ul>
 <blockquote>
 <p><em>“Tudo no R é um objeto.”</em></p>
 </blockquote>
 <blockquote>
-<p><em>“Todo objeto no R tem uma classe”</em></p>
+<p><em>“Todo objeto no R tem uma classe.”</em></p>
 </blockquote>
 <ul>
-<li><strong>Classe:</strong> é a definição de um objeto. Descreve a forma do objeto e como ele será manipulado pelas diferentes funções</li>
+<li><strong>Classe:</strong> é a definição de um objeto. Descreve a forma do objeto e como ele será manipulado pelas diferentes funções.</li>
 <li><strong>Método:</strong> são <strong>funções genéricas</strong> que executam suas tarefas de acordo com cada classe. Duas das funções genéricas mais importantes são:
 <ul>
-<li><code>summary()</code></li>
-<li><code>plot()</code></li>
+<li><code>summary().</code></li>
+<li><code>plot().</code></li>
 </ul></li>
 </ul>
 <p>Veja o resultado de</p>
@@ -468,23 +476,23 @@ y &lt;-<span class="st"> </span><span class="dv">4</span></code></pre></div>
 y
  [<span class="dv">1</span>] <span class="fl">0.6249965</span> <span class="fl">0.8821655</span> <span class="fl">0.2803538</span> <span class="fl">0.3984879</span> <span class="fl">0.7625511</span> <span class="fl">0.6690217</span> <span class="fl">0.2046122</span>
  [<span class="dv">8</span>] <span class="fl">0.3575249</span> <span class="fl">0.3594751</span> <span class="fl">0.6902905</span></code></pre></div>
-<p>Note que cada objeto só pode armazenar uma estrutura (um número ou uma sequência de valores) de cada vez! (Aqui, o valor <span class="math inline">\(4\)</span> que estava armazenado em <code>y</code> foi sobrescrito pelos valores acima.)</p>
+<p>Note que cada objeto só pode armazenar uma estrutura (um número ou uma sequência de valores) de cada vez! (Aqui, o valor <span class="math inline">\(4\)</span> que estava armazenado em <code>y</code> foi sobrescrito pelos valores acima).</p>
 <div id="nomes-de-objetos" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Nomes de objetos</h3>
 <ul>
-<li>Podem ser formados por letras, números, “<code>_</code>”, e “<code>.</code>”</li>
-<li>Não podem começar com número e/ou ponto</li>
-<li>Não podem conter espaços</li>
-<li>Evite usar acentos</li>
+<li>Podem ser formados por letras, números, “<code>_</code>”, e “<code>.</code>”.</li>
+<li>Não podem começar com número e/ou ponto.</li>
+<li>Não podem conter espaços.</li>
+<li>Evite usar acentos.</li>
 <li>Evite usar nomes de funções como:</li>
 </ul>
 <p><code>c q t C D F I T diff df data var pt</code></p>
 <ul>
 <li>O R é <em>case-sensitive</em>, portanto:</li>
 </ul>
-<p><code>dados</code> <span class="math inline">\(\neq\)</span> <code>Dados</code> <span class="math inline">\(\neq\)</span> <code>DADOS</code></p>
+<p><code>dados</code> <span class="math inline">\(\neq\)</span> <code>Dados</code> <span class="math inline">\(\neq\)</span> <code>DADOS</code>.</p>
 </div>
-<div id="gerenciando-a-area-de-trabalho" class="section level3">
+<div id="gerenciando-a-área-de-trabalho" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Gerenciando a área de trabalho</h3>
 <p>Liste os objetos criados com a função <code>ls()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
@@ -495,18 +503,18 @@ y
 <p>Para remover todos os objetos:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
 <div class="alert alert-danger">
-<p><strong>Cuidado!</strong> O comando acima apaga todos os objetos na sua área de trabalho sem perguntar. Depois só é possível recuperar os objetos ao rodar os script novamente.</p>
+<p><strong>Cuidado!</strong> O comando acima apaga todos os objetos na sua área de trabalho sem perguntar. Depois só é possível recuperar os objetos ao rodar o script novamente.</p>
 </div>
 </div>
 </div>
-<div id="exercicios-2" class="section level2 unnumbered">
+<div id="exercícios-2" class="section level2 unnumbered">
 <h2>Exercícios</h2>
 <ol style="list-style-type: decimal">
-<li>Armazene o resultado da equação <span class="math inline">\(32 + 16^2 - 25^3\)</span> no objeto <code>x</code></li>
-<li>Divida <code>x</code> por <span class="math inline">\(345\)</span> e armazene em <code>y</code></li>
-<li>Crie um objeto (com o nome que você quiser) para armazenar <span class="math inline">\(30\)</span> valores aleatórios de uma distribuição uniforme entre <span class="math inline">\(10\)</span> e <span class="math inline">\(50\)</span></li>
-<li>Remova o objeto <code>y</code></li>
-<li>Remova os demais objetos de uma única vez</li>
+<li>Armazene o resultado da equação <span class="math inline">\(32 + 16^2 - 25^3\)</span> no objeto <code>x</code>.</li>
+<li>Divida <code>x</code> por <span class="math inline">\(345\)</span> e armazene em <code>y</code>.</li>
+<li>Crie um objeto (com o nome que você quiser) para armazenar <span class="math inline">\(30\)</span> valores aleatórios de uma distribuição uniforme entre <span class="math inline">\(10\)</span> e <span class="math inline">\(50\)</span>.</li>
+<li>Remova o objeto <code>y</code>.</li>
+<li>Remova os demais objetos de uma única vez.</li>
 <li>Procure a função utilizada para gerar numeros aleatórios de uma distribuição de Poisson, e gere <span class="math inline">\(100\)</span> valores para a VA <span class="math inline">\(X \sim  \text{Poisson}(5)\)</span>.</li>
 </ol>
 </div>
@@ -515,12 +523,12 @@ y
 <p>Para saber como trabalhar com dados no R, é fundamental entender as possíveis estruturas (ou tipos) de dados possíveis. O formato mais básico de dados são os vetores, e a partir deles, outras estruturas mais complexas podem ser construídas. O R possui dois tipos básicos de vetores:</p>
 <ul>
 <li><strong>Vetores atômicos</strong>: existem seis tipos básicos:</li>
-<li><code>double</code></li>
-<li><code>integer</code></li>
-<li><code>character</code></li>
-<li><code>logical</code></li>
-<li><code>complex</code></li>
-<li><code>raw</code></li>
+<li><code>double</code>.</li>
+<li><code>integer</code>.</li>
+<li><code>character</code>.</li>
+<li><code>logical</code>.</li>
+<li><code>complex</code>.</li>
+<li><code>raw</code>.</li>
 </ul>
 <p>Os tipos <code>integer</code> e <code>double</code> são chamados conjuntamente de <code>numeric</code>.</p>
 <ul>
@@ -528,7 +536,7 @@ y
 </ul>
 <p>A principal diferença entre vetores atômicos e listas é que o primeiro é <strong>homogêneo</strong> (cada vetor só pode conter um tipo), enquanto que o segundo pode ser <strong>heterogêneo</strong> (cada vetor pode conter mais de um tipo).</p>
 <div class="alert alert-warning">
-<p>Um vetor atômico só pode conter elementos de um mesmo tipo</p>
+<p>Um vetor atômico só pode conter elementos de um mesmo tipo.</p>
 </div>
 <p>Um vetor, como o próprio nome diz, é uma estrutura unidimensional, mas na maioria das vezes iremos trabalhar com estruturas de dados bidimensionais (linhas e colunas). Portanto diferentes estruturas (com diferentes dimensões) podem ser criadas a partir dos vetores atômicos. Quando isso acontece, temos o que é chamado de <strong>classe</strong> de um objeto. Embora os vetores atômicos só possuam seis tipos básicos, existe um número muito grande de classes, e novas são inventadas todos os dias. E mesmo que um objeto seja de qualquer classe, ele sempre será de um dos seis tipos básicos (ou uma lista).</p>
 <p>Para verificar o tipo de um objeto, usamos a função <code>typeof()</code>, enquanto que a classe é verificada com a função <code>class()</code>. Vejamos alguns exemplos:</p>
@@ -568,12 +576,12 @@ x &lt;-<span class="st"> </span><span class="kw">raw</span>(<span class="dv">3</
 [<span class="dv">1</span>] <span class="st">&quot;raw&quot;</span>
 <span class="kw">class</span>(x)
 [<span class="dv">1</span>] <span class="st">&quot;raw&quot;</span></code></pre></div>
-<div id="vetores-numericos" class="section level3">
+<div id="vetores-numéricos" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> Vetores numéricos</h3>
 <p>Características:</p>
 <ul>
-<li>Coleção ordenada de valores</li>
-<li>Estrutura unidimensional</li>
+<li>Coleção ordenada de valores.</li>
+<li>Estrutura unidimensional.</li>
 </ul>
 <p>Usando a função <code>c()</code> para criar vetores:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">9</span>)
@@ -598,7 +606,7 @@ x
 <span class="kw">object.size</span>(x)
 <span class="dv">80</span> bytes</code></pre></div>
 <p>A diferença pode parecer pequena, mas pode ter um grande impacto computacional quando os vetores são formados por milhares ou milhões de números.</p>
-<div id="representacao-numerica-dentro-do-r" class="section level4">
+<div id="representação-numérica-dentro-do-r" class="section level4">
 <h4><span class="header-section-number">2.5.1.1</span> Representação numérica dentro do R</h4>
 <p>Os números que aparecem na tela do console do R são apenas representações simplificadas do número real armazenado na memória. Por exemplo,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)
@@ -619,7 +627,7 @@ y
 <span class="kw">print</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>)<span class="op">^</span><span class="dv">2</span>, <span class="dt">digits =</span> <span class="dv">22</span>)
 [<span class="dv">1</span>] <span class="fl">2.000000000000000444089</span></code></pre></div>
 <p>não é exatamente zero, pois a raíz quadrada de 2 não pode ser armazenada com toda precisão com “apenas” 16 dígitos significativos. Esse tipo de erro é chamado de <strong>erro de ponto flutuante</strong>, e as operações nessas condições são chamadas de <strong>aritmética de ponto flutuante</strong>. Para mais informações sobre esse assunto veja <a href="http://www.validlab.com/goldberg/paper.pdf">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a> e <a href="http://cran-r.c3sl.ufpr.br/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f">Why doesn’t R think these numbers are equal?</a>.</p>
-<p>No R os números podem ser representados com até 22 casas decimais. Você pode ver o número com toda sua precisão usando a função <code>print()</code> e especificando o número de casas decimais com o argumento <code>digits</code> (de 1 a 22)</p>
+<p>No R os números podem ser representados com até 22 casas decimais. Você pode ver o número com toda sua precisão usando a função <code>print()</code> e especificando o número de casas decimais com o argumento <code>digits</code> (de 1 a 22).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(x, <span class="dt">digits =</span> <span class="dv">1</span>)
  [<span class="dv">1</span>] <span class="fl">0.29</span> <span class="fl">0.79</span> <span class="fl">0.41</span> <span class="fl">0.88</span> <span class="fl">0.94</span> <span class="fl">0.05</span> <span class="fl">0.53</span> <span class="fl">0.89</span> <span class="fl">0.55</span> <span class="fl">0.46</span>
 <span class="kw">print</span>(x, <span class="dt">digits =</span> <span class="dv">7</span>) <span class="co"># padrão</span>
@@ -638,7 +646,7 @@ y
  [<span class="dv">9</span>] <span class="st">&quot;5.514350e-01&quot;</span> <span class="st">&quot;4.566147e-01&quot;</span></code></pre></div>
 <p>Nessa representação, o valor 2.875775e-01 = <span class="math inline">\(2.875775 \times 10^{-01}\)</span> = <span class="math inline">\(0.2875775\)</span>.</p>
 </div>
-<div id="sequencias-de-numeros" class="section level4">
+<div id="sequências-de-números" class="section level4">
 <h4><span class="header-section-number">2.5.1.2</span> Sequências de números</h4>
 <p>Usando a função <code>seq()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)
@@ -661,7 +669,7 @@ y
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">each =</span> <span class="dv">5</span>)
  [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span></code></pre></div>
 </div>
-<div id="operacoes-matematicas-em-vetores-numericos" class="section level4">
+<div id="operações-matemáticas-em-vetores-numéricos" class="section level4">
 <h4><span class="header-section-number">2.5.1.3</span> Operações matemáticas em vetores numéricos</h4>
 <p>Operações podem ser feitas entre um vetor e um número:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
@@ -764,7 +772,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE<
 z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, T)</code></pre></div>
 <p>Lembre-se da regra:</p>
 <div class="alert alert-warning">
-<p>Um vetor só pode conter elementos do mesmo tipo</p>
+<p>Um vetor só pode conter elementos do mesmo tipo!</p>
 </div>
 <p>Quando objetos de diferentes tipos são misturados, ocorre a <strong>coerção</strong>, para que cada elemento possua a mesma classe.</p>
 <p>Nos exemplos acima, nós vemos o efeito da <strong>coerção implícita</strong>, quando o R tenta representar todos os objetos de uma única forma.</p>
@@ -831,7 +839,7 @@ perd
 [<span class="dv">1</span>]  <span class="ot">TRUE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span></code></pre></div>
 </div>
 </div>
-<div id="exercicios-3" class="section level2 unnumbered">
+<div id="exercícios-3" class="section level2 unnumbered">
 <h2>Exercícios</h2>
 <ol style="list-style-type: decimal">
 <li>Crie um objeto com os valores 54, 0, 17, 94, 12.5, 2, 0.9, 15.
@@ -867,8 +875,8 @@ perd
 <p>Os fatores são parecidos com caracteres no R, mas são armazenados e tratados de maneira diferente.</p>
 <p>Características:</p>
 <ul>
-<li>Coleção de categorias ou <strong>níveis</strong> (<em>levels</em>)</li>
-<li>Estrutura unidimensional</li>
+<li>Coleção de categorias ou <strong>níveis</strong> (<em>levels</em>).</li>
+<li>Estrutura unidimensional.</li>
 </ul>
 <p>Utilizando as funções <code>factor()</code> e <code>c()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fator &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;alta&quot;</span>,<span class="st">&quot;baixa&quot;</span>,<span class="st">&quot;baixa&quot;</span>,<span class="st">&quot;media&quot;</span>,
@@ -914,7 +922,7 @@ Levels<span class="op">:</span><span class="st"> </span>baixa <span class="op">&
 [<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span>
 <span class="kw">class</span>(fator)
 [<span class="dv">1</span>] <span class="st">&quot;ordered&quot;</span> <span class="st">&quot;factor&quot;</span> </code></pre></div>
-<p>(Veja que um objeto pode ter mais de uma classe). Isso geralmente só será útil em casos especificos.</p>
+<p>Veja que um objeto pode ter mais de uma classe. Isso geralmente só será útil em casos especificos.</p>
 <p>As seguintes funções são úteis para verificar os níveis e o número de níveis de um fator:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(fator)
 [<span class="dv">1</span>] <span class="st">&quot;baixa&quot;</span> <span class="st">&quot;media&quot;</span> <span class="st">&quot;alta&quot;</span> 
@@ -963,7 +971,7 @@ matriz
 [<span class="dv">2</span>,]    <span class="dv">5</span>    <span class="dv">6</span>    <span class="dv">7</span>    <span class="dv">8</span>
 [<span class="dv">3</span>,]    <span class="dv">9</span>   <span class="dv">10</span>   <span class="dv">11</span>   <span class="dv">12</span>
 [<span class="dv">4</span>,]   <span class="dv">99</span>   <span class="dv">99</span>   <span class="dv">99</span>   <span class="dv">99</span></code></pre></div>
-<p>Matrizes também podem ser criadas a partir de vetores adicionando um <strong>atributo</strong> de dimensão</p>
+<p>Matrizes também podem ser criadas a partir de vetores adicionando um <strong>atributo</strong> de dimensão, por exemplo,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
 m
  [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span>
@@ -980,7 +988,7 @@ m
 [<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span>
 <span class="kw">typeof</span>(m)
 [<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span></code></pre></div>
-<div id="operacoes-matematicas-em-matrizes" class="section level4">
+<div id="operações-matemáticas-em-matrizes" class="section level4">
 <h4><span class="header-section-number">2.6.2.1</span> Operações matemáticas em matrizes</h4>
 <p>Matriz multiplicada por um escalar</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matriz <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
@@ -1002,8 +1010,8 @@ matriz <span class="op">%*%</span><span class="st"> </span>matriz2
 <p>Um array é a forma mais geral de uma matriz, pois pode ter <span class="math inline">\(n\)</span> dimensões.</p>
 <p>Características:</p>
 <ul>
-<li>Estrutura <span class="math inline">\(n\)</span>-dimensional</li>
-<li>Assim como as matrizes, podem conter apenas um tipo de informação (números, caracteres)</li>
+<li>Estrutura <span class="math inline">\(n\)</span>-dimensional.</li>
+<li>Assim como as matrizes, podem conter apenas um tipo de informação (números, caracteres).</li>
 </ul>
 <p>Para criar um array, usamos a função <code>array()</code>, passando como primeiro argumento um vetor atômico, e especificamos a dimensão com o argumento <code>dim</code>. Por exemplo, para criar um objeto com 3 dimensões <span class="math inline">\(2 \times 2 \times 3\)</span>, fazemos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ar &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>))
@@ -1047,10 +1055,10 @@ ar
 <p>Como já vimos, uma lista não é uma “classe” propriamente dita, mas sim um tipo de estrutura de dados básico, ao lado dos vetores atômicos. E, assim como os vetores atômicos, listas são estruturas unidimensionais. A grande diferença é que listas agrupam objetos de diferentes tipos, inclusive outras listas.</p>
 <p>Características:</p>
 <ul>
-<li>Pode combinar uma coleção de objetos de diferentes tipos ou classes (é um tipo básico de vetor, assim como os vetores atômicos)</li>
-<li>Estrutura “unidimensional”: apenas o número de elementos na lista é contado</li>
+<li>Pode combinar uma coleção de objetos de diferentes tipos ou classes (é um tipo básico de vetor, assim como os vetores atômicos).</li>
+<li>Estrutura “unidimensional”: apenas o número de elementos na lista é contado.</li>
 </ul>
-<p>Ppor exemplo, podemos criar uma lista com uma sequência de números, um caracter e outra lista</p>
+<p>Por exemplo, podemos criar uma lista com uma sequência de números, um caracter e outra lista.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="st">&quot;R&quot;</span>, <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>))
 lista
 [[<span class="dv">1</span>]]
@@ -1070,7 +1078,7 @@ lista
 [<span class="dv">1</span>] <span class="st">&quot;list&quot;</span>
 <span class="kw">typeof</span>(lista)
 [<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></code></pre></div>
-<p>Para melhor visualizar a estrutura dessa lista (ou de qualquer outro objeto) poddemos usar a função <code>str()</code></p>
+<p>Para melhor visualizar a estrutura dessa lista (ou de qualquer outro objeto) podemos usar a função <code>str()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(lista)
 List of <span class="dv">3</span>
  <span class="op">$</span><span class="st"> </span><span class="er">:</span><span class="st"> </span>int [<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span> <span class="dv">9</span> <span class="dv">10</span> ...
@@ -1100,13 +1108,13 @@ Levels<span class="op">:</span><span class="st"> </span>baixa <span class="op">&
 </div>
 <div id="data-frame" class="section level3">
 <h3><span class="header-section-number">2.6.5</span> Data frame</h3>
-<p>Data frame é a versão bidimensional de uma lista. Data frames <strong>são</strong> listas, mas onde cada componente dever ter obrigatoriamente o mesmo comprimento. Cada vetor da lista vira uma coluna em um data frame, permitindo então que as “colunas” sejam de diferentes tipos.</p>
+<p>Data frame é a versão bidimensional de uma lista. Data frames <strong>são</strong> listas, mas onde cada componente deve ter obrigatoriamente o mesmo comprimento. Cada vetor da lista vira uma coluna em um data frame, permitindo então que as “colunas” sejam de diferentes tipos.</p>
 <p>Os data frames são as estruturas mais comuns para se trabalhar com dados no R.</p>
 <p>Características:</p>
 <ul>
-<li>Uma lista de vetores e/ou fatores, de <strong>mesmo comprimento</strong></li>
-<li>Pode conter diferentes tipos de dados (numérico, fator, …)</li>
-<li>Estrutura bidimensional</li>
+<li>Uma lista de vetores e/ou fatores, de <strong>mesmo comprimento</strong>.</li>
+<li>Pode conter diferentes tipos de dados (numérico, fator, …).</li>
+<li>Estrutura bidimensional.</li>
 </ul>
 <p>Utilizando a função <code>data.frame()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">nome =</span> <span class="kw">c</span>(<span class="st">&quot;João&quot;</span>, <span class="st">&quot;José&quot;</span>, <span class="st">&quot;Maria&quot;</span>),
@@ -1191,7 +1199,7 @@ db
  [<span class="dv">9</span>,]       <span class="ot">NA</span>     <span class="dv">2</span></code></pre></div>
 <p>Geralmente é o resultado de <code>data.matrix()</code> o que você está procurando.</p>
 <div class="alert alert-warning">
-<p>Lembre que os níveis de um fator são armazenados internamente como números: <span class="math inline">\(1^\circ\)</span> nível = 1, <span class="math inline">\(2^\circ\)</span> nível = 2, <span class="math inline">\(\ldots\)</span></p>
+<p>Lembre que os níveis de um fator são armazenados internamente como números: <span class="math inline">\(1^\circ\)</span> nível = 1, <span class="math inline">\(2^\circ\)</span> nível = 2, <span class="math inline">\(\ldots\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fator
 [<span class="dv">1</span>] alta  baixa baixa media alta  media baixa media media
 Levels<span class="op">:</span><span class="st"> </span>baixa <span class="op">&lt;</span><span class="st"> </span>media <span class="op">&lt;</span><span class="st"> </span>alta
@@ -1225,14 +1233,14 @@ Levels<span class="op">:</span><span class="st"> </span>baixa <span class="op">&
 <span class="kw">attributes</span>(x)
 <span class="op">$</span>names
 [<span class="dv">1</span>] <span class="st">&quot;um&quot;</span>     <span class="st">&quot;dois&quot;</span>   <span class="st">&quot;tres&quot;</span>   <span class="st">&quot;quatro&quot;</span> <span class="st">&quot;cinco&quot;</span>  <span class="st">&quot;seis&quot;</span>  </code></pre></div>
-<p>Nesse caso específico, o R irá mostrar os nomes acima dos componentes, mas isso não altera como as opraçõs serão realizadas</p>
+<p>Nesse caso específico, o R irá mostrar os nomes acima dos componentes, mas isso não altera como as operaçõs serão realizadas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
     um   dois   tres quatro  cinco   seis 
      <span class="dv">1</span>      <span class="dv">2</span>      <span class="dv">3</span>      <span class="dv">4</span>      <span class="dv">5</span>      <span class="dv">6</span> 
 x <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
     um   dois   tres quatro  cinco   seis 
      <span class="dv">3</span>      <span class="dv">4</span>      <span class="dv">5</span>      <span class="dv">6</span>      <span class="dv">7</span>      <span class="dv">8</span> </code></pre></div>
-<p>Os nomes então podem ser definidos através da função <em>auxiliar</em> <code>names()</code>, sendo assim, também podemos remover esse atributo declarando ele como nulo</p>
+<p>Os nomes então podem ser definidos através da função <em>auxiliar</em> <code>names()</code>, sendo assim, também podemos remover esse atributo declarando ele como nulo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="ot">NULL</span>
 <span class="kw">attributes</span>(x)
 <span class="ot">NULL</span>
@@ -1343,7 +1351,7 @@ C  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</spa
 </tbody>
 </table>
 </div>
-<div id="exercicios-4" class="section level2 unnumbered">
+<div id="exercícios-4" class="section level2 unnumbered">
 <h2>Exercícios</h2>
 <ol style="list-style-type: decimal">
 <li>Crie um objeto para armazenar a seguinte matriz <span class="math display">\[\left[ \begin{array}{ccc}
@@ -1366,7 +1374,7 @@ C  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</spa
 </ul>
 <p>Para criar o data frame, a primeira linha deve ser preenchida com as suas próprias informação (use a função <code>data.frame()</code>). Depois, pergunte essas mesmas informações para dois colegas ao seu lado, e adicione as informações deles à esse data frame (use <code>rbind()</code>). Acresente mais uma coluna com o nome do time de futebol de cada um.</p>
 </div>
-<div id="referencias-1" class="section level2 unnumbered">
+<div id="referências-1" class="section level2 unnumbered">
 <h2>Referências</h2>
 <p>Para mais detalhes e exemplos dos assuntos abordados aqui, veja <span class="citation">Grolemund (<a href="objetos-e-classes.html#ref-Grolemund2014">2014</a>)</span>. Uma abordagem mais avançada e detalhada sobre programação orientada a objetos no R pode ser consultada em <span class="citation">Wickham (<a href="objetos-e-classes.html#ref-Wickham2015">2015</a>)</span>.</p>
 <!-- Isso faz com que as referências se mantenham noo final do capítulo -->
@@ -1386,17 +1394,19 @@ C  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</spa
           </div>
         </div>
       </div>
-<a href="computacao-cientifica-e-interacao-com-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="indexacao-e-selecao-condicional.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="computação-científica-e-interação-com-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="indexação-e-seleção-condicional.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1407,7 +1417,7 @@ gitbook.start({
 "google": true,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter"]
 },
@@ -1417,6 +1427,10 @@ gitbook.start({
 "size": 2
 },
 "edit": null,
+"history": {
+"link": null,
+"text": null
+},
 "download": ["ecr.pdf", "ecr.epub", "ecr.mobi"],
 "toc": {
 "collapse": "none",
@@ -1436,9 +1450,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
