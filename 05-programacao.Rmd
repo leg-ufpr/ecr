@@ -70,7 +70,13 @@ for(veiculos in c("carro", "ônibus", "trem", "bicicleta")){
 
 **Exemplo**: cálculo de notas de uma disciplina.
 
-```{r}
+```{r, echo = FALSE}
+## Importa os dados
+notas <- read.table("notas.csv", header = TRUE, sep = ";", dec = ",")
+```
+
+
+```{r, eval = FALSE}
 ## Importa os dados
 url <- "http://leg.ufpr.br/~fernandomayer/data/notas.csv"
 notas <- read.table(url, header = TRUE, sep = ";", dec = ",")
