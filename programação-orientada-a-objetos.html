@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B Programação Orientada a Objetos | Estatística Computacional com R</title>
   <meta name="description" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -246,6 +246,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
@@ -296,8 +309,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Nesta sessão vamos abordar como funcionam os métodos como definidos pelo sistema S3, por ser o mais utilizado na prática para se criar novas funções no R. Para saber mais sobre os outros métodos, consulte o livro <a href="http://adv-r.had.co.nz/OO-essentials.html">Advanced R</a>.</p>
 <p>Vamos entender como uma função genérica pode ser criada através de um exemplo. Usando a função <code>methods()</code>, podemos verificar quais métodos estão disponíveis para uma determinada função, por exemplo, para a função <code>mean()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(mean)
-[<span class="dv">1</span>] mean.Date     mean.default  mean.difftime mean.POSIXct  mean.POSIXlt 
-[<span class="dv">6</span>] mean.quosure<span class="op">*</span>
+[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.POSIXct    
+[<span class="dv">5</span>] mean.POSIXlt     mean.quosure<span class="op">*</span><span class="st">    </span>mean.vctrs_vctr<span class="op">*</span>
 see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</code></pre></div>
 <p>O resultado são expressões do tipo <code>mean.&lt;classe&gt;</code>, onde <code>&lt;classe&gt;</code> é uma classe de objeto como aquelas vistas anteriormente. Isso significa que a função <code>mean()</code>, quando aplicada à um objeto da classe <code>Date</code>, por exemplo, pode ter um comportamento diferente quando a mesma função for aplicada à um objeto de outra classe (numérica).</p>
 <p>Suponha que temos o seguinte vetor numérico:</p>
@@ -319,7 +332,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean
 <span class="cf">function</span> (x, ...) 
 <span class="kw">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x33fc2d8</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x2cd9938</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora veja o código fonte da função <code>mean.default</code>, que é o método específico para vetores numéricos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.default
@@ -347,7 +360,7 @@ vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv"
     }
     <span class="kw">.Internal</span>(<span class="kw">mean</span>(x))
 }
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x72e8650</span><span class="op">&gt;</span>
+<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x6849080</span><span class="op">&gt;</span>
 <span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
 <p>Agora suponha que você ddeseja criar uma função que calcule a média para um objeto de uma classe diferente daquelas previamente definidas. Por exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das linhas de uma matriz.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
@@ -358,8 +371,8 @@ mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.matrix &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">rowMeans</span>(x)</code></pre></div>
 <p>Uma função método é sempre definida dessa forma: <code>&lt;funçãogenérica&gt;.&lt;classe&gt;</code>. Agora podemos ver novamente os métodos disponíveis para a função <code>mean()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(mean)
-[<span class="dv">1</span>] mean.Date     mean.default  mean.difftime mean.matrix   mean.POSIXct 
-[<span class="dv">6</span>] mean.POSIXlt  mean.quosure<span class="op">*</span>
+[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.matrix     
+[<span class="dv">5</span>] mean.POSIXct     mean.POSIXlt     mean.quosure<span class="op">*</span><span class="st">    </span>mean.vctrs_vctr<span class="op">*</span>
 see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</code></pre></div>
 <p>e simplesmente aplicar a função genérica <code>mean()</code> à um objeto da classe <code>matrix</code> para obter o resultado que desejamos</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mat)
@@ -418,12 +431,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -432,6 +445,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

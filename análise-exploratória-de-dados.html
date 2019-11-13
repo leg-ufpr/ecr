@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Análise exploratória de dados | Estatística Computacional com R</title>
   <meta name="description" content="6 Análise exploratória de dados | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Análise exploratória de dados | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -246,6 +246,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
@@ -286,8 +299,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="análise-exploratória-de-dados" class="section level1">
 <h1><span class="header-section-number">6</span> Análise exploratória de dados</h1>
-<p>Nesta sessão vamos ver alguns (mas não todos!) comandos do R para fazer uma análise exploratória descritiva de um conjunto de dados.</p>
-<p>Uma boa forma de iniciar uma análise descritiva adequada é verificar os tipos de de variáveis disponíveis. Variáveis podem ser classificadas da seguinte forma:</p>
+<p>Nesta sessão vamos ver alguns (mas não todos!) comandos do R para fazer uma análise descritiva de um conjunto de dados.</p>
+<p>Uma boa forma de iniciar uma análise descritiva adequada é verificar os tipos de variáveis disponíveis. Variáveis podem ser classificadas da seguinte forma:</p>
 <ul>
 <li>Qualitativas
 <ul>
@@ -300,7 +313,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Contínuas</li>
 </ul></li>
 </ul>
-<p>e podem ser resumidas por tabelas, gráficos e/ou medidas.</p>
+<p>e podem ser resumidas por tabelas, gráficos e/ou medidas de tendência central e dispersão.</p>
 <div id="o-conjunto-de-dados-milsa" class="section level2">
 <h2><span class="header-section-number">6.1</span> O conjunto de dados <code>milsa</code></h2>
 <p>O livro “Estatística Básica” de W. O. Bussab e P. A. Morettin traz no segundo capítulo um conjunto de dados hipotético de atributos de 36 funcionários da companhia “Milsa”. Os dados estão reproduzidos na tabela abaixo. Consulte o livro para mais detalhes sobre este dados.</p>
@@ -683,8 +696,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Estes dados estão disponíveis em um arquivo <code>csv</code> no endereço <a href="http://www.leg.ufpr.br/~fernandomayer/data/milsa.csv" class="uri">http://www.leg.ufpr.br/~fernandomayer/data/milsa.csv</a>.</p>
 <p>O nosso objetivo é, através do R,</p>
 <ul>
-<li>Entrar com os dados</li>
-<li>Fazer uma análise descritiva</li>
+<li>Entrar com os dados;</li>
+<li>Fazer uma análise descritiva.</li>
 </ul>
 <p>Estes são dados no “estilo planilha”, com variáveis de diferentes tipos: categóricas e numéricas (qualitativas e quantitativas). Portanto o formato ideal de armazenamento destes dados no R é o <code>data.frame</code>.</p>
 <p>Para importar os dados do endereço acima diretamente para o R, usamos</p>
@@ -717,7 +730,7 @@ milsa &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code>
 <span class="dv">34</span>          <span class="dv">34</span>  solteiro Superior     <span class="ot">NA</span>   <span class="fl">18.75</span>   <span class="dv">33</span>     <span class="dv">7</span>  capital
 <span class="dv">35</span>          <span class="dv">35</span>    casado  2o Grau      <span class="dv">2</span>   <span class="fl">19.40</span>   <span class="dv">48</span>    <span class="dv">11</span>  capital
 <span class="dv">36</span>          <span class="dv">36</span>    casado Superior      <span class="dv">3</span>   <span class="fl">23.30</span>   <span class="dv">42</span>     <span class="dv">2</span> interior</code></pre></div>
-<p>Podemos classificar todas a svariáveis desse conjunto de dados como:</p>
+<p>Podemos classificar todas as variáveis desse conjunto de dados como:</p>
 <table>
 <thead>
 <tr class="header">
@@ -769,12 +782,11 @@ milsa &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(milsa<span class="op">$</span>Inst)
 [<span class="dv">1</span>] <span class="st">&quot;ordered&quot;</span> <span class="st">&quot;factor&quot;</span> 
 milsa<span class="op">$</span>Inst
- [<span class="dv">1</span>] 1o Grau  1o Grau  1o Grau  2o Grau  1o Grau  1o Grau  1o Grau 
- [<span class="dv">8</span>] 1o Grau  2o Grau  2o Grau  2o Grau  1o Grau  2o Grau  1o Grau 
-[<span class="dv">15</span>] 2o Grau  2o Grau  2o Grau  1o Grau  Superior 2o Grau  2o Grau 
-[<span class="dv">22</span>] 2o Grau  1o Grau  Superior 2o Grau  2o Grau  1o Grau  2o Grau 
-[<span class="dv">29</span>] 2o Grau  2o Grau  Superior 2o Grau  Superior Superior 2o Grau 
-[<span class="dv">36</span>] Superior
+ [<span class="dv">1</span>] 1o Grau  1o Grau  1o Grau  2o Grau  1o Grau  1o Grau  1o Grau  1o Grau 
+ [<span class="dv">9</span>] 2o Grau  2o Grau  2o Grau  1o Grau  2o Grau  1o Grau  2o Grau  2o Grau 
+[<span class="dv">17</span>] 2o Grau  1o Grau  Superior 2o Grau  2o Grau  2o Grau  1o Grau  Superior
+[<span class="dv">25</span>] 2o Grau  2o Grau  1o Grau  2o Grau  2o Grau  2o Grau  Superior 2o Grau 
+[<span class="dv">33</span>] Superior Superior 2o Grau  Superior
 Levels<span class="op">:</span><span class="st"> </span>1o Grau <span class="op">&lt;</span><span class="st"> </span>2o Grau <span class="op">&lt;</span><span class="st"> </span>Superior</code></pre></div>
 <p>A coluna continua sendo um <code>factor</code>, mas agora também é <code>ordered</code> (sim, um objeto pode ter mais de uma classe, se elas foram compatíveis e/ou complementares). Os níveis agora são representados por</p>
 <pre><code>1o Grau &lt; 2o Grau &lt; Superior</code></pre>
@@ -785,14 +797,14 @@ Levels<span class="op">:</span><span class="st"> </span>1o Grau <span class="op"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">milsa &lt;-<span class="st"> </span><span class="kw">transform</span>(milsa,
                    <span class="dt">Inst =</span> <span class="kw">factor</span>(Inst, <span class="dt">ordered =</span> <span class="ot">TRUE</span>),
                    <span class="dt">Idade =</span> Anos <span class="op">+</span><span class="st"> </span>Meses<span class="op">/</span><span class="dv">12</span>)</code></pre></div>
-<p>Agora que os dados estão prontos podemos começar a análise descritiva. A seguir mostramos como fazer análises descritivas uni e bi-variadas. Inspecione os comandos mostrados a seguir e os resultados por elas produzidos. Sugerimos ainda que o leitor use o R para reproduzir os resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab &amp; Morettin, relacionados com este exemplo. Veja os scripts do livro <a href="https://rpubs.com/EstatBasica/Introd">aqui</a>.</p>
+<p>Agora que os dados estão prontos podemos começar a análise descritiva. A seguir mostramos como fazer análises descritivas uni e bivariadas. Inspecione os comandos mostrados a seguir e os resultados por eles produzidos. Sugerimos ainda que o leitor use o R para reproduzir os resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab &amp; Morettin, relacionados com este exemplo. Veja os scripts do livro <a href="https://rpubs.com/EstatBasica/Introd">aqui</a>.</p>
 </div>
 <div id="análise-univariada" class="section level2">
 <h2><span class="header-section-number">6.2</span> Análise univariada</h2>
 <p>A análise univariada consiste basicamente em, para cada uma das variáveis individualmente:</p>
 <ul>
-<li>Classificar a variável quanto a seu tipo: qualitativa (nominal ou ordinal) ou quantitativa (discreta ou contínua)</li>
-<li>Obter tabelas, gráficos e/ou medidas que resumam a variável</li>
+<li>Classificar a variável quanto a seu tipo: qualitativa (nominal ou ordinal) ou quantitativa (discreta ou contínua).</li>
+<li>Obter tabelas, gráficos e/ou medidas que resumam a variável.</li>
 </ul>
 <p>A partir destes resultados pode-se montar um resumo geral dos dados.</p>
 <p>A seguir vamos mostrar como obter tabelas, gráficos e medidas com o R. Para isto vamos selecionar uma variável de cada tipo para que o leitor possa, por analogia, obter resultados para as demais.</p>
@@ -821,7 +833,7 @@ civil.tb<span class="op">/</span><span class="kw">length</span>(milsa<span class
 <span class="kw">barplot</span>(civil.tb)
 <span class="kw">pie</span>(civil.tb)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-292-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-293-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A <em>moda</em> de qualquer variável aleatória é definida como o valor mais frequente encontrado na amostra. No R não há uma função pronta para “calcular” a moda, pois ela pode ser obtida facilmente através do uso de funções básicas. Uma opção seria usar os comandos abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(civil.tb)[<span class="kw">which.max</span>(civil.tb)]
 [<span class="dv">1</span>] <span class="st">&quot;casado&quot;</span></code></pre></div>
@@ -844,7 +856,7 @@ inst.tb
 <span class="fl">0.3333333</span> <span class="fl">0.5000000</span> <span class="fl">0.1666667</span> </code></pre></div>
 <p>O gráfico de setores não é adequado para este tipo de variável por não expressar a ordem dos possíveis valores. Usamos então apenas um gráfico de barras conforme mostrado abaixo</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(inst.tb)</code></pre></div>
-<p><img src="figures/unnamed-chunk-295-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-296-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Em alguns casos podemos querer mostrar o gráfico de barras com as barras classificadas da menor para a maior, ou vice-versa, independente da ordem dos níveis. Para isso podemos usar a função <code>sort()</code> para ordenar os valores da tabela e fazer o gráfico</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 ## Menor para maior
@@ -852,7 +864,7 @@ inst.tb
 ## Maior para menor
 <span class="kw">barplot</span>(<span class="kw">sort</span>(inst.tb, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>))
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-296-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-297-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Para uma variável ordinal, além da moda podemos também calcular outras medidas, tais como a mediana conforme exemplificado a seguir. Note que o comando <code>median()</code> não funciona com variáveis não numéricas, e por isso usamos o comando seguinte.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Moda
 <span class="kw">names</span>(inst.tb)[<span class="kw">which.max</span>(inst.tb)]
@@ -888,7 +900,7 @@ filhos.tba
 <span class="fl">0.20</span> <span class="fl">0.45</span> <span class="fl">0.80</span> <span class="fl">0.95</span> <span class="fl">1.00</span> </code></pre></div>
 <p>O gráfico adequado para frequências absolutas de uma variável discreta é parecido com um gráfico de barras, mas nesse caso, as frequências são indicadas por linhas. Usando a função <code>plot()</code> em um objeto resultado da função <code>table()</code>, o gráfico adequado já é selecionado:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(filhos.tb)</code></pre></div>
-<p><img src="figures/unnamed-chunk-299-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-300-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Outra possibilidade seria fazer gráficos de frequências relativas e de frequências acumuladas conforme mostrado na</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
 ## Frequência relativa
@@ -896,7 +908,7 @@ filhos.tba
 ## Frequência relativa acumulada
 <span class="kw">plot</span>(filhos.tba, <span class="dt">type =</span> <span class="st">&quot;S&quot;</span>) <span class="co"># tipo step (escada)</span>
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-300-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-301-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Sendo a variável numérica há uma maior diversidade de medidas estatísticas que podem ser calculadas.</p>
 <p>A seguir mostramos como obter algumas medidas de posição: moda, mediana, média e média aparada. Note que o argumento <code>na.rm = TRUE</code> é necessário porque não há informação sobre número de filhos para alguns indivíduos (<code>NA</code>). Para calcular a média aparada, usamos o argumento <code>trim = 0.1</code> que indica que a média deve ser calculada excluindo-se 10% dos menores e 10% dos maiores valores do vetor de dados. Ao final mostramos como obter os quartis, incluido o mínimo e o máximo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Moda
@@ -915,7 +927,7 @@ filhos.tba
 <span class="kw">quantile</span>(milsa<span class="op">$</span>Filhos, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
   <span class="dv">0</span><span class="op">%  25%</span><span class="st">  </span><span class="dv">50</span><span class="op">%  75%</span><span class="st"> </span><span class="dv">100</span>% 
    <span class="dv">0</span>    <span class="dv">1</span>    <span class="dv">2</span>    <span class="dv">2</span>    <span class="dv">5</span> </code></pre></div>
-<p>Passando agora para medidas de dispersão, vejamos como obter máximo e mínimo, e com isso a amplitude, além da variância, desvio padrão, e coeficiente de variação. Também obtemos os quartis para calcular a amplitude interquartílica.</p>
+<p>Passando agora para medidas de dispersão, vejamos como obter o máximo e mínimo, e com isso a amplitude, além da variância, desvio padrão, e coeficiente de variação. Também obtemos os quartis para calcular a amplitude interquartílica.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Máximo e mínimo
 <span class="kw">max</span>(milsa<span class="op">$</span>Filhos, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
 [<span class="dv">1</span>] <span class="dv">5</span>
@@ -944,7 +956,7 @@ filhos.tba
 filhos.qt[<span class="dv">4</span>] <span class="op">-</span><span class="st"> </span>filhos.qt[<span class="dv">2</span>]
 <span class="dv">75</span>% 
   <span class="dv">1</span> </code></pre></div>
-<p>Finalmente, podemos usar a função <strong>genérica</strong> <code>summary()</code> para resumir od dados de uma só vez</p>
+<p>Finalmente, podemos usar a função <strong>genérica</strong> <code>summary()</code> para resumir os dados de uma só vez</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(milsa<span class="op">$</span>Filhos)
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA<span class="st">&#39;s </span>
 <span class="st">   0.00    1.00    2.00    1.65    2.00    5.00      16 </span></code></pre></div>
@@ -952,7 +964,7 @@ filhos.qt[<span class="dv">4</span>] <span class="op">-</span><span class="st"> 
 <div id="variável-quantitativa-contínua" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Variável quantitativa contínua</h3>
 <p>Para concluir os exemplos para análise univariada vamos considerar a variável quantitativa contínua <code>Salario</code>.</p>
-<p>Para se fazer uma tabela de frequências de uma VA contínua, é preciso primeiro agrupar os dados em classes. Nos comandos mostrados a seguir verificamos inicialmente os valores máximo e mínimo dos dados, depois usamos o critério de Sturges para definir o número de classes. Usamos a função <code>cut()</code> para agrupar os dados em classes e finalmente obtemos as frequências absolutas e relativas.</p>
+<p>Para se fazer uma tabela de frequências de uma variável contínua, é preciso primeiro agrupar os dados em classes. Nos comandos mostrados a seguir verificamos inicialmente os valores máximo e mínimo dos dados, depois usamos o critério de Sturges para definir o número de classes. Usamos a função <code>cut()</code> para agrupar os dados em classes e finalmente obtemos as frequências absolutas e relativas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Máximo e mínimo
 <span class="kw">range</span>(milsa<span class="op">$</span>Salario)
 [<span class="dv">1</span>]  <span class="fl">4.0</span> <span class="fl">23.3</span>
@@ -963,27 +975,23 @@ filhos.qt[<span class="dv">4</span>] <span class="op">-</span><span class="st"> 
 ## Criando as classes com a função cut(), usando os valores mínimos e
 ## máximos dados em range()
 <span class="kw">cut</span>(milsa<span class="op">$</span>Salario, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="fl">23.3</span>, <span class="dt">length.out =</span> <span class="dv">8</span>))
- [<span class="dv">1</span>] <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">        </span>(<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]   
- [<span class="dv">6</span>] (<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>]
-[<span class="dv">11</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>]
-[<span class="dv">16</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>]
-[<span class="dv">21</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]  
-[<span class="dv">26</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]  
-[<span class="dv">31</span>] (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="fl">17.8</span>,<span class="fl">20.5</span>] (<span class="fl">17.8</span>,<span class="fl">20.5</span>]
-[<span class="dv">36</span>] (<span class="fl">20.5</span>,<span class="fl">23.3</span>]
-<span class="dv">7</span> Levels<span class="op">:</span><span class="st"> </span>(<span class="dv">4</span>,<span class="fl">6.76</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>] <span class="kw">...</span> (<span class="fl">20.5</span>,<span class="fl">23.3</span>]</code></pre></div>
+ [<span class="dv">1</span>] <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">        </span>(<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="dv">4</span>,<span class="fl">6.76</span>]   
+ [<span class="dv">7</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>]
+[<span class="dv">13</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>]
+[<span class="dv">19</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]  
+[<span class="dv">25</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]  
+[<span class="dv">31</span>] (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="fl">17.8</span>,<span class="fl">20.5</span>] (<span class="fl">17.8</span>,<span class="fl">20.5</span>] (<span class="fl">20.5</span>,<span class="fl">23.3</span>]
+<span class="dv">7</span> Levels<span class="op">:</span><span class="st"> </span>(<span class="dv">4</span>,<span class="fl">6.76</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>] (<span class="dv">15</span>,<span class="fl">17.8</span>] <span class="kw">...</span> (<span class="fl">20.5</span>,<span class="fl">23.3</span>]</code></pre></div>
 <p>Note que uma das classes é <code>NA</code>. Isso ocorre pela definição das classes, que por padrão é no formato <code>(a,b]</code>, ou seja, o intervalo é aberto em <code>a</code> (não inclui <code>a</code>) e fechado em <code>b</code> (inclui <code>b</code>). Podemos alterar esse padrão usando o argumento <code>include.lowest = TRUE</code>,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cut</span>(milsa<span class="op">$</span>Salario, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="fl">23.3</span>, <span class="dt">length.out =</span> <span class="dv">8</span>),
     <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>)
- [<span class="dv">1</span>] [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]   
- [<span class="dv">6</span>] [<span class="dv">4</span>,<span class="fl">6.76</span>]    (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>]
-[<span class="dv">11</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>]
-[<span class="dv">16</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>]
-[<span class="dv">21</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]  
-[<span class="dv">26</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]  
-[<span class="dv">31</span>] (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="fl">17.8</span>,<span class="fl">20.5</span>] (<span class="fl">17.8</span>,<span class="fl">20.5</span>]
-[<span class="dv">36</span>] (<span class="fl">20.5</span>,<span class="fl">23.3</span>]
-<span class="dv">7</span> Levels<span class="op">:</span><span class="st"> </span>[<span class="dv">4</span>,<span class="fl">6.76</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>] <span class="kw">...</span> (<span class="fl">20.5</span>,<span class="fl">23.3</span>]</code></pre></div>
+ [<span class="dv">1</span>] [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]    [<span class="dv">4</span>,<span class="fl">6.76</span>]   
+ [<span class="dv">7</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>]
+[<span class="dv">13</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>]
+[<span class="dv">19</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]  
+[<span class="dv">25</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="fl">12.3</span>,<span class="dv">15</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]  
+[<span class="dv">31</span>] (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="dv">15</span>,<span class="fl">17.8</span>]   (<span class="fl">17.8</span>,<span class="fl">20.5</span>] (<span class="fl">17.8</span>,<span class="fl">20.5</span>] (<span class="fl">20.5</span>,<span class="fl">23.3</span>]
+<span class="dv">7</span> Levels<span class="op">:</span><span class="st"> </span>[<span class="dv">4</span>,<span class="fl">6.76</span>] (<span class="fl">6.76</span>,<span class="fl">9.51</span>] (<span class="fl">9.51</span>,<span class="fl">12.3</span>] (<span class="fl">12.3</span>,<span class="dv">15</span>] (<span class="dv">15</span>,<span class="fl">17.8</span>] <span class="kw">...</span> (<span class="fl">20.5</span>,<span class="fl">23.3</span>]</code></pre></div>
 <p>E note que agora a primeira classe fica <code>[a,b]</code>, ou seja, fechada (incluindo) os dois lados. Para que o intervalo seja fechado à esquerda, usamos o argumento <code>right = FALSE</code>. As combinações possíveis para esses dois argumentos, e as classes resultantes são apresentadas na tabela abaixo:</p>
 <table>
 <thead>
@@ -1015,14 +1023,12 @@ filhos.qt[<span class="dv">4</span>] <span class="op">-</span><span class="st"> 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">salario.cut &lt;-<span class="st"> </span><span class="kw">cut</span>(milsa<span class="op">$</span>Salario,
                    <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="fl">3.5</span>, <span class="fl">23.5</span>, <span class="dt">length.out =</span> <span class="dv">8</span>))
 salario.cut
- [<span class="dv">1</span>] (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>] 
- [<span class="dv">6</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>]
-[<span class="dv">11</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>]
-[<span class="dv">16</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>]
-[<span class="dv">21</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>]
-[<span class="dv">26</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>]
-[<span class="dv">31</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>] (<span class="fl">17.8</span>,<span class="fl">20.6</span>] (<span class="fl">17.8</span>,<span class="fl">20.6</span>]
-[<span class="dv">36</span>] (<span class="fl">20.6</span>,<span class="fl">23.5</span>]
+ [<span class="dv">1</span>] (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">3.5</span>,<span class="fl">6.36</span>]  (<span class="fl">6.36</span>,<span class="fl">9.21</span>]
+ [<span class="dv">7</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>]
+[<span class="dv">13</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>]
+[<span class="dv">19</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>]
+[<span class="dv">25</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>]
+[<span class="dv">31</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>] (<span class="fl">14.9</span>,<span class="fl">17.8</span>] (<span class="fl">17.8</span>,<span class="fl">20.6</span>] (<span class="fl">17.8</span>,<span class="fl">20.6</span>] (<span class="fl">20.6</span>,<span class="fl">23.5</span>]
 <span class="dv">7</span> Levels<span class="op">:</span><span class="st"> </span>(<span class="fl">3.5</span>,<span class="fl">6.36</span>] (<span class="fl">6.36</span>,<span class="fl">9.21</span>] (<span class="fl">9.21</span>,<span class="fl">12.1</span>] (<span class="fl">12.1</span>,<span class="fl">14.9</span>] <span class="kw">...</span> (<span class="fl">20.6</span>,<span class="fl">23.5</span>]
 ## Tabela com as frequencias absolutas por classe
 salario.tb &lt;-<span class="st"> </span><span class="kw">table</span>(salario.cut)
@@ -1042,17 +1048,17 @@ salario.cut
 <p>Na sequência vamos mostrar dois possíveis gráficos para variáveis contínuas: o histograma e o <em>box-plot</em>.</p>
 <p>Para fazer um histograma usamos a função <code>hist()</code>, por exemplo,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(milsa<span class="op">$</span>Salario)</code></pre></div>
-<p><img src="figures/unnamed-chunk-307-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-308-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A função <code>hist()</code> possui vários argumentos para alterar o comportamento da saída do gráfico. Por exemplo, com <code>labels = TRUE</code> as frequências são mostradas acima de cada barra. Com <code>freq = FALSE</code>, o gráfico é feito com as frequências relativas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(milsa<span class="op">$</span>Salario, <span class="dt">freq =</span> <span class="ot">FALSE</span>, <span class="dt">labels =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="figures/unnamed-chunk-308-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-309-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Por padrão, a função <code>hist()</code> calcula automaticamente o número de classes e os valores limites de cada classe. No entanto, isto pode ser alterado com o argumento <code>breaks</code>, que pode receber um vetor definindo os limites das classes, uma função para definir as quebras, um nome de critério (por exemplo, <code>&quot;Sturges&quot;</code>), ou um único escalar definido o número de classes. As últimas três opções são apenas sugestões utilizadas pela função. O argumento <code>nclass</code> também funciona dessa forma, recebendo apenas um valor com o número de classes (como sugestão).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(milsa<span class="op">$</span>Salario, <span class="dt">nclass =</span> <span class="dv">15</span>)</code></pre></div>
-<p><img src="figures/unnamed-chunk-309-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-310-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Assim como na função <code>cut()</code>, os argumentos <code>include.lowest</code> e <code>right</code> são utilizados para controlar a borda das classes.</p>
 <p>Uma característica importante da função <code>hist()</code> é que ela retorna não apenas o gráfico, mas também uma lista com as informações utilizadas para construir o gráfico. Associando um histograma a um objeto, podemos ver o seu conteúdo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">salario.hist &lt;-<span class="st"> </span><span class="kw">hist</span>(milsa<span class="op">$</span>Salario)</code></pre></div>
-<p><img src="figures/unnamed-chunk-310-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-311-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">salario.hist
 <span class="op">$</span>breaks
  [<span class="dv">1</span>]  <span class="dv">4</span>  <span class="dv">6</span>  <span class="dv">8</span> <span class="dv">10</span> <span class="dv">12</span> <span class="dv">14</span> <span class="dv">16</span> <span class="dv">18</span> <span class="dv">20</span> <span class="dv">22</span> <span class="dv">24</span>
@@ -1082,10 +1088,10 @@ salario.cut
 <li>As linhas que se extendem das caixas são definidas como: <span class="math display">\[q1-1,5\cdot IQR\ \qquad \mathrm{e}\ \qquad q3+1,5\cdot IQR\]</span> onde <span class="math inline">\(IQR\)</span> é o intervalo inter-quartil. As linhas vão até os valores máximo e mínimo que ainda se encontram dentro deste intervalo.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(milsa<span class="op">$</span>Salario)</code></pre></div>
-<p><img src="figures/unnamed-chunk-311-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-312-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Existem também vários argumentos que permitem variações do <em>boxplot</em>, tais como caixas com tamanho proporcional aos tamanhos dos grupos (<code>varwidth = TRUE</code>), e caixas “acinturadas” (<em>notched boxplot</em>) (<code>notch = TRUE</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(milsa<span class="op">$</span>Salario, <span class="dt">varwidth =</span> <span class="ot">TRUE</span>, <span class="dt">notch =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="figures/unnamed-chunk-312-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-313-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Ambas opções são úteis quando há mais de um grupo e a comparação entre os boxplots é facilitada.</p>
 <p>Finalmente, podemos obter as medidas de posição e dispersão da mesma forma que para variáveis discretas. Veja alguns exemplos a seguir. Note que aqui não é necessário o uso do argumento <code>na.rm = TRUE</code>, pois não existem <code>NA</code>s nesta variável.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Mediana
@@ -1139,7 +1145,7 @@ salario.qt[<span class="dv">4</span>] <span class="op">-</span><span class="st">
 </ul>
 <p>Salienta-se ainda que:</p>
 <ul>
-<li>As análise mostradas a seguir não esgotam as possibilidades de análises envolvendo duas variáveis e devem ser vistas apenas como uma sugestão inicial</li>
+<li>As análise mostradas a seguir não esgotam as possibilidades de análises envolvendo duas variáveis e devem ser vistas apenas como uma sugestão inicial.</li>
 <li>Relações entre duas variáveis devem ser examinadas com cautela pois podem ser mascaradas por uma ou mais variáveis adicionais não considerada na análise. Estas são chamadas <strong>variáveis de confundimento</strong>. Análises com variáveis de confundimento não serão discutidas neste ponto.</li>
 </ul>
 <blockquote>
@@ -1148,7 +1154,7 @@ salario.qt[<span class="dv">4</span>] <span class="op">-</span><span class="st">
 <div id="qualitativa-vs-qualitativa" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Qualitativa <em>vs</em> qualitativa</h3>
 <p>Vamos considerar as variáveis <code>Est.civil</code> (estado civil), e <code>Inst</code> (grau de instrução). A tabela envolvendo duas variáveis é chamada <strong>tabela de cruzamento</strong> ou <strong>tabela de contingência</strong>, e pode ser apresentada de várias formas, conforme discutido a seguir.</p>
-<p>A forma mais adequada de apresentação vai depender dos objetivos da análise e da interpretação desejada para os dados. Inicialmente obtemos a tabela de frequências absolutas para o cruzamento das duas variávies, usando a função <code>table()</code>. A tabela extendida incluindo os totais marginais pode ser obtida com a função <code>addmargins()</code>.</p>
+<p>A forma adequada de apresentação vai depender dos objetivos da análise e da interpretação desejada para os dados. Inicialmente obtemos a tabela de frequências absolutas para o cruzamento das duas variáveis, usando a função <code>table()</code>. A tabela extendida incluindo os totais marginais pode ser obtida com a função <code>addmargins()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Tabela de frequências absolutas
 civ.inst.tb &lt;-<span class="st"> </span><span class="kw">with</span>(milsa, <span class="kw">table</span>(Est.civil, Inst))
 civ.inst.tb
@@ -1165,9 +1171,9 @@ Est.civil  1o Grau 2o Grau Superior Sum
 <!-- Ver tambem margin.table() -->
 <p>Tabelas de frequências relativas são obtidas com <code>prop.table()</code>, mas aqui existem três possibilidades para as proporções em cada casela:</p>
 <ul>
-<li>Em relação ao total geral</li>
-<li>Em relação aos totais por linha (<code>margin = 1</code>)</li>
-<li>Em relação aos totais por coluna (<code>margin = 2</code>)</li>
+<li>Em relação ao total geral.</li>
+<li>Em relação aos totais por linha (<code>margin = 1</code>).</li>
+<li>Em relação aos totais por coluna (<code>margin = 2</code>).</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Frequência relativa global
 <span class="kw">prop.table</span>(civ.inst.tb)
@@ -1194,7 +1200,7 @@ Est.civil    1o Grau   2o Grau  Superior
 <span class="kw">barplot</span>(civ.inst.tb, <span class="dt">beside =</span> <span class="ot">TRUE</span>, <span class="dt">legend =</span> <span class="ot">TRUE</span>)
 <span class="kw">barplot</span>(<span class="kw">t</span>(<span class="kw">prop.table</span>(civ.inst.tb)), <span class="dt">beside =</span> <span class="ot">TRUE</span>, <span class="dt">legend =</span> <span class="ot">TRUE</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-316-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-317-1.png" width="672" style="display: block; margin: auto;" /></p>
 <!-- Incluir aqui a medida de associacao chi-quadrado -->
 <!-- Incluir reagrupamento -->
 </div>
@@ -1226,7 +1232,7 @@ inst.sal.tb
 <p>No gráfico vamos considerar que neste exemplo a instrução deve ser a variável explicativa e portanto colocada no eixo X, e o salário é a variável resposta, e portanto deve ser colocada no eixo Y. Isto é, consideramos que a instrução deve explicar, ainda que parcialmente, o salário (e não o contrário!).</p>
 <p>Vamos então obter um <em>boxplot</em> dos salários para cada nível de instrução. Note que na função abaixo, usamos a notação de <strong>fórmula</strong> do R, com <code>Salario ~ Inst</code> indicando que a variável <code>Salario</code> é explicada, ou descrita, (<span class="math inline">\(\sim\)</span>) pela variável <code>Inst</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(Salario <span class="op">~</span><span class="st"> </span>Inst, <span class="dt">data =</span> milsa)</code></pre></div>
-<p><img src="figures/unnamed-chunk-318-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-319-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Poderíamos ainda fazer gráficos com a variável <code>Salario</code> agrupada em classes, e neste caso os gráficos seriam como no caso anterior com duas variáveis qualitativas.</p>
 <p>Para as medidas descritivas, o usual é obter um resumo da variável quantitativa como mostrado na análise univariada, porém agora informando este resumo para cada nível do fator qualitativo de interesse.</p>
 <p>A seguir mostramos alguns exemplos de como obter a média, desvio padrão e o resumo de cinco números do salário para cada nível de instrução.</p>
@@ -1307,7 +1313,7 @@ idade.cut2     [<span class="dv">4</span>,<span class="fl">8.65</span>] (<span c
 <p>O gráfico adequado para representar duas variáveis quantitativas é um diagrama de dispersão. Note que se as variáveis envolvidas puderem ser classificadas como “explicativa” e “resposta” devemos colocar a primeira no eixo X e a segunda no eixo Y. Neste exemplo é razoável admitir que a idade deve explicar, ao menos parcialmente, o salário e portanto fazemos o gráfico com idade no eixo X. Note que na função <code>plot()</code>, podemos usar tanto os argumentos <code>x</code> e <code>y</code>, quanto o formato de fórmula (como visto anteriormente).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> milsa<span class="op">$</span>Idade, <span class="dt">y =</span> milsa<span class="op">$</span>Salario)
 <span class="kw">plot</span>(Salario <span class="op">~</span><span class="st"> </span>Idade, <span class="dt">data =</span> milsa)</code></pre></div>
-<p><img src="figures/unnamed-chunk-322-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-323-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Para quantificar a associação entre variáveis deste tipo, usamos o coeficiente de correlação. A função <code>cor()</code> possui opção para três coeficientes de correlação, tendo como <em>default</em> o coeficiente de correlação linear de Pearson.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(milsa, <span class="kw">cor</span>(Idade, Salario))
 [<span class="dv">1</span>] <span class="fl">0.3651397</span>
@@ -1366,12 +1372,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -1380,6 +1386,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

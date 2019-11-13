@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Programando com dados | Estatística Computacional com R</title>
   <meta name="description" content="5 Programando com dados | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Programando com dados | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -246,6 +246,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
@@ -357,28 +370,8 @@ url &lt;-<span class="st"> &quot;http://leg.ufpr.br/~fernandomayer/data/notas.cs
 notas &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)
 ## Analisa a estrutura dos dados
 <span class="kw">str</span>(notas)
-<span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">30</span> obs. of  <span class="dv">4</span> variables<span class="op">:</span>
-<span class="st"> </span><span class="er">$</span><span class="st"> </span>nome  <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">30</span> levels <span class="st">&quot;Aluno_1&quot;</span>,<span class="st">&quot;Aluno_10&quot;</span>,..<span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">12</span> <span class="dv">23</span> <span class="dv">25</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">28</span> <span class="dv">29</span> <span class="dv">30</span> <span class="dv">2</span> ...
- <span class="op">$</span><span class="st"> </span>prova1<span class="op">:</span><span class="st"> </span>int  <span class="dv">8</span> <span class="dv">2</span> <span class="dv">9</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">10</span> <span class="dv">1</span> <span class="dv">5</span> <span class="dv">5</span> <span class="dv">10</span> ...
- <span class="op">$</span><span class="st"> </span>prova2<span class="op">:</span><span class="st"> </span>int  <span class="dv">4</span> <span class="dv">7</span> <span class="dv">2</span> <span class="dv">10</span> <span class="dv">6</span> <span class="dv">0</span> <span class="dv">8</span> <span class="dv">9</span> <span class="dv">6</span> <span class="dv">2</span> ...
- <span class="op">$</span><span class="st"> </span>prova3<span class="op">:</span><span class="st"> </span>int  <span class="dv">1</span> <span class="dv">6</span> <span class="dv">4</span> <span class="dv">9</span> <span class="dv">8</span> <span class="dv">3</span> <span class="dv">0</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">3</span> ...
 <span class="kw">head</span>(notas)
-     nome prova1 prova2 prova3
-<span class="dv">1</span> Aluno_<span class="dv">1</span>      <span class="dv">8</span>      <span class="dv">4</span>      <span class="dv">1</span>
-<span class="dv">2</span> Aluno_<span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">7</span>      <span class="dv">6</span>
-<span class="dv">3</span> Aluno_<span class="dv">3</span>      <span class="dv">9</span>      <span class="dv">2</span>      <span class="dv">4</span>
-<span class="dv">4</span> Aluno_<span class="dv">4</span>      <span class="dv">1</span>     <span class="dv">10</span>      <span class="dv">9</span>
-<span class="dv">5</span> Aluno_<span class="dv">5</span>      <span class="dv">7</span>      <span class="dv">6</span>      <span class="dv">8</span>
-<span class="dv">6</span> Aluno_<span class="dv">6</span>     <span class="dv">10</span>      <span class="dv">0</span>      <span class="dv">3</span>
-<span class="kw">summary</span>(notas)
-       nome        prova1           prova2           prova3   
- Aluno_<span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Min.   <span class="op">:</span><span class="st"> </span><span class="fl">0.000</span>   Min.   <span class="op">:</span><span class="st"> </span><span class="fl">0.000</span>   Min.   <span class="op">:</span><span class="fl">0.0</span>  
- Aluno_<span class="dv">10</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   1st Qu.<span class="op">:</span><span class="st"> </span><span class="fl">2.000</span>   1st Qu.<span class="op">:</span><span class="st"> </span><span class="fl">3.000</span>   1st Qu.<span class="op">:</span><span class="fl">3.0</span>  
- Aluno_<span class="dv">11</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Median <span class="op">:</span><span class="st"> </span><span class="fl">4.000</span>   Median <span class="op">:</span><span class="st"> </span><span class="fl">6.000</span>   Median <span class="op">:</span><span class="fl">6.5</span>  
- Aluno_<span class="dv">12</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Mean   <span class="op">:</span><span class="st"> </span><span class="fl">4.433</span>   Mean   <span class="op">:</span><span class="st"> </span><span class="fl">5.433</span>   Mean   <span class="op">:</span><span class="fl">5.4</span>  
- Aluno_<span class="dv">13</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   3rd Qu.<span class="op">:</span><span class="st"> </span><span class="fl">6.750</span>   3rd Qu.<span class="op">:</span><span class="st"> </span><span class="fl">8.000</span>   3rd Qu.<span class="op">:</span><span class="fl">8.0</span>  
- Aluno_<span class="dv">14</span><span class="op">:</span><span class="st"> </span><span class="dv">1</span>   Max.   <span class="op">:</span><span class="fl">10.000</span>   Max.   <span class="op">:</span><span class="fl">10.000</span>   Max.   <span class="op">:</span><span class="fl">9.0</span>  
- (Other) <span class="op">:</span><span class="dv">24</span>                                                  </code></pre></div>
+<span class="kw">summary</span>(notas)</code></pre></div>
 <p>Antes de seguir adiante, veja o resultado de</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>){
     <span class="kw">print</span>(notas[i, <span class="kw">c</span>(<span class="st">&quot;prova1&quot;</span>, <span class="st">&quot;prova2&quot;</span>, <span class="st">&quot;prova3&quot;</span>)])
@@ -699,8 +692,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(
 )
 st2
    user  system elapsed 
-  <span class="fl">0.003</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </code></pre></div>
-<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente <span class="math inline">\(0.077/0.002 = 38.5\)</span> vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entre o tempo de execução das duas formas pode ser muito maior.</p>
+  <span class="fl">0.002</span>   <span class="fl">0.000</span>   <span class="fl">0.003</span> </code></pre></div>
+<p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma função medido por <code>system.time()</code>, notamos que usando a regra da reciclagem, o cálculo é aproximadamente <span class="math inline">\(0.077/0.003 = 25.67\)</span> vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito simples. Mas em situações mais complexas, a diferença entre o tempo de execução das duas formas pode ser muito maior.</p>
 <div class="panel panel-primary">
 <div class="panel-heading">
 Uma nota de precaução
@@ -724,7 +717,7 @@ st1 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st1
    user  system elapsed 
-  <span class="fl">0.080</span>   <span class="fl">0.000</span>   <span class="fl">0.081</span> 
+   <span class="fl">0.08</span>    <span class="fl">0.00</span>    <span class="fl">0.08</span> 
 
 ## Cria um objeto de tamanho &quot;zero&quot; e vai &quot;crescendo&quot; esse vetor
 st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
@@ -735,8 +728,8 @@ st2 &lt;-<span class="st"> </span><span class="kw">system.time</span>({
 })
 st2
    user  system elapsed 
-  <span class="fl">0.306</span>   <span class="fl">0.040</span>   <span class="fl">0.346</span> </code></pre></div>
-<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.346/0.081 = 4.27 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
+  <span class="fl">0.312</span>   <span class="fl">0.028</span>   <span class="fl">0.340</span> </code></pre></div>
+<p>Essa simples diferença gera um aumento de tempo de execução da segunda forma em aproximadamente 0.34/0.08 = 4.25 vezes. Isso acontece porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho aumentado com um elemento a cada iteração. Para fazer isso, o R precisa encontrar um espaço na memória que possa armazenar o objeto maior. É necessário então copiar o vetor de saída e apagar sua versão anterior antes de seguir para o próximo loop. Ao final, foi necessário escrever um milhão de vezes na memória do computador.</p>
 <p>Já no primeiro caso, o tamanho do vetor de armazenamento nunca muda, e a memória para esse vetor já foi alocada previamente, de uma única vez.</p>
 <p><img src="img/R_club.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
@@ -925,12 +918,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -939,6 +932,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Documentos dinâmicos | Estatística Computacional com R</title>
   <meta name="description" content="A Documentos dinâmicos | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Documentos dinâmicos | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -34,7 +34,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probabilidade-e-variáveis-aleatórias.html"/>
+<link rel="prev" href="inferência-estatística.html"/>
 <link rel="next" href="programação-orientada-a-objetos.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -245,6 +245,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
@@ -651,28 +664,28 @@ A média de $X$ é `r round(mean(x), 3)`.</code></pre>
 
 processing file<span class="op">:</span><span class="st"> </span>exemplos<span class="op">/</span>Exemplo1<span class="op">-</span>knitr.Rmd
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                 </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.............                                                    <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
   ordinary text without R code
 
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>..........................                                       <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">415</span>
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
+label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">451</span>
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.......................................                          <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
   ordinary text without R code
 
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>....................................................             <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">416</span>
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
+label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">452</span>
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
    inline R code fragments
 output file<span class="op">:</span><span class="st"> </span>exemplos<span class="op">/</span>Exemplo1<span class="op">-</span>knitr.md
 [<span class="dv">1</span>] <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span></code></pre></div>
@@ -702,12 +715,11 @@ aleatório normal, fazemos
 
 ```r
 (x &lt;- rnorm(30))
- [1] -0.50219235  0.13153117 -0.07891709  0.88678481  0.11697127
- [6]  0.31863009 -0.58179068  0.71453271 -0.82525943 -0.35986213
-[11]  0.08988614  0.09627446 -0.20163395  0.73984050  0.12337950
-[16] -0.02931671 -0.38885425  0.51085626 -0.91381419  2.31029682
-[21] -0.43808998  0.76406062  0.26196129  0.77340460 -0.81437912
-[26] -0.43845057 -0.72022155  0.23094453 -1.15772946  0.24707599
+ [1] -0.50219235  0.13153117 -0.07891709  0.88678481  0.11697127  0.31863009
+ [7] -0.58179068  0.71453271 -0.82525943 -0.35986213  0.08988614  0.09627446
+[13] -0.20163395  0.73984050  0.12337950 -0.02931671 -0.38885425  0.51085626
+[19] -0.91381419  2.31029682 -0.43808998  0.76406062  0.26196129  0.77340460
+[25] -0.81437912 -0.43845057 -0.72022155  0.23094453 -1.15772946  0.24707599
 ```
 
 ## Comentários
@@ -724,7 +736,7 @@ Também podemos fazer um histograma dessa VA $X$ simulada
 hist(x)
 ```
 
-&lt;img src=&quot;figures/unnamed-chunk-416-1.png&quot; width=&quot;672&quot; style=&quot;display: block; margin: auto;&quot; /&gt;
+&lt;img src=&quot;figures/unnamed-chunk-452-1.png&quot; width=&quot;672&quot; style=&quot;display: block; margin: auto;&quot; /&gt;
 
 A média de $X$ é 0.029.</code></pre>
 <p>Agora temos um documento em Markdown com os códigos do R avaliados. Mas ainda precisamos processar esse arquivo para gerar o arquivo <code>.html</code> através do Pandoc</p>
@@ -752,31 +764,31 @@ Executing<span class="op">:</span><span class="st"> </span>pandoc <span class="o
 
 processing file<span class="op">:</span><span class="st"> </span>Exemplo2<span class="op">-</span>knitr.Rmd
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                 </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.............                                                    <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
   ordinary text without R code
 
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>..........................                                       <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
 label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">1</span><span class="op">-</span><span class="dv">2</span>
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.......................................                          <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
   ordinary text without R code
 
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>....................................................             <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
 label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">3</span><span class="op">-</span><span class="dv">4</span>
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
    inline R code fragments
 output file<span class="op">:</span><span class="st"> </span>Exemplo2<span class="op">-</span>knitr.knit.md
-<span class="op">/</span>usr<span class="op">/</span>bin<span class="op">/</span>pandoc <span class="op">+</span>RTS <span class="op">-</span>K512m <span class="op">-</span>RTS Exemplo2<span class="op">-</span>knitr.utf8.md <span class="op">--</span>to html4 <span class="op">--</span>from markdown<span class="op">+</span>autolink_bare_uris<span class="op">+</span>tex_math_single_backslash <span class="op">--</span>output Exemplo2<span class="op">-</span>knitr.html <span class="op">--</span>smart <span class="op">--</span>email<span class="op">-</span>obfuscation none <span class="op">--</span>self<span class="op">-</span>contained <span class="op">--</span>standalone <span class="op">--</span>section<span class="op">-</span>divs <span class="op">--</span>template <span class="op">/</span>home<span class="op">/</span>travis<span class="op">/</span>R<span class="op">/</span>Library<span class="op">/</span>rmarkdown<span class="op">/</span>rmd<span class="op">/</span>h<span class="op">/</span>default.html <span class="op">--</span>no<span class="op">-</span>highlight <span class="op">--</span>variable highlightjs=<span class="dv">1</span> <span class="op">--</span>variable <span class="st">&#39;theme:bootstrap&#39;</span> <span class="op">--</span>include<span class="op">-</span><span class="cf">in</span><span class="op">-</span>header <span class="op">/</span>tmp<span class="op">/</span>RtmpsGVj0u<span class="op">/</span>rmarkdown<span class="op">-</span>str3e274dfc4dd9.html <span class="op">--</span>mathjax <span class="op">--</span>variable <span class="st">&#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> 
+<span class="op">/</span>usr<span class="op">/</span>bin<span class="op">/</span>pandoc <span class="op">+</span>RTS <span class="op">-</span>K512m <span class="op">-</span>RTS Exemplo2<span class="op">-</span>knitr.utf8.md <span class="op">--</span>to html4 <span class="op">--</span>from markdown<span class="op">+</span>autolink_bare_uris<span class="op">+</span>tex_math_single_backslash <span class="op">--</span>output Exemplo2<span class="op">-</span>knitr.html <span class="op">--</span>smart <span class="op">--</span>email<span class="op">-</span>obfuscation none <span class="op">--</span>self<span class="op">-</span>contained <span class="op">--</span>standalone <span class="op">--</span>section<span class="op">-</span>divs <span class="op">--</span>template <span class="op">/</span>home<span class="op">/</span>travis<span class="op">/</span>R<span class="op">/</span>Library<span class="op">/</span>rmarkdown<span class="op">/</span>rmd<span class="op">/</span>h<span class="op">/</span>default.html <span class="op">--</span>no<span class="op">-</span>highlight <span class="op">--</span>variable highlightjs=<span class="dv">1</span> <span class="op">--</span>variable <span class="st">&#39;theme:bootstrap&#39;</span> <span class="op">--</span>include<span class="op">-</span><span class="cf">in</span><span class="op">-</span>header <span class="op">/</span>tmp<span class="op">/</span>RtmpmKPuzt<span class="op">/</span>rmarkdown<span class="op">-</span>str30b2367913d7.html <span class="op">--</span>mathjax <span class="op">--</span>variable <span class="st">&#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> 
 
 Output created<span class="op">:</span><span class="st"> </span>Exemplo2<span class="op">-</span>knitr.html</code></pre></div>
 <p><img src="img/split_apply_combine.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -800,31 +812,31 @@ output: html_document
 
 processing file<span class="op">:</span><span class="st"> </span>Exemplo1<span class="op">-</span>yaml.Rmd
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                 </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.............                                                    <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
   ordinary text without R code
 
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>..........................                                       <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
 label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">1</span><span class="op">-</span><span class="dv">2</span>
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.......................................                          <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
   ordinary text without R code
 
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>....................................................             <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
 label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">3</span><span class="op">-</span><span class="dv">4</span>
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
    inline R code fragments
 output file<span class="op">:</span><span class="st"> </span>Exemplo1<span class="op">-</span>yaml.knit.md
-<span class="op">/</span>usr<span class="op">/</span>bin<span class="op">/</span>pandoc <span class="op">+</span>RTS <span class="op">-</span>K512m <span class="op">-</span>RTS Exemplo1<span class="op">-</span>yaml.utf8.md <span class="op">--</span>to html4 <span class="op">--</span>from markdown<span class="op">+</span>autolink_bare_uris<span class="op">+</span>tex_math_single_backslash <span class="op">--</span>output Exemplo1<span class="op">-</span>yaml.html <span class="op">--</span>smart <span class="op">--</span>email<span class="op">-</span>obfuscation none <span class="op">--</span>self<span class="op">-</span>contained <span class="op">--</span>standalone <span class="op">--</span>section<span class="op">-</span>divs <span class="op">--</span>template <span class="op">/</span>home<span class="op">/</span>travis<span class="op">/</span>R<span class="op">/</span>Library<span class="op">/</span>rmarkdown<span class="op">/</span>rmd<span class="op">/</span>h<span class="op">/</span>default.html <span class="op">--</span>no<span class="op">-</span>highlight <span class="op">--</span>variable highlightjs=<span class="dv">1</span> <span class="op">--</span>variable <span class="st">&#39;theme:bootstrap&#39;</span> <span class="op">--</span>include<span class="op">-</span><span class="cf">in</span><span class="op">-</span>header <span class="op">/</span>tmp<span class="op">/</span>RtmpsGVj0u<span class="op">/</span>rmarkdown<span class="op">-</span>str3e27485315cc.html <span class="op">--</span>mathjax <span class="op">--</span>variable <span class="st">&#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> 
+<span class="op">/</span>usr<span class="op">/</span>bin<span class="op">/</span>pandoc <span class="op">+</span>RTS <span class="op">-</span>K512m <span class="op">-</span>RTS Exemplo1<span class="op">-</span>yaml.utf8.md <span class="op">--</span>to html4 <span class="op">--</span>from markdown<span class="op">+</span>autolink_bare_uris<span class="op">+</span>tex_math_single_backslash <span class="op">--</span>output Exemplo1<span class="op">-</span>yaml.html <span class="op">--</span>smart <span class="op">--</span>email<span class="op">-</span>obfuscation none <span class="op">--</span>self<span class="op">-</span>contained <span class="op">--</span>standalone <span class="op">--</span>section<span class="op">-</span>divs <span class="op">--</span>template <span class="op">/</span>home<span class="op">/</span>travis<span class="op">/</span>R<span class="op">/</span>Library<span class="op">/</span>rmarkdown<span class="op">/</span>rmd<span class="op">/</span>h<span class="op">/</span>default.html <span class="op">--</span>no<span class="op">-</span>highlight <span class="op">--</span>variable highlightjs=<span class="dv">1</span> <span class="op">--</span>variable <span class="st">&#39;theme:bootstrap&#39;</span> <span class="op">--</span>include<span class="op">-</span><span class="cf">in</span><span class="op">-</span>header <span class="op">/</span>tmp<span class="op">/</span>RtmpmKPuzt<span class="op">/</span>rmarkdown<span class="op">-</span>str30b244d7c21.html <span class="op">--</span>mathjax <span class="op">--</span>variable <span class="st">&#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> 
 
 Output created<span class="op">:</span><span class="st"> </span>Exemplo1<span class="op">-</span>yaml.html</code></pre></div>
 <p>O resultado final pode ser visto no arquivo <a href="exemplos/Exemplo1-yaml.html">Exemplo1-yaml.html</a>.</p>
@@ -979,18 +991,18 @@ output:
 
 processing file<span class="op">:</span><span class="st"> </span>exemplos<span class="op">/</span>Exemplo3<span class="op">-</span>knitr.Rmd
 
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                 </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.............                                                    <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>..........................                                       <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.......................................                          <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>....................................................             <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
-  <span class="op">|</span><span class="st">                                                                       </span>
-<span class="st">  </span><span class="er">|</span>.................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
+  <span class="op">|</span><span class="st">                                                                            </span>
+<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
 output file<span class="op">:</span><span class="st"> </span>Exemplo3<span class="op">-</span>knitr.R
 [<span class="dv">1</span>] <span class="st">&quot;Exemplo3-knitr.R&quot;</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
@@ -1027,7 +1039,7 @@ output file<span class="op">:</span><span class="st"> </span>Exemplo3<span class
           </div>
         </div>
       </div>
-<a href="probabilidade-e-variáveis-aleatórias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inferência-estatística.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="programação-orientada-a-objetos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -1047,12 +1059,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -1061,6 +1073,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

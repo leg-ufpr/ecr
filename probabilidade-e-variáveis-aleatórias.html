@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Probabilidade e variáveis aleatórias | Estatística Computacional com R</title>
   <meta name="description" content="7 Probabilidade e variáveis aleatórias | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Probabilidade e variáveis aleatórias | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -35,7 +35,7 @@
   
   
 <link rel="prev" href="análise-exploratória-de-dados.html"/>
-<link rel="next" href="documentos-dinâmicos.html"/>
+<link rel="next" href="inferência-estatística.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -246,6 +246,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
@@ -302,26 +315,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \]</span></p>
 <ol style="list-style-type: lower-alpha">
 <li>Mostre que está função é uma f.d.p.</li>
-<li>Calcule a probabilidade de que <span class="math inline">\(X &gt; 1\)</span></li>
-<li>calcule a probabilidade de que <span class="math inline">\(0.2 &lt; X &lt; 0.8\)</span></li>
+<li>Calcule a probabilidade de que <span class="math inline">\(X &gt; 1\)</span>.</li>
+<li>calcule a probabilidade de que <span class="math inline">\(0.2 &lt; X &lt; 0.8\)</span>.</li>
 </ol>
 <p>Para ser f.d.p. a função não deve ter valores negativos e deve integrar 1 em seu domínio. Vamos começar definindo esta função como uma <em>função</em> no R para qual daremos o nome de <code>f1</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span><span class="cf">function</span>(x){
     fx &lt;-<span class="st"> </span><span class="kw">ifelse</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x))
     <span class="kw">return</span>(fx)
 }</code></pre></div>
-<p>A seguir fazemos o gráfico da função. Como a função tem valores positivos para <span class="math inline">\(x\)</span> no intervalo de zero a infinito, temos que definir um limite em <span class="math inline">\(x\)</span> até onde vai o gráfico da função. Vamos achar este limite tentando vários valores, conforme mostram os comandos abaixo.</p>
+<p>A seguir fazemos o gráfico da função. Como a função tem valores positivos para <span class="math inline">\(x\)</span> no intervalo de zero a infinito, temos que definir um limite em <span class="math inline">\(x\)</span> até onde vai o gráfico da função. Vamos achar este limite tentando vários valores, conforme mostrado nos comandos abaixo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(f1)
 <span class="kw">plot</span>(f1, <span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">5</span>)
 <span class="kw">plot</span>(f1, <span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">7</span>)
 <span class="kw">plot</span>(f1, <span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">10</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-326-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Para verificar que a a integral da função é igual a 1 podemos usar a função <code>integrate()</code>, que efetua integração numérica. A função recebe como argumentos o objeto com a função a ser integrada e os limites de integração. Neste exemplo o objeto é <code>f1</code> definido acima, e o domínio da função é <span class="math inline">\([0, \infty)\)</span>. A saída da função mostra o valor da integral acima, e o erro máximo da aproximação numérica.</p>
+<p><img src="figures/unnamed-chunk-327-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Para verificar que a integral da função é igual a 1 podemos usar a função <code>integrate()</code>, que efetua integração numérica. A função recebe como argumentos o objeto com a função a ser integrada e os limites de integração. Neste exemplo o objeto é <code>f1</code> definido acima, e o domínio da função é <span class="math inline">\([0, \infty)\)</span>. A saída da função mostra o valor da integral acima, e o erro máximo da aproximação numérica.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">integrate</span>(f1, <span class="dt">lower =</span> <span class="dv">0</span>, <span class="dt">upper =</span> <span class="ot">Inf</span>)
 <span class="dv">1</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">5e-07</span></code></pre></div>
-<p>Para fazer cálculos pedidos nos itens (b) e (c) lembramos que a probabilidade é dada pela área sob a curva da função no intervalo pedido. Desta forma as soluções seriam dadas pelas expressões</p>
+<p>Para fazer os cálculos pedidos nos itens (b) e (c) lembramos que a probabilidade é dada pela área sob a curva da função no intervalo pedido. Desta forma as soluções seriam dadas pelas expressões</p>
 <span class="math display">\[\begin{eqnarray*}
  p_b &amp; = &amp; P(X &gt; 1) = \int_1^\infty f(x) dx = \int_1^\infty 2\,e^{-2x} dx \\
  p_c &amp; = &amp; P(0,2 &lt; X &lt; 0,8) = \int_{0,2}^{0,8} f(x) dx = \int_{0.2}^{0.8} 2\,e^{-2x} dx \,
@@ -337,14 +350,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)
 <span class="kw">text</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">1.2</span>, <span class="fl">0.5</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>),
      <span class="kw">c</span>(<span class="kw">expression</span>(p[b], p[c])))</code></pre></div>
-<p><img src="figures/unnamed-chunk-328-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>E para obter as probabilidades pedidas usamos <code>integrate()</code>.</p>
+<p><img src="figures/unnamed-chunk-329-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Oara obter as probabilidades pedidas usamos a função <code>integrate()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">integrate</span>(f1, <span class="dt">lower =</span> <span class="dv">1</span>, <span class="dt">upper =</span> <span class="ot">Inf</span>)
 <span class="fl">0.1353353</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">2.1e-05</span>
 <span class="kw">integrate</span>(f1, <span class="dt">lower =</span> <span class="fl">0.2</span>, <span class="dt">upper =</span> <span class="fl">0.8</span>)
 <span class="fl">0.4684235</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">5.2e-15</span></code></pre></div>
 <p><strong>Exemplo 2</strong>: (Adaptado de Bussab e Morettin, cap. 7 ex. 10)</p>
-<p>A demanda diária de arroz em um supermercado, em centenas de quilos, é uma VA <span class="math inline">\(X\)</span> com f.d.p. dada por</p>
+<p>A demanda diária de arroz em um supermercado, em centenas de quilos, é uma v.a <span class="math inline">\(X\)</span> com f.d.p. dada por</p>
 <span class="math display">\[\begin{eqnarray}
   f(x) = \left\{ \begin{array}{ll}
       \frac{2}{3}x \mbox{ , se $0 \leq x &lt; 1$} \cr
@@ -356,8 +369,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Calcular a probabilidade de que sejam vendidos mais que 150 kg.</li>
 <li>Calcular a venda esperada em 30 dias.</li>
 </ol>
-<p>Novamente começamos definindo um objeto do R que contém a função dada acima.</p>
-<p>Neste caso definimos um vetor do mesmo tamanho do argumento <code>x</code> para armazenar os valores de <span class="math inline">\(f(x)\)</span> e a seguir preenchemos os valores deste vetor para cada faixa de valor de <span class="math inline">\(x\)</span>:</p>
+<p>Novamente começamos definindo um objeto do R que contém a função dada acima. Neste caso definimos um vetor do mesmo tamanho do argumento <code>x</code> para armazenar os valores de <span class="math inline">\(f(x)\)</span> e a seguir preenchemos os valores deste vetor para cada faixa de valor de <span class="math inline">\(x\)</span>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span><span class="cf">function</span>(x){
   fx &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))
   fx[x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
@@ -366,15 +378,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   fx[x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
   <span class="kw">return</span>(fx)
 }</code></pre></div>
-<p>A seguir verificamos que a integral da função é 1 e fazemos o seu gráfico mostrado abaixo:</p>
+<p>A seguir verificamos que a integral da função é 1 e fazemos o seu gráfico conforme mostrado abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">integrate</span>(f2, <span class="dv">0</span>, <span class="dv">3</span>) ## verificando que a integral vale 1
 <span class="dv">1</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">1.1e-15</span>
 <span class="kw">plot</span>(f2, <span class="op">-</span><span class="dv">1</span>, <span class="dv">4</span>)     ## fazendo o gráfico da função</code></pre></div>
-<p><img src="figures/unnamed-chunk-331-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-332-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Agora vamos responder às questões levantadas. Na questão (a) pede-se a probabilidade de que sejam vendidos mais que 150 kg (1,5 centenas de quilos), portanto a probabilidade <span class="math inline">\(P[X &gt; 1,5]\)</span>. A probabilidade corresponde à área sob a função no intervalo pedido, ou seja, <span class="math inline">\(P[X &gt; 1,5] = \int_{1,5}^\infty f(x) dx\)</span>, que pode ser vista na figura abaixo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(f2, <span class="op">-</span><span class="dv">1</span>, <span class="dv">4</span>)
 <span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">1.5</span>, <span class="fl">1.5</span>, <span class="dv">3</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">f2</span>(<span class="fl">1.5</span>), <span class="dv">0</span>), <span class="dt">dens =</span> <span class="dv">10</span>)</code></pre></div>
-<p><img src="figures/unnamed-chunk-332-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-333-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A integral pode então ser resolvida numericamente com o comando:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">integrate</span>(f2, <span class="fl">1.5</span>, <span class="dv">3</span>)
 <span class="fl">0.375</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">4.2e-15</span></code></pre></div>
@@ -401,18 +413,44 @@ f(x) = \left\{ \begin{array}{ll}
 <li>Qual a renda média nesta localidade?</li>
 <li>Calcule a probabilidade de encontrar uma pessoa com renda acima de 4,5 u.m. e indique o resultado no gráfico da distribuição.</li>
 </ol></li>
+<li>Sabe-se que uma variável aleatória contínua <span class="math inline">\(X\)</span> é equiprovável no intervalo 10 e 20.
+<ol style="list-style-type: lower-alpha">
+<li>Apresente o gráfico da função densidade de probabilidade.</li>
+<li>Calcule <span class="math inline">\(P(X &lt; 15)\)</span>.</li>
+<li>Calcule <span class="math inline">\(P(12 \leq X \leq 18)\)</span>.</li>
+<li>Calcule <span class="math inline">\(E(X)\)</span> e <span class="math inline">\(V(X)\)</span>.</li>
+</ol></li>
+<li>Dois jogadores se alternam lançando dois dados equilibrados. O jogador A vence o jogo se ocorrer soma 6, enquanto B vencerá se ocorrer 7. Faça um estudo de simulação para responder as seguintes questões:
+<ol style="list-style-type: lower-alpha">
+<li>Se A começa jogando, qual é a sua probabilidade de vitória?</li>
+<li>Qual é a probabilidade do iniciante, escolhido ao acaso, vencer o jogo?</li>
+</ol></li>
+<li>A duração, em anos, de uma certa lâmpada especial é uma variável aleatória contínua com densidade dada por: <span class="math display">\[
+f(x) = \left\{ \begin{array}{ll}
+    2 \exp^{-2x} &amp; x \geq 0 \cr
+    0 &amp; x &lt; 0
+  \end{array} \right.
+\]</span>
+<ol style="list-style-type: lower-alpha">
+<li>Crie uma função para calcular a função de distribuição acumulado de <span class="math inline">\(X\)</span>.</li>
+<li>Calcule <span class="math inline">\(P(X &gt; 2)\)</span>.</li>
+<li>Calcule <span class="math inline">\(P(0.5 &lt; X &lt; 1.2)\)</span>.</li>
+<li>Calcule <span class="math inline">\(P(X &gt; 3)\)</span>.</li>
+<li>Calcule <span class="math inline">\(P(X &lt; 3| X &gt; 1)\)</span>.</li>
+</ol></li>
+<li>(Desafio - Problema da ruína do jogador) Dois jogadores participam de um jogo com uma moeda que tem probabilidade de cara igual a <span class="math inline">\(p\)</span> e de coroa igual a <span class="math inline">\(q\)</span>, sujeito a <span class="math inline">\(p+q=1\)</span>. O jogador A inicia o jogo com <span class="math inline">\(i\)</span> fichas e ganha mais uma de B, cada vez que der cara. O jogador B começa com <span class="math inline">\(N-i\)</span> fichas e, em cada lançamento que resultar coroa, ganha uma ficha de A. Para enfatizar a dependência do número inicial de fichas <span class="math inline">\(i\)</span>, denomine por <span class="math inline">\(p_{(i)}\)</span> a probabilidade do jogador A ficar com todas as fichas, o que implica na ruína de B. Condicione no resultado do primeiro lançamento da moeda, para estabelecer uma relação de recorrência entre os <span class="math inline">\(p_{(i)&#39;s}\)</span>. Usando <span class="math inline">\(p_{(0)} = 0\)</span> e <span class="math inline">\(p_{N} = 1\)</span>, mostre via simulação que <span class="math inline">\(p_{(i)} = \frac{1-(q/p)^i}{1-(q/p)^N}\)</span> para <span class="math inline">\(p \neq \frac{1}{2}\)</span> e <span class="math inline">\(p_{(i)} = \frac{i}{N}\)</span> para <span class="math inline">\(p = \frac{1}{2}\)</span>.</li>
 </ol>
 </div>
 <div id="distribuições-de-probabilidade" class="section level2">
 <h2><span class="header-section-number">7.2</span> Distribuições de Probabilidade</h2>
 <p>O R inclui funcionalidade para operações com distribuições de probabilidades. Para cada distribuição há 4 operações básicas indicadas pelas letras:</p>
 <ul>
-<li><code>d</code> calcula a densidade de probabilidade <span class="math inline">\(f(x)\)</span> no ponto <span class="math inline">\(x\)</span></li>
-<li><code>p</code> calcula a função de probabilidade acumulada <span class="math inline">\(F(x)\)</span> no ponto <span class="math inline">\(x\)</span></li>
-<li><code>q</code> calcula o quantil correspondente a uma dada probabilidade</li>
-<li><code>r</code> retira uma amostra aleatória da distribuição</li>
+<li><code>d</code> calcula a densidade de probabilidade <span class="math inline">\(f(x)\)</span> no ponto <span class="math inline">\(x\)</span>.</li>
+<li><code>p</code> calcula a função de probabilidade acumulada <span class="math inline">\(F(x)\)</span> no ponto <span class="math inline">\(x\)</span>.</li>
+<li><code>q</code> calcula o quantil correspondente a uma dada probabilidade.</li>
+<li><code>r</code> retorna uma amostra aleatória da distribuição.</li>
 </ul>
-<p>Para usar os funções deve-se combinar uma das letras acima com uma abreviatura do nome da distribuição. Por exemplo, para calcular probabilidades usamos: <code>pnorm()</code> para normal, <code>pexp()</code> para exponencial, <code>pbinom()</code> para binomial, <code>ppois()</code> para Poisson e assim por diante.</p>
+<p>Para usar as funções deve-se combinar uma das letras acima com uma abreviatura do nome da distribuição. Por exemplo, para calcular probabilidades usamos: <code>pnorm()</code> para normal, <code>pexp()</code> para exponencial, <code>pbinom()</code> para binomial, <code>ppois()</code> para Poisson e assim por diante.</p>
 <p>Vamos ver com mais detalhes algumas distribuições de probabilidades.</p>
 <div id="distribuição-normal" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Distribuição Normal</h3>
@@ -424,8 +462,8 @@ f(x) = \left\{ \begin{array}{ll}
 <span class="kw">qnorm</span>(<span class="fl">0.975</span>)
 [<span class="dv">1</span>] <span class="fl">1.959964</span>
 <span class="kw">rnorm</span>(<span class="dv">10</span>)
- [<span class="dv">1</span>] <span class="op">-</span><span class="fl">0.50219235</span>  <span class="fl">0.13153117</span> <span class="op">-</span><span class="fl">0.07891709</span>  <span class="fl">0.88678481</span>  <span class="fl">0.11697127</span>
- [<span class="dv">6</span>]  <span class="fl">0.31863009</span> <span class="op">-</span><span class="fl">0.58179068</span>  <span class="fl">0.71453271</span> <span class="op">-</span><span class="fl">0.82525943</span> <span class="op">-</span><span class="fl">0.35986213</span></code></pre></div>
+ [<span class="dv">1</span>] <span class="op">-</span><span class="fl">0.50219235</span>  <span class="fl">0.13153117</span> <span class="op">-</span><span class="fl">0.07891709</span>  <span class="fl">0.88678481</span>  <span class="fl">0.11697127</span>  <span class="fl">0.31863009</span>
+ [<span class="dv">7</span>] <span class="op">-</span><span class="fl">0.58179068</span>  <span class="fl">0.71453271</span> <span class="op">-</span><span class="fl">0.82525943</span> <span class="op">-</span><span class="fl">0.35986213</span></code></pre></div>
 <p>O primeiro valor acima, de <code>dnorm(-1)</code>, corresponde ao valor da densidade da normal</p>
 <p><span class="math display">\[
 f(x) = \frac{1}{\sigma\sqrt{2 \pi}}\exp \left[ -\frac{1}{2}
@@ -437,12 +475,12 @@ sigma &lt;-<span class="st"> </span><span class="dv">1</span>
 x &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">1</span>
 (<span class="dv">1</span><span class="op">/</span>(sigma <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span><span class="op">*</span>pi))) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>((<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span>((x <span class="op">-</span><span class="st"> </span>mu)<span class="op">/</span>sigma)<span class="op">^</span><span class="dv">2</span>)
 [<span class="dv">1</span>] <span class="fl">0.2419707</span></code></pre></div>
-<p>A função <code>pnorm(-1)</code> calcula a probabilidade <span class="math inline">\(P(X \leq -1)\)</span>. O comando <code>qnorm(0.975)</code> calcula o valor de <span class="math inline">\(a\)</span> tal que <span class="math inline">\(P(X \leq a) = 0.975\)</span>. Finalmente, o comando <code>rnorm(10)</code> gera uma amostra aleatória de 10 elementos da normal padrão. Note que os valores que você obtém rodando este comando podem ser diferentes dos mostrados acima.</p>
+<p>A função <code>pnorm(-1)</code> calcula a probabilidade <span class="math inline">\(P(X \leq -1)\)</span>. O comando <code>qnorm(0.975)</code> calcula o valor de <span class="math inline">\(a\)</span> tal que <span class="math inline">\(P(X \leq a) = 0.975\)</span>. Finalmente, o comando <code>rnorm(10)</code> gera uma amostra aleatória de 10 elementos da normal padrão. Note que os valores que você obtêm rodando este comando podem ser diferentes dos mostrados acima.</p>
 <p>As funções acima possuem argumentos adicionais, para os quais valores padrão (<em>default</em>) foram assumidos, e que podem ser modificados. Usamos <code>args()</code> para ver os argumentos de uma função e <code>help()</code> para visualizar a documentação detalhada:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(rnorm)
 <span class="cf">function</span> (n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>) 
 <span class="ot">NULL</span></code></pre></div>
-<p>As funções relacionadas à distribuição normal possuem os argumentos <code>mean</code> e <code>sd</code> para definir média e desvio padrão da distribuição que podem ser modificados como nos exemplos a seguir. Note nestes exemplos que os argumentos podem ser passados de diferentes formas.</p>
+<p>As funções relacionadas à distribuição normal possuem os argumentos <code>mean</code> e <code>sd</code> para definir a média e o desvio padrão da distribuição que podem ser modificados como nos exemplos a seguir. Note nestes exemplos que os argumentos podem ser passados de diferentes formas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean =</span> <span class="dv">100</span>, <span class="dt">sd =</span> <span class="dv">8</span>)
 [<span class="dv">1</span>] <span class="fl">115.6797</span>
 <span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">m =</span> <span class="dv">100</span>, <span class="dt">s =</span> <span class="dv">8</span>)
@@ -455,14 +493,14 @@ x &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">1</spa
 <p>Para informações mais detalhadas pode-se usar <code>help()</code>. O comando</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(rnorm)</code></pre></div>
 <p>irá exibir em uma janela a documentação da função que pode também ser chamada com <code>?rnorm</code>. Note que ao final da documentação são apresentados exemplos que podem ser rodados pelo usuário e que auxiliam na compreensão da funcionalidade. Note também que as 4 funções relacionadas à distribuição normal são documentadas conjuntamente, portanto <code>help(rnorm)</code>, <code>help(qnorm)</code>, <code>help(dnorm)</code> e <code>help(pnorm)</code> irão exibir a mesma documentação.</p>
-<p>Cálculos de probabilidades usuais, para os quais utilizávamos tabelas estatísticas podem ser facilmente obtidos como no exemplo a seguir.</p>
-<p>Seja <span class="math inline">\(X\)</span> uma VA com distribuição <span class="math inline">\(N(100, 100)\)</span>. Calcular as probabilidades:</p>
+<p>Cálculos de probabilidades usuais, para os quais utilizavamos tabelas estatísticas podem ser facilmente obtidos como no exemplo a seguir.</p>
+<p>Seja <span class="math inline">\(X\)</span> uma v.a com distribuição <span class="math inline">\(N(100, 100)\)</span>. Calcular as probabilidades:</p>
 <ul>
 <li><span class="math inline">\(P[X &lt; 95]\)</span></li>
 <li><span class="math inline">\(P[90 &lt; X &lt; 110]\)</span></li>
 <li><span class="math inline">\(P[X &gt; 95]\)</span></li>
 </ul>
-<p>Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois compare com os resultados fornecidos pelo R. Os comandos do para obter as probabilidades pedidas são:</p>
+<p>Calcule estas probabilidades de forma usual, usando a tabela da normal. Depois compare com os resultados fornecidos pelo R. Os comandos do R para obter as probabilidades pedidas são:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## P[X &lt; 95]
 <span class="kw">pnorm</span>(<span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">10</span>)
 [<span class="dv">1</span>] <span class="fl">0.3085375</span>
@@ -481,7 +519,7 @@ x &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">1</spa
 <span class="kw">plot</span>(dnorm, <span class="dt">from =</span> <span class="op">-</span><span class="dv">3</span>, <span class="dt">to =</span> <span class="dv">3</span>)
 <span class="kw">plot</span>(pnorm, <span class="dt">from =</span> <span class="op">-</span><span class="dv">3</span>, <span class="dt">to =</span> <span class="dv">3</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-341-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-342-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>VEJA a página de ajuda da função <code>plot.function()</code> para entender os argumentos e demais funcionalidades desta função gráfica para plotar gráficos de funções</p>
 </blockquote>
@@ -493,44 +531,44 @@ fx &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="d
 Fx &lt;-<span class="st"> </span><span class="kw">pnorm</span>(x, <span class="dv">100</span>, <span class="dv">8</span>)
 <span class="kw">plot</span>(x, Fx, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-342-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-343-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note que, alternativamente, os mesmos gráficos poderiam ser produzidos com os comandos a seguir, onde fazemos usa da função <code>plot.function()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(<span class="cf">function</span>(x) <span class="kw">dnorm</span>(x, <span class="dv">100</span>, <span class="dv">8</span>), <span class="dt">from =</span> <span class="dv">70</span>, <span class="dt">to =</span> <span class="dv">130</span>)
 <span class="kw">plot</span>(<span class="cf">function</span>(x) <span class="kw">pnorm</span>(x, <span class="dv">100</span>, <span class="dv">8</span>), <span class="dt">from =</span> <span class="dv">70</span>, <span class="dt">to =</span> <span class="dv">130</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-343-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-344-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Comandos usuais do R podem ser usados para modificar a aparência dos gráficos. Por exemplo, podemos incluir títulos e mudar texto dos eixos conforme mostrado abaixo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(dnorm, <span class="dt">from =</span> <span class="op">-</span><span class="dv">3</span>, <span class="dt">to =</span> <span class="dv">3</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Valores de X&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Densidade de probabilidade&quot;</span>)
-<span class="kw">title</span>(<span class="st">&quot;Distribuicão Normal</span><span class="ch">\n</span><span class="st">X ~ N(100, 64)&quot;</span>)</code></pre></div>
-<p><img src="figures/unnamed-chunk-344-1.png" width="672" style="display: block; margin: auto;" /></p>
+<span class="kw">title</span>(<span class="st">&quot;Distribuicão Normal</span><span class="ch">\n</span><span class="st">X ~ N(0, 1)&quot;</span>)</code></pre></div>
+<p><img src="figures/unnamed-chunk-345-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Os demais comandos abaixo mostram como colocar diferentes densidades em um mesmo gráfico, usando o argumento <code>add = TRUE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="cf">function</span>(x) <span class="kw">dnorm</span>(x, <span class="dv">100</span>, <span class="dv">8</span>), <span class="dv">60</span>, <span class="dv">140</span>, <span class="dt">ylab =</span> <span class="st">&#39;f(x)&#39;</span>)
 <span class="kw">plot</span>(<span class="cf">function</span>(x) <span class="kw">dnorm</span>(x, <span class="dv">90</span>, <span class="dv">8</span>), <span class="dv">60</span>, <span class="dv">140</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="dv">2</span>)
 <span class="kw">plot</span>(<span class="cf">function</span>(x) <span class="kw">dnorm</span>(x, <span class="dv">100</span>, <span class="dv">15</span>), <span class="dv">60</span>, <span class="dv">140</span>, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="dv">3</span>)
 <span class="kw">legend</span>(<span class="dv">120</span>, <span class="fl">0.05</span>, <span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
        <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;N(100,64)&quot;</span>, <span class="st">&quot;N(90,64)&quot;</span>, <span class="st">&quot;N(100,225)&quot;</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-345-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-346-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="distribuição-binomial" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> Distribuição Binomial</h3>
-<p>Cálculos para a distribuição binomial são implementados combinando as letras básicas vistas acima com o termo <code>binom</code>. Vamos primeiro investigar argumentos e documentação com <code>args()</code> e <code>help()</code>.</p>
+<p>Cálculos para a distribuição binomial são implementados combinando as letras básicas vistas acima com o termo <code>binom</code>. Vamos primeiro investigar os argumentos e a documentação com <code>args()</code> e <code>help()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(dbinom)
 <span class="cf">function</span> (x, size, prob, <span class="dt">log =</span> <span class="ot">FALSE</span>) 
 <span class="ot">NULL</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(dbinom)</code></pre></div>
-<p>Seja <span class="math inline">\(X\)</span> uma VA com distribuição Binomial, com <span class="math inline">\(n=10\)</span> e <span class="math inline">\(p=0.35\)</span>. Vamos ver os comandos do R para:</p>
+<p>Seja <span class="math inline">\(X\)</span> uma v.a com distribuição binomial, com <span class="math inline">\(n=10\)</span> e <span class="math inline">\(p=0.35\)</span>. Vamos ver os comandos do R para:</p>
 <ul>
-<li>Fazer o gráfico da função de densidade</li>
-<li>Idem para a função de probabilidade</li>
-<li>Calcular <span class="math inline">\(P[X = 7]\)</span></li>
-<li>Calcular <span class="math inline">\(P[X \leq 7]\)</span></li>
-<li>Calcular <span class="math inline">\(P[X &gt; 7]\)</span></li>
-<li>Calcular <span class="math inline">\(P[3 &lt; X \leq 6]\)</span></li>
+<li>Fazer o gráfico da função de probabilidade.</li>
+<li>Idem para a função de distribuição acumulada.</li>
+<li>Calcular <span class="math inline">\(P(X = 7)\)</span>.</li>
+<li>Calcular <span class="math inline">\(P(X \leq 7)\)</span>.</li>
+<li>Calcular <span class="math inline">\(P(X &gt; 7)\)</span>.</li>
+<li>Calcular <span class="math inline">\(P(3 &lt; X \leq 6)\)</span>.</li>
 </ul>
-<p>Note que sendo uma distribuição discreta de probabilidades os gráficos são diferentes dos obtidos para distribuição normal e os cálculos de probabilidades devem considerar as probabilidades nos pontos. Os gráficos das funções de densidade e probabilidade são mostrados abaixo.</p>
+<p>Note que sendo uma distribuição discreta de probabilidades os gráficos são diferentes dos obtidos para a distribuição normal e os cálculos de probabilidades devem considerar as probabilidades nos pontos específicos. Os gráficos das funções de probabilidade e distribuição são mostrados abaixo.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
 x &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">10</span>
 fx &lt;-<span class="st"> </span><span class="kw">dbinom</span>(x, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.35</span>)
@@ -538,7 +576,7 @@ fx &lt;-<span class="st"> </span><span class="kw">dbinom</span>(x, <span class="
 Fx &lt;-<span class="st"> </span><span class="kw">pbinom</span>(x, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.35</span>)
 <span class="kw">plot</span>(x, Fx, <span class="dt">type =</span> <span class="st">&quot;s&quot;</span>)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-348-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-349-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As probabilidades pedidas são obtidas com os comandos a seguir.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## P[X = 7]
 <span class="kw">dbinom</span>(<span class="dv">7</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">prob =</span> <span class="fl">0.35</span>)
@@ -563,16 +601,16 @@ Fx &lt;-<span class="st"> </span><span class="kw">pbinom</span>(x, <span class="
 </div>
 <div id="distribuição-de-poisson" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Distribuição de Poisson</h3>
-<p><strong>Definição:</strong> Seja um experimento realizado nas seguintes condições: i. As ocorrências são independentes ii. As ocorrências são aleatórias iii. A variável aleatória <span class="math inline">\(X\)</span> é o número de ocorrências de um evento <strong>ao longo de algum intervalo</strong>} (de tempo ou espaço)</p>
-<p>Denominamos esse experimento de <strong>processo de Poisson</strong>. Vamos associar a V.A. <span class="math inline">\(X\)</span> o número de ocorrências em um intervalo. Portanto <span class="math inline">\(X\)</span> poderá assumir os valores <span class="math inline">\(0, 1, \ldots,\)</span> (sem limite superior).</p>
-<p>A distribuição de Poisson é utilizada para descrever a probabilidade do <strong>número de ocorrências</strong> em um <strong>intervalo contínuo</strong> (de tempo ou espaço). No caso da distribuição binomial, a variável de interesse era o número de sucessos em um <strong>intervalo discreto</strong> (<span class="math inline">\(n\)</span> ensaios de Bernoulli). A unidade de medida (tempo ou espaço) é uma variável contínua, mas a <em>variável aleatória</em>, o <strong>número de ocorrências</strong>}, é discreta.</p>
-<p>Uma V.A. <span class="math inline">\(X\)</span> segue o modelo de Poisson se surge a partir de um processo de Poisson, e sua <strong>função de probabilidade</strong>} for dada por</p>
+<p><strong>Definição:</strong> Seja um experimento realizado nas seguintes condições: i. As ocorrências são independentes; ii. As ocorrências são aleatórias; iii. A variável aleatória <span class="math inline">\(X\)</span> é o número de ocorrências de um evento <strong>ao longo de algum intervalo</strong> (de tempo ou espaço);</p>
+<p>Denominamos esse experimento de <strong>processo de Poisson</strong>. Vamos associar a v.a <span class="math inline">\(X\)</span> como sendo o número de ocorrências em um intervalo. Portanto <span class="math inline">\(X\)</span> poderá assumir os valores <span class="math inline">\(0, 1, \ldots,\)</span> (sem limite superior).</p>
+<p>A distribuição de Poisson é utilizada para descrever a probabilidade do <strong>número de ocorrências</strong> em um <strong>intervalo contínuo</strong> (de tempo ou espaço). No caso da distribuição binomial, a variável de interesse era o número de sucessos em um <strong>intervalo discreto</strong> (<span class="math inline">\(n\)</span> ensaios de Bernoulli). A unidade de medida (tempo ou espaço) é uma variável contínua, mas a <em>variável aleatória</em>, <strong>número de ocorrências</strong>, é discreta.</p>
+<p>Uma v.a <span class="math inline">\(X\)</span> segue o modelo de Poisson se surge a partir de um processo de Poisson, e sua <strong>função de probabilidade</strong> for dada por</p>
 <p><span class="math display">\[
-    P[X = x] = \frac{e^{-\mu} \mu^x}{x!}, \quad \quad x = 0, 1, \ldots
+P(X = x) = \frac{e^{-\mu} \mu^x}{x!}, \quad \quad x = 0, 1, \ldots
 \]</span></p>
 <p>onde</p>
 <p><span class="math display">\[
-    \mu = \lambda \cdot t
+\mu = \lambda \cdot t
 \]</span></p>
 <p>O parâmetro <span class="math inline">\(\mu\)</span> indica a taxa de ocorrência (<span class="math inline">\(\lambda\)</span>) por unidade de medida (<span class="math inline">\(t\)</span>), ou seja,</p>
 <p><span class="math display">\[
@@ -597,7 +635,7 @@ Fx &lt;-<span class="st"> </span><span class="kw">pbinom</span>(x, <span class="
 <span class="kw">plot</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">30</span>, <span class="kw">dpois</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">lambda =</span> <span class="dv">15</span>), <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;P[X = x]&quot;</span>, <span class="dt">main =</span> <span class="kw">expression</span>(mu <span class="op">==</span><span class="st"> </span><span class="dv">15</span>),
      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">4</span>))</code></pre></div>
-<p><img src="figures/unnamed-chunk-350-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-351-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong>Exemplo</strong>: As chamadas telefônicas chegam a uma delegacia de polícia à uma taxa de 8 chamadas por hora, em dias úteis.
 <ol style="list-style-type: lower-alpha">
@@ -673,7 +711,7 @@ t &lt;-<span class="st"> </span><span class="dv">2</span>
 </div>
 <div id="uniforme-discreta" class="section level4">
 <h4><span class="header-section-number">7.2.4.2</span> Uniforme Discreta</h4>
-<p>Não há entre as funções básicas do R uma função específica para a distribuição uniforme discreta com opções de prefixos <span class="math inline">\(r,d,p\)</span> e <span class="math inline">\(d\)</span>, provavelmente devido a sua simplicidade, embora algumas outras funções possam ser usadas. Por exemplo para sortear números pode-se usar <code>sample()</code>, como no exemplo a seguir onde são sorteados 15 valores de uma uniforma discreta com valores (inteiros) entre 1 e 10 (<span class="math inline">\(X \sim U_d(1,10)\)</span>).</p>
+<p>Não há entre as funções básicas do R uma função específica para a distribuição uniforme discreta com opções de prefixos <span class="math inline">\(r,d,p\)</span> e <span class="math inline">\(d\)</span>, provavelmente devido a sua simplicidade, embora algumas outras funções possam ser usadas. Por exemplo para sortear números pode-se usar <code>sample()</code>, como no exemplo a seguir onde são sorteados 15 valores de uma uniforme discreta com valores (inteiros) entre 1 e 10 (<span class="math inline">\(X \sim U_d(1,10)\)</span>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
  [<span class="dv">1</span>] <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">1</span> <span class="dv">6</span> <span class="dv">9</span></code></pre></div>
 </div>
@@ -686,18 +724,18 @@ t &lt;-<span class="st"> </span><span class="dv">2</span>
 <span class="ot">NULL</span></code></pre></div>
 <p>Vejamos alguns exemplos:</p>
 <ul>
-<li>Sorteio de 3 números entre os inteiros de 0 a 20</li>
+<li>Sorteio de 3 números entre inteiros de 0 a 20.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">size =</span> <span class="dv">3</span>)
 [<span class="dv">1</span>]  <span class="dv">8</span> <span class="dv">20</span> <span class="dv">10</span></code></pre></div>
 <ul>
-<li>Sorteio de 5 números entre os elementos de um certo vetor <code>x</code></li>
+<li>Sorteio de 5 números entre os elementos de um certo vetor <code>x</code>.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">34</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">17</span>, <span class="dv">28</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">13</span>, <span class="dv">18</span>)
 <span class="kw">sample</span>(x, <span class="dt">size =</span> <span class="dv">5</span>)
 [<span class="dv">1</span>] <span class="dv">18</span> <span class="dv">23</span> <span class="dv">20</span> <span class="dv">28</span> <span class="dv">22</span></code></pre></div>
 <ul>
-<li>Sorteio de 10 números entre os possíveis resultados do lançamento de um dado, com reposição</li>
+<li>Sorteio de 10 números entre os possíveis resultados do lançamento de um dado, com reposição.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
  [<span class="dv">1</span>] <span class="dv">6</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span></code></pre></div>
@@ -714,31 +752,31 @@ t &lt;-<span class="st"> </span><span class="dv">2</span>
 <p>Agora que já nos familiarizamos com o uso das distribuições de probabilidade vamos ver alguns detalhes adicionais sobre seu funcionamento.</p>
 <div id="probabilidades-e-integrais" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Probabilidades e integrais</h3>
-<p>A probabilidade de um evento em uma distribuição contínua é uma área sob a curva da distribuição. Vamos reforçar esta idéia revisitando um exemplo visto na distribuição normal.</p>
-<p>Seja <span class="math inline">\(X\)</span> uma VA com distribuição <span class="math inline">\(N(100, 100)\)</span>. Para calcular a probabilidade <span class="math inline">\(P[X &lt; 95]\)</span> usamos o comando:</p>
+<p>A probabilidade de um evento em uma distribuição contínua é a área sob a curva da distribuição. Vamos reforçar esta idéia revisitando um exemplo visto na distribuição normal.</p>
+<p>Seja <span class="math inline">\(X\)</span> uma v.a com distribuição <span class="math inline">\(N(100, 100)\)</span>. Para calcular a probabilidade <span class="math inline">\(P(X &lt; 95)\)</span> usamos o comando:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pnorm</span>(<span class="dv">95</span>, <span class="dt">mean =</span> <span class="dv">100</span>, <span class="dt">sd =</span> <span class="dv">10</span>)
 [<span class="dv">1</span>] <span class="fl">0.3085375</span></code></pre></div>
 <p>Vamos agora “esquecer” o comando <code>pnorm()</code> e ver uma outra forma de resolver usando integração numérica. Lembrando que a normal tem a função de densidade dada por</p>
 <p><span class="math display">\[
 f(x) = \frac{1}{\sigma\sqrt{2 \pi}}\exp \left[ -\frac{1}{2}
-    \left( \frac{x - \mu}{\sigma} \right)^2 \right]
+    \left( \frac{x - \mu}{\sigma} \right)^2 \right].
 \]</span></p>
 <p>Podemos então definir uma função no R para calcular qualquer densidade em <span class="math inline">\(x\)</span></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fn &lt;-<span class="st"> </span><span class="cf">function</span>(x, mu, sigma){
     (<span class="dv">1</span><span class="op">/</span>(sigma <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span><span class="op">*</span>pi))) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>((<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span>((x <span class="op">-</span><span class="st"> </span>mu)<span class="op">/</span>sigma)<span class="op">^</span><span class="dv">2</span>)
 }</code></pre></div>
-<p>Para obter o gráfico desta distribuição, usamos o fato que a maior parte da função está no intervalo entre a média +/- três desvios padrões, portanto entre 70 e 130. Podemos então fazer como nos comandos que se seguem. Para marcar no gráfico a área que corresponde a probabilidade pedida criamos um polígono com coordenadas <code>ax</code> e <code>ay</code> definindo o perímetro desta área.</p>
+<p>Para obter o gráfico desta distribuição, usamos o fato que a maior parte da massa da função está no intervalo entre a média +/- três desvios padrões, portanto entre 70 e 130. Podemos então fazer como nos comandos que se seguem. Para marcar no gráfico a área que corresponde a probabilidade pedida criamos um polígono com coordenadas <code>ax</code> e <code>ay</code> definindo o perímetro desta área.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">70</span>, <span class="dv">130</span>, <span class="dt">length.out =</span> <span class="dv">200</span>)
 fx &lt;-<span class="st"> </span><span class="kw">fn</span>(x, <span class="dt">mu =</span> <span class="dv">100</span>, <span class="dt">sigma =</span> <span class="dv">10</span>)
 <span class="kw">plot</span>(x, fx, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)
 ax &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">70</span>, x[x <span class="op">&lt;</span><span class="st"> </span><span class="dv">95</span>], <span class="dv">95</span>, <span class="dv">95</span>)
 ay &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">fn</span>(<span class="dv">70</span>, <span class="dv">100</span>, <span class="dv">10</span>), fx[x <span class="op">&lt;</span><span class="st"> </span><span class="dv">95</span>], <span class="kw">fn</span>(<span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">10</span>),<span class="dv">0</span>)
 <span class="kw">polygon</span>(ax, ay, <span class="dt">density =</span> <span class="dv">10</span>)</code></pre></div>
-<p><img src="figures/unnamed-chunk-363-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figures/unnamed-chunk-364-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Para calcular a área pedida sem usar a função <code>pnorm()</code> podemos usar a função de integração numérica. Note que esta função, diferentemente da <code>pnorm()</code> reporta ainda o erro de aproximação numérica.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">integrate</span>(fn, <span class="dt">mu =</span> <span class="dv">100</span>, <span class="dt">sigma =</span> <span class="dv">10</span>, <span class="dt">lower =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">upper =</span> <span class="dv">95</span>)
 <span class="fl">0.3085375</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">2.1e-06</span></code></pre></div>
-<p>Portanto para os demais ítens do problema, <span class="math inline">\(P[90 &lt; X &lt; 110]\)</span>, e <span class="math inline">\(P[X &gt; 95]\)</span> fazemos:</p>
+<p>Portanto para os demais ítens do problema, <span class="math inline">\(P(90 &lt; X &lt; 110)\)</span>, e <span class="math inline">\(P(X &gt; 95)\)</span> fazemos:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">integrate</span>(fn, <span class="dt">mu =</span> <span class="dv">100</span>, <span class="dt">sigma =</span> <span class="dv">10</span>, <span class="dt">lower =</span> <span class="dv">90</span>, <span class="dt">upper =</span> <span class="dv">110</span>)
 <span class="fl">0.6826895</span> with absolute error <span class="op">&lt;</span><span class="st"> </span><span class="fl">7.6e-15</span>
 <span class="kw">integrate</span>(fn, <span class="dt">mu =</span> <span class="dv">100</span>, <span class="dt">sigma =</span> <span class="dv">10</span>, <span class="dt">lower =</span> <span class="dv">95</span>, <span class="dt">upper =</span> <span class="op">+</span><span class="ot">Inf</span>)
@@ -757,15 +795,21 @@ ay &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</s
 <ol style="list-style-type: decimal">
 <li>Para <span class="math inline">\(X \sim N(90, 100)\)</span>, obtenha:
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(P(X \leq 115)\)</span></li>
-<li><span class="math inline">\(P(X \geq 80)\)</span></li>
-<li><span class="math inline">\(P(X \leq 75)\)</span></li>
-<li><span class="math inline">\(P(85 \leq X \leq 110)\)</span> <!-- e. $P(|X - 90| \leq 10)$ --> <!-- f. O valor de $a$ tal que $P(90-a \leq X \leq 90+a) = \gamma, \; --> <!-- \gamma=0.95$ --></li>
+<li><span class="math inline">\(P(X \leq 115)\)</span>.</li>
+<li><span class="math inline">\(P(X \geq 80)\)</span>.</li>
+<li><span class="math inline">\(P(X \leq 75)\)</span>.</li>
+<li><span class="math inline">\(P(85 \leq X \leq 110)\)</span>.</li>
+<li><span class="math inline">\(P(|X - 90| \leq 10)\)</span>.</li>
+<li>O valor de <span class="math inline">\(a\)</span> tal que <span class="math inline">\(P(90-a \leq X \leq 90+a) = 0.95\)</span>.</li>
 </ol></li>
 <li>Sendo <span class="math inline">\(X\)</span> uma variável seguindo o modelo Binomial com parâmetros <span class="math inline">\(n = 15\)</span> e <span class="math inline">\(p = 0.4\)</span>, pergunta-se:
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(P(X \geq 14)\)</span></li>
-<li><span class="math inline">\(P(8 &lt; X \leq 10)\)</span> <!-- c. $P(X < 2 \; \mbox{ ou } \;\; X \geq 11)$ --> <!-- d. $P(X \geq 11 \;  \mbox{ ou } \;\; X > 13)$ --> <!-- e. $P(X > 3 \;  \mbox{ e } \;\; X < 6)$ --> <!-- f. $P(X \leq 13 \; | \; X \geq 11)$ --></li>
+<li><span class="math inline">\(P(X \geq 14)\)</span>.</li>
+<li><span class="math inline">\(P(8 &lt; X \leq 10)\)</span>.</li>
+<li><span class="math inline">\(P(X &lt; 2 \; \mbox{ ou } \;\; X \geq 11)\)</span>.</li>
+<li><span class="math inline">\(P(X \geq 11 \; \mbox{ ou } \;\; X &gt; 13)\)</span>.</li>
+<li><span class="math inline">\(P(X &gt; 3 \; \mbox{ e } \;\; X &lt; 6)\)</span>.</li>
+<li><span class="math inline">\(P(X \leq 13 \; | \; X \geq 11)\)</span>.</li>
 </ol></li>
 <li>Uma empresa informa que 30% de suas contas a receber de outras empresas encontram-se vencidas. Se o contador da empresa seleciona aleatoriamente 5 contas, determine a probabilidade de:
 <ol style="list-style-type: lower-alpha">
@@ -787,9 +831,9 @@ ay &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</s
 </ol></li>
 <li>Faça os seguintes gráficos:
 <ol style="list-style-type: lower-alpha">
-<li>da função de densidade de uma variável com distribuição de Poisson com parâmetro <span class="math inline">\(\lambda = 5\)</span></li>
-<li>da densidade de uma variável <span class="math inline">\(X \sim N(90, 100)\)</span></li>
-<li>sobreponha ao gráfico anterior a densidade de uma variável <span class="math inline">\(Y \sim N(90, 80)\)</span> e outra <span class="math inline">\(Z \sim N(85, 100)\)</span></li>
+<li>da função de densidade de uma variável com distribuição de Poisson com parâmetro <span class="math inline">\(\lambda = 5\)</span>.</li>
+<li>da densidade de uma variável <span class="math inline">\(X \sim N(90, 100)\)</span>.</li>
+<li>sobreponha ao gráfico anterior a densidade de uma variável <span class="math inline">\(Y \sim N(90, 80)\)</span> e outra <span class="math inline">\(Z \sim N(85, 100)\)</span>.</li>
 <li>densidades de distribuições <span class="math inline">\(\chi^2\)</span> com 1, 2 e 5 graus de liberdade.</li>
 </ol></li>
 </ol>
@@ -797,16 +841,13 @@ ay &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</s
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
 <a href="análise-exploratória-de-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="documentos-dinâmicos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="inferência-estatística.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -825,12 +866,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -839,6 +880,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Objetos e classes | Estatística Computacional com R</title>
   <meta name="description" content="2 Objetos e classes | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Objetos e classes | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -245,6 +245,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
@@ -619,8 +632,8 @@ x
 <p>Note que esse valor de 7 é o número de <strong>dígitos significativos</strong>, e pode variar conforme a sequência de números. Por exemplo,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)
 y
- [<span class="dv">1</span>] <span class="fl">0.069360916</span> <span class="fl">0.817775199</span> <span class="fl">0.942621732</span> <span class="fl">0.269381876</span> <span class="fl">0.169348123</span>
- [<span class="dv">6</span>] <span class="fl">0.033895622</span> <span class="fl">0.178785004</span> <span class="fl">0.641665366</span> <span class="fl">0.022877743</span> <span class="fl">0.008324827</span></code></pre></div>
+ [<span class="dv">1</span>] <span class="fl">0.069360916</span> <span class="fl">0.817775199</span> <span class="fl">0.942621732</span> <span class="fl">0.269381876</span> <span class="fl">0.169348123</span> <span class="fl">0.033895622</span>
+ [<span class="dv">7</span>] <span class="fl">0.178785004</span> <span class="fl">0.641665366</span> <span class="fl">0.022877743</span> <span class="fl">0.008324827</span></code></pre></div>
 <p>possui valores com 9 casas decimais. Isto é apenas a representação do número que aparece na tela. Internamente, cada número é armazenado com uma precisão de 64 bits. Como consequência, cada número possui uma acurácia de até 16 dígitos significativos. Isso pode introduzir algum tipo de erro, por exemplo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">2</span>)<span class="op">^</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span>
 [<span class="dv">1</span>] <span class="fl">4.440892e-16</span>
@@ -641,9 +654,8 @@ y
  [<span class="dv">9</span>] <span class="fl">0.55143501446582376956940</span> <span class="fl">0.45661473530344665050507</span></code></pre></div>
 <p>Também é possível alterar a representação na tela para o formato científico, usando a função <code>format()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">format</span>(x, <span class="dt">scientific =</span> <span class="ot">TRUE</span>)
- [<span class="dv">1</span>] <span class="st">&quot;2.875775e-01&quot;</span> <span class="st">&quot;7.883051e-01&quot;</span> <span class="st">&quot;4.089769e-01&quot;</span> <span class="st">&quot;8.830174e-01&quot;</span>
- [<span class="dv">5</span>] <span class="st">&quot;9.404673e-01&quot;</span> <span class="st">&quot;4.555650e-02&quot;</span> <span class="st">&quot;5.281055e-01&quot;</span> <span class="st">&quot;8.924190e-01&quot;</span>
- [<span class="dv">9</span>] <span class="st">&quot;5.514350e-01&quot;</span> <span class="st">&quot;4.566147e-01&quot;</span></code></pre></div>
+ [<span class="dv">1</span>] <span class="st">&quot;2.875775e-01&quot;</span> <span class="st">&quot;7.883051e-01&quot;</span> <span class="st">&quot;4.089769e-01&quot;</span> <span class="st">&quot;8.830174e-01&quot;</span> <span class="st">&quot;9.404673e-01&quot;</span>
+ [<span class="dv">6</span>] <span class="st">&quot;4.555650e-02&quot;</span> <span class="st">&quot;5.281055e-01&quot;</span> <span class="st">&quot;8.924190e-01&quot;</span> <span class="st">&quot;5.514350e-01&quot;</span> <span class="st">&quot;4.566147e-01&quot;</span></code></pre></div>
 <p>Nessa representação, o valor 2.875775e-01 = <span class="math inline">\(2.875775 \times 10^{-01}\)</span> = <span class="math inline">\(0.2875775\)</span>.</p>
 </div>
 <div id="sequências-de-números" class="section level4">
@@ -1062,8 +1074,8 @@ ar
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="st">&quot;R&quot;</span>, <span class="kw">list</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>))
 lista
 [[<span class="dv">1</span>]]
- [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span> <span class="dv">13</span> <span class="dv">14</span> <span class="dv">15</span> <span class="dv">16</span> <span class="dv">17</span> <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span> <span class="dv">21</span> <span class="dv">22</span> <span class="dv">23</span>
-[<span class="dv">24</span>] <span class="dv">24</span> <span class="dv">25</span> <span class="dv">26</span> <span class="dv">27</span> <span class="dv">28</span> <span class="dv">29</span> <span class="dv">30</span>
+ [<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span> <span class="dv">13</span> <span class="dv">14</span> <span class="dv">15</span> <span class="dv">16</span> <span class="dv">17</span> <span class="dv">18</span> <span class="dv">19</span> <span class="dv">20</span> <span class="dv">21</span> <span class="dv">22</span> <span class="dv">23</span> <span class="dv">24</span> <span class="dv">25</span>
+[<span class="dv">26</span>] <span class="dv">26</span> <span class="dv">27</span> <span class="dv">28</span> <span class="dv">29</span> <span class="dv">30</span>
 
 [[<span class="dv">2</span>]]
 [<span class="dv">1</span>] <span class="st">&quot;R&quot;</span>
@@ -1414,12 +1426,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -1428,6 +1440,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

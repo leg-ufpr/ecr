@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Estatística Computacional com R</title>
   <meta name="description" content="Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -246,6 +246,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
+<li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
+<li class="chapter" data-level="8.3.4" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-pareado"><i class="fa fa-check"></i><b>8.3.4</b> Teste t pareado</a></li>
+<li class="chapter" data-level="8.3.5" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-f"><i class="fa fa-check"></i><b>8.3.5</b> Teste F</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
@@ -296,7 +309,7 @@ Departamento de Estatística (DEST)
 Universidade Federal do Paraná (UFPR)
 
 2018-07-24
-Última atualização: 2019-10-08</div></em></p>
+Última atualização: 2019-11-13</div></em></p>
 </div>
 <div id="prefácio" class="section level1 unnumbered">
 <h1>Prefácio</h1>
@@ -308,7 +321,7 @@ Universidade Federal do Paraná (UFPR)
 <div id="informação-de-sessão" class="section level2 unnumbered">
 <h2>Informação de sessão</h2>
 <p>Abaixo seguem as informações do ambiente em que o documento foi gerado pela última vez.</p>
-<pre><code>Tuesday, 08 October, 2019, 19:10
+<pre><code>Wednesday, 13 November, 2019, 21:06
 ----------------------------------------
 R version 3.6.1 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -330,13 +343,13 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] knitr_1.25
+[1] knitr_1.26
 
 loaded via a namespace (and not attached):
- [1] compiler_3.6.1  magrittr_1.5    bookdown_0.14.1 htmltools_0.4.0
- [5] tools_3.6.1     yaml_2.2.0      Rcpp_1.0.2      stringi_1.4.3  
- [9] rmarkdown_1.16  stringr_1.4.0   digest_0.6.21   xfun_0.10      
-[13] rlang_0.4.0     evaluate_0.14  </code></pre>
+ [1] compiler_3.6.1  magrittr_1.5    bookdown_0.15.1 htmltools_0.4.0
+ [5] tools_3.6.1     yaml_2.2.0      Rcpp_1.0.3      stringi_1.4.3  
+ [9] rmarkdown_1.17  stringr_1.4.0   digest_0.6.22   xfun_0.11      
+[13] rlang_0.4.1     evaluate_0.14  </code></pre>
 
 </div>
 </div>
@@ -368,12 +381,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter"]
+"all": ["facebook", "google", "twitter"],
+"google": true
 },
 "fontsettings": {
 "theme": "white",
@@ -382,6 +395,10 @@ gitbook.start({
 },
 "edit": null,
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

@@ -153,7 +153,7 @@
 \date{Laboratório de Estatística e Geoinformação (LEG)\\
 Departamento de Estatística (DEST)\\
 Universidade Federal do Paraná (UFPR)\\[2\baselineskip]2018-07-24\\
-Última atualização: 2019-10-08}
+Última atualização: 2019-11-13}
 
 \begin{document}
 \maketitle
@@ -209,7 +209,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Tuesday, 08 October, 2019, 19:10
+Wednesday, 13 November, 2019, 21:06
 ----------------------------------------
 R version 3.6.1 (2017-01-27)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -231,13 +231,17 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] rmarkdown_1.16 MASS_7.3-51.4  gdata_2.18.0   knitr_1.25    
+[1] rmarkdown_1.17 MASS_7.3-51.4  gdata_2.18.0   knitr_1.26    
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.2      bookdown_0.14.1 gtools_3.8.1    digest_0.6.21  
- [5] magrittr_1.5    evaluate_0.14   highr_0.8       rlang_0.4.0    
- [9] stringi_1.4.3   tools_3.6.1     stringr_1.4.0   xfun_0.10      
-[13] yaml_2.2.0      compiler_3.6.1  htmltools_0.4.0
+ [1] Rcpp_1.0.3       magrittr_1.5     tidyselect_0.2.5 R6_2.4.1        
+ [5] rlang_0.4.1      fansi_0.4.0      stringr_1.4.0    highr_0.8       
+ [9] dplyr_0.8.3      tools_3.6.1      rootSolve_1.8.1  xfun_0.11       
+[13] utf8_1.1.4       cli_1.1.0        htmltools_0.4.0  gtools_3.8.1    
+[17] yaml_2.2.0       digest_0.6.22    assertthat_0.2.1 tibble_2.1.3    
+[21] crayon_1.3.4     bookdown_0.15.1  purrr_0.3.3      vctrs_0.2.0     
+[25] zeallot_0.1.0    glue_1.3.1       evaluate_0.14    stringi_1.4.3   
+[29] compiler_3.6.1   pillar_1.4.2     backports_1.1.5  pkgconfig_2.0.3 
 \end{verbatim}
 
 \part{R básico}\label{part-r-buxe1sico}
@@ -1513,8 +1517,8 @@ e pode variar conforme a sequência de números. Por exemplo,
 \begin{Highlighting}[]
 \NormalTok{y <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{10}\NormalTok{)}
 \NormalTok{y}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FloatTok{0.069360916} \FloatTok{0.817775199} \FloatTok{0.942621732} \FloatTok{0.269381876} \FloatTok{0.169348123}
-\NormalTok{ [}\DecValTok{6}\NormalTok{] }\FloatTok{0.033895622} \FloatTok{0.178785004} \FloatTok{0.641665366} \FloatTok{0.022877743} \FloatTok{0.008324827}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FloatTok{0.069360916} \FloatTok{0.817775199} \FloatTok{0.942621732} \FloatTok{0.269381876} \FloatTok{0.169348123} \FloatTok{0.033895622}
+\NormalTok{ [}\DecValTok{7}\NormalTok{] }\FloatTok{0.178785004} \FloatTok{0.641665366} \FloatTok{0.022877743} \FloatTok{0.008324827}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1570,9 +1574,8 @@ científico, usando a função \texttt{format()}
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{format}\NormalTok{(x, }\DataTypeTok{scientific =} \OtherTok{TRUE}\NormalTok{)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"2.875775e-01"} \StringTok{"7.883051e-01"} \StringTok{"4.089769e-01"} \StringTok{"8.830174e-01"}
-\NormalTok{ [}\DecValTok{5}\NormalTok{] }\StringTok{"9.404673e-01"} \StringTok{"4.555650e-02"} \StringTok{"5.281055e-01"} \StringTok{"8.924190e-01"}
-\NormalTok{ [}\DecValTok{9}\NormalTok{] }\StringTok{"5.514350e-01"} \StringTok{"4.566147e-01"}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\StringTok{"2.875775e-01"} \StringTok{"7.883051e-01"} \StringTok{"4.089769e-01"} \StringTok{"8.830174e-01"} \StringTok{"9.404673e-01"}
+\NormalTok{ [}\DecValTok{6}\NormalTok{] }\StringTok{"4.555650e-02"} \StringTok{"5.281055e-01"} \StringTok{"8.924190e-01"} \StringTok{"5.514350e-01"} \StringTok{"4.566147e-01"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2312,8 +2315,8 @@ caracter e outra lista.
 \NormalTok{lista <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{30}\NormalTok{, }\StringTok{"R"}\NormalTok{, }\KeywordTok{list}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{))}
 \NormalTok{lista}
 \NormalTok{[[}\DecValTok{1}\NormalTok{]]}
-\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10} \DecValTok{11} \DecValTok{12} \DecValTok{13} \DecValTok{14} \DecValTok{15} \DecValTok{16} \DecValTok{17} \DecValTok{18} \DecValTok{19} \DecValTok{20} \DecValTok{21} \DecValTok{22} \DecValTok{23}
-\NormalTok{[}\DecValTok{24}\NormalTok{] }\DecValTok{24} \DecValTok{25} \DecValTok{26} \DecValTok{27} \DecValTok{28} \DecValTok{29} \DecValTok{30}
+\NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{1}  \DecValTok{2}  \DecValTok{3}  \DecValTok{4}  \DecValTok{5}  \DecValTok{6}  \DecValTok{7}  \DecValTok{8}  \DecValTok{9} \DecValTok{10} \DecValTok{11} \DecValTok{12} \DecValTok{13} \DecValTok{14} \DecValTok{15} \DecValTok{16} \DecValTok{17} \DecValTok{18} \DecValTok{19} \DecValTok{20} \DecValTok{21} \DecValTok{22} \DecValTok{23} \DecValTok{24} \DecValTok{25}
+\NormalTok{[}\DecValTok{26}\NormalTok{] }\DecValTok{26} \DecValTok{27} \DecValTok{28} \DecValTok{29} \DecValTok{30}
 
 \NormalTok{[[}\DecValTok{2}\NormalTok{]]}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"R"}
@@ -3223,8 +3226,8 @@ caso os valores retornados são os próprios números:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{mean}\NormalTok{(lis[}\DecValTok{1}\NormalTok{])}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{mean.default}\NormalTok{(lis[}\DecValTok{1}\NormalTok{])}\OperatorTok{:}\StringTok{ }\NormalTok{argument is not numeric or logical}\OperatorTok{:}
-\NormalTok{returning }\OtherTok{NA}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{mean.default}\NormalTok{(lis[}\DecValTok{1}\NormalTok{])}\OperatorTok{:}\StringTok{ }\NormalTok{argument is not numeric or logical}\OperatorTok{:}\StringTok{ }\NormalTok{returning}
+\OtherTok{NA}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\OtherTok{NA}
 \KeywordTok{mean}\NormalTok{(lis[[}\DecValTok{1}\NormalTok{]])}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{5.5}
@@ -5194,28 +5197,8 @@ Ou mesmo imprimir caracteres a partir de um vetor de caracteres:
 \NormalTok{notas <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(url, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
 \NormalTok{## Analisa a estrutura dos dados}
 \KeywordTok{str}\NormalTok{(notas)}
-\StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{30}\NormalTok{ obs. of  }\DecValTok{4}\NormalTok{ variables}\OperatorTok{:}
-\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{nome  }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{30}\NormalTok{ levels }\StringTok{"Aluno_1"}\NormalTok{,}\StringTok{"Aluno_10"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{12} \DecValTok{23} \DecValTok{25} \DecValTok{26} \DecValTok{27} \DecValTok{28} \DecValTok{29} \DecValTok{30} \DecValTok{2}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{prova1}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{8} \DecValTok{2} \DecValTok{9} \DecValTok{1} \DecValTok{7} \DecValTok{10} \DecValTok{1} \DecValTok{5} \DecValTok{5} \DecValTok{10}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{prova2}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{4} \DecValTok{7} \DecValTok{2} \DecValTok{10} \DecValTok{6} \DecValTok{0} \DecValTok{8} \DecValTok{9} \DecValTok{6} \DecValTok{2}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{prova3}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{1} \DecValTok{6} \DecValTok{4} \DecValTok{9} \DecValTok{8} \DecValTok{3} \DecValTok{0} \DecValTok{7} \DecValTok{1} \DecValTok{3}\NormalTok{ ...}
 \KeywordTok{head}\NormalTok{(notas)}
-\NormalTok{     nome prova1 prova2 prova3}
-\DecValTok{1}\NormalTok{ Aluno_}\DecValTok{1}      \DecValTok{8}      \DecValTok{4}      \DecValTok{1}
-\DecValTok{2}\NormalTok{ Aluno_}\DecValTok{2}      \DecValTok{2}      \DecValTok{7}      \DecValTok{6}
-\DecValTok{3}\NormalTok{ Aluno_}\DecValTok{3}      \DecValTok{9}      \DecValTok{2}      \DecValTok{4}
-\DecValTok{4}\NormalTok{ Aluno_}\DecValTok{4}      \DecValTok{1}     \DecValTok{10}      \DecValTok{9}
-\DecValTok{5}\NormalTok{ Aluno_}\DecValTok{5}      \DecValTok{7}      \DecValTok{6}      \DecValTok{8}
-\DecValTok{6}\NormalTok{ Aluno_}\DecValTok{6}     \DecValTok{10}      \DecValTok{0}      \DecValTok{3}
 \KeywordTok{summary}\NormalTok{(notas)}
-\NormalTok{       nome        prova1           prova2           prova3   }
-\NormalTok{ Aluno_}\DecValTok{1} \OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Min.   }\OperatorTok{:}\StringTok{ }\FloatTok{0.000}\NormalTok{   Min.   }\OperatorTok{:}\StringTok{ }\FloatTok{0.000}\NormalTok{   Min.   }\OperatorTok{:}\FloatTok{0.0}  
-\NormalTok{ Aluno_}\DecValTok{10}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   1st Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{2.000}\NormalTok{   1st Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{3.000}\NormalTok{   1st Qu.}\OperatorTok{:}\FloatTok{3.0}  
-\NormalTok{ Aluno_}\DecValTok{11}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Median }\OperatorTok{:}\StringTok{ }\FloatTok{4.000}\NormalTok{   Median }\OperatorTok{:}\StringTok{ }\FloatTok{6.000}\NormalTok{   Median }\OperatorTok{:}\FloatTok{6.5}  
-\NormalTok{ Aluno_}\DecValTok{12}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Mean   }\OperatorTok{:}\StringTok{ }\FloatTok{4.433}\NormalTok{   Mean   }\OperatorTok{:}\StringTok{ }\FloatTok{5.433}\NormalTok{   Mean   }\OperatorTok{:}\FloatTok{5.4}  
-\NormalTok{ Aluno_}\DecValTok{13}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   3rd Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{6.750}\NormalTok{   3rd Qu.}\OperatorTok{:}\StringTok{ }\FloatTok{8.000}\NormalTok{   3rd Qu.}\OperatorTok{:}\FloatTok{8.0}  
-\NormalTok{ Aluno_}\DecValTok{14}\OperatorTok{:}\StringTok{ }\DecValTok{1}\NormalTok{   Max.   }\OperatorTok{:}\FloatTok{10.000}\NormalTok{   Max.   }\OperatorTok{:}\FloatTok{10.000}\NormalTok{   Max.   }\OperatorTok{:}\FloatTok{9.0}  
-\NormalTok{ (Other) }\OperatorTok{:}\DecValTok{24}                                                  
 \end{Highlighting}
 \end{Shaded}
 
@@ -5747,7 +5730,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.079}   \FloatTok{0.000}   \FloatTok{0.079} 
+  \FloatTok{0.077}   \FloatTok{0.000}   \FloatTok{0.077} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5761,7 +5744,7 @@ regra da reciclagem.
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente \(0.079/0.002 = 39.5\)
+regra da reciclagem, o cálculo é aproximadamente \(0.077/0.002 = 38.5\)
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entre o tempo de
 execução das duas formas pode ser muito maior.
@@ -5797,7 +5780,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.077}   \FloatTok{0.000}   \FloatTok{0.076} 
+   \FloatTok{0.08}    \FloatTok{0.00}    \FloatTok{0.08} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5808,12 +5791,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.313}   \FloatTok{0.032}   \FloatTok{0.345} 
+  \FloatTok{0.313}   \FloatTok{0.016}   \FloatTok{0.330} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.345/0.076 = 4.54 vezes. Isso acontece porque,
+forma em aproximadamente 0.33/0.08 = 4.13 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -6080,10 +6063,10 @@ você explicitamente pare a execução com o comando \texttt{break}.
 dados}\label{anuxe1lise-exploratuxf3ria-de-dados}
 
 Nesta sessão vamos ver alguns (mas não todos!) comandos do R para fazer
-uma análise exploratória descritiva de um conjunto de dados.
+uma análise descritiva de um conjunto de dados.
 
 Uma boa forma de iniciar uma análise descritiva adequada é verificar os
-tipos de de variáveis disponíveis. Variáveis podem ser classificadas da
+tipos de variáveis disponíveis. Variáveis podem ser classificadas da
 seguinte forma:
 
 \begin{itemize}
@@ -6110,7 +6093,8 @@ seguinte forma:
   \end{itemize}
 \end{itemize}
 
-e podem ser resumidas por tabelas, gráficos e/ou medidas.
+e podem ser resumidas por tabelas, gráficos e/ou medidas de tendência
+central e dispersão.
 
 \section{\texorpdfstring{O conjunto de dados
 \texttt{milsa}}{O conjunto de dados milsa}}\label{o-conjunto-de-dados-milsa}
@@ -6206,9 +6190,9 @@ O nosso objetivo é, através do R,
 \begin{itemize}
 \tightlist
 \item
-  Entrar com os dados
+  Entrar com os dados;
 \item
-  Fazer uma análise descritiva
+  Fazer uma análise descritiva.
 \end{itemize}
 
 Estes são dados no ``estilo planilha'', com variáveis de diferentes
@@ -6258,7 +6242,7 @@ E para conferir a estrutura dos dados podemos usar algumas funções como:
 \end{Highlighting}
 \end{Shaded}
 
-Podemos classificar todas a svariáveis desse conjunto de dados como:
+Podemos classificar todas as variáveis desse conjunto de dados como:
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
@@ -6307,12 +6291,11 @@ níveis:
 \KeywordTok{class}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"ordered"} \StringTok{"factor"} 
 \NormalTok{milsa}\OperatorTok{$}\NormalTok{Inst}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] 1o Grau  1o Grau  1o Grau  2o Grau  1o Grau  1o Grau  1o Grau }
-\NormalTok{ [}\DecValTok{8}\NormalTok{] 1o Grau  2o Grau  2o Grau  2o Grau  1o Grau  2o Grau  1o Grau }
-\NormalTok{[}\DecValTok{15}\NormalTok{] 2o Grau  2o Grau  2o Grau  1o Grau  Superior 2o Grau  2o Grau }
-\NormalTok{[}\DecValTok{22}\NormalTok{] 2o Grau  1o Grau  Superior 2o Grau  2o Grau  1o Grau  2o Grau }
-\NormalTok{[}\DecValTok{29}\NormalTok{] 2o Grau  2o Grau  Superior 2o Grau  Superior Superior 2o Grau }
-\NormalTok{[}\DecValTok{36}\NormalTok{] Superior}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] 1o Grau  1o Grau  1o Grau  2o Grau  1o Grau  1o Grau  1o Grau  1o Grau }
+\NormalTok{ [}\DecValTok{9}\NormalTok{] 2o Grau  2o Grau  2o Grau  1o Grau  2o Grau  1o Grau  2o Grau  2o Grau }
+\NormalTok{[}\DecValTok{17}\NormalTok{] 2o Grau  1o Grau  Superior 2o Grau  2o Grau  2o Grau  1o Grau  Superior}
+\NormalTok{[}\DecValTok{25}\NormalTok{] 2o Grau  2o Grau  1o Grau  2o Grau  2o Grau  2o Grau  Superior 2o Grau }
+\NormalTok{[}\DecValTok{33}\NormalTok{] Superior Superior 2o Grau  Superior}
 \NormalTok{Levels}\OperatorTok{:}\StringTok{ }\NormalTok{1o Grau }\OperatorTok{<}\StringTok{ }\NormalTok{2o Grau }\OperatorTok{<}\StringTok{ }\NormalTok{Superior}
 \end{Highlighting}
 \end{Shaded}
@@ -6350,8 +6333,8 @@ criação de uma nova variável) poderiam ser facilmente executadas de uma
 \end{Shaded}
 
 Agora que os dados estão prontos podemos começar a análise descritiva. A
-seguir mostramos como fazer análises descritivas uni e bi-variadas.
-Inspecione os comandos mostrados a seguir e os resultados por elas
+seguir mostramos como fazer análises descritivas uni e bivariadas.
+Inspecione os comandos mostrados a seguir e os resultados por eles
 produzidos. Sugerimos ainda que o leitor use o R para reproduzir os
 resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab \&
 Morettin, relacionados com este exemplo. Veja os scripts do livro
@@ -6366,9 +6349,9 @@ variáveis individualmente:
 \tightlist
 \item
   Classificar a variável quanto a seu tipo: qualitativa (nominal ou
-  ordinal) ou quantitativa (discreta ou contínua)
+  ordinal) ou quantitativa (discreta ou contínua).
 \item
-  Obter tabelas, gráficos e/ou medidas que resumam a variável
+  Obter tabelas, gráficos e/ou medidas que resumam a variável.
 \end{itemize}
 
 A partir destes resultados pode-se montar um resumo geral dos dados.
@@ -6423,7 +6406,7 @@ resultado da função \texttt{table()} para gerar os gráficos:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-292-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-293-1} \end{center}
 
 A \emph{moda} de qualquer variável aleatória é definida como o valor
 mais frequente encontrado na amostra. No R não há uma função pronta para
@@ -6474,7 +6457,7 @@ de barras conforme mostrado abaixo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-295-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-296-1} \end{center}
 
 Em alguns casos podemos querer mostrar o gráfico de barras com as barras
 classificadas da menor para a maior, ou vice-versa, independente da
@@ -6492,7 +6475,7 @@ ordenar os valores da tabela e fazer o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-296-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-297-1} \end{center}
 
 Para uma variável ordinal, além da moda podemos também calcular outras
 medidas, tais como a mediana conforme exemplificado a seguir. Note que o
@@ -6560,7 +6543,7 @@ selecionado:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-299-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-300-1} \end{center}
 
 Outra possibilidade seria fazer gráficos de frequências relativas e de
 frequências acumuladas conforme mostrado na
@@ -6576,7 +6559,7 @@ frequências acumuladas conforme mostrado na
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-300-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-301-1} \end{center}
 
 Sendo a variável numérica há uma maior diversidade de medidas
 estatísticas que podem ser calculadas.
@@ -6611,7 +6594,7 @@ mínimo e o máximo.
 \end{Highlighting}
 \end{Shaded}
 
-Passando agora para medidas de dispersão, vejamos como obter máximo e
+Passando agora para medidas de dispersão, vejamos como obter o máximo e
 mínimo, e com isso a amplitude, além da variância, desvio padrão, e
 coeficiente de variação. Também obtemos os quartis para calcular a
 amplitude interquartílica.
@@ -6650,7 +6633,7 @@ amplitude interquartílica.
 \end{Shaded}
 
 Finalmente, podemos usar a função \textbf{genérica} \texttt{summary()}
-para resumir od dados de uma só vez
+para resumir os dados de uma só vez
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6666,12 +6649,12 @@ contínua}\label{variuxe1vel-quantitativa-contuxednua}
 Para concluir os exemplos para análise univariada vamos considerar a
 variável quantitativa contínua \texttt{Salario}.
 
-Para se fazer uma tabela de frequências de uma VA contínua, é preciso
-primeiro agrupar os dados em classes. Nos comandos mostrados a seguir
-verificamos inicialmente os valores máximo e mínimo dos dados, depois
-usamos o critério de Sturges para definir o número de classes. Usamos a
-função \texttt{cut()} para agrupar os dados em classes e finalmente
-obtemos as frequências absolutas e relativas.
+Para se fazer uma tabela de frequências de uma variável contínua, é
+preciso primeiro agrupar os dados em classes. Nos comandos mostrados a
+seguir verificamos inicialmente os valores máximo e mínimo dos dados,
+depois usamos o critério de Sturges para definir o número de classes.
+Usamos a função \texttt{cut()} para agrupar os dados em classes e
+finalmente obtemos as frequências absolutas e relativas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6685,15 +6668,13 @@ obtemos as frequências absolutas e relativas.
 \NormalTok{## Criando as classes com a função cut(), usando os valores mínimos e}
 \NormalTok{## máximos dados em range()}
 \KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{8}\NormalTok{))}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\OperatorTok{<}\OtherTok{NA}\OperatorTok{>}\StringTok{        }\NormalTok{(}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
-\NormalTok{ [}\DecValTok{6}\NormalTok{] (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
-\NormalTok{[}\DecValTok{11}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
-\NormalTok{[}\DecValTok{16}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
-\NormalTok{[}\DecValTok{21}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]  }
-\NormalTok{[}\DecValTok{26}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]  }
-\NormalTok{[}\DecValTok{31}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{]}
-\NormalTok{[}\DecValTok{36}\NormalTok{] (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
-\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{(}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\OperatorTok{<}\OtherTok{NA}\OperatorTok{>}\StringTok{        }\NormalTok{(}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
+\NormalTok{ [}\DecValTok{7}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
+\NormalTok{[}\DecValTok{13}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
+\NormalTok{[}\DecValTok{19}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]  }
+\NormalTok{[}\DecValTok{25}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]  }
+\NormalTok{[}\DecValTok{31}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{(}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6707,15 +6688,13 @@ argumento \texttt{include.lowest\ =\ TRUE},
 \begin{Highlighting}[]
 \KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario, }\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{8}\NormalTok{),}
     \DataTypeTok{include.lowest =} \OtherTok{TRUE}\NormalTok{)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
-\NormalTok{ [}\DecValTok{6}\NormalTok{] [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
-\NormalTok{[}\DecValTok{11}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
-\NormalTok{[}\DecValTok{16}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
-\NormalTok{[}\DecValTok{21}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]  }
-\NormalTok{[}\DecValTok{26}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]  }
-\NormalTok{[}\DecValTok{31}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{]}
-\NormalTok{[}\DecValTok{36}\NormalTok{] (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
-\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{[}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
+\NormalTok{ [}\DecValTok{7}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
+\NormalTok{[}\DecValTok{13}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
+\NormalTok{[}\DecValTok{19}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]  }
+\NormalTok{[}\DecValTok{25}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]  }
+\NormalTok{[}\DecValTok{31}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{]   (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.5}\NormalTok{] (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{[}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{12.3}\NormalTok{,}\DecValTok{15}\NormalTok{] (}\DecValTok{15}\NormalTok{,}\FloatTok{17.8}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.5}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6751,14 +6730,12 @@ tabela com as frequências absolutas e relativas.
 \NormalTok{salario.cut <-}\StringTok{ }\KeywordTok{cut}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Salario,}
                    \DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\FloatTok{3.5}\NormalTok{, }\FloatTok{23.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{8}\NormalTok{))}
 \NormalTok{salario.cut}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{] }
-\NormalTok{ [}\DecValTok{6}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
-\NormalTok{[}\DecValTok{11}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
-\NormalTok{[}\DecValTok{16}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{]}
-\NormalTok{[}\DecValTok{21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{]}
-\NormalTok{[}\DecValTok{26}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{]}
-\NormalTok{[}\DecValTok{31}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{]}
-\NormalTok{[}\DecValTok{36}\NormalTok{] (}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{]}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
+\NormalTok{ [}\DecValTok{7}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
+\NormalTok{[}\DecValTok{13}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{]}
+\NormalTok{[}\DecValTok{19}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{]}
+\NormalTok{[}\DecValTok{25}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{]}
+\NormalTok{[}\DecValTok{31}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{14.9}\NormalTok{,}\FloatTok{17.8}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{] (}\FloatTok{17.8}\NormalTok{,}\FloatTok{20.6}\NormalTok{] (}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{]}
 \DecValTok{7}\NormalTok{ Levels}\OperatorTok{:}\StringTok{ }\NormalTok{(}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{9.21}\NormalTok{,}\FloatTok{12.1}\NormalTok{] (}\FloatTok{12.1}\NormalTok{,}\FloatTok{14.9}\NormalTok{] }\KeywordTok{...}\NormalTok{ (}\FloatTok{20.6}\NormalTok{,}\FloatTok{23.5}\NormalTok{]}
 \NormalTok{## Tabela com as frequencias absolutas por classe}
 \NormalTok{salario.tb <-}\StringTok{ }\KeywordTok{table}\NormalTok{(salario.cut)}
@@ -6789,7 +6766,7 @@ Para fazer um histograma usamos a função \texttt{hist()}, por exemplo,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-307-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-308-1} \end{center}
 
 A função \texttt{hist()} possui vários argumentos para alterar o
 comportamento da saída do gráfico. Por exemplo, com
@@ -6803,7 +6780,7 @@ relativas.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-308-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-309-1} \end{center}
 
 Por padrão, a função \texttt{hist()} calcula automaticamente o número de
 classes e os valores limites de cada classe. No entanto, isto pode ser
@@ -6821,7 +6798,7 @@ funciona dessa forma, recebendo apenas um valor com o número de classes
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-309-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-310-1} \end{center}
 
 Assim como na função \texttt{cut()}, os argumentos
 \texttt{include.lowest} e \texttt{right} são utilizados para controlar a
@@ -6838,7 +6815,7 @@ objeto, podemos ver o seu conteúdo:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-310-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-311-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6892,7 +6869,7 @@ seguinte forma:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-311-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-312-1} \end{center}
 
 Existem também vários argumentos que permitem variações do
 \emph{boxplot}, tais como caixas com tamanho proporcional aos tamanhos
@@ -6905,7 +6882,7 @@ dos grupos (\texttt{varwidth\ =\ TRUE}), e caixas ``acinturadas''
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-312-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-313-1} \end{center}
 
 Ambas opções são úteis quando há mais de um grupo e a comparação entre
 os boxplots é facilitada.
@@ -6984,7 +6961,7 @@ Salienta-se ainda que:
 \item
   As análise mostradas a seguir não esgotam as possibilidades de
   análises envolvendo duas variáveis e devem ser vistas apenas como uma
-  sugestão inicial
+  sugestão inicial.
 \item
   Relações entre duas variáveis devem ser examinadas com cautela pois
   podem ser mascaradas por uma ou mais variáveis adicionais não
@@ -7008,10 +6985,10 @@ chamada \textbf{tabela de cruzamento} ou \textbf{tabela de
 contingência}, e pode ser apresentada de várias formas, conforme
 discutido a seguir.
 
-A forma mais adequada de apresentação vai depender dos objetivos da
-análise e da interpretação desejada para os dados. Inicialmente obtemos
-a tabela de frequências absolutas para o cruzamento das duas variávies,
-usando a função \texttt{table()}. A tabela extendida incluindo os totais
+A forma adequada de apresentação vai depender dos objetivos da análise e
+da interpretação desejada para os dados. Inicialmente obtemos a tabela
+de frequências absolutas para o cruzamento das duas variáveis, usando a
+função \texttt{table()}. A tabela extendida incluindo os totais
 marginais pode ser obtida com a função \texttt{addmargins()}.
 
 \begin{Shaded}
@@ -7038,11 +7015,11 @@ mas aqui existem três possibilidades para as proporções em cada casela:
 \begin{itemize}
 \tightlist
 \item
-  Em relação ao total geral
+  Em relação ao total geral.
 \item
-  Em relação aos totais por linha (\texttt{margin\ =\ 1})
+  Em relação aos totais por linha (\texttt{margin\ =\ 1}).
 \item
-  Em relação aos totais por coluna (\texttt{margin\ =\ 2})
+  Em relação aos totais por coluna (\texttt{margin\ =\ 2}).
 \end{itemize}
 
 \begin{Shaded}
@@ -7085,7 +7062,7 @@ obtenção de gráficos com frequências relativas.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-316-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-317-1} \end{center}
 
 \subsection{\texorpdfstring{Qualitativa \emph{vs}
 quantitativa}{Qualitativa vs quantitativa}}\label{qualitativa-vs-quantitativa}
@@ -7147,7 +7124,7 @@ indicando que a variável \texttt{Salario} é explicada, ou descrita,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-318-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-319-1} \end{center}
 
 Poderíamos ainda fazer gráficos com a variável \texttt{Salario} agrupada
 em classes, e neste caso os gráficos seriam como no caso anterior com
@@ -7277,7 +7254,7 @@ portanto fazemos o gráfico com idade no eixo X. Note que na função
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-322-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-323-1} \end{center}
 
 Para quantificar a associação entre variáveis deste tipo, usamos o
 coeficiente de correlação. A função \texttt{cor()} possui opção para
@@ -7386,9 +7363,9 @@ Dada a função
 \item
   Mostre que está função é uma f.d.p.
 \item
-  Calcule a probabilidade de que \(X > 1\)
+  Calcule a probabilidade de que \(X > 1\).
 \item
-  calcule a probabilidade de que \(0.2 < X < 0.8\)
+  calcule a probabilidade de que \(0.2 < X < 0.8\).
 \end{enumerate}
 
 Para ser f.d.p.~a função não deve ter valores negativos e deve integrar
@@ -7407,7 +7384,7 @@ Para ser f.d.p.~a função não deve ter valores negativos e deve integrar
 A seguir fazemos o gráfico da função. Como a função tem valores
 positivos para \(x\) no intervalo de zero a infinito, temos que definir
 um limite em \(x\) até onde vai o gráfico da função. Vamos achar este
-limite tentando vários valores, conforme mostram os comandos abaixo.
+limite tentando vários valores, conforme mostrado nos comandos abaixo.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7420,9 +7397,9 @@ limite tentando vários valores, conforme mostram os comandos abaixo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-326-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-327-1} \end{center}
 
-Para verificar que a a integral da função é igual a 1 podemos usar a
+Para verificar que a integral da função é igual a 1 podemos usar a
 função \texttt{integrate()}, que efetua integração numérica. A função
 recebe como argumentos o objeto com a função a ser integrada e os
 limites de integração. Neste exemplo o objeto é \texttt{f1} definido
@@ -7436,7 +7413,7 @@ o valor da integral acima, e o erro máximo da aproximação numérica.
 \end{Highlighting}
 \end{Shaded}
 
-Para fazer cálculos pedidos nos itens (b) e (c) lembramos que a
+Para fazer os cálculos pedidos nos itens (b) e (c) lembramos que a
 probabilidade é dada pela área sob a curva da função no intervalo
 pedido. Desta forma as soluções seriam dadas pelas expressões
 
@@ -7470,9 +7447,10 @@ texto.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-328-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-329-1} \end{center}
 
-E para obter as probabilidades pedidas usamos \texttt{integrate()}.
+Oara obter as probabilidades pedidas usamos a função
+\texttt{integrate()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7486,7 +7464,7 @@ E para obter as probabilidades pedidas usamos \texttt{integrate()}.
 \textbf{Exemplo 2}: (Adaptado de Bussab e Morettin, cap. 7 ex. 10)
 
 A demanda diária de arroz em um supermercado, em centenas de quilos, é
-uma VA \(X\) com f.d.p.~dada por
+uma v.a \(X\) com f.d.p.~dada por
 
 \begin{eqnarray}
   f(x) = \left\{ \begin{array}{ll}
@@ -7506,11 +7484,9 @@ uma VA \(X\) com f.d.p.~dada por
 \end{enumerate}
 
 Novamente começamos definindo um objeto do R que contém a função dada
-acima.
-
-Neste caso definimos um vetor do mesmo tamanho do argumento \texttt{x}
-para armazenar os valores de \(f(x)\) e a seguir preenchemos os valores
-deste vetor para cada faixa de valor de \(x\):
+acima. Neste caso definimos um vetor do mesmo tamanho do argumento
+\texttt{x} para armazenar os valores de \(f(x)\) e a seguir preenchemos
+os valores deste vetor para cada faixa de valor de \(x\):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7526,7 +7502,7 @@ deste vetor para cada faixa de valor de \(x\):
 \end{Shaded}
 
 A seguir verificamos que a integral da função é 1 e fazemos o seu
-gráfico mostrado abaixo:
+gráfico conforme mostrado abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7536,7 +7512,7 @@ gráfico mostrado abaixo:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-331-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-332-1} \end{center}
 
 Agora vamos responder às questões levantadas. Na questão (a) pede-se a
 probabilidade de que sejam vendidos mais que 150 kg (1,5 centenas de
@@ -7552,7 +7528,7 @@ abaixo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-332-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-333-1} \end{center}
 
 A integral pode então ser resolvida numericamente com o comando:
 
@@ -7615,6 +7591,74 @@ impossíveis.
     Calcule a probabilidade de encontrar uma pessoa com renda acima de
     4,5 u.m. e indique o resultado no gráfico da distribuição.
   \end{enumerate}
+\item
+  Sabe-se que uma variável aleatória contínua \(X\) é equiprovável no
+  intervalo 10 e 20.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Apresente o gráfico da função densidade de probabilidade.
+  \item
+    Calcule \(P(X < 15)\).
+  \item
+    Calcule \(P(12 \leq X \leq 18)\).
+  \item
+    Calcule \(E(X)\) e \(V(X)\).
+  \end{enumerate}
+\item
+  Dois jogadores se alternam lançando dois dados equilibrados. O jogador
+  A vence o jogo se ocorrer soma 6, enquanto B vencerá se ocorrer 7.
+  Faça um estudo de simulação para responder as seguintes questões:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Se A começa jogando, qual é a sua probabilidade de vitória?
+  \item
+    Qual é a probabilidade do iniciante, escolhido ao acaso, vencer o
+    jogo?
+  \end{enumerate}
+\item
+  A duração, em anos, de uma certa lâmpada especial é uma variável
+  aleatória contínua com densidade dada por: \[
+  f(x) = \left\{ \begin{array}{ll}
+      2 \exp^{-2x} & x \geq 0 \cr
+      0 & x < 0
+    \end{array} \right.
+  \]
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Crie uma função para calcular a função de distribuição acumulado de
+    \(X\).
+  \item
+    Calcule \(P(X > 2)\).
+  \item
+    Calcule \(P(0.5 < X < 1.2)\).
+  \item
+    Calcule \(P(X > 3)\).
+  \item
+    Calcule \(P(X < 3| X > 1)\).
+  \end{enumerate}
+\item
+  (Desafio - Problema da ruína do jogador) Dois jogadores participam de
+  um jogo com uma moeda que tem probabilidade de cara igual a \(p\) e de
+  coroa igual a \(q\), sujeito a \(p+q=1\). O jogador A inicia o jogo
+  com \(i\) fichas e ganha mais uma de B, cada vez que der cara. O
+  jogador B começa com \(N-i\) fichas e, em cada lançamento que resultar
+  coroa, ganha uma ficha de A. Para enfatizar a dependência do número
+  inicial de fichas \(i\), denomine por \(p_{(i)}\) a probabilidade do
+  jogador A ficar com todas as fichas, o que implica na ruína de B.
+  Condicione no resultado do primeiro lançamento da moeda, para
+  estabelecer uma relação de recorrência entre os \(p_{(i)'s}\). Usando
+  \(p_{(0)} = 0\) e \(p_{N} = 1\), mostre via simulação que
+  \(p_{(i)} = \frac{1-(q/p)^i}{1-(q/p)^N}\) para \(p \neq \frac{1}{2}\)
+  e \(p_{(i)} = \frac{i}{N}\) para \(p = \frac{1}{2}\).
 \end{enumerate}
 
 \section{Distribuições de
@@ -7628,17 +7672,17 @@ pelas letras:
 \tightlist
 \item
   \texttt{d} calcula a densidade de probabilidade \(f(x)\) no ponto
-  \(x\)
+  \(x\).
 \item
   \texttt{p} calcula a função de probabilidade acumulada \(F(x)\) no
-  ponto \(x\)
+  ponto \(x\).
 \item
-  \texttt{q} calcula o quantil correspondente a uma dada probabilidade
+  \texttt{q} calcula o quantil correspondente a uma dada probabilidade.
 \item
-  \texttt{r} retira uma amostra aleatória da distribuição
+  \texttt{r} retorna uma amostra aleatória da distribuição.
 \end{itemize}
 
-Para usar os funções deve-se combinar uma das letras acima com uma
+Para usar as funções deve-se combinar uma das letras acima com uma
 abreviatura do nome da distribuição. Por exemplo, para calcular
 probabilidades usamos: \texttt{pnorm()} para normal, \texttt{pexp()}
 para exponencial, \texttt{pbinom()} para binomial, \texttt{ppois()} para
@@ -7662,8 +7706,8 @@ funções assumem a distribuição normal padrão \(N(\mu=0, \sigma^2=1)\).
 \KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.959964}
 \KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\OperatorTok{-}\FloatTok{0.50219235}  \FloatTok{0.13153117} \OperatorTok{-}\FloatTok{0.07891709}  \FloatTok{0.88678481}  \FloatTok{0.11697127}
-\NormalTok{ [}\DecValTok{6}\NormalTok{]  }\FloatTok{0.31863009} \OperatorTok{-}\FloatTok{0.58179068}  \FloatTok{0.71453271} \OperatorTok{-}\FloatTok{0.82525943} \OperatorTok{-}\FloatTok{0.35986213}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\OperatorTok{-}\FloatTok{0.50219235}  \FloatTok{0.13153117} \OperatorTok{-}\FloatTok{0.07891709}  \FloatTok{0.88678481}  \FloatTok{0.11697127}  \FloatTok{0.31863009}
+\NormalTok{ [}\DecValTok{7}\NormalTok{] }\OperatorTok{-}\FloatTok{0.58179068}  \FloatTok{0.71453271} \OperatorTok{-}\FloatTok{0.82525943} \OperatorTok{-}\FloatTok{0.35986213}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7693,7 +7737,7 @@ A função \texttt{pnorm(-1)} calcula a probabilidade \(P(X \leq -1)\). O
 comando \texttt{qnorm(0.975)} calcula o valor de \(a\) tal que
 \(P(X \leq a) = 0.975\). Finalmente, o comando \texttt{rnorm(10)} gera
 uma amostra aleatória de 10 elementos da normal padrão. Note que os
-valores que você obtém rodando este comando podem ser diferentes dos
+valores que você obtêm rodando este comando podem ser diferentes dos
 mostrados acima.
 
 As funções acima possuem argumentos adicionais, para os quais valores
@@ -7710,7 +7754,7 @@ Usamos \texttt{args()} para ver os argumentos de uma função e
 \end{Shaded}
 
 As funções relacionadas à distribuição normal possuem os argumentos
-\texttt{mean} e \texttt{sd} para definir média e desvio padrão da
+\texttt{mean} e \texttt{sd} para definir a média e o desvio padrão da
 distribuição que podem ser modificados como nos exemplos a seguir. Note
 nestes exemplos que os argumentos podem ser passados de diferentes
 formas.
@@ -7751,10 +7795,10 @@ portanto \texttt{help(rnorm)}, \texttt{help(qnorm)},
 \texttt{help(dnorm)} e \texttt{help(pnorm)} irão exibir a mesma
 documentação.
 
-Cálculos de probabilidades usuais, para os quais utilizávamos tabelas
+Cálculos de probabilidades usuais, para os quais utilizavamos tabelas
 estatísticas podem ser facilmente obtidos como no exemplo a seguir.
 
-Seja \(X\) uma VA com distribuição \(N(100, 100)\). Calcular as
+Seja \(X\) uma v.a com distribuição \(N(100, 100)\). Calcular as
 probabilidades:
 
 \begin{itemize}
@@ -7768,8 +7812,8 @@ probabilidades:
 \end{itemize}
 
 Calcule estas probabilidades de forma usual, usando a tabela da normal.
-Depois compare com os resultados fornecidos pelo R. Os comandos do para
-obter as probabilidades pedidas são:
+Depois compare com os resultados fornecidos pelo R. Os comandos do R
+para obter as probabilidades pedidas são:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7812,7 +7856,7 @@ concentra 99,73\% da massa de probabilidade da distribuição normal.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-341-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-342-1} \end{center}
 
 \begin{quote}
 VEJA a página de ajuda da função \texttt{plot.function()} para entender
@@ -7838,7 +7882,7 @@ unimos os pontos \((x,f(x))\) em um gráfico e \((x,F(x))\) no outro.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-342-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-343-1} \end{center}
 
 Note que, alternativamente, os mesmos gráficos poderiam ser produzidos
 com os comandos a seguir, onde fazemos usa da função
@@ -7853,7 +7897,7 @@ com os comandos a seguir, onde fazemos usa da função
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-343-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-344-1} \end{center}
 
 Comandos usuais do R podem ser usados para modificar a aparência dos
 gráficos. Por exemplo, podemos incluir títulos e mudar texto dos eixos
@@ -7864,11 +7908,11 @@ conforme mostrado abaixo.
 \KeywordTok{plot}\NormalTok{(dnorm, }\DataTypeTok{from =} \OperatorTok{-}\DecValTok{3}\NormalTok{, }\DataTypeTok{to =} \DecValTok{3}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Valores de X"}\NormalTok{,}
      \DataTypeTok{ylab =} \StringTok{"Densidade de probabilidade"}\NormalTok{)}
-\KeywordTok{title}\NormalTok{(}\StringTok{"Distribuicão Normal}\CharTok{\textbackslash{}n}\StringTok{X ~ N(100, 64)"}\NormalTok{)}
+\KeywordTok{title}\NormalTok{(}\StringTok{"Distribuicão Normal}\CharTok{\textbackslash{}n}\StringTok{X ~ N(0, 1)"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-344-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-345-1} \end{center}
 
 Os demais comandos abaixo mostram como colocar diferentes densidades em
 um mesmo gráfico, usando o argumento \texttt{add\ =\ TRUE}.
@@ -7883,13 +7927,13 @@ um mesmo gráfico, usando o argumento \texttt{add\ =\ TRUE}.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-345-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-346-1} \end{center}
 
 \subsection{Distribuição Binomial}\label{distribuiuxe7uxe3o-binomial}
 
 Cálculos para a distribuição binomial são implementados combinando as
 letras básicas vistas acima com o termo \texttt{binom}. Vamos primeiro
-investigar argumentos e documentação com \texttt{args()} e
+investigar os argumentos e a documentação com \texttt{args()} e
 \texttt{help()}.
 
 \begin{Shaded}
@@ -7906,29 +7950,30 @@ investigar argumentos e documentação com \texttt{args()} e
 \end{Highlighting}
 \end{Shaded}
 
-Seja \(X\) uma VA com distribuição Binomial, com \(n=10\) e \(p=0.35\).
+Seja \(X\) uma v.a com distribuição binomial, com \(n=10\) e \(p=0.35\).
 Vamos ver os comandos do R para:
 
 \begin{itemize}
 \tightlist
 \item
-  Fazer o gráfico da função de densidade
+  Fazer o gráfico da função de probabilidade.
 \item
-  Idem para a função de probabilidade
+  Idem para a função de distribuição acumulada.
 \item
-  Calcular \(P[X = 7]\)
+  Calcular \(P(X = 7)\).
 \item
-  Calcular \(P[X \leq 7]\)
+  Calcular \(P(X \leq 7)\).
 \item
-  Calcular \(P[X > 7]\)
+  Calcular \(P(X > 7)\).
 \item
-  Calcular \(P[3 < X \leq 6]\)
+  Calcular \(P(3 < X \leq 6)\).
 \end{itemize}
 
 Note que sendo uma distribuição discreta de probabilidades os gráficos
-são diferentes dos obtidos para distribuição normal e os cálculos de
-probabilidades devem considerar as probabilidades nos pontos. Os
-gráficos das funções de densidade e probabilidade são mostrados abaixo.
+são diferentes dos obtidos para a distribuição normal e os cálculos de
+probabilidades devem considerar as probabilidades nos pontos
+específicos. Os gráficos das funções de probabilidade e distribuição são
+mostrados abaixo.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7942,7 +7987,7 @@ gráficos das funções de densidade e probabilidade são mostrados abaixo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-348-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-349-1} \end{center}
 
 As probabilidades pedidas são obtidas com os comandos a seguir.
 
@@ -7975,34 +8020,34 @@ As probabilidades pedidas são obtidas com os comandos a seguir.
 Poisson}\label{distribuiuxe7uxe3o-de-poisson}
 
 \textbf{Definição:} Seja um experimento realizado nas seguintes
-condições: i. As ocorrências são independentes ii. As ocorrências são
-aleatórias iii. A variável aleatória \(X\) é o número de ocorrências de
-um evento \textbf{ao longo de algum intervalo}\} (de tempo ou espaço)
+condições: i. As ocorrências são independentes; ii. As ocorrências são
+aleatórias; iii. A variável aleatória \(X\) é o número de ocorrências de
+um evento \textbf{ao longo de algum intervalo} (de tempo ou espaço);
 
 Denominamos esse experimento de \textbf{processo de Poisson}. Vamos
-associar a V.A. \(X\) o número de ocorrências em um intervalo. Portanto
-\(X\) poderá assumir os valores \(0, 1, \ldots,\) (sem limite superior).
+associar a v.a \(X\) como sendo o número de ocorrências em um intervalo.
+Portanto \(X\) poderá assumir os valores \(0, 1, \ldots,\) (sem limite
+superior).
 
 A distribuição de Poisson é utilizada para descrever a probabilidade do
 \textbf{número de ocorrências} em um \textbf{intervalo contínuo} (de
 tempo ou espaço). No caso da distribuição binomial, a variável de
 interesse era o número de sucessos em um \textbf{intervalo discreto}
 (\(n\) ensaios de Bernoulli). A unidade de medida (tempo ou espaço) é
-uma variável contínua, mas a \emph{variável aleatória}, o \textbf{número
-de ocorrências}\}, é discreta.
+uma variável contínua, mas a \emph{variável aleatória}, \textbf{número
+de ocorrências}, é discreta.
 
-Uma V.A. \(X\) segue o modelo de Poisson se surge a partir de um
-processo de Poisson, e sua \textbf{função de probabilidade}\} for dada
-por
+Uma v.a \(X\) segue o modelo de Poisson se surge a partir de um processo
+de Poisson, e sua \textbf{função de probabilidade} for dada por
 
 \[
-    P[X = x] = \frac{e^{-\mu} \mu^x}{x!}, \quad \quad x = 0, 1, \ldots
+P(X = x) = \frac{e^{-\mu} \mu^x}{x!}, \quad \quad x = 0, 1, \ldots
 \]
 
 onde
 
 \[
-    \mu = \lambda \cdot t
+\mu = \lambda \cdot t
 \]
 
 O parâmetro \(\mu\) indica a taxa de ocorrência (\(\lambda\)) por
@@ -8042,7 +8087,7 @@ valores do parâmetro \(\mu\).
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-350-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-351-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -8175,7 +8220,7 @@ distribuição uniforme discreta com opções de prefixos \(r,d,p\) e \(d\),
 provavelmente devido a sua simplicidade, embora algumas outras funções
 possam ser usadas. Por exemplo para sortear números pode-se usar
 \texttt{sample()}, como no exemplo a seguir onde são sorteados 15
-valores de uma uniforma discreta com valores (inteiros) entre 1 e 10
+valores de uma uniforme discreta com valores (inteiros) entre 1 e 10
 (\(X \sim U_d(1,10)\)).
 
 \begin{Shaded}
@@ -8208,7 +8253,7 @@ Vejamos alguns exemplos:
 \begin{itemize}
 \tightlist
 \item
-  Sorteio de 3 números entre os inteiros de 0 a 20
+  Sorteio de 3 números entre inteiros de 0 a 20.
 \end{itemize}
 
 \begin{Shaded}
@@ -8221,7 +8266,7 @@ Vejamos alguns exemplos:
 \begin{itemize}
 \tightlist
 \item
-  Sorteio de 5 números entre os elementos de um certo vetor \texttt{x}
+  Sorteio de 5 números entre os elementos de um certo vetor \texttt{x}.
 \end{itemize}
 
 \begin{Shaded}
@@ -8236,7 +8281,7 @@ Vejamos alguns exemplos:
 \tightlist
 \item
   Sorteio de 10 números entre os possíveis resultados do lançamento de
-  um dado, com reposição
+  um dado, com reposição.
 \end{itemize}
 
 \begin{Shaded}
@@ -8275,12 +8320,12 @@ funcionamento.
 \subsection{Probabilidades e
 integrais}\label{probabilidades-e-integrais}
 
-A probabilidade de um evento em uma distribuição contínua é uma área sob
-a curva da distribuição. Vamos reforçar esta idéia revisitando um
-exemplo visto na distribuição normal.
+A probabilidade de um evento em uma distribuição contínua é a área sob a
+curva da distribuição. Vamos reforçar esta idéia revisitando um exemplo
+visto na distribuição normal.
 
-Seja \(X\) uma VA com distribuição \(N(100, 100)\). Para calcular a
-probabilidade \(P[X < 95]\) usamos o comando:
+Seja \(X\) uma v.a com distribuição \(N(100, 100)\). Para calcular a
+probabilidade \(P(X < 95)\) usamos o comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8295,7 +8340,7 @@ a função de densidade dada por
 
 \[
 f(x) = \frac{1}{\sigma\sqrt{2 \pi}}\exp \left[ -\frac{1}{2}
-    \left( \frac{x - \mu}{\sigma} \right)^2 \right]
+    \left( \frac{x - \mu}{\sigma} \right)^2 \right].
 \]
 
 Podemos então definir uma função no R para calcular qualquer densidade
@@ -8310,11 +8355,11 @@ em \(x\)
 \end{Shaded}
 
 Para obter o gráfico desta distribuição, usamos o fato que a maior parte
-da função está no intervalo entre a média +/- três desvios padrões,
-portanto entre 70 e 130. Podemos então fazer como nos comandos que se
-seguem. Para marcar no gráfico a área que corresponde a probabilidade
-pedida criamos um polígono com coordenadas \texttt{ax} e \texttt{ay}
-definindo o perímetro desta área.
+da massa da função está no intervalo entre a média +/- três desvios
+padrões, portanto entre 70 e 130. Podemos então fazer como nos comandos
+que se seguem. Para marcar no gráfico a área que corresponde a
+probabilidade pedida criamos um polígono com coordenadas \texttt{ax} e
+\texttt{ay} definindo o perímetro desta área.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8327,7 +8372,7 @@ definindo o perímetro desta área.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-363-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-364-1} \end{center}
 
 Para calcular a área pedida sem usar a função \texttt{pnorm()} podemos
 usar a função de integração numérica. Note que esta função,
@@ -8341,8 +8386,8 @@ numérica.
 \end{Highlighting}
 \end{Shaded}
 
-Portanto para os demais ítens do problema, \(P[90 < X < 110]\), e
-\(P[X > 95]\) fazemos:
+Portanto para os demais ítens do problema, \(P(90 < X < 110)\), e
+\(P(X > 95)\) fazemos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8386,13 +8431,17 @@ tipicamente apresentados em um curso de estatística básica.
   \def\labelenumii{\alph{enumii}.}
   \tightlist
   \item
-    \(P(X \leq 115)\)
+    \(P(X \leq 115)\).
   \item
-    \(P(X \geq 80)\)
+    \(P(X \geq 80)\).
   \item
-    \(P(X \leq 75)\)
+    \(P(X \leq 75)\).
   \item
-    \(P(85 \leq X \leq 110)\) 
+    \(P(85 \leq X \leq 110)\).
+  \item
+    \(P(|X - 90| \leq 10)\).
+  \item
+    O valor de \(a\) tal que \(P(90-a \leq X \leq 90+a) = 0.95\).
   \end{enumerate}
 \item
   Sendo \(X\) uma variável seguindo o modelo Binomial com parâmetros
@@ -8402,9 +8451,17 @@ tipicamente apresentados em um curso de estatística básica.
   \def\labelenumii{\alph{enumii}.}
   \tightlist
   \item
-    \(P(X \geq 14)\)
+    \(P(X \geq 14)\).
   \item
-    \(P(8 < X \leq 10)\) 
+    \(P(8 < X \leq 10)\).
+  \item
+    \(P(X < 2 \; \mbox{ ou } \;\; X \geq 11)\).
+  \item
+    \(P(X \geq 11 \; \mbox{ ou } \;\; X > 13)\).
+  \item
+    \(P(X > 3 \; \mbox{ e } \;\; X < 6)\).
+  \item
+    \(P(X \leq 13 \; | \; X \geq 11)\).
   \end{enumerate}
 \item
   Uma empresa informa que 30\% de suas contas a receber de outras
@@ -8462,17 +8519,1387 @@ tipicamente apresentados em um curso de estatística básica.
   \tightlist
   \item
     da função de densidade de uma variável com distribuição de Poisson
-    com parâmetro \(\lambda = 5\)
+    com parâmetro \(\lambda = 5\).
   \item
-    da densidade de uma variável \(X \sim N(90, 100)\)
+    da densidade de uma variável \(X \sim N(90, 100)\).
   \item
     sobreponha ao gráfico anterior a densidade de uma variável
-    \(Y \sim N(90, 80)\) e outra \(Z \sim N(85, 100)\)
+    \(Y \sim N(90, 80)\) e outra \(Z \sim N(85, 100)\).
   \item
     densidades de distribuições \(\chi^2\) com 1, 2 e 5 graus de
     liberdade.
   \end{enumerate}
 \end{enumerate}
+
+\chapter{Inferência estatística}\label{inferuxeancia-estatuxedstica}
+
+\section{Introdução ao pensamento
+estatístico}\label{introduuxe7uxe3o-ao-pensamento-estatuxedstico}
+
+No contexto de análise e modelagem estatística o analista assume que
+todos os fenômenos aleatórios podem ser representados por distribuições
+de probabilidades, ou seja, um modelo estatístico. Tais distribuições
+são representações de como a variável aleatória deve se comportar na
+população. Em cursos de inferência estatística é usual a frase `'seja X
+uma variável aleatória de uma população normal com média \(\mu\) e
+variância \(\sigma^2\)''. Essa frase exemplifica a forma como o
+estatístico supõe que um certo fenômeno aleatório se comporta na
+população.
+
+Considere o caso de uma pesquisa eleitoral onde potenciais eleitores são
+entrevistados sobre a sua intenção em votar (SUCESSO) ou não votar
+(FRACASSO) em um determinado candidato X. Note que pela estrutura do
+fenômeno aleatório o modelo Bernoulli é um candidato natural para
+modelar o comportamento da variável aleatória `'intenção de voto''.
+Suponha ainda que um conjunto de \(n\) eleitores vão ser entrevistados e
+que a probabilidade de sucesso, ou seja, votar no candidato X seja
+constante para todos os entrevistados e denotada por \(p.\) Nestas
+condições podemos estar interessados na variável aleatória Y que conta o
+número de sucessos (eleitores que vão votar em X) entre \(n\) eleitores.
+Sendo assim, a distribuição de probabilidade de \(Y\) é binomial com
+parâmetros \(n\) e \(p\) e sua função de probabilidade é dada por
+
+\[
+P(Y = y) = P(Y = y) = \binom{n}{y} p^y (1-p)^{n-y}.
+\] Note que esta distribuição é completamente governada pelos valores de
+seus parâmetros, ou seja, \(n\) e \(p\). Em geral \(n\) é fixado e
+conhecido, por outro lado \(p\) é desconhecido. Em termos práticos, o
+valor de \(p\) é o que estamos interessados, uma vez que ele representa
+a proporção populacional de eleitores do candidato \(X\).
+
+Se fossemos capazes de entrevistar todos os elementos da população de
+interesse, poderíamos facilmente calcular a proporção de eleitores de
+\(X\) e plugar no modelo para calcular quaisquer tipos de probabilidades
+de interesse. No entanto na prática, muitas vezes entrevistar todos os
+elementos da população de interesse é impossível ou extremamente
+custoso. Nestas situações o problema que surge é como que baseado apenas
+em uma amostra da população de interesse podemos falar algo sobre toda a
+população. Este é o problema de uma das áreas da estatística chamada de
+inferência estatística.
+
+O objetivo deste texto não é discutir inferência estatística em
+detalhes, mas apenas apresentar as principais ideias e ilustrar a sua
+implementação computacional utilizando o software R. Além disso, uma
+série de procedimentos pré-prontos estão disponíveis em R e devem ser
+apresentados de forma breve, uma vez que as ideias são similares apenas
+adaptadas à situações específicas.
+
+O processo de inferência estatística começa com a especificação de uma
+distribuição de probabilidade para a variável aleatória de interesse.
+Neste caso, vamos definir a variável de interesse como sendo \(Y\) -
+votar no candidato X. Note que esta é uma v.a binária, ou seja,
+apresenta apenas os valores \(0\)-não vai votar no candidato X ou \(1\)
+vai votar no candidato X. Neste caso, podemos especificar que
+\(Y \sim B(p)\), ou seja, \(Y\) segue o modelo de Bernoulli com
+parâmetro \(p\). Importante lembrar que o espaço paramétrico de \(p\)
+neste caso é o intervalo unitário, ou seja, \(p \in (0,1)\).
+
+Uma vez com o modelo especificado precisamos de informações sobre o
+parâmetro populacional de interesse, neste caso \(p\) que representa a
+proporção de eleitores do candidato X. Para obter informações sobre
+\(p\) vamos coletar uma amostra da população de interesse e medir a
+variável de interesse. Neste caso, isso significa simplesmente perguntar
+se o eleitor vai ou não votar no candidato X. Em R podemos facilmente
+simular esta situação prática usando a função \(rbinom()\), conforme
+ilustra o código abaixo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{y}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\DecValTok{0} \DecValTok{1} \DecValTok{0} \DecValTok{1} \DecValTok{1} \DecValTok{0} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+Note que para simular uma amostra nós precisamos especificar o tamanho
+da amostra, neste caso \(n=10\) o número de ensaios Bernoulli neste caso
+apenas \(1\) e a probabilidade de sucesso (proporção populacional). É
+claro que na prática a proporção populacional é desconhecida, mas neste
+caso fixamos um valor para simular observações e o objetivo é apenas
+baseado nas realizações da variável aleatória \textbf{descobrir} ou
+\textbf{inferir} qual é o verdadeiro valor de \(p\). De forma mais geral
+os objetivos da inferência estatística são:
+
+\begin{itemize}
+\tightlist
+\item
+  Estimar \(p\) baseado apenas na amostra (valor pontual)! Pense que
+  deseja-se responder a pergunta: Quanto você acha que é a proporção de
+  eleitores do candidato X na população?
+\item
+  Informar o quanto você acredita no valor estimado (intervalo de
+  confiança).
+\item
+  Decidir sobre possíveis valores de p baseado apenas na amostra. Por
+  exemplo, O candidato X vai ganhar (p \textgreater{} 0,50)?
+\end{itemize}
+
+Interessante notar que até este momento não fizemos nenhuma suposição em
+como as observações foram obtidas. No entanto, se supomos que as
+observações são independentes podemos facilmente obter a distribuição
+conjunta de todas as variáveis aleatórias envolvidas no modelo como o
+produto da distribuição de cada uma. Neste caso, todas as observações
+vêm de uma população Bernoulli com parâmetro \(p\). Assim, a
+distribuição conjunta é dada pelo seguinte produtório
+
+\[
+P(Y = y) = \prod_{i=1}^{n} p^{y_i} (1-p)^{1-y_i} = p^{\sum_{i=1}^n y_i} (1-p)^{n - \sum_{i=1}^n y_i}.
+\] Uma forma alternativa é escrever a distribuição do número de sucessos
+em \(n\) ensaios Bernoulli que é simplesmente uma distribuição binomial
+com parâmetros \(n\) e \(p\), ou seja,
+
+\[
+P(Y = y) = P(Y = y) = \binom{n}{y} p^y (1-p)^{n-y}.
+\] É importante enfatizar que após a amostra ser coletada o número \(y\)
+de sucesso é fixo. Para a nossa amostra, temos \(y = 6\). Lembre-se que
+o \(n\) foi fixado, assim para avaliar a equação acima em algum ponto,
+só precisamos fixar o valor de \(p\).
+
+Agora vamos refletir sobre o que a equação acima está nos fornecendo.
+Suponha que em um primeiro momento você apenas precise decidir se
+\(p = 0.5\) ou \(p = 0.8\). Como poderíamos usar o nosso modelo para
+tomar esta decisão?
+
+Note que podemos calcular qual é a probabilidade de obter \(6\) sucessos
+em \(n\) ensaios supondo que \(p = 0.5\) e também supondo que
+\(p = 0.8\). Vamos fazer estas contas
+
+\[
+P(Y = 6 | p = 0.5) = \binom{10}{6} 0.5^6 (1-0.5)^{10-6} = 0.205.
+\] \[
+P(Y = 6 | p = 0.8) = \binom{10}{6} 0.8^6 (1-0.8)^{10-6} = 0.088.
+\] Em R temos,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbinom}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.2050781}
+\KeywordTok{dbinom}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.8}\NormalTok{)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.08808038}
+\end{Highlighting}
+\end{Shaded}
+
+Baseado apenas nestas probabilidades, é possível observar que a
+probabilidade de observarmos \(6\) sucessos em \(10\) ensaios é mais
+provável quando \(p = 0.5\) do que quando \(p = 0.8\). Neste caso
+podemos concluir que existe mais evidências em favor de \(p=0.5\) do que
+em favor de \(p = 0.8\). Veja que fizemos uma espécie de pensamento
+inverso, observamos \(6\) sucessos e agora estamos pensando, qual é o
+valor de \(p\) mais compatível com esse valor. Além disso, a função de
+probabilidade conjunta vista como uma função do parâmetro ao invés da
+variável aleatória nos fornece exatamente essa noção de compatibilidade,
+ou seja, qual é o valor de \(p\) mais compatível com as minhas
+observações.
+
+Para enfatizar esta idéia vamos rescrever a função acima para enfatizar
+que a quantidade desconhecida agora é \(p\) e não mais \(y\).
+
+\[
+L(p|y) = \binom{n}{y} p^y (1-p)^{n-y}.
+\] A função acima é chamada de \textbf{verossimilhança} e é fundamental
+em todo o processo de inferência estatística. No caso de variáveis
+aleatórias discretas ela nos fornece a probabilidade de observar o que
+realmente foi observado dado um particular valor para o parâmetro de
+interesse. Particularizando para o nosso exemplo temos
+
+\[
+L(p|y) = \binom{10}{6} p^6 (1-p)^{10-6}.
+\] Como dito a função de verossimilhança nos fornece uma medida de
+compatibilidade de um particular valor de \(p\) com a amostra observada.
+Assim, é natural tomarmos como o nosso melhor `'chute'' o valor mais
+compatível com a amostra observada, ou seja, o ponto de máximo da função
+de verossimilhança. Vamos fazer um gráfico para ilustrar esta ideia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{L <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(p, n, y) \{}
+\NormalTok{  out <-}\StringTok{ }\KeywordTok{dbinom}\NormalTok{(y, }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{prob =}\NormalTok{ p)}
+  \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{L}\NormalTok{(x, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{6}\NormalTok{), }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-374-1} \end{center}
+
+Na prática é mais comum trabalhar com o log da verossimilhança por
+conveniência computacional. Isso leva a chamada função de
+log-verossimilhança, cujo gráfico é apresentado abaixo para o nosso
+exemplo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ll <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(p, n, y) \{}
+\NormalTok{  out <-}\StringTok{ }\KeywordTok{dbinom}\NormalTok{(y, }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{prob =}\NormalTok{ p, }\DataTypeTok{log =} \OtherTok{TRUE}\NormalTok{)}
+  \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{ll}\NormalTok{(x, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{6}\NormalTok{), }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.8}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-375-1} \end{center}
+
+Não é dificil mostrar usando ferramentas padrões de cálculo diferencial
+que o ponto de máximo ocorre em \(\hat{p} = y/n\), ou seja, na proporção
+amostral de eleitores do candidato X.
+
+Com essa ideia simples resolvemos o primeiro objetivo da inferência
+estatística que consiste em dizer qual valor achamos razoável para \(p\)
+dado a amostra que coletamos. O próximo objetivo é dizer o quanto
+acreditamos neste valor. Note que uma vez que temos a função de
+verossimilhança ou log-verossmilhança basta olhar para a função para
+responder a tal pergunta. O ponto de máximo é o mais compatível, porém
+valores ao redor do máximo também apresentam uma boa compatibilidade com
+a amostra e portanto são bons candidatos a valor de \(p\). Essa ideia
+pode ser resumida por fazer um corte horizontal na função de
+log-verossimilhança. Assim, todos os pontos acima do corte são bons
+candidatos a verdadeiro valor de \(p\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{ll}\NormalTok{(x, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{6}\NormalTok{), }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.8}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \OperatorTok{-}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-376-1} \end{center}
+
+Entretanto, onde fazer tal corte não é uma tarefa simples e explicar
+como e por que fazer isso em detalhes está fora do escopo deste
+material. Esta é a ideia por traz da definição do que se chama
+popularmente de intervalo de confiança. Uma forma alternativa é fazer um
+gráfico da função de verossimilhança relativa, definida como a
+verossimilhança divida pela verossimilhança no ponto de máximo, \[
+LR(p) = L(p)/L(\hat{p}).
+\]
+
+Neste caso um intervalo pode ser obtido por definir algum valor entre
+\(0\) e \(1\) para obter intervalos não vazios. Por exemplo, podemos
+definir que uma compatibilidade de pelo menos 0.4 com a amostra é
+necessário para que um valor seja parte do intervalo. Ilustrando
+graficamente temos,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LR <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(p, p_hat, n, y) \{}
+\NormalTok{  out <-}\StringTok{ }\KeywordTok{L}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ p, }\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{y =}\NormalTok{ y)}\OperatorTok{/}\KeywordTok{L}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ p_hat, }\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{y =}\NormalTok{ y)}
+  \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{LR}\NormalTok{(x, }\DataTypeTok{p_hat =} \FloatTok{0.6}\NormalTok{, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{6}\NormalTok{), }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \FloatTok{0.4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-377-1} \end{center}
+
+Por fim, o último objetivo da inferência consiste em decidir se um
+determinado valor hipotético para \(p\) é ou não compatível com a
+amostra observada. Note que o valor mais compatível é o máximo da
+verossimilhança, assim para decidir se um valor é ou não compatível com
+a amostra, basta verificar se ele está perto ou longe do valor que tem
+maior compatibilidade. Esta ideia é o que esta por traz do que se chama
+de teste de hipóteses e é ilustrada abaixo.
+
+\begin{center}\includegraphics{figures/unnamed-chunk-378-1} \end{center}
+
+\section{Estimação pontual e intervalos de
+confiança}\label{estimauxe7uxe3o-pontual-e-intervalos-de-confianuxe7a}
+
+O processo de estimação pontual consiste em encontrar um valor ao qual
+chamamos de estimativa do verdadeiro valor do parâmetro, em nosso
+exemplo o parâmetro \(p\) da distribuição Bernoulli. Como discutido
+anteriormente a função de verossimilhança nos fornece uma forma
+intuitiva de obter tal valor que no caso da distribuição de Bernoulli é
+simplesmente a proporção amostral, \(\hat{p} = y/n\).
+
+O próximo passo é encontrar um intervalo de confiança para o parâmetro
+\(p\). Neste texto vamos enfatizar o pensamento frequentista de
+probabilidade para motivar a construção do intervalo de confiança.
+
+Importante salientar que \(Y\) é uma variável aleatória cuja observações
+são denotadas por \(y\). Nossa estimativa de \(p\) é o valor
+\(\hat{p} = y/n\) que é uma função dos valores observados. Agora suponha
+que o experimento seja refeito um número grande vezes. O que vai
+acontecer com \(\hat{p}\)? Vamos fazer um experimento computacional para
+ilustrar esta situação.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(p.hat)), }\DataTypeTok{main =} \StringTok{""}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Proporção observada"}\NormalTok{,}
+     \DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-380-1} \end{center}
+
+A Figura acima mostra que mesmo o verdadeiro valor de \(p\) sendo 0.5
+existe uma probabilidade razoável de observarmos \(\hat{p} = 0.4\) e
+\(\hat{p} = 0.6\) em uma amostra de tamanho 10. Porém, quando nos
+distanciamos de \(0.5\) a probabilidade de observar \(\hat{p}\) mais
+extremos como 0.1 ou 0.9 é pequena. No geral, a incerteza com relação ao
+valor de \(p\) é grande. Para diminuir tal incerteza precisamos ganhar
+mais informações sobre o valor de \(p\) e para isso precisamos de mais
+amostras.
+
+Note que para cada possível amostra coletada o valor de \(\hat{p}\) é
+alterado. Isso é decorrente de \(\hat{p}\) ser também uma função da
+variável aleatória \(Y\). Para enfatizar isso usamos a notação
+\(\hat{p} = Y/n\) e neste caso chamamos \(\hat{p}\) de estimador do
+valor de \(p\). Pensando desta forma \(\hat{p}\) é também uma variável
+aleatória e consequentemente ele deve ter uma distribuição de
+probabilidade que pode ser resumida, por exemplo, usando esperança e
+variância.
+
+A Figura abaixo mostra o efeito do tamanho da amostra sobre a
+distribuição amostral do estimador \(\hat{p}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat.list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\NormalTok{amostra <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{250}\NormalTok{,}\DecValTok{500}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{) \{}
+\NormalTok{  p.hat.list[[j]] <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(amostra[j], }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat.list[[j]][i,] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{  \}}
+\KeywordTok{hist}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{paste}\NormalTok{(}\StringTok{"Amostra"}\NormalTok{, amostra[j]), }
+     \DataTypeTok{ylab =} \StringTok{"Proporção observada"}\NormalTok{,}
+     \DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-381-1} \end{center}
+
+Note que quanto maior a amostra a distribuição amostral fica mais
+concentrada ao redor do verdadeiro valor de \(p\). Isso é decorrente da
+Lei dos grandes números. Além disso, note que a distribuição é muito
+parecida com a distribuição normal, um resultado conhecido como Teorema
+Central do Limite.
+
+A idéia de intervalo de confiança é simplesmente olhar para a
+distribuição amostral e responder a pergunta: Qual o intervalo em que
+\(\hat{p}\) tem uma probabilidade, digamos \((1-\alpha)\) de pertencer?
+
+O valor de \(\alpha\) deve ser especificado e alguns valores populares
+são \(0.05\) e \(0.01\). A Figura abaixo ilustra esta ideia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat.list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\NormalTok{amostra <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) \{}
+\NormalTok{  p.hat.list[[j]] <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(amostra[j], }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat.list[[j]][i,] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{  \}}
+\KeywordTok{hist}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{paste}\NormalTok{(}\StringTok{"Amostra"}\NormalTok{, amostra[j]), }
+     \DataTypeTok{ylab =} \StringTok{"Densidade"}\NormalTok{,}
+     \DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=} \KeywordTok{c}\NormalTok{(}\KeywordTok{quantile}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-382-1} \end{center}
+
+Temos um procedimento bastante simples para obter os limites do
+intervalo de confiança, porém tal procedimento depende de sermos capazes
+de realizar o experimento um número grande de vezes. Na prática só temos
+uma amostra coletada e baseado apenas nesta amostra precisamos inferir
+sobre \(p\). É neste ponto que entra o fato de \(\hat{p}\) ser uma
+variável aleatória. Este fato permite que exploremos sua distribuição
+mesmo sem realizar um grande número de experimentos.
+
+De forma geral obter a distribuição de probabilidade de um estimador não
+é uma tarefa trivial, porém o Teorema Central do Limite nos fornece uma
+boa aproximação, ao menos para grandes amostras. O Teorema Central do
+limite em sua versão mais simples é como segue:
+
+\begin{itemize}
+\tightlist
+\item
+  Teorema Lindeberg-Levy: Seja \(Y_1, \ldots, Y_n\) uma amostra iid com
+  \(E(Y_i) = \mu\) e \(V(Y_i) = \sigma^2 < \infty\). Então,
+  \[ \sqrt{n}\left ( \frac{\bar{Y} - \mu}{\sigma} \right ) \overset{D}{\to} Z \sim N(0,1), \quad \text{para} \quad n \to \infty.\]
+\item
+  Isso significa que, para todo \(y \in \Re\),
+  \[ P(Y_n \leq y) \to \Phi (y) \quad \text{quando} \quad n \to \infty,\]
+  onde \[ \Phi(y) = \int_{-\infty}^y \phi(z) dz \quad \text{e} \quad 
+    \phi(z) = \frac{1}{\sqrt{2\pi}} \exp \left ( -\frac{1}{2} z^2 \right ).\]
+\item
+  Forma alternativa: \(\bar{Y} \sim N(\mu, \sigma^2/n).\)
+\end{itemize}
+
+Particularizando para o nosso exemplo temos que:
+
+\begin{itemize}
+\tightlist
+\item
+  Estimador de máxima verossimilhança \(\hat{p} = \frac{Y}{n}.\)
+\item
+  Usando as propriedades da distribuição binomial, temos
+  \[E(\hat{p}) = E(Y/n) = \frac{1}{n}E(Y) = \frac{np}{n} = p.\]
+  \[Var(\hat{p}) = Var(Y/n) = \frac{1}{n^2}Var(Y) = \frac{np(1-p)}{n^2} = \frac{p(1-p)}{n}.\]
+\item
+  Usando o TLC, temos \[\hat{p} \sim N(p, \frac{p(1-p)}{n}).\]
+\end{itemize}
+
+Vamos fazer uma ilustração computacional deste importante resultado.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat.list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\NormalTok{amostra <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{250}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{) \{}
+\NormalTok{  p.hat.list[[j]] <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(amostra[j], }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat.list[[j]][i,] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{  \}}
+  \KeywordTok{hist}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{paste}\NormalTok{(}\StringTok{"Amostra"}\NormalTok{, amostra[j]), }
+       \DataTypeTok{ylab =} \StringTok{"Densidade"}\NormalTok{, }\DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+  \KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.5}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\FloatTok{0.5}\NormalTok{)}\OperatorTok{/}\NormalTok{amostra[j])), }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-383-1} \end{center}
+
+Agora usando resultados convencionais da distribuição normal podemos
+encontrar os limites do intervalo de confiança. Para o caso binomial o
+intervalo é dado por
+\[\hat{p} \pm Z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}},\] onde
+\(Z_{\alpha/2}\) é o quantil da distribuição normal padrão com
+\(\alpha/2\) probabilidade.
+
+Cálculos similares mostram que para os casos da média de uma
+distribuição normal e Poisson os intervalos ficam dados por:
+
+\begin{itemize}
+\item
+  Intervalo de confiança: Caso Normal
+  \[\hat{\mu} \pm Z_{\alpha/2} \sqrt{\frac{\hat{\sigma}^2}{n}},\] onde
+  \(\hat{\sigma}^2 = \sum_{i=1}^n \frac{(y_i - \hat{\mu})^2}{n-1}\).
+\item
+  Intervalo de confiança: Caso Poisson
+  \[\hat{\lambda} \pm Z_{\alpha/2} \sqrt{\frac{\hat{\lambda}}{n}},\]
+  onde \(\hat{\lambda} = \sum_{i=1}^n \frac{y_i}{n}.\)
+\end{itemize}
+
+O intervalo de confiança deve ser interpretado sempre com muito cuidado.
+A interpretação frequentista é a seguinte: Se o experimento for repetido
+um número \(n\) de vezes e para cada realização obtermos o intervalo de
+confiança, esperamos que \((1-\alpha)\%\) dos intervalos contenham o
+verdadeiro valor do parâmetro. Note que a variável aleatória é o próprio
+intervalo de confiança.
+
+O código abaixo ilustra computacionalmente tal interpretação.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{12}\NormalTok{)}
+\NormalTok{results_wald <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{100}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{  p_hat <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{  v_hat <-}\StringTok{ }\NormalTok{(p_hat}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{p_hat))}\OperatorTok{/}\DecValTok{100}
+\NormalTok{  temp_wald <-}\StringTok{ }\KeywordTok{c}\NormalTok{(p_hat }\OperatorTok{-}\StringTok{  }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(v_hat), p_hat }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(v_hat))}
+\NormalTok{  results_wald[i,] <-}\StringTok{ }\NormalTok{temp_wald}
+\NormalTok{\}}
+
+\NormalTok{## Intervalo Wald}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.30}\NormalTok{,}\FloatTok{0.72}\NormalTok{) }\OperatorTok{~}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{100}\NormalTok{), }\DataTypeTok{type =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ylab =} \KeywordTok{expression}\NormalTok{(p), }\DataTypeTok{xlab =} \StringTok{"Ensaio"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\FloatTok{0.50}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{) \{}
+  \KeywordTok{arrows}\NormalTok{(}\KeywordTok{c}\NormalTok{(i),results_wald[i,}\DecValTok{1}\NormalTok{],}\KeywordTok{c}\NormalTok{(i),results_wald[i,}\DecValTok{2}\NormalTok{],}\DataTypeTok{code=}\DecValTok{3}\NormalTok{,}\DataTypeTok{angle=}\DecValTok{90}\NormalTok{,}\DataTypeTok{length=}\FloatTok{0.03}\NormalTok{,}
+         \DataTypeTok{col=}\KeywordTok{ifelse}\NormalTok{(results_wald[i,}\DecValTok{1}\NormalTok{] }\OperatorTok{>}\StringTok{ }\FloatTok{0.5} \OperatorTok{|}\StringTok{ }\NormalTok{results_wald[i,}\DecValTok{2}\NormalTok{] }\OperatorTok{<}\StringTok{ }\FloatTok{0.5}\NormalTok{, }\StringTok{"darkred"}\NormalTok{,}\StringTok{"lightgray"}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-384-1} \end{center}
+
+\textbf{Exemplo 1} No caso do candidato X suponha que é de interesse
+apresentar uma estimativa intervalar para a proporção de eleitores de X
+na população. Assumindo que a estimativa amostral foi de \(0,60\) (seis
+sucessos em dez ensaios) o intervalo com \(95\%\) de confiança é dado
+por \[
+\hat{p}_I = 0,6 - 1.96\sqrt{0,6(1-0,6)/10} = 0.296 \quad \text{e} \quad \hat{p}_S = 0,6 - 1.96\sqrt{0,6(1-0,6)/10} = 0.904.
+\]
+
+\textbf{Exemplo 2} Num grupo de pacientes, o nível de colesterol é uma
+variável aleatória com distribuição Normal, de média desconhecida e
+variância \(64 (mg/ml)^2\). - Para uma amostra de 46 indivíduos que
+forneceu nível médio de colesterol de 120 \(mg/ml\), construa o
+intervalo de confiança de \(88\%\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{media <-}\StringTok{ }\DecValTok{120}
+\NormalTok{sd <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{64}\NormalTok{)}
+\NormalTok{n <-}\StringTok{ }\DecValTok{46}
+\NormalTok{alpha =}\StringTok{ }\FloatTok{0.12}
+\NormalTok{mu_I <-}\StringTok{ }\NormalTok{media }\OperatorTok{-}\StringTok{ }\KeywordTok{qnorm}\NormalTok{((}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{alpha}\OperatorTok{/}\DecValTok{2}\NormalTok{))}\OperatorTok{*}\NormalTok{sd}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{46}\NormalTok{)}
+\NormalTok{mu_S <-}\StringTok{ }\NormalTok{media }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{((}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{alpha}\OperatorTok{/}\DecValTok{2}\NormalTok{))}\OperatorTok{*}\NormalTok{sd}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{46}\NormalTok{)}
+\KeywordTok{c}\NormalTok{(mu_I, mu_S)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{118.1661} \FloatTok{121.8339}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Exercícios}\label{exercuxedcios-18}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Por analogia a produtos similares, o tempo de reação de um novo
+  medicamento pode ser considerado como tendo distribuição Normal com
+  desvio padrão igual a 2 minutos (a média desconhecida). Vinte
+  pacientes foram sorteados, receberam o medicamento e tiveram seu tempo
+  de reação anotado. Os dados foram os seguintes (em minutos):
+  \(2,9; 3,4; 3,5; 4,1; 4,6; 4,7; 4,5; 3,8; 5,3; 4,9; 4,8; 5,7; 5,8; 5,0; 3,4; 5,9; 6,3; 4,6; 5,5\)
+  e \(6,2\). Obtenha um intervalo de confiança para o tempo médio de
+  reação. Use \(96\%\) de confiança.
+\item
+  Uma amostra de 25 observações de uma Normal \((\mu, 16)\) foi coletada
+  e forneceu uma média amostral de 8. Construa intervalos de confiança
+  com \(80\%\), \(85\%\), \(90\%\) e \(95\%\) de confiança. Comente as
+  diferenças encontradas.
+\item
+  Numa pesquisa com 50 eleitores, o candidato José João obteve \(0,34\)
+  da preferência dos eleitores. Construa, para a confiança de \(94\%\) o
+  intervalo de confiança para a proporção de votos a serem recebidos
+  pelo candidato mencionado.
+\item
+  Considere a seguinte amostra da distribuição de Poisson de parâmetro
+  \(\lambda\). Proponha um estimador pontual e intervalar para
+  \(\lambda\) usando o método de máxima verossimilhança. Implemente seu
+  método em R. Faça um estudo de simulação para ilustrar a distribuição
+  aproximada deste estimador.
+\item
+  O número de atendimentos em um pronto-socorro pode ser modelado por
+  uma distribuição de Poisson de parâmetro \(\lambda\). Suponha que o
+  interesse seja modelar o número de atendimentos por hora e que para um
+  conjunto de \(30\) horas o número de atendimentos por hora foi contado
+  e as observações são mostradas abaixo.
+\end{enumerate}
+
+\begin{verbatim}
+# A tibble: 3 x 1
+  `matrix(y, 3, 10)`[,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] [,10]
+                   <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
+1                      6    11     8     8     9    12     7     9     9     9
+2                     10    13    12    13     8     6    13     9     9     6
+3                      7     4     8     8     5     3    12    16     8     5
+\end{verbatim}
+
+O seu interesse é dimensionar o número de médicos para este pronto
+socorro. Suponha que um médico consegue atender até quatro pessoas em um
+período de uma hora. A politica do hospital especifica que se deve
+manter um contigente de médicos necessários para atender a demanda em
+\(95\%\) dos dias. Especifique quantos médicos devem estar de plantão
+para que a politica do hospital seja respeitada.
+
+\section{Teste de hipótese}\label{teste-de-hipuxf3tese}
+
+O último objetivo da inferência estatística é a construção de testes de
+hipóteses. Uma hipótese é qualquer afirmativa sobre uma propriedade da
+população. Um teste de hipótese é um procedimento para avaliar uma
+afirmativa sobre uma propriedade da população. Em termos estatísticos
+uma hipótese estatística é qualquer afirmativa sobre um parâmetro da
+distribuição de probabilidade.
+
+Voltando ao nosso exemplo do candidato X, podemos estar interessados por
+exemplo em saber se a proporção de votos no candidato X é maior que 0.5,
+o que implicaria que ele ganharia a eleição. Em termos de distribuição
+de probabilidade essa é uma afirmativa acerca do valor do parâmetro
+\(p\). Sendo assim, enunciamos as hipóteses da seguinte forma:
+
+\[H_0: p = \frac{1}{2} \quad vs \quad H_1: p \neq \frac{1}{2}.\] Nesta
+notação \(H_0\) é chamada de hipótese nula. Por outro lado, \(H_1\) é
+chamada de hipótese alternativa.
+
+Para construir um teste de hipótese usamos novamente o pensamento
+frequentista de probabilidade, ou seja, considere que é possível
+realizar o experimento um número indefinido de vezes. Para cada uma
+destas realizações obtemos uma estimativa para o valor de \(p\) digamos
+\(\hat{p}\). Verique quais valores realizados de \(\hat{p}\) são
+\textbf{razoáveis} de ocorrer sob a hipótese nula. No caso da hipótese
+nula ser verdadeira podemos facilmente gerar dados do fenômeno de
+interesse. Neste caso, vamos realizar o experimento \(1000\) vezes e ver
+como se comporta nosso estimador.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{\}}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(p.hat)), }\DataTypeTok{main =} \StringTok{""}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Proporção observada"}\NormalTok{,}
+     \DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-387-1} \end{center}
+
+Veja que mesmo a hipótese nula sendo verdadeira existe uma probabilidade
+não desprezível de observarmos \(8\) eleitores de X em \(10\) eleitores.
+A incerteza associada a decisão no caso de apenas \(10\) observações é
+grande. Para diminuir a incerteza precisamos de mais informação o que
+conseguimos aumentanto a amostra. A Figura abaixo ilustra esta situação
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat.list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\NormalTok{amostra <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{250}\NormalTok{,}\DecValTok{500}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{  p.hat.list[[j]] <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(amostra[j], }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat.list[[j]][i,] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{  \}}
+\KeywordTok{hist}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{paste}\NormalTok{(}\StringTok{"Amostra"}\NormalTok{, amostra[j]), }
+     \DataTypeTok{ylab =} \StringTok{"Proporção observada"}\NormalTok{,}
+     \DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-388-1} \end{center}
+
+O procedimento é bastante intuivo e parecido com a construção de
+intervalos de confiança. No entanto, no caso de teste de hipóteses
+precisamos tomar uma decisão. Sendo assim, a ideia é construir uma
+região de valores para os quais você aceitará (ou não rejeitará) a
+hipótese nula esta região é chamada de região de aceitação ou não
+rejeição de \(H_0\). A Figura abaixo ilustra a construção da região de
+rejeição
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{p.hat.list <-}\StringTok{ }\KeywordTok{list}\NormalTok{()}
+\NormalTok{amostra <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{250}\NormalTok{,}\DecValTok{500}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\FloatTok{2.6}\NormalTok{, }\FloatTok{2.8}\NormalTok{, }\FloatTok{1.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{mgp =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.6}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{  p.hat.list[[j]] <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(amostra[j], }\DataTypeTok{prob =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  p.hat.list[[j]][i,] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{  \}}
+\KeywordTok{hist}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main =} \KeywordTok{paste}\NormalTok{(}\StringTok{"Amostra"}\NormalTok{, amostra[j]), }
+     \DataTypeTok{ylab =} \StringTok{"Proporção observada"}\NormalTok{,}
+     \DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=} \KeywordTok{c}\NormalTok{(}\KeywordTok{quantile}\NormalTok{(p.hat.list[[j]], }\DataTypeTok{probs =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{))), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-389-1} \end{center}
+
+Novamente em termos práticos não temos como repetir o experimento um
+número grande vezes. Assim, recorremos novamente ao Teorema Central do
+Limite e estabelecemos a região critica de forma aproximada usando a
+aproximação Gaussiana. No caso Bernoulli, este procedimento resulta na
+seguinte estatística de teste
+
+\begin{itemize}
+\tightlist
+\item
+  Estatística do teste caso Bernoulli
+\end{itemize}
+
+\[
+Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \sim N(0,1).
+\]
+
+O procedimento aqui descrito em linhas gerais é bastante genérico e
+perfaz toda a estatística. No entanto está fora do escopo deste material
+discutir tais procedimentos em detalhes. Na sequência apresentamos o
+resumo de alguns casos notáveis de testes de hipóteses que aparecem com
+frequência em cursos de estatística básica.
+
+\textbf{Exemplo 1} Considere que seja de interesse verificar se existe
+evidências que o candidato \(X\) vai ganhar as eleições. Em termos
+estatístico isso significa que
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: p = 0.5\) contra \(H_1:p > 0.5.\)
+\end{itemize}
+
+Suponha que adotamos \(5\%\) de significância. Neste caso a região
+crítica é unilateral, e tem a seguinte forma
+\[p_c = 0.5 + 1.64\sqrt{0.25/10} = 0.76.\] Vamos fazer um gráfico da
+região de aceitação e rejeição e verificar onde a proporção amostral
+está localizada para concluir o teste.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.25}\OperatorTok{/}\DecValTok{10}\NormalTok{)), }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }
+      \DataTypeTok{ylab =} \StringTok{"Densidade"}\NormalTok{, }\DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(p)))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \FloatTok{0.5}\OperatorTok{+}\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.95}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.25}\OperatorTok{/}\DecValTok{10}\NormalTok{))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \DecValTok{6}\OperatorTok{/}\DecValTok{10}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-390-1} \end{center}
+
+Lembre-se que a proporção amostral foi de \(0.6\) em \(10\) entrevistas.
+Assim, vemos claramente que não temos evidências para rejeitar \(H_0\).
+Neste caso não temos evidências para dizer que o candidato X irá ganhar
+a eleição.
+
+\begin{itemize}
+\tightlist
+\item
+  Estatística do teste caso Normal
+\end{itemize}
+
+No caso de população Normal, a estatística de teste para testar
+\(H_0:\mu = \mu_0\) contra \(H_1: \mu \neq \mu_0\) com variância
+conhecida \(\sigma^2\) é dada por
+
+\[
+\frac{\hat{y} -  \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)
+\] onde \(\mu_0\) é o valor especificado sob a hipótese nula. Neste caso
+a região crítica para testes bilaterais toma a seguinte forma:
+
+\[
+y_I = \mu_0 - Z_{\alpha/2} \sqrt{\sigma^2 / n}\quad \text{e} \quad y_S = \mu_0 + Z_{\alpha/2} \sqrt{\sigma^2 / n}.
+\]
+
+\textbf{Exemplo 2} (Magalhães e Lima, pg. 252). Um pesquisador deseja
+estudar o efeito de certa substância no tempo de reação de seres vivos a
+um certo tipo de estímulo. Um experimento é desenvolvido com cobaias que
+são inoculadas com a substância e submetidas a um estimulo elétrico, com
+seus tempos de reação (em segundos) anotados. Os seguintes valores foram
+obtidos:
+\(9,1;\quad 9,3;\quad 7,2;\quad 7,5;\quad 13,3;\quad 10,9;\quad 7,2;\quad 9,9;\quad 8,0;\quad 8,6\).
+Admite-se que o tempo de reação segue, em geral o modelo Normal com
+média 8 e desvio padrão \(\sigma = 2\) segundos. O pesquisador
+desconfia, entretanto, que o tempo médio sofre alteração por influência
+da substância. Neste caso as hipóteses de interesse são:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\) as cobais apresentam tempo de reação padrão;
+\item
+  \(H_1:\) as cobais tem o tempo de reação alterado.
+\end{itemize}
+
+Em termos de modelo estatístico, tais hipóteses são traduzidas para
+afirmações acerca do parâmetro \(\mu\).
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: \mu = 8\) contra \(H_1: \mu \neq 8\).
+\end{itemize}
+
+Neste caso a região crítica para \(\alpha = 0,05\) fica dada por
+\[y_I = 8 - 1,96\sqrt{4/10} = 6,76 \quad \text{e} \quad y_S = 8 + 1,96 \sqrt{4/10} = 9,24.\]
+Vamos agora obter a média amostral e concluir o teste.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{9.1}\NormalTok{,}\FloatTok{9.3}\NormalTok{,}\FloatTok{7.2}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{13.3}\NormalTok{,}\FloatTok{10.9}\NormalTok{,}\FloatTok{7.2}\NormalTok{,}\FloatTok{9.9}\NormalTok{,}\FloatTok{8.0}\NormalTok{,}\FloatTok{8.6}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(x)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{9.1}
+\end{Highlighting}
+\end{Shaded}
+
+Ilustrando a região crítica
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =} \DecValTok{8}\NormalTok{, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(}\DecValTok{4}\OperatorTok{/}\DecValTok{10}\NormalTok{)), }\DecValTok{6}\NormalTok{, }\DecValTok{10}\NormalTok{, }
+      \DataTypeTok{ylab =} \StringTok{"Densidade"}\NormalTok{, }\DataTypeTok{xlab =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{hat}\NormalTok{(y)))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{c}\NormalTok{(}\DecValTok{8}\OperatorTok{-}\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{4}\OperatorTok{/}\DecValTok{10}\NormalTok{), }\DecValTok{8}\OperatorTok{+}\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{4}\OperatorTok{/}\DecValTok{10}\NormalTok{) ))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(x), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{figures/unnamed-chunk-392-1} \end{center}
+
+Como o valor observado da média amostral pertence a região de aceitação
+de \(H_0\), aceitamos a hipóteses \(H_0\) ao nível de significância de
+\(5\%\). Em outras palavras, concluímos que o tempo de reação das cobais
+submetidas à substância não é alterado.
+
+\subsection{Teste t (one sample
+t-test)}\label{teste-t-one-sample-t-test}
+
+\begin{itemize}
+\tightlist
+\item
+  Teste t (one sample t-test)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hipóteses:
+    \(H_0: \mu = \mu_0 \quad \times \quad H_1: \mu \neq \mu_0.\)
+  \item
+    Estatística de teste:
+    \(\frac{\bar{y} - \mu_0}{\hat{\sigma}/\sqrt{n}} \sim t_{n-1}.\)
+  \end{itemize}
+\item
+  Suposições: Para o teste ser exato, precisamos
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(Y \sim N(\mu, \sigma^2)\) iid.
+  \item
+    \(\hat{\sigma}^2 = \sum_{i=1}^n (y_i - \bar{y})^2/n-1\).
+  \end{itemize}
+\item
+  Podem ser razoavelmente relaxadas para grandes amostras.
+\item
+  Neste caso a distribuição t não é mais necessária.
+\item
+  Assintóticamente a estatística tem distribuição Normal padrão.
+\end{itemize}
+
+\textbf{Exemplo 3}: (Magalhães e Lima, pg. 259). Deseja-se investigar se
+uma certa moléstia que ataca o rim altera o consumo de oxigênio desse
+orgão. Para indivíduos sadios, admite-se que esse consumo tem
+distribuição Normal com média 12 \(cm^3/min\). Os valores medidos em
+cinco pacientes com a moléstia foram: \(14,4;12,9;15,0;13,7;\) e
+\(13,5\). Qual seria a conclusão, ao nível de 1\(\%\) de significância?
+
+O teste de interesse é
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\) A moléstia não altera a média de consumo renal de oxigênio;
+\item
+  \(H_1:\) Indivíduos portadores da moléstia têm média alterada.
+\end{itemize}
+
+Passando as hipóteses em termos do nosso modelo
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: \mu = 12\) contra \(H_1: \mu \neq 12\).
+\end{itemize}
+
+O R conta com uma função especifica para este teste, conforme mostra o
+código abaixo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{14.4}\NormalTok{,}\FloatTok{12.9}\NormalTok{,}\DecValTok{15}\NormalTok{,}\FloatTok{13.7}\NormalTok{,}\FloatTok{13.5}\NormalTok{)}
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ y, }\DataTypeTok{mu =} \DecValTok{12}\NormalTok{)}
+
+\NormalTok{    One Sample t}\OperatorTok{-}\NormalTok{test}
+
+\NormalTok{data}\OperatorTok{:}\StringTok{  }\NormalTok{y}
+\NormalTok{t =}\StringTok{ }\FloatTok{5.2099}\NormalTok{, df =}\StringTok{ }\DecValTok{4}\NormalTok{, p}\OperatorTok{-}\NormalTok{value =}\StringTok{ }\FloatTok{0.006472}
+\NormalTok{alternative hypothesis}\OperatorTok{:}\StringTok{ }\NormalTok{true mean is not equal to }\DecValTok{12}
+\DecValTok{95}\NormalTok{ percent confidence interval}\OperatorTok{:}
+\StringTok{ }\FloatTok{12.88745} \FloatTok{14.91255}
+\NormalTok{sample estimates}\OperatorTok{:}
+\NormalTok{mean of x }
+     \FloatTok{13.9} 
+\end{Highlighting}
+\end{Shaded}
+
+Neste caso rejeitamos \(H_0\) em favor de \(H_1\). Note que a função
+retorna uma série de informações úteis. Temos o tipo de teste realizado,
+o valor da estatística \(t\) e os graus de liberdade do teste ao lado do
+\(p-valor\). A função já apresenta a conclusão do teste e por reporta o
+intervalo de confiança para a média amostral e a média amostral.
+
+\subsection{Teste t (independent two sample
+t-test)}\label{teste-t-independent-two-sample-t-test}
+
+\begin{itemize}
+\tightlist
+\item
+  Teste t duas populações independentes variâncias iguais (independent
+  two sample t-test)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hipóteses:
+    \(H_0: \mu_1 = \mu_2 \quad \times \quad H_1: \mu_1 \neq \mu_2.\)
+  \item
+    Estatística de teste:
+    \(\frac{\bar{y}_1 - \bar{y}_2}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim t_{n_1 + n_2-2}.\)
+  \item
+    \(s_p = \sqrt{\frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}\)
+    se variâncias assumidas iguais e tamanhos de amostras diferentes.
+  \end{itemize}
+\end{itemize}
+
+\textbf{Exemplo 4} Digitadores são treinados em uma empresa em duas
+turmas distintas. Na primeira, denominada Turma J, utiliza-se um métodos
+japonês de ensino, ao passo que na segunda turma, denominada Turma A,
+utiliza-se um método alemão. Deseja-se comparar os dois métodos e para
+tanto, 16 alunos de cada turma foram escolhidos aleatoriamente e uma
+mesma tarefa foi atribuída a cada um. Ao final do experimento, o tempo
+gasto na realização da tarefa, para cada aluno, foi anotado. No
+processo, dois computadores utilizados pelos alunos selecionados da
+turma J e três da turma A apresentaram problemas que impediram a
+realização da tarefa; o tamanho da amostra foi assim reduzido para 14 e
+13 respectivamente, para as turmas J e A. Os dados são os seguintes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{J <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{14}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{14}\NormalTok{)}
+\NormalTok{A <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{18}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{14}\NormalTok{,}\OtherTok{NA}\NormalTok{)}
+\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{tibble}\NormalTok{(J,A)}
+\CommentTok{# A tibble: 14 x 2}
+\NormalTok{       J     A}
+   \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
+\StringTok{ }\DecValTok{1}    \DecValTok{10}    \DecValTok{15}
+ \DecValTok{2}    \DecValTok{13}    \DecValTok{12}
+ \DecValTok{3}     \DecValTok{9}    \DecValTok{18}
+ \DecValTok{4}    \DecValTok{10}    \DecValTok{16}
+ \DecValTok{5}    \DecValTok{14}    \DecValTok{15}
+ \DecValTok{6}    \DecValTok{13}    \DecValTok{17}
+ \DecValTok{7}    \DecValTok{10}    \DecValTok{17}
+ \DecValTok{8}    \DecValTok{15}    \DecValTok{15}
+ \DecValTok{9}    \DecValTok{12}    \DecValTok{16}
+\DecValTok{10}    \DecValTok{10}    \DecValTok{17}
+\DecValTok{11}     \DecValTok{9}    \DecValTok{11}
+\DecValTok{12}    \DecValTok{10}    \DecValTok{17}
+\DecValTok{13}    \DecValTok{13}    \DecValTok{14}
+\DecValTok{14}    \DecValTok{14}    \OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+Apesar de não conhecidas, as variâncias populacionais são assumidas
+iguais com base em estudos anteriores. Suponha que o interesse é testar
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: \mu_J = \mu_A\) contra \(H_1: \mu_J \neq \mu_A\).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ J, }\DataTypeTok{y =}\NormalTok{ A, }\DataTypeTok{paired =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{    Two Sample t}\OperatorTok{-}\NormalTok{test}
+
+\NormalTok{data}\OperatorTok{:}\StringTok{  }\NormalTok{J and A}
+\NormalTok{t =}\StringTok{ }\OperatorTok{-}\FloatTok{4.7965}\NormalTok{, df =}\StringTok{ }\DecValTok{25}\NormalTok{, p}\OperatorTok{-}\NormalTok{value =}\StringTok{ }\FloatTok{6.313e-05}
+\NormalTok{alternative hypothesis}\OperatorTok{:}\StringTok{ }\NormalTok{true difference }\ControlFlowTok{in}\NormalTok{ means is not equal to }\DecValTok{0}
+\DecValTok{95}\NormalTok{ percent confidence interval}\OperatorTok{:}
+\StringTok{ }\OperatorTok{-}\FloatTok{5.450501} \OperatorTok{-}\FloatTok{2.175872}
+\NormalTok{sample estimates}\OperatorTok{:}
+\NormalTok{mean of x mean of y }
+ \FloatTok{11.57143}  \FloatTok{15.38462} 
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Teste t variância
+diferentes}\label{teste-t-variuxe2ncia-diferentes}
+
+\begin{itemize}
+\tightlist
+\item
+  Teste t duas populações independentes variâncias diferentes
+  (independent two sample t-test)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hipóteses:
+    \(H_0: \mu_1 = \mu_2 \quad \times \quad H_1: \mu_1 \neq \mu_2.\)
+  \item
+    Estatística de teste:
+    \(\frac{\bar{y}_1 - \bar{y}_2}{s_{\delta}} \sim t_{df}.\)
+  \item
+    \(s_{\delta} = \sqrt{\frac{s^1}{n_1} + \frac{s^2}{n_2}}\) se
+    variâncias diferentes e tamanhos de amostras diferentes.
+  \item
+    Graus de liberdade
+    \(df = \frac{\left ( \frac{s^2_1}{n_1} + \frac{s^2_2}{n_2} \right )}{\frac{(s^2_1/n_1)^2}{n_1 - 1} + \frac{(s^2_2/n_2)^2}{n_2 - 1}}.\)
+  \end{itemize}
+\end{itemize}
+
+\textbf{Exemplo 5} Considere o exemplo dos digitadores, porém agora sem
+assumir que as variâncias populacionais são iguais. O teste t neste caso
+pode ser realizado da seguinte forma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ J, }\DataTypeTok{y =}\NormalTok{ A, }\DataTypeTok{paired =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{var.equal =} \OtherTok{FALSE}\NormalTok{)}
+
+\NormalTok{    Welch Two Sample t}\OperatorTok{-}\NormalTok{test}
+
+\NormalTok{data}\OperatorTok{:}\StringTok{  }\NormalTok{J and A}
+\NormalTok{t =}\StringTok{ }\OperatorTok{-}\FloatTok{4.7967}\NormalTok{, df =}\StringTok{ }\FloatTok{24.856}\NormalTok{, p}\OperatorTok{-}\NormalTok{value =}\StringTok{ }\FloatTok{6.399e-05}
+\NormalTok{alternative hypothesis}\OperatorTok{:}\StringTok{ }\NormalTok{true difference }\ControlFlowTok{in}\NormalTok{ means is not equal to }\DecValTok{0}
+\DecValTok{95}\NormalTok{ percent confidence interval}\OperatorTok{:}
+\StringTok{ }\OperatorTok{-}\FloatTok{5.450930} \OperatorTok{-}\FloatTok{2.175444}
+\NormalTok{sample estimates}\OperatorTok{:}
+\NormalTok{mean of x mean of y }
+ \FloatTok{11.57143}  \FloatTok{15.38462} 
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Teste t pareado}\label{teste-t-pareado}
+
+\begin{itemize}
+\tightlist
+\item
+  Teste t duas populações dependentes (paired two sample t-test)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hipóteses: \(H_0: \mu_D = 0 \quad \times \quad H_1: \mu_D \neq 0.\)
+  \item
+    Estatística de teste:
+    \(\frac{\bar{y}_D - 0}{\hat{\sigma}_D/\sqrt{n}} \sim t_{n-1}.\)
+  \item
+    Neste caso, \(\mu_D\) e \(\hat{\sigma}_D\) são a média e o
+    desvio-padrão da diferença entre \(y_1\) e \(y_2\).
+  \end{itemize}
+\end{itemize}
+
+\textbf{Exemplo 6} Uma distribuidora de combustíveis deseja verificar se
+um novo tipo de gasolina é eficaz na revitalização de moteores velhos.
+Com esse objetivo, seleciona 12 automóveis de um mesmo modelo com mais
+de 8 anos de uso e, após regulagem de seus motores, verifica o consumo
+de combustível. Em seguida, o carro é abastecido com o novo tipo de
+combustível durante 15 semanas, e uma nova aferição do consumo é feita.
+Defina as variáveis aleatórias \(X_i\) e \(Y_i\) como o rendimento do
+automóvel \(i\) respectivamente antes e após as 15 semanas. Vemos que
+\(X_i\) e \(Y_i\) foram medidas em uma mesma unidade amostral e, assim,
+é razoável assumir que exista alguma dependência entre elas. Os valores
+observados, em \(km/l\), junto com as diferenças \(D_i = Y_i - X_i\),
+para os 12 automóveis são apresentados na tabela a seguir.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Apos <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{11.6}\NormalTok{,}\FloatTok{8.8}\NormalTok{,}\FloatTok{9.9}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\FloatTok{11.6}\NormalTok{,}\FloatTok{9.1}\NormalTok{,}\FloatTok{10.6}\NormalTok{,}\FloatTok{10.8}\NormalTok{,}\FloatTok{13.4}\NormalTok{,}\FloatTok{10.6}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{11.4}\NormalTok{)}
+\NormalTok{Antes <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{8.1}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{6.8}\NormalTok{,}\FloatTok{7.8}\NormalTok{,}\FloatTok{7.6}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\FloatTok{8.4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\FloatTok{6.8}\NormalTok{)}
+\NormalTok{D <-}\StringTok{ }\NormalTok{Apos }\OperatorTok{-}\StringTok{ }\NormalTok{Antes}
+\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{tibble}\NormalTok{(Apos, Antes, D)}
+\CommentTok{# A tibble: 12 x 3}
+\NormalTok{    Apos Antes     D}
+   \OperatorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}\StringTok{ }\ErrorTok{<}\NormalTok{dbl}\OperatorTok{>}
+\StringTok{ }\DecValTok{1}  \FloatTok{11.6}   \FloatTok{8.1}  \FloatTok{3.5} 
+ \DecValTok{2}   \FloatTok{8.8}   \FloatTok{7.9}  \FloatTok{0.9} 
+ \DecValTok{3}   \FloatTok{9.9}   \FloatTok{6.8}  \FloatTok{3.1} 
+ \DecValTok{4}   \FloatTok{9.5}   \FloatTok{7.8}  \FloatTok{1.7} 
+ \DecValTok{5}  \FloatTok{11.6}   \FloatTok{7.6}  \DecValTok{4}   
+ \DecValTok{6}   \FloatTok{9.1}   \FloatTok{7.9}  \FloatTok{1.20}
+ \DecValTok{7}  \FloatTok{10.6}   \FloatTok{5.7}  \FloatTok{4.90}
+ \DecValTok{8}  \FloatTok{10.8}   \FloatTok{8.4}  \FloatTok{2.4} 
+ \DecValTok{9}  \FloatTok{13.4}   \DecValTok{8}    \FloatTok{5.4} 
+\DecValTok{10}  \FloatTok{10.6}   \FloatTok{9.5}  \FloatTok{1.10}
+\DecValTok{11}  \FloatTok{10.5}   \DecValTok{8}    \FloatTok{2.5} 
+\DecValTok{12}  \FloatTok{11.4}   \FloatTok{6.8}  \FloatTok{4.6} 
+\end{Highlighting}
+\end{Shaded}
+
+Queremos testar as hipóteses - \(H_0:\) \(\mu_D = 0\) (a intervenção não
+produz efeito) - \(H_1:\) \(\mu_D \neq 0\) (a intervenção produz algum
+efeito)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Apos, }\DataTypeTok{y =}\NormalTok{ Antes, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{    Paired t}\OperatorTok{-}\NormalTok{test}
+
+\NormalTok{data}\OperatorTok{:}\StringTok{  }\NormalTok{Apos and Antes}
+\NormalTok{t =}\StringTok{ }\FloatTok{6.5396}\NormalTok{, df =}\StringTok{ }\DecValTok{11}\NormalTok{, p}\OperatorTok{-}\NormalTok{value =}\StringTok{ }\FloatTok{4.195e-05}
+\NormalTok{alternative hypothesis}\OperatorTok{:}\StringTok{ }\NormalTok{true difference }\ControlFlowTok{in}\NormalTok{ means is not equal to }\DecValTok{0}
+\DecValTok{95}\NormalTok{ percent confidence interval}\OperatorTok{:}
+\StringTok{ }\FloatTok{1.951609} \FloatTok{3.931724}
+\NormalTok{sample estimates}\OperatorTok{:}
+\NormalTok{mean of the differences }
+               \FloatTok{2.941667} 
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Teste F}\label{teste-f}
+
+\begin{itemize}
+\tightlist
+\item
+  Teste F para igualdade de variâncias.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Hipóteses:
+    \(H_0: \sigma^2_1 = \sigma^2_2 \quad \times H_1: \sigma^2_1 \neq \sigma^2_2\).
+  \item
+    Estatística de teste:
+    \(F = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1)(n_2-1)}\).
+  \item
+    Suposições \(Y_1 \sim N(\mu_1, \sigma^2_1)\) e
+    \(Y_2 \sim N(\mu_2, \sigma^2_2)\).
+  \item
+    Em geral, este teste é conhecido por ser sensível a suposição de
+    normalidade.
+  \end{itemize}
+\item
+  Se normalidade é duvidosa, use o teste para variâncias diferentes.
+\item
+  Poder e tamanho do teste podem ser altamente sensíveis a suposições.
+\item
+  Para grandes amostras o TCL fornece uma opção robusta a
+  não-normalidade.
+\item
+  \textbf{Regra do dedão} Amostra maior que \(30\) TCL funciona bem!
+\item
+  Mas cuidado!! depende da situação!!
+\end{itemize}
+
+\textbf{Exemplo 7} Sabe-se que em uma região do país a altura média é de
+\(1,68\)m, com variância de \(0,30m^2\). Um pesquisador acredita que a
+alimentação rotineira em uma cidade litorânea, sendo diferente da região
+como um todo, contribui para que as pessoas apresentem alturas mais
+homogêneas, apesar de não alterar a altura média da população da cidade.
+Para verificar sua suspeita, ele coletou um amostra de 31 pessoas e
+obteve a seguinte amostra:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{1.77}\NormalTok{, }\FloatTok{1.72}\NormalTok{, }\FloatTok{2.39}\NormalTok{, }\FloatTok{1.95}\NormalTok{, }\FloatTok{1.69}\NormalTok{, }\FloatTok{1.84}\NormalTok{, }\FloatTok{1.86}\NormalTok{, }\FloatTok{1.57}\NormalTok{, }\FloatTok{1.38}\NormalTok{, }\FloatTok{1.47}\NormalTok{, }\FloatTok{1.94}\NormalTok{, }
+       \FloatTok{1.15}\NormalTok{, }\FloatTok{1.93}\NormalTok{, }\FloatTok{2.18}\NormalTok{, }\FloatTok{1.37}\NormalTok{, }\FloatTok{1.56}\NormalTok{, }\FloatTok{1.28}\NormalTok{, }\FloatTok{1.81}\NormalTok{, }\FloatTok{1.66}\NormalTok{, }\FloatTok{1.99}\NormalTok{, }\FloatTok{2.07}\NormalTok{, }\FloatTok{1.67}\NormalTok{, }
+       \FloatTok{1.40}\NormalTok{, }\FloatTok{1.03}\NormalTok{, }\FloatTok{1.58}\NormalTok{, }\FloatTok{1.99}\NormalTok{, }\FloatTok{1.48}\NormalTok{, }\FloatTok{1.73}\NormalTok{, }\FloatTok{1.44}\NormalTok{, }\FloatTok{1.35}\NormalTok{, }\FloatTok{1.54}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Além disso, coletou um conjunto de 20 observações da população geral.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DataTypeTok{mean =} \FloatTok{1.68}\NormalTok{, }\DataTypeTok{sd =} \FloatTok{0.30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Realize um teste de hipótese para verificar - \(H_0: \sigma^2 = 0,30\)
+contra \(H_1: \sigma^2 < 0,30\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var.test}\NormalTok{(y, x, }\DataTypeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+
+\NormalTok{    F test to compare two variances}
+
+\NormalTok{data}\OperatorTok{:}\StringTok{  }\NormalTok{y and x}
+\NormalTok{F =}\StringTok{ }\FloatTok{1.1044}\NormalTok{, num df =}\StringTok{ }\DecValTok{30}\NormalTok{, denom df =}\StringTok{ }\DecValTok{19}\NormalTok{, p}\OperatorTok{-}\NormalTok{value =}\StringTok{ }\FloatTok{0.5811}
+\NormalTok{alternative hypothesis}\OperatorTok{:}\StringTok{ }\NormalTok{true ratio of variances is less than }\DecValTok{1}
+\DecValTok{95}\NormalTok{ percent confidence interval}\OperatorTok{:}
+\StringTok{ }\FloatTok{0.000000} \FloatTok{2.148239}
+\NormalTok{sample estimates}\OperatorTok{:}
+\NormalTok{ratio of variances }
+           \FloatTok{1.10436} 
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Exercícios}\label{exercuxedcios-19}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Uma empresa de pesquisa de mercado usou uma amostra de indivíduos para
+  avaliar o potencial de compra de determinado produto antes e depois de
+  as pessoas virem um novo comercial de televisão a respeito do produto.
+  As avaliações do potencial de compra basearam-se em uma escala de 0 a
+  10, e os valores mais altos indicavam maior potencial de compra. A
+  hipótese nula declarava que a avaliação média depois seria igual a
+  avaliação média antes. A rejeição dessa hipótese demonstraria que o
+  comercial melhorou a avaliação do potencial médio de compra. Use
+  \(\alpha = 0,05\) e os dados apresentados abaixo para testar a
+  hipótese e comentar o valor do comercial.
+\end{enumerate}
+
+\begin{verbatim}
+# A tibble: 8 x 3
+    ind Depois Antes
+  <int>  <dbl> <dbl>
+1     1      6     5
+2     2      6     4
+3     3      7     7
+4     4      4     3
+5     5      3     5
+6     6      9     8
+7     7      7     5
+8     8      6     6
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Os preços por galçao (3,78 litros) de gasolina para carros de aluguel
+  foram amostrados em oito grandes aeroportos. Os dados relativos às
+  empresas de carros de aluguel Hertz e National são apresentados a
+  seguir
+\end{enumerate}
+
+\begin{verbatim}
+# A tibble: 8 x 3
+  Aero                   Hertz National
+  <chr>                  <dbl>    <dbl>
+1 Boston                  1.55     1.56
+2 Chicago                 1.62     1.59
+3 " Los Angeles"          1.72     1.78
+4 Miami                   1.65     1.49
+5 Nova York (JFK)         1.72     1.51
+6 Nova York (La Guardia)  1.67     1.5 
+7 Orange County           1.68     1.77
+8 Washington              1.52     1.41
+\end{verbatim}
+
+Use \(\alpha = 0,05\) para testar a hipótese de que não há diferença
+entre os preços médios populacionais por galão em relação às duas
+empresas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Na Western University, a média histórica das pontuações nos exames
+  para obtenção de bolsas de estudo correspondente às inscrições feitas
+  por calouros é 900. Presume-se que o desvio padrão histórico da
+  população é \(\sigma = 180\) seja conhecido. Anualmente, o vice-reitor
+  usa uma amostra das inscrições para determinar se a média da pontuação
+  nos exames dos calouros se modificou.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Estabeleça as hipóteses.
+  \item
+    Qual é a estimação pontual e o intervalo de confiança de \(95\%\) da
+    média populacional nos exames se a seguinte amostra de tamanho 50
+    for observada.
+  \end{itemize}
+\end{enumerate}
+
+\begin{verbatim}
+# A tibble: 10 x 1
+   `matrix(x, 10, 5)`[,1]  [,2]  [,3]  [,4]  [,5]
+                    <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1                   799. 1120.  708.  977.  775.
+ 2                   859.  965.  861.  847.  863.
+ 3                  1181.  972.  715. 1061.  672.
+ 4                   913.  920.  769. 1058. 1290.
+ 5                   923.  800.  787. 1048. 1117.
+ 6                  1209. 1222.  596. 1024.  698.
+ 7                   983.  990. 1051. 1000.  827.
+ 8                   672.  546.  928.  889.  816.
+ 9                   776. 1026.  695.  845. 1040.
+10                   820.  815. 1126.  832.  885.
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Realize um teste de hipótese para verificar a suspeita do vice-reitor.
+  Use \(\alpha = 0,05\). Qual é a sua conclusão?
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Mensalmente o governo federal publica uma série de estatísticas sobre
+  o número de pessoas que estão desempregadas e a média de tempo em que
+  estão desempregadas. Em relação a novembro de 1998, o governo divulgou
+  que a duração média nacional de desemprego era 14,6 semanas. O
+  prefeito de Curitiba solicitou um estudo sobre a situação de
+  desemprego na cidade. Uma amostra de 50 habitantes desempregados em
+  Curitiba incluiu dados sobre a idade e o número de semanas em que
+  estavam desempregados. O conjunto de dados é apresentado abaixo:
+\end{enumerate}
+
+\begin{verbatim}
+   Idade.1.10. Semanas.1.10. Idade.11.20. Semanas.11.20. Idade.21.30.
+1           36             9           32              7           30
+2           34             7           47              8           38
+3           34             7           27              8           34
+4           43            11           36              9           30
+5           33            12           37             12           36
+6           43             6           35              9           34
+7           25            13           40              7           35
+8           28            10           47              8           37
+9           36             9           32              4           32
+10          37             4           29              6           30
+   Semanas.21.30. Idade.31.40. Semanas.31.40. Idade.41.50. Semanas.41.50.
+1               7           36             10           32             10
+2               6           41              7           44              5
+3              11           37             14           33              7
+4               5           33             14           28              8
+5              10           41             10           45             11
+6               8           40              6           35             12
+7               9           38              6           41             11
+8               5           36              9           31              9
+9               9           31              6           34             13
+10              6           42              8           30              8
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Use estatísticas descritivas para resumir os dados.
+\item
+  Desenvolva uma estimação por intervalo de confiança de \(95\%\) da
+  média de idade e semanas desempregadas em Curitiba.
+\item
+  Realize um teste de hipótese para determinar se a duração média do
+  desemprego em Curitiba é maior que a duração média nacional de 14,6
+  semanas. Use um nível de confiança de 0,01. Qual a sua conclusão.
+\item
+  Há uma relação entre a idade do individuo desempregado e o número de
+  semanas de desemprego? Explique.
+\end{itemize}
 
 \appendix
 
@@ -9124,30 +10551,30 @@ documento \texttt{.Rmd} em um documento com sintaxe Markdown
 
 \NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{exemplos}\OperatorTok{/}\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{knitr.Rmd}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                      }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..............                                                        }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
 \NormalTok{  ordinary text without R code}
 
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
-\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{415}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{............................                                          }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{451}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................................                            }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
 \NormalTok{  ordinary text without R code}
 
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
-\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{416}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
-\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+\NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{452}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error}
+\ControlFlowTok{in}\NormalTok{ running command}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{exemplos}\OperatorTok{/}\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{knitr.md}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"exemplos/Exemplo1-knitr.md"}
@@ -9184,12 +10611,11 @@ aleatório normal, fazemos
 
 ```r
 (x <- rnorm(30))
- [1] -0.50219235  0.13153117 -0.07891709  0.88678481  0.11697127
- [6]  0.31863009 -0.58179068  0.71453271 -0.82525943 -0.35986213
-[11]  0.08988614  0.09627446 -0.20163395  0.73984050  0.12337950
-[16] -0.02931671 -0.38885425  0.51085626 -0.91381419  2.31029682
-[21] -0.43808998  0.76406062  0.26196129  0.77340460 -0.81437912
-[26] -0.43845057 -0.72022155  0.23094453 -1.15772946  0.24707599
+ [1] -0.50219235  0.13153117 -0.07891709  0.88678481  0.11697127  0.31863009
+ [7] -0.58179068  0.71453271 -0.82525943 -0.35986213  0.08988614  0.09627446
+[13] -0.20163395  0.73984050  0.12337950 -0.02931671 -0.38885425  0.51085626
+[19] -0.91381419  2.31029682 -0.43808998  0.76406062  0.26196129  0.77340460
+[25] -0.81437912 -0.43845057 -0.72022155  0.23094453 -1.15772946  0.24707599
 ```
 
 ## Comentários
@@ -9208,7 +10634,7 @@ hist(x)
 
 
 
-\begin{center}\includegraphics{figures/unnamed-chunk-416-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-452-1} \end{center}
 
 A média de $X$ é 0.029.
 \end{verbatim}
@@ -9294,33 +10720,33 @@ argumento da função é o nome (e local) do arquivo, e o segundo argumento
 
 \NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.Rmd}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                      }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..............                                                        }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
 \NormalTok{  ordinary text without R code}
 
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{............................                                          }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{1}\OperatorTok{-}\DecValTok{2}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................................                            }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
 \NormalTok{  ordinary text without R code}
 
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{3}\OperatorTok{-}\DecValTok{4}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
-\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error}
+\ControlFlowTok{in}\NormalTok{ running command}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpsGVj0u}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str3e276414ab09.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpmKPuzt}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str30b2485f6c6b.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -9372,33 +10798,33 @@ Para renderizar esse aquivo, usamos:
 
 \NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.Rmd}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                      }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..............                                                        }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
 \NormalTok{  ordinary text without R code}
 
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{............................                                          }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{1}\OperatorTok{-}\DecValTok{2}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................................                            }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
 \NormalTok{  ordinary text without R code}
 
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{3}\OperatorTok{-}\DecValTok{4}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}
-\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error}
+\ControlFlowTok{in}\NormalTok{ running command}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpsGVj0u}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str3e276aad975c.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpmKPuzt}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str30b24bf436ba.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -9635,18 +11061,18 @@ Para fazer isso, use a função \texttt{purl()}:
 
 \NormalTok{processing file}\OperatorTok{:}\StringTok{ }\NormalTok{exemplos}\OperatorTok{/}\NormalTok{Exemplo3}\OperatorTok{-}\NormalTok{knitr.Rmd}
 
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\StringTok{                                                                 }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.............                                                    }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{..........................                                       }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.......................................                          }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{....................................................             }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
-  \OperatorTok{|}\StringTok{                                                                       }
-\StringTok{  }\ErrorTok{|}\NormalTok{.................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\StringTok{                                                                      }\ErrorTok{|}\StringTok{   }\DecValTok{0}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..............                                                        }\OperatorTok{|}\StringTok{  }\DecValTok{20}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{............................                                          }\OperatorTok{|}\StringTok{  }\DecValTok{40}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{..........................................                            }\OperatorTok{|}\StringTok{  }\DecValTok{60}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
+  \OperatorTok{|}\StringTok{                                                                            }
+\StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo3}\OperatorTok{-}\NormalTok{knitr.R}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Exemplo3-knitr.R"}
 \end{Highlighting}
@@ -9760,8 +11186,8 @@ a função \texttt{mean()}:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{methods}\NormalTok{(mean)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] mean.Date     mean.default  mean.difftime mean.POSIXct  mean.POSIXlt }
-\NormalTok{[}\DecValTok{6}\NormalTok{] mean.quosure}\OperatorTok{*}
+\NormalTok{[}\DecValTok{1}\NormalTok{] mean.Date        mean.default     mean.difftime    mean.POSIXct    }
+\NormalTok{[}\DecValTok{5}\NormalTok{] mean.POSIXlt     mean.quosure}\OperatorTok{*}\StringTok{    }\NormalTok{mean.vctrs_vctr}\OperatorTok{*}
 \NormalTok{see }\StringTok{'?methods'} \ControlFlowTok{for}\NormalTok{ accessing help and source code}
 \end{Highlighting}
 \end{Shaded}
@@ -9837,7 +11263,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x33fc2d8}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x2cd9938}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9872,7 +11298,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x72e8650}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x6849080}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -9909,8 +11335,8 @@ Agora podemos ver novamente os métodos disponíveis para a função
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{methods}\NormalTok{(mean)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] mean.Date     mean.default  mean.difftime mean.matrix   mean.POSIXct }
-\NormalTok{[}\DecValTok{6}\NormalTok{] mean.POSIXlt  mean.quosure}\OperatorTok{*}
+\NormalTok{[}\DecValTok{1}\NormalTok{] mean.Date        mean.default     mean.difftime    mean.matrix     }
+\NormalTok{[}\DecValTok{5}\NormalTok{] mean.POSIXct     mean.POSIXlt     mean.quosure}\OperatorTok{*}\StringTok{    }\NormalTok{mean.vctrs_vctr}\OperatorTok{*}
 \NormalTok{see }\StringTok{'?methods'} \ControlFlowTok{for}\NormalTok{ accessing help and source code}
 \end{Highlighting}
 \end{Shaded}
