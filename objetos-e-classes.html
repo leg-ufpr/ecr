@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Objetos e classes | Estatística Computacional com R</title>
   <meta name="description" content="2 Objetos e classes | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Objetos e classes | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -957,7 +957,7 @@ matriz
 [<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">5</span>    <span class="dv">8</span>   <span class="dv">11</span>
 [<span class="dv">3</span>,]    <span class="dv">3</span>    <span class="dv">6</span>    <span class="dv">9</span>   <span class="dv">12</span>
 <span class="kw">class</span>(matriz)
-[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span> <span class="st">&quot;array&quot;</span> 
 <span class="kw">typeof</span>(matriz)
 [<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span></code></pre></div>
 <p>Alterando a ordem de preenchimento da matriz (por linhas):</p>
@@ -997,7 +997,7 @@ m
 [<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span>    <span class="dv">5</span>    <span class="dv">7</span>    <span class="dv">9</span>
 [<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span>    <span class="dv">6</span>    <span class="dv">8</span>   <span class="dv">10</span>
 <span class="kw">class</span>(m)
-[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span>
+[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span> <span class="st">&quot;array&quot;</span> 
 <span class="kw">typeof</span>(m)
 [<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span></code></pre></div>
 <div id="operações-matemáticas-em-matrizes" class="section level4">
@@ -1146,8 +1146,8 @@ da
 <p>Veja os detalhes com <code>str()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(da)
 <span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">3</span> obs. of  <span class="dv">3</span> variables<span class="op">:</span>
-<span class="st"> </span><span class="er">$</span><span class="st"> </span>nome <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">3</span> levels <span class="st">&quot;João&quot;</span>,<span class="st">&quot;José&quot;</span>,..<span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>
- <span class="op">$</span><span class="st"> </span>sexo <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;F&quot;</span>,<span class="st">&quot;M&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span>
+<span class="st"> </span><span class="er">$</span><span class="st"> </span>nome <span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;João&quot;</span> <span class="st">&quot;José&quot;</span> <span class="st">&quot;Maria&quot;</span>
+ <span class="op">$</span><span class="st"> </span>sexo <span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;M&quot;</span> <span class="st">&quot;M&quot;</span> <span class="st">&quot;F&quot;</span>
  <span class="op">$</span><span class="st"> </span>idade<span class="op">:</span><span class="st"> </span>num  <span class="dv">32</span> <span class="dv">34</span> <span class="dv">30</span></code></pre></div>
 <p>Note que a função <code>data.frame()</code> converte caracteres para fator automaticamente. Para que isso não aconteça, use o argumento <code>stringsAsFactors = FALSE</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">nome =</span> <span class="kw">c</span>(<span class="st">&quot;João&quot;</span>, <span class="st">&quot;José&quot;</span>, <span class="st">&quot;Maria&quot;</span>),

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Análise exploratória de dados | Estatística Computacional com R</title>
   <meta name="description" content="6 Análise exploratória de dados | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.15.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Análise exploratória de dados | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
@@ -707,13 +707,13 @@ milsa &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(milsa)
 <span class="st">&#39;data.frame&#39;</span><span class="op">:</span><span class="st">   </span><span class="dv">36</span> obs. of  <span class="dv">8</span> variables<span class="op">:</span>
 <span class="st"> </span><span class="er">$</span><span class="st"> </span>Funcionario<span class="op">:</span><span class="st"> </span>int  <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span> <span class="dv">9</span> <span class="dv">10</span> ...
- <span class="op">$</span><span class="st"> </span>Est.civil  <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">2</span> levels <span class="st">&quot;casado&quot;</span>,<span class="st">&quot;solteiro&quot;</span><span class="op">:</span><span class="st"> </span><span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> ...
- <span class="op">$</span><span class="st"> </span>Inst       <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">3</span> levels <span class="st">&quot;1o Grau&quot;</span>,<span class="st">&quot;2o Grau&quot;</span>,..<span class="op">:</span><span class="st"> </span><span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> ...
+ <span class="op">$</span><span class="st"> </span>Est.civil  <span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;solteiro&quot;</span> <span class="st">&quot;casado&quot;</span> <span class="st">&quot;casado&quot;</span> <span class="st">&quot;solteiro&quot;</span> ...
+ <span class="op">$</span><span class="st"> </span>Inst       <span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;1o Grau&quot;</span> <span class="st">&quot;1o Grau&quot;</span> <span class="st">&quot;1o Grau&quot;</span> <span class="st">&quot;2o Grau&quot;</span> ...
  <span class="op">$</span><span class="st"> </span>Filhos     <span class="op">:</span><span class="st"> </span>int  <span class="ot">NA</span> <span class="dv">1</span> <span class="dv">2</span> <span class="ot">NA</span> <span class="ot">NA</span> <span class="dv">0</span> <span class="ot">NA</span> <span class="ot">NA</span> <span class="dv">1</span> <span class="ot">NA</span> ...
  <span class="op">$</span><span class="st"> </span>Salario    <span class="op">:</span><span class="st"> </span>num  <span class="dv">4</span> <span class="fl">4.56</span> <span class="fl">5.25</span> <span class="fl">5.73</span> <span class="fl">6.26</span> <span class="fl">6.66</span> <span class="fl">6.86</span> <span class="fl">7.39</span> <span class="fl">7.59</span> <span class="fl">7.44</span> ...
  <span class="op">$</span><span class="st"> </span>Anos       <span class="op">:</span><span class="st"> </span>int  <span class="dv">26</span> <span class="dv">32</span> <span class="dv">36</span> <span class="dv">20</span> <span class="dv">40</span> <span class="dv">28</span> <span class="dv">41</span> <span class="dv">43</span> <span class="dv">34</span> <span class="dv">23</span> ...
  <span class="op">$</span><span class="st"> </span>Meses      <span class="op">:</span><span class="st"> </span>int  <span class="dv">3</span> <span class="dv">10</span> <span class="dv">5</span> <span class="dv">10</span> <span class="dv">7</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">4</span> <span class="dv">10</span> <span class="dv">6</span> ...
- <span class="op">$</span><span class="st"> </span>Regiao     <span class="op">:</span><span class="st"> </span>Factor w<span class="op">/</span><span class="st"> </span><span class="dv">3</span> levels <span class="st">&quot;capital&quot;</span>,<span class="st">&quot;interior&quot;</span>,..<span class="op">:</span><span class="st"> </span><span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> ...
+ <span class="op">$</span><span class="st"> </span>Regiao     <span class="op">:</span><span class="st"> </span>chr  <span class="st">&quot;interior&quot;</span> <span class="st">&quot;capital&quot;</span> <span class="st">&quot;capital&quot;</span> <span class="st">&quot;outro&quot;</span> ...
 <span class="kw">head</span>(milsa)
   Funcionario Est.civil    Inst Filhos Salario Anos Meses   Regiao
 <span class="dv">1</span>           <span class="dv">1</span>  solteiro 1o Grau     <span class="ot">NA</span>    <span class="fl">4.00</span>   <span class="dv">26</span>     <span class="dv">3</span> interior
@@ -775,7 +775,7 @@ milsa &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)</code>
 </table>
 <p>Como a variável <code>Inst</code> é qualitativa ordinal, podemos indicar para o R que ela deve ser tratada como ordinal. Se observarmos os níveis desse fator:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(milsa<span class="op">$</span>Inst)
-[<span class="dv">1</span>] <span class="st">&quot;1o Grau&quot;</span>  <span class="st">&quot;2o Grau&quot;</span>  <span class="st">&quot;Superior&quot;</span></code></pre></div>
+<span class="ot">NULL</span></code></pre></div>
 <p>já notamos que a ordenação está correta (da esquerda para a direita), pois sabemos que a classificação interna dos níveis é por ordem alfabética, e nesse caso, por coincidência, a ordem já está na sequência correta. Mesmo assim, podemos indicar que este fator é ordinal, usando o argumento <code>ordered</code> da função <code>factor()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">milsa<span class="op">$</span>Inst &lt;-<span class="st"> </span><span class="kw">factor</span>(milsa<span class="op">$</span>Inst, <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Note agora a modificação na classe dessa coluna, e a representação dos níveis:</p>

@@ -153,7 +153,7 @@
 \date{Laboratório de Estatística e Geoinformação (LEG)\\
 Departamento de Estatística (DEST)\\
 Universidade Federal do Paraná (UFPR)\\[2\baselineskip]2018-07-24\\
-Última atualização: 2019-11-13}
+Última atualização: 2020-05-22}
 
 \begin{document}
 \maketitle
@@ -209,9 +209,9 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 13 November, 2019, 21:06
+Friday, 22 May, 2020, 22:57
 ----------------------------------------
-R version 3.6.1 (2017-01-27)
+R version 4.0.0 (2020-04-24)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 16.04.6 LTS
 
@@ -231,17 +231,17 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] rmarkdown_1.17 MASS_7.3-51.4  gdata_2.18.0   knitr_1.26    
+[1] rmarkdown_2.1 MASS_7.3-51.5 gdata_2.18.0  knitr_1.28   
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.3       magrittr_1.5     tidyselect_0.2.5 R6_2.4.1        
- [5] rlang_0.4.1      fansi_0.4.0      stringr_1.4.0    highr_0.8       
- [9] dplyr_0.8.3      tools_3.6.1      rootSolve_1.8.1  xfun_0.11       
-[13] utf8_1.1.4       cli_1.1.0        htmltools_0.4.0  gtools_3.8.1    
-[17] yaml_2.2.0       digest_0.6.22    assertthat_0.2.1 tibble_2.1.3    
-[21] crayon_1.3.4     bookdown_0.15.1  purrr_0.3.3      vctrs_0.2.0     
-[25] zeallot_0.1.0    glue_1.3.1       evaluate_0.14    stringi_1.4.3   
-[29] compiler_3.6.1   pillar_1.4.2     backports_1.1.5  pkgconfig_2.0.3 
+ [1] Rcpp_1.0.4.6      magrittr_1.5      tidyselect_1.1.0  R6_2.4.1         
+ [5] rlang_0.4.6       fansi_0.4.1       stringr_1.4.0     highr_0.8        
+ [9] dplyr_0.8.5       tools_4.0.0       rootSolve_1.8.2.1 xfun_0.14        
+[13] utf8_1.1.4        cli_2.0.2         htmltools_0.4.0   ellipsis_0.3.1   
+[17] gtools_3.8.2      yaml_2.2.1        digest_0.6.25     assertthat_0.2.1 
+[21] tibble_3.0.1      lifecycle_0.2.0   crayon_1.3.4      bookdown_0.19.1  
+[25] purrr_0.3.4       vctrs_0.3.0       glue_1.4.1        evaluate_0.14    
+[29] stringi_1.4.6     pillar_1.4.4      compiler_4.0.0    pkgconfig_2.0.3  
 \end{verbatim}
 
 \part{R básico}\label{part-r-buxe1sico}
@@ -2114,7 +2114,7 @@ Utilizando a função \texttt{matrix()}:
 \NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{5}    \DecValTok{8}   \DecValTok{11}
 \NormalTok{[}\DecValTok{3}\NormalTok{,]    }\DecValTok{3}    \DecValTok{6}    \DecValTok{9}   \DecValTok{12}
 \KeywordTok{class}\NormalTok{(matriz)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"matrix"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"matrix"} \StringTok{"array"} 
 \KeywordTok{typeof}\NormalTok{(matriz)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"integer"}
 \end{Highlighting}
@@ -2185,7 +2185,7 @@ Matrizes também podem ser criadas a partir de vetores adicionando um
 \NormalTok{[}\DecValTok{1}\NormalTok{,]    }\DecValTok{1}    \DecValTok{3}    \DecValTok{5}    \DecValTok{7}    \DecValTok{9}
 \NormalTok{[}\DecValTok{2}\NormalTok{,]    }\DecValTok{2}    \DecValTok{4}    \DecValTok{6}    \DecValTok{8}   \DecValTok{10}
 \KeywordTok{class}\NormalTok{(m)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"matrix"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"matrix"} \StringTok{"array"} 
 \KeywordTok{typeof}\NormalTok{(m)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"integer"}
 \end{Highlighting}
@@ -2430,8 +2430,8 @@ Veja os detalhes com \texttt{str()}
 \begin{Highlighting}[]
 \KeywordTok{str}\NormalTok{(da)}
 \StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{3}\NormalTok{ obs. of  }\DecValTok{3}\NormalTok{ variables}\OperatorTok{:}
-\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{nome }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{ levels }\StringTok{"João"}\NormalTok{,}\StringTok{"José"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{2} \DecValTok{3}
- \OperatorTok{$}\StringTok{ }\NormalTok{sexo }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{2} \DecValTok{1}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{nome }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"João"} \StringTok{"José"} \StringTok{"Maria"}
+ \OperatorTok{$}\StringTok{ }\NormalTok{sexo }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"M"} \StringTok{"M"} \StringTok{"F"}
  \OperatorTok{$}\StringTok{ }\NormalTok{idade}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{32} \DecValTok{34} \DecValTok{30}
 \end{Highlighting}
 \end{Shaded}
@@ -4313,8 +4313,8 @@ o nome das colunas e suas classes:
 \begin{Highlighting}[]
 \KeywordTok{str}\NormalTok{(dados)}
 \StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{156}\NormalTok{ obs. of  }\DecValTok{7}\NormalTok{ variables}\OperatorTok{:}
-\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"azul"}\NormalTok{,}\StringTok{"laranja"}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2}\NormalTok{ ...}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"azul"} \StringTok{"azul"} \StringTok{"azul"} \StringTok{"azul"}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"M"} \StringTok{"M"} \StringTok{"M"} \StringTok{"M"}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{FL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{8.1} \FloatTok{8.8} \FloatTok{9.2} \FloatTok{9.6} \FloatTok{10.8} \FloatTok{11.6} \FloatTok{11.8} \FloatTok{12.3} \FloatTok{12.6} \FloatTok{12.8}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{RW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{6.7} \FloatTok{7.7} \FloatTok{7.8} \FloatTok{7.9} \DecValTok{9} \FloatTok{9.1} \FloatTok{10.5} \DecValTok{11} \DecValTok{10} \FloatTok{10.9}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{CL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{16.1} \FloatTok{18.1} \DecValTok{19} \FloatTok{20.1} \DecValTok{23} \FloatTok{24.5} \FloatTok{25.2} \FloatTok{26.8} \FloatTok{27.7} \FloatTok{27.4}\NormalTok{ ...}
@@ -4463,7 +4463,7 @@ diretamente com
 \KeywordTok{str}\NormalTok{(dados.clip)}
 \StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{3}\NormalTok{ obs. of  }\DecValTok{4}\NormalTok{ variables}\OperatorTok{:}
 \StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{ID   }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{23} \DecValTok{12} \DecValTok{23}
- \OperatorTok{$}\StringTok{ }\NormalTok{Grupo}\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{2} \DecValTok{1}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Grupo}\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"A"} \StringTok{"B"} \StringTok{"A"}
  \OperatorTok{$}\StringTok{ }\NormalTok{Gasto}\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{25.4} \FloatTok{12.3} \FloatTok{19.8}
  \OperatorTok{$}\StringTok{ }\NormalTok{Ano  }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{11} \DecValTok{9} \DecValTok{7}
 \end{Highlighting}
@@ -4494,8 +4494,8 @@ usar
 \NormalTok{## Estrutura}
 \KeywordTok{str}\NormalTok{(dados.xls)}
 \StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{156}\NormalTok{ obs. of  }\DecValTok{7}\NormalTok{ variables}\OperatorTok{:}
-\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"azul"}\NormalTok{,}\StringTok{"laranja"}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2}\NormalTok{ ...}
+\StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{especie}\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"azul"} \StringTok{"azul"} \StringTok{"azul"} \StringTok{"azul"}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{sexo   }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"M"} \StringTok{"M"} \StringTok{"M"} \StringTok{"M"}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{FL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{8.1} \FloatTok{8.8} \FloatTok{9.2} \FloatTok{9.6} \FloatTok{10.8} \FloatTok{11.6} \FloatTok{11.8} \FloatTok{12.3} \FloatTok{12.6} \FloatTok{12.8}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{RW     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{6.7} \FloatTok{7.7} \FloatTok{7.8} \FloatTok{7.9} \DecValTok{9} \FloatTok{9.1} \FloatTok{10.5} \DecValTok{11} \DecValTok{10} \FloatTok{10.9}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{CL     }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\FloatTok{16.1} \FloatTok{18.1} \DecValTok{19} \FloatTok{20.1} \DecValTok{23} \FloatTok{24.5} \FloatTok{25.2} \FloatTok{26.8} \FloatTok{27.7} \FloatTok{27.4}\NormalTok{ ...}
@@ -4895,8 +4895,7 @@ da chamada dessa função:
 \begin{Highlighting}[]
 \NormalTok{da <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{))}
 \KeywordTok{dput}\NormalTok{(da)}
-\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{.Label =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
-\StringTok{"b"}\NormalTok{), }\DataTypeTok{class =} \StringTok{"factor"}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }
+\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }
 \OperatorTok{-}\NormalTok{2L))}
 \end{Highlighting}
 \end{Shaded}
@@ -4922,8 +4921,7 @@ E uma lista:
 \begin{Highlighting}[]
 \NormalTok{la <-}\StringTok{ }\KeywordTok{list}\NormalTok{(da, ma)}
 \KeywordTok{dput}\NormalTok{(la)}
-\KeywordTok{list}\NormalTok{(}\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{.Label =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
-\StringTok{"b"}\NormalTok{), }\DataTypeTok{class =} \StringTok{"factor"}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }
+\KeywordTok{list}\NormalTok{(}\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{B =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }
 \OperatorTok{-}\NormalTok{2L)), }\KeywordTok{structure}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{.Dim =} \KeywordTok{c}\NormalTok{(3L, 3L)))}
 \end{Highlighting}
 \end{Shaded}
@@ -5730,7 +5728,7 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.077}   \FloatTok{0.000}   \FloatTok{0.077} 
+  \FloatTok{0.061}   \FloatTok{0.000}   \FloatTok{0.062} 
 
 \NormalTok{## Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(}
@@ -5738,13 +5736,13 @@ regra da reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.002}   \FloatTok{0.000}   \FloatTok{0.002} 
+  \FloatTok{0.003}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução
 de uma função medido por \texttt{system.time()}, notamos que usando a
-regra da reciclagem, o cálculo é aproximadamente \(0.077/0.002 = 38.5\)
+regra da reciclagem, o cálculo é aproximadamente \(0.062/0.002 = 31\)
 vezes mais rápido. Claramente esse é só um exemplo de um cálculo muito
 simples. Mas em situações mais complexas, a diferença entre o tempo de
 execução das duas formas pode ser muito maior.
@@ -5780,7 +5778,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-   \FloatTok{0.08}    \FloatTok{0.00}    \FloatTok{0.08} 
+  \FloatTok{0.059}   \FloatTok{0.004}   \FloatTok{0.063} 
 
 \NormalTok{## Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(\{}
@@ -5791,12 +5789,12 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.313}   \FloatTok{0.016}   \FloatTok{0.330} 
+  \FloatTok{0.279}   \FloatTok{0.020}   \FloatTok{0.299} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
-forma em aproximadamente 0.33/0.08 = 4.13 vezes. Isso acontece porque,
+forma em aproximadamente 0.299/0.063 = 4.75 vezes. Isso acontece porque,
 da segunda forma, o vetor \texttt{out} precisa ter seu tamanho aumentado
 com um elemento a cada iteração. Para fazer isso, o R precisa encontrar
 um espaço na memória que possa armazenar o objeto maior. É necessário
@@ -6216,13 +6214,13 @@ E para conferir a estrutura dos dados podemos usar algumas funções como:
 \KeywordTok{str}\NormalTok{(milsa)}
 \StringTok{'data.frame'}\OperatorTok{:}\StringTok{   }\DecValTok{36}\NormalTok{ obs. of  }\DecValTok{8}\NormalTok{ variables}\OperatorTok{:}
 \StringTok{ }\ErrorTok{$}\StringTok{ }\NormalTok{Funcionario}\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{1} \DecValTok{2} \DecValTok{3} \DecValTok{4} \DecValTok{5} \DecValTok{6} \DecValTok{7} \DecValTok{8} \DecValTok{9} \DecValTok{10}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{Est.civil  }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{ levels }\StringTok{"casado"}\NormalTok{,}\StringTok{"solteiro"}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{2}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{Inst       }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{ levels }\StringTok{"1o Grau"}\NormalTok{,}\StringTok{"2o Grau"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{2}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Est.civil  }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"solteiro"} \StringTok{"casado"} \StringTok{"casado"} \StringTok{"solteiro"}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Inst       }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"1o Grau"} \StringTok{"1o Grau"} \StringTok{"1o Grau"} \StringTok{"2o Grau"}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{Filhos     }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\OtherTok{NA} \DecValTok{1} \DecValTok{2} \OtherTok{NA} \OtherTok{NA} \DecValTok{0} \OtherTok{NA} \OtherTok{NA} \DecValTok{1} \OtherTok{NA}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{Salario    }\OperatorTok{:}\StringTok{ }\NormalTok{num  }\DecValTok{4} \FloatTok{4.56} \FloatTok{5.25} \FloatTok{5.73} \FloatTok{6.26} \FloatTok{6.66} \FloatTok{6.86} \FloatTok{7.39} \FloatTok{7.59} \FloatTok{7.44}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{Anos       }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{26} \DecValTok{32} \DecValTok{36} \DecValTok{20} \DecValTok{40} \DecValTok{28} \DecValTok{41} \DecValTok{43} \DecValTok{34} \DecValTok{23}\NormalTok{ ...}
  \OperatorTok{$}\StringTok{ }\NormalTok{Meses      }\OperatorTok{:}\StringTok{ }\NormalTok{int  }\DecValTok{3} \DecValTok{10} \DecValTok{5} \DecValTok{10} \DecValTok{7} \DecValTok{0} \DecValTok{0} \DecValTok{4} \DecValTok{10} \DecValTok{6}\NormalTok{ ...}
- \OperatorTok{$}\StringTok{ }\NormalTok{Regiao     }\OperatorTok{:}\StringTok{ }\NormalTok{Factor w}\OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{ levels }\StringTok{"capital"}\NormalTok{,}\StringTok{"interior"}\NormalTok{,..}\OperatorTok{:}\StringTok{ }\DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{3} \DecValTok{3} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{3}\NormalTok{ ...}
+ \OperatorTok{$}\StringTok{ }\NormalTok{Regiao     }\OperatorTok{:}\StringTok{ }\NormalTok{chr  }\StringTok{"interior"} \StringTok{"capital"} \StringTok{"capital"} \StringTok{"outro"}\NormalTok{ ...}
 \KeywordTok{head}\NormalTok{(milsa)}
 \NormalTok{  Funcionario Est.civil    Inst Filhos Salario Anos Meses   Regiao}
 \DecValTok{1}           \DecValTok{1}\NormalTok{  solteiro 1o Grau     }\OtherTok{NA}    \FloatTok{4.00}   \DecValTok{26}     \DecValTok{3}\NormalTok{ interior}
@@ -6267,7 +6265,7 @@ desse fator:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{levels}\NormalTok{(milsa}\OperatorTok{$}\NormalTok{Inst)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"1o Grau"}  \StringTok{"2o Grau"}  \StringTok{"Superior"}
+\OtherTok{NULL}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9783,16 +9781,16 @@ contra \(H_1: \sigma^2 < 0,30\).
 
 \begin{verbatim}
 # A tibble: 8 x 3
-  Aero                   Hertz National
-  <chr>                  <dbl>    <dbl>
-1 Boston                  1.55     1.56
-2 Chicago                 1.62     1.59
-3 " Los Angeles"          1.72     1.78
-4 Miami                   1.65     1.49
-5 Nova York (JFK)         1.72     1.51
-6 Nova York (La Guardia)  1.67     1.5 
-7 Orange County           1.68     1.77
-8 Washington              1.52     1.41
+  Aero                     Hertz National
+  <chr>                    <dbl>    <dbl>
+1 "Boston"                  1.55     1.56
+2 "Chicago"                 1.62     1.59
+3 " Los Angeles"            1.72     1.78
+4 "Miami"                   1.65     1.49
+5 "Nova York (JFK)"         1.72     1.51
+6 "Nova York (La Guardia)"  1.67     1.5 
+7 "Orange County"           1.68     1.77
+8 "Washington"              1.52     1.41
 \end{verbatim}
 
 Use \(\alpha = 0,05\) para testar a hipótese de que não há diferença
@@ -9832,7 +9830,7 @@ empresas.
  4                   913.  920.  769. 1058. 1290.
  5                   923.  800.  787. 1048. 1117.
  6                  1209. 1222.  596. 1024.  698.
- 7                   983.  990. 1051. 1000.  827.
+ 7                   983.  990. 1051.  999.  827.
  8                   672.  546.  928.  889.  816.
  9                   776. 1026.  695.  845. 1040.
 10                   820.  815. 1126.  832.  885.
@@ -10570,8 +10568,8 @@ documento \texttt{.Rmd} em um documento com sintaxe Markdown
   \OperatorTok{|}\StringTok{                                                                            }
 \StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{452}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error}
-\ControlFlowTok{in}\NormalTok{ running command}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(}\StringTok{"pdfcrop"}\NormalTok{, }\KeywordTok{shQuote}\NormalTok{(}\KeywordTok{c}\NormalTok{(x, x)), }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else}
+\StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
 
   \OperatorTok{|}\StringTok{                                                                            }
 \StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
@@ -10739,14 +10737,14 @@ argumento da função é o nome (e local) do arquivo, e o segundo argumento
   \OperatorTok{|}\StringTok{                                                                            }
 \StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{3}\OperatorTok{-}\DecValTok{4}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error}
-\ControlFlowTok{in}\NormalTok{ running command}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(}\StringTok{"pdfcrop"}\NormalTok{, }\KeywordTok{shQuote}\NormalTok{(}\KeywordTok{c}\NormalTok{(x, x)), }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else}
+\StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
 
   \OperatorTok{|}\StringTok{                                                                            }
 \StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpmKPuzt}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str30b2485f6c6b.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo2}\OperatorTok{-}\NormalTok{knitr.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo2}\OperatorTok{-}\NormalTok{knitr.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpS05sFv}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str41c671c5c664.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo2}\OperatorTok{-}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -10817,14 +10815,14 @@ Para renderizar esse aquivo, usamos:
   \OperatorTok{|}\StringTok{                                                                            }
 \StringTok{  }\ErrorTok{|}\NormalTok{........................................................              }\OperatorTok{|}\StringTok{  }\DecValTok{80}\NormalTok{%}
 \NormalTok{label}\OperatorTok{:}\StringTok{ }\NormalTok{unnamed}\OperatorTok{-}\NormalTok{chunk}\OperatorTok{-}\DecValTok{3}\OperatorTok{-}\DecValTok{4}
-\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(cmd, }\DataTypeTok{args =}\NormalTok{ args, }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else} \StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error}
-\ControlFlowTok{in}\NormalTok{ running command}
+\NormalTok{Warning }\ControlFlowTok{in} \KeywordTok{system2}\NormalTok{(}\StringTok{"pdfcrop"}\NormalTok{, }\KeywordTok{shQuote}\NormalTok{(}\KeywordTok{c}\NormalTok{(x, x)), }\DataTypeTok{stdout =} \ControlFlowTok{if}\NormalTok{ (quiet) }\OtherTok{FALSE} \ControlFlowTok{else}
+\StringTok{""}\NormalTok{)}\OperatorTok{:}\StringTok{ }\NormalTok{error }\ControlFlowTok{in}\NormalTok{ running command}
 
   \OperatorTok{|}\StringTok{                                                                            }
 \StringTok{  }\ErrorTok{|}\NormalTok{......................................................................}\OperatorTok{|}\StringTok{ }\DecValTok{100}\NormalTok{%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.knit.md}
-\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpmKPuzt}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str30b24bf436ba.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
+\OperatorTok{/}\NormalTok{usr}\OperatorTok{/}\NormalTok{bin}\OperatorTok{/}\NormalTok{pandoc }\OperatorTok{+}\NormalTok{RTS }\OperatorTok{-}\NormalTok{K512m }\OperatorTok{-}\NormalTok{RTS Exemplo1}\OperatorTok{-}\NormalTok{yaml.utf8.md }\OperatorTok{--}\NormalTok{to html4 }\OperatorTok{--}\NormalTok{from markdown}\OperatorTok{+}\NormalTok{autolink_bare_uris}\OperatorTok{+}\NormalTok{tex_math_single_backslash }\OperatorTok{--}\NormalTok{output Exemplo1}\OperatorTok{-}\NormalTok{yaml.html }\OperatorTok{--}\NormalTok{smart }\OperatorTok{--}\NormalTok{email}\OperatorTok{-}\NormalTok{obfuscation none }\OperatorTok{--}\NormalTok{self}\OperatorTok{-}\NormalTok{contained }\OperatorTok{--}\NormalTok{standalone }\OperatorTok{--}\NormalTok{section}\OperatorTok{-}\NormalTok{divs }\OperatorTok{--}\NormalTok{template }\OperatorTok{/}\NormalTok{home}\OperatorTok{/}\NormalTok{travis}\OperatorTok{/}\NormalTok{R}\OperatorTok{/}\NormalTok{Library}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{/}\NormalTok{rmd}\OperatorTok{/}\NormalTok{h}\OperatorTok{/}\NormalTok{default.html }\OperatorTok{--}\NormalTok{no}\OperatorTok{-}\NormalTok{highlight }\OperatorTok{--}\NormalTok{variable highlightjs=}\DecValTok{1} \OperatorTok{--}\NormalTok{variable }\StringTok{'theme:bootstrap'} \OperatorTok{--}\NormalTok{include}\OperatorTok{-}\ControlFlowTok{in}\OperatorTok{-}\NormalTok{header }\OperatorTok{/}\NormalTok{tmp}\OperatorTok{/}\NormalTok{RtmpS05sFv}\OperatorTok{/}\NormalTok{rmarkdown}\OperatorTok{-}\NormalTok{str41c6667e53cd.html }\OperatorTok{--}\NormalTok{mathjax }\OperatorTok{--}\NormalTok{variable }\StringTok{'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'} 
 
 \NormalTok{Output created}\OperatorTok{:}\StringTok{ }\NormalTok{Exemplo1}\OperatorTok{-}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -11263,7 +11261,7 @@ da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \KeywordTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x2cd9938}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x18fd968}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -11298,7 +11296,7 @@ método específico para vetores numéricos
 \NormalTok{    \}}
     \KeywordTok{.Internal}\NormalTok{(}\KeywordTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x6849080}\OperatorTok{>}
+\OperatorTok{<}\NormalTok{bytecode}\OperatorTok{:}\StringTok{ }\DecValTok{0x57c87b0}\OperatorTok{>}
 \ErrorTok{<}\NormalTok{environment}\OperatorTok{:}\StringTok{ }\NormalTok{namespace}\OperatorTok{:}\NormalTok{base}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
@@ -11347,7 +11345,7 @@ classe \texttt{matrix} para obter o resultado que desejamos
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{class}\NormalTok{(mat)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"matrix"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"matrix"} \StringTok{"array"} 
 \KeywordTok{mean}\NormalTok{(mat)}
 \NormalTok{[}\DecValTok{1}\NormalTok{]  }\FloatTok{0.09544402}  \FloatTok{0.12852087}  \FloatTok{0.06229588} \OperatorTok{-}\FloatTok{0.01993810}  \FloatTok{0.23591872}
 \end{Highlighting}
