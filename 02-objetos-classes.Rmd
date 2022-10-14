@@ -1101,16 +1101,26 @@ Veja os detalhes com `str()`
 str(da)
 ```
 
-Note que a função `data.frame()` converte caracteres para fator
-automaticamente. Para que isso não aconteça, use o argumento
-`stringsAsFactors = FALSE`
+Em versões anteriores a função `data.frame()` convertia caracteres para fator
+automaticamente mas o padrão mudou. Use o argumento `stringsAsFactors` para controlar este comportamento.
 
 ```{r }
 da <- data.frame(nome = c("João", "José", "Maria"),
                  sexo = c("M", "M", "F"),
+                 idade = c(32, 34, 30))
+da 
+str(da)
+
+da <- data.frame(nome = c("João", "José", "Maria"),
+                 sexo = c("M", "M", "F"),
                  idade = c(32, 34, 30),
                  stringsAsFactors = FALSE)
-da
+str(da)
+	
+da <- data.frame(nome = c("João", "José", "Maria"),
+                 sexo = c("M", "M", "F"),
+                 idade = c(32, 34, 30),
+                 stringsAsFactors = TRUE)
 str(da)
 ```
 
