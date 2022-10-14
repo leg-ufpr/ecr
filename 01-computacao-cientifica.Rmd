@@ -77,7 +77,7 @@ Todas as plataformas:
 
 --- John M. Chambers
 
-O R é um dialeto do S e:
+O R é um *dialeto* da linguagem de programação S que inclui:
 
 - *Ambiente* estatístico para análise de dados e produção de gráficos.
 - Uma linguagem de programação completa:
@@ -87,7 +87,8 @@ O R é um dialeto do S e:
 	*Tudo no R é um objeto...*
 
 - Livre distribuição (código-aberto).
-- Mais de 10000 pacotes adicionais.
+- 18732 (em 2022-10-14) pacotes adicionais "oficiais" 
+(disponíveis no repositório [CRAN](https://cran-r.c3sl.ufpr.br/web/packages/index.html)).
 
 Pequeno histórico:
 
@@ -97,9 +98,9 @@ Pequeno histórico:
 - 1996: Versão livre: R desenvolvido por R. Ihaka e R. Gentleman
 (Universidade de Auckland);
 - 1997: R Development Core Team;
-- Hoje: 20 desenvolvedores principais e muitos outros colaboradores em
+- Hoje: desenvolvedores principais (*core team*) e muitos outros colaboradores em
 todo o mundo;
-- Estatísticos, matemáticos e programadores.
+- Estatísticos, matemáticos, programadores e profissionais de formação e atuação em outras áreas.
 
 ### Configuração inicial
 
@@ -179,25 +180,31 @@ Operador | Significado
 `-` | subtração
 `*` | multiplicação
 `/` | divisão
-`^` | potência
-`exp()` | exponencial
+`^` ou `**` | potência
 `sqrt()` | raíz quadrada
-`factorial()` | fatorial
+`exp()` | exponencial
 `log()`; `log2()`; `log10()` | logaritmos
+`factorial()` | fatorial
 
 ### Ordens de execução
 
 As operações são realizadas sempre seguindo as prioridades:
 
 1. De dentro para fora de parênteses `()`.
-2. Multiplicação e divisão.
-3. Adição e subtração.
+2. Potência e radiciação.
+3. Multiplicação e divisão.
+4. Adição e subtração.
 
 ```{r, prompt=TRUE, comment=NA}
 5 * 2 - 10 + 7
 5 * 2 - (10 + 7)
 5 * (2 - 10 + 7)
 5 * (2 - (10 + 7))
+2*3^2
+2*3**2
+3*sqrt(9**2)
+exp(1)
+log2(16)
 ```
 
 ### Exercícios {-}
