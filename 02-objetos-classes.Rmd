@@ -1282,9 +1282,9 @@ matrizes e data frames.
   - Caso possua, dizer o número de animais (caso contrário, colocar 0)
 
   Para criar o data frame, a primeira linha deve ser preenchida com as
-  suas próprias informação (use a função `data.frame()`). Depois, pergunte
-  essas mesmas informações para dois colegas ao seu lado, e adicione as
-  informações deles à esse data frame (use `rbind()`). Acresente mais uma
+  suas próprias respostas (use a função `data.frame()`). Depois, pergunte
+  essas mesmas questões para dois colegas ao seu lado, e adicione as
+  respostas deles à esse data frame (use `rbind()`). Acresente mais uma
   coluna com o nome do time de futebol de cada um.
 
 
