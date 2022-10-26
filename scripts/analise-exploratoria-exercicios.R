@@ -93,7 +93,7 @@ apply(USArrests[, crimes], 2, quantile)
 ## 3. Encontre o número máximo e mínimo para cada crime.
 apply(USArrests[, crimes], 2, range)
 apply(USArrests[, crimes], 2,
-      function(x) c(Min = min(x), Max = max(x))
+      function(x) c(Min = min(x), Max = max(x)))
 
 ## 4. Faça um gráfico adequado para o número de assassinatos
 ## (`Murder`).
