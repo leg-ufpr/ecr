@@ -37,7 +37,7 @@ jobs:
         sudo apt-get install -y libcurl4-openssl-dev
         sudo apt-get install -y texlive texlive-base texlive-latex-base \
           texlive-latex-extra texlive-latex-recommended texlive-science \
-          texlive-fonts-recommended texlive-lang-portuguese
+          texlive-fonts-recommended texlive-fonts-extra texlive-lang-portuguese
         # sudo apt-get install -y jags
 
     - name: Cache packages
