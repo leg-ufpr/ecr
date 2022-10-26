@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Documentos dinâmicos | Estatística Computacional com R</title>
   <meta name="description" content="A Documentos dinâmicos | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.19.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Documentos dinâmicos | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -36,7 +35,8 @@
   
 <link rel="prev" href="inferência-estatística.html"/>
 <link rel="next" href="programação-orientada-a-objetos.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -52,7 +52,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66454501-6"></script>
 <script>
@@ -65,41 +67,91 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -114,17 +166,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-quem-este-material-é-destinado"><i class="fa fa-check"></i>Para quem este material é destinado?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#informação-de-sessão"><i class="fa fa-check"></i>Informação de sessão</a></li>
 </ul></li>
 <li class="part"><span><b>I R básico</b></span></li>
-<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
+<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
-<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
+<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
+<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#configuração-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
 <li class="chapter" data-level="1.3.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
 <li class="chapter" data-level="1.3.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#para-onde-vão-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
@@ -137,26 +193,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#referências"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a><ul>
-<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
+<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-argumentos"><i class="fa fa-check"></i><b>2.1.1</b> Outros tipos de argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#mecanismos-de-ajuda"><i class="fa fa-check"></i><b>2.2</b> Mecanismos de ajuda</a></li>
 <li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-função"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-1"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
+<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#nomes-de-objetos"><i class="fa fa-check"></i><b>2.4.1</b> Nomes de objetos</a></li>
 <li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-área-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-2"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a><ul>
+<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numéricos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
 <li class="chapter" data-level="2.5.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-vetores"><i class="fa fa-check"></i><b>2.5.2</b> Outros tipos de vetores</a></li>
 <li class="chapter" data-level="2.5.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#misturando-classes-de-objetos"><i class="fa fa-check"></i><b>2.5.3</b> Misturando classes de objetos</a></li>
 <li class="chapter" data-level="2.5.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#valores-perdidos-e-especiais"><i class="fa fa-check"></i><b>2.5.4</b> Valores perdidos e especiais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-3"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a><ul>
+<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#fator"><i class="fa fa-check"></i><b>2.6.1</b> Fator</a></li>
 <li class="chapter" data-level="2.6.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#matriz"><i class="fa fa-check"></i><b>2.6.2</b> Matriz</a></li>
 <li class="chapter" data-level="2.6.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#array"><i class="fa fa-check"></i><b>2.6.3</b> Array</a></li>
@@ -167,8 +228,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-4"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referências-1"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
-<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
+<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-5"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="3.1.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
@@ -176,7 +239,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.4" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-6"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
+<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
 <li class="chapter" data-level="3.2.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#a-função-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-7"><i class="fa fa-check"></i>Exercícios</a></li>
@@ -184,8 +248,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-8"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
-<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
+<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
 <li class="chapter" data-level="4.1.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
 <li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-9"><i class="fa fa-check"></i>Exercícios</a></li>
@@ -196,61 +262,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.6" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#carregando-dados-já-disponíveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
+<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-a-função-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
 <li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-11"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="4.2.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-os-formatos-textual-e-binário-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#informações-sobre-diretórios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a><ul>
+<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-12"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-seleção-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
-<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a><ul>
+<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-13"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a><ul>
+<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-14"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Estatística</b></span></li>
-<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
+<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
-<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
+<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
 <li class="chapter" data-level="6.2.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
 <li class="chapter" data-level="6.2.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
 <li class="chapter" data-level="6.2.4" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-contínua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
+<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
 <li class="chapter" data-level="6.3.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
 <li class="chapter" data-level="6.3.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#exercícios-15"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
+<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#conceitos-básicos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-16"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
+<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
 <li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
 <li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
 <li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
 <li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#a-função-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
+<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
 <li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
 <li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
 <li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
 <li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
@@ -260,16 +339,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
+<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
 <li class="chapter" data-level="A.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming-no-r"><i class="fa fa-check"></i><b>A.2</b> Literate Programming no R</a></li>
-<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a><ul>
+<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a>
+<ul>
 <li class="chapter" data-level="A.3.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#sintaxe-do-markdown"><i class="fa fa-check"></i><b>A.3.1</b> Sintaxe do Markdown</a></li>
 <li class="chapter" data-level="A.3.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#escrevendo-um-documento-em-markdown"><i class="fa fa-check"></i><b>A.3.2</b> Escrevendo um documento em Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#pandoc"><i class="fa fa-check"></i><b>A.4</b> Pandoc</a></li>
 <li class="chapter" data-level="A.5" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#documentos-dinâmicos-com-markdown-e-r"><i class="fa fa-check"></i><b>A.5</b> Documentos dinâmicos com Markdown e R</a></li>
-<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a><ul>
+<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a>
+<ul>
 <li class="chapter" data-level="A.6.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#metadados"><i class="fa fa-check"></i><b>A.6.1</b> Metadados</a></li>
 <li class="chapter" data-level="A.6.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#convertendo-r-markdown-para-outros-formatos"><i class="fa fa-check"></i><b>A.6.2</b> Convertendo R Markdown para outros formatos</a></li>
 <li class="chapter" data-level="A.6.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#opções-do-knitr"><i class="fa fa-check"></i><b>A.6.3</b> Opções do knitr</a></li>
@@ -297,24 +379,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="documentos-dinâmicos" class="section level1">
-<h1><span class="header-section-number">A</span> Documentos dinâmicos</h1>
-<p>A ideia geral de um documento dinâmico é a de que ele pode ser gerado a partir de um <strong>código-fonte</strong>:</p>
+<div id="documentos-dinâmicos" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">A</span> Documentos dinâmicos<a href="documentos-dinâmicos.html#documentos-dinâmicos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A ideia geral de um documento dinâmico é a de que ele pode ser gerado a
+partir de um <strong>código-fonte</strong>:</p>
 <ul>
-<li>Da mesma forma que um <em>software</em> possui seu código-fonte, um documento dinâmico é o código-fonte de um relatório.</li>
-<li>É uma combinação de código de computador e as correspondentes narrativas descrevendo o resultado que o código está gerando (números, tabelas, figuras, …).</li>
-<li>Quando <strong>compilamos</strong> o documento dinâmico, o código de computador é executado, e as saídas são apresentadas. Portanto obtemos um documento final que mistura <strong>código</strong> e <strong>texto</strong>.</li>
+<li>Da mesma forma que um <em>software</em> possui seu código-fonte, um documento
+dinâmico é o código-fonte de um relatório.</li>
+<li>É uma combinação de código de computador e as correspondentes
+narrativas descrevendo o resultado que o código está gerando (números,
+tabelas, figuras, …).</li>
+<li>Quando <strong>compilamos</strong> o documento dinâmico, o código de computador é
+executado, e as saídas são apresentadas. Portanto obtemos um documento
+final que mistura <strong>código</strong> e <strong>texto</strong>.</li>
 </ul>
-<p>Como gerenciamos apenas o código-fonte do documento, ficamos livres de etapas manuais como ter que refazer um gráfico ou uma tabela após qualquer alteração na análise.</p>
-<div id="literate-programming" class="section level2">
-<h2><span class="header-section-number">A.1</span> Literate Programming</h2>
+<p>Como gerenciamos apenas o código-fonte do documento, ficamos livres de
+etapas manuais como ter que refazer um gráfico ou uma tabela após
+qualquer alteração na análise.</p>
+<div id="literate-programming" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">A.1</span> Literate Programming<a href="documentos-dinâmicos.html#literate-programming" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p><em>Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to humans what we want the computer to do.</em></p>
+<p><em>Instead of imagining that our main task is to instruct a computer what
+to do, let us concentrate rather on explaining to humans what we want
+the computer to do.</em></p>
 <blockquote>
 <p>Donald Knuth</p>
 </blockquote>
 </blockquote>
-<p>O ideia básica por trás de documentos dinâmicos decorre diretamente do conceito de <em>literate programming</em> (“programação letrada”), um paradigma concebido por <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a> em 1984.</p>
+<p>O ideia básica por trás de documentos dinâmicos decorre diretamente do
+conceito de <em>literate programming</em> (“programação letrada”), um paradigma
+concebido por <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a> em 1984.</p>
 <table>
 <tr>
 <td align="center">
@@ -325,37 +419,58 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </td>
 </tr>
 </table>
-<p>O objetivo da <em>literate programming</em> é criar um documento que “entrelaça” (mistura) texto e código. O texto é legível para humanos e o código é legível para máquinas. A análise é descrita em uma série de texto e blocos de código (<em>code chunks</em>). Cada bloco de código irá executar uma etapa da análise, e estará diretamente associado ao texto explicativo acima ou abaixo do bloco.</p>
+<p>O objetivo da <em>literate programming</em> é criar um documento que
+“entrelaça” (mistura) texto e código. O texto é legível para humanos e o
+código é legível para máquinas. A análise é descrita em uma série de
+texto e blocos de código (<em>code chunks</em>). Cada bloco de código irá
+executar uma etapa da análise, e estará diretamente associado ao texto
+explicativo acima ou abaixo do bloco.</p>
 <!-- - O conceito é o de misturar **literatura** (o texto em uma -->
 <!--   linguagem humana) com **códigos de programação**, tornando claro cada -->
 <!--   etapa de um programa e/ou análise -->
-<p>O processo de <em>literate programming</em> ocorre em duas vias, chamadas de <strong>weaving</strong> e <strong>tangling</strong>. O importante é que, <strong>com um único código-fonte</strong> podemos:</p>
+<p>O processo de <em>literate programming</em> ocorre em duas vias, chamadas de
+<strong>weaving</strong> e <strong>tangling</strong>. O importante é que, <strong>com um único
+código-fonte</strong> podemos:</p>
 <ul>
 <li>Produzir documentos para humanos (HTML, PDF, …) <span class="math inline">\(\Rightarrow\)</span> <em>weave</em></li>
-<li>Produzir “documentos” (<em>scripts</em>) para máquinas (código) <span class="math inline">\(\Rightarrow\)</span> <em>tangle</em></li>
+<li>Produzir “documentos” (<em>scripts</em>) para máquinas (código) <span class="math inline">\(\Rightarrow\)</span>
+<em>tangle</em></li>
 </ul>
-<p>Para podermos usar um sistema como esse, é necessário então uma linguagem de documentação para humanos (<em>e.g.</em> LaTeX ou Markdown), e uma linguagem de programação que será compilada com o documento (<em>e.g.</em> R ou Python).</p>
-<p>Knuth criou inicialmente um sistema chamado <strong>WEB</strong> para fazer essa mistura dos seus textos em <span class="math inline">\(TeX\)</span> com a linguagem Pascal. Atualmente muitos outros sistemas existem para misturar códigos com texto em várias linguagens de documentação e de programação.</p>
+<p>Para podermos usar um sistema como esse, é necessário então uma
+linguagem de documentação para humanos (<em>e.g.</em> LaTeX ou Markdown), e
+uma linguagem de programação que será compilada com o documento (<em>e.g.</em>
+R ou Python).</p>
+<p>Knuth criou inicialmente um sistema chamado <strong>WEB</strong> para fazer essa
+mistura dos seus textos em <span class="math inline">\(TeX\)</span> com a linguagem Pascal. Atualmente
+muitos outros sistemas existem para misturar códigos com texto em várias
+linguagens de documentação e de programação.</p>
 </div>
-<div id="literate-programming-no-r" class="section level2">
-<h2><span class="header-section-number">A.2</span> Literate Programming no R</h2>
-<p>Com a ascensão do R no início dos anos 2000, <a href="http://www.statistik.lmu.de/~leisch">Friedrich Leisch</a> criou o <a href="https://www.statistik.lmu.de/~leisch/Sweave">Sweave</a> em 2002</p>
+<div id="literate-programming-no-r" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">A.2</span> Literate Programming no R<a href="documentos-dinâmicos.html#literate-programming-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Com a ascensão do R no início dos anos 2000, <a href="http://www.statistik.lmu.de/~leisch">Friedrich Leisch</a> criou
+o <a href="https://www.statistik.lmu.de/~leisch/Sweave">Sweave</a> em 2002</p>
 <ul>
 <li>S + weave</li>
 <li>Permite “entrelaçar” textos do LaTeX com códigos do R</li>
-<li>Ainda é muito utilizado e já é distribuído como uma função do R dentro do pacote <code>utils</code></li>
+<li>Ainda é muito utilizado e já é distribuído como uma função do R
+dentro do pacote <code>utils</code></li>
 </ul>
-<p>No final de 2011, <a href="http://yihui.name/">Yihui Xie</a> criou o pacote <a href="http://yihui.name/knitr">knitr</a> como uma extensão do Sweave, e com a proposta de ser mais flexível, fácil e <strong>preparado para a Web</strong>. Segundo o próprio autor, o knitr é resultado dessa equação:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr =<span class="st"> </span>Sweave <span class="op">+</span><span class="st"> </span>cacheSweave <span class="op">+</span><span class="st"> </span>pgfSweave <span class="op">+</span><span class="st"> </span>weaver <span class="op">+</span>
-<span class="st">    </span>animation<span class="op">::</span>saveLatex <span class="op">+</span><span class="st"> </span>R2HTML<span class="op">::</span>RweaveHTML <span class="op">+</span>
-<span class="st">    </span>highlight<span class="op">::</span>HighlightWeaveLatex <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">*</span><span class="st"> </span>brew <span class="op">+</span>
-<span class="st">    </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span>SweaveListingUtils <span class="op">+</span><span class="st"> </span>more</code></pre></div>
+<p>No final de 2011, <a href="http://yihui.name/">Yihui Xie</a> criou o pacote <a href="http://yihui.name/knitr">knitr</a> como uma extensão
+do Sweave, e com a proposta de ser mais flexível, fácil e <strong>preparado
+para a Web</strong>. Segundo o próprio autor, o knitr é resultado dessa
+equação:</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="documentos-dinâmicos.html#cb383-1" aria-hidden="true" tabindex="-1"></a>knitr <span class="ot">=</span> Sweave <span class="sc">+</span> cacheSweave <span class="sc">+</span> pgfSweave <span class="sc">+</span> weaver <span class="sc">+</span></span>
+<span id="cb383-2"><a href="documentos-dinâmicos.html#cb383-2" aria-hidden="true" tabindex="-1"></a>    animation<span class="sc">::</span>saveLatex <span class="sc">+</span> R2HTML<span class="sc">::</span>RweaveHTML <span class="sc">+</span></span>
+<span id="cb383-3"><a href="documentos-dinâmicos.html#cb383-3" aria-hidden="true" tabindex="-1"></a>    highlight<span class="sc">::</span>HighlightWeaveLatex <span class="sc">+</span> <span class="fl">0.2</span> <span class="sc">*</span> brew <span class="sc">+</span></span>
+<span id="cb383-4"><a href="documentos-dinâmicos.html#cb383-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.1</span> <span class="sc">*</span> SweaveListingUtils <span class="sc">+</span> more</span></code></pre></div>
 <p>Resumidamente, o knitr possui as seguintes vantagens sob o Sweave:</p>
 <ul>
 <li>knit + R</li>
 <li>Uma re-implementação mais moderna do Sweave</li>
-<li>Permite “entrelaçar” textos do LaTeX, HTML e <strong>Markdown</strong> com códigos do R</li>
-<li>Também permite misturar texto com códigos de <strong>outras linguagens</strong>: Python, awk, C++, shell.</li>
+<li>Permite “entrelaçar” textos do LaTeX, HTML e <strong>Markdown</strong> com
+códigos do R</li>
+<li>Também permite misturar texto com códigos de <strong>outras linguagens</strong>:
+Python, awk, C++, shell.</li>
 <li>Adiciona muitas facilidades como
 <ul>
 <li>Cache</li>
@@ -363,52 +478,67 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Geração de gráficos mais direta</li>
 </ul></li>
 </ul>
-<p>Podemos fazer uma comparação entre arquivos LaTeX escritos em Sweave e knitr. Exemplos simples podem ser vistos nos arquivos <a href="exemplos/Exemplo0-Sweave.Rnw">Exemplo0-Sweave.Rnw</a> escrito com Sweave e <a href="exemplos/Exemplo0-knitr.Rnw">Exemplo0-knitr.Rnw</a> escrito com a sintaxe do knitr. Para compilar estes documentos, usamos</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sweave</span>(<span class="st">&quot;Exemplo0-Sweave.Rnw&quot;</span>)
-<span class="kw">library</span>(knitr)
-<span class="kw">knit</span>(<span class="st">&quot;Exemplo0-knitr.Rnw&quot;</span>)</code></pre></div>
-<p>Posteriormente, os arquivos <code>.tex</code> gerados podem ser compilados com qualquer distribuição LaTeX, (<em>e.g</em> TeXLive, MikTeX), por exemplo</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">pdflatex</span> Exemplo0-Sweave.Rnw
-<span class="ex">pdflatex</span> Exemplo0-knitr.Rnw</code></pre></div>
-<p>Os resultados podem ser vistos nos respectivos arquivos: <a href="exemplos/Exemplo0-Sweave.pdf">Exemplo0-Sweave.pdf</a> e <a href="exemplos/Exemplo0-knitr.pdf">Exemplo0-knitr.pdf</a></p>
+<p>Podemos fazer uma comparação entre arquivos LaTeX escritos em Sweave
+e knitr. Exemplos simples podem ser vistos nos arquivos
+<a href="exemplos/Exemplo0-Sweave.Rnw">Exemplo0-Sweave.Rnw</a> escrito com Sweave e
+<a href="exemplos/Exemplo0-knitr.Rnw">Exemplo0-knitr.Rnw</a> escrito com a sintaxe
+do knitr. Para compilar estes documentos, usamos</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="documentos-dinâmicos.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sweave</span>(<span class="st">&quot;Exemplo0-Sweave.Rnw&quot;</span>)</span>
+<span id="cb384-2"><a href="documentos-dinâmicos.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb384-3"><a href="documentos-dinâmicos.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="fu">knit</span>(<span class="st">&quot;Exemplo0-knitr.Rnw&quot;</span>)</span></code></pre></div>
+<p>Posteriormente, os arquivos <code>.tex</code> gerados podem ser compilados com
+qualquer distribuição LaTeX, (<em>e.g</em> TeXLive, MikTeX), por exemplo</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb385-1"><a href="documentos-dinâmicos.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pdflatex</span> Exemplo0-Sweave.Rnw</span>
+<span id="cb385-2"><a href="documentos-dinâmicos.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pdflatex</span> Exemplo0-knitr.Rnw</span></code></pre></div>
+<p>Os resultados podem ser vistos nos respectivos arquivos:
+<a href="exemplos/Exemplo0-Sweave.pdf">Exemplo0-Sweave.pdf</a> e
+<a href="exemplos/Exemplo0-knitr.pdf">Exemplo0-knitr.pdf</a></p>
 </div>
-<div id="markdown" class="section level2">
-<h2><span class="header-section-number">A.3</span> Markdown</h2>
+<div id="markdown" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">A.3</span> Markdown<a href="documentos-dinâmicos.html#markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Segundo o próprio criador da linguagem:</p>
 <blockquote>
-<p><em>Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).</em></p>
+<p><em>Markdown is a text-to-HTML conversion tool for web writers. Markdown
+allows you to write using an easy-to-read, easy-to-write plain text
+format, then convert it to structurally valid XHTML (or HTML).</em></p>
 <blockquote>
 <p>John Gruber</p>
 </blockquote>
 </blockquote>
 <ul>
-<li><a href="http://daringfireball.net/projects/markdown">Markdown</a> é uma <a href="https://pt.wikipedia.org/wiki/Linguagem_de_marcação/">linguagem de marcação</a> simples para escrever textos</li>
-<li>O texto pode ser lido sem nenhum processamento, ou seja, da maneira como está escrito</li>
-<li>Outras linguagens de marcação como HTML e LaTeX requerem um grande número de <em>tags</em> para formatar o texto, muitas vezes dificultando a leitura do código-fonte</li>
-<li>A proposta do Markdown é que o escritor se concentre no texto e não na formatação</li>
+<li><a href="http://daringfireball.net/projects/markdown">Markdown</a> é uma <a href="https://pt.wikipedia.org/wiki/Linguagem_de_marcação/">linguagem de marcação</a> simples para escrever
+textos</li>
+<li>O texto pode ser lido sem nenhum processamento, ou seja, da maneira
+como está escrito</li>
+<li>Outras linguagens de marcação como HTML e LaTeX requerem um grande
+número de <em>tags</em> para formatar o texto, muitas vezes dificultando a
+leitura do código-fonte</li>
+<li>A proposta do Markdown é que o escritor se concentre no texto e não na
+formatação</li>
 <li>Pode ser convertido para <strong>vários outros formatos</strong> além de HTML</li>
 </ul>
-<div id="sintaxe-do-markdown" class="section level3">
-<h3><span class="header-section-number">A.3.1</span> Sintaxe do Markdown</h3>
-<p>A sintaxe do Markdown é muito simples, e pode ser resumida da seguinte forma:</p>
-<div id="cabeçalhos" class="section level4 unnumbered">
-<h4>Cabeçalhos</h4>
+<div id="sintaxe-do-markdown" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">A.3.1</span> Sintaxe do Markdown<a href="documentos-dinâmicos.html#sintaxe-do-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A sintaxe do Markdown é muito simples, e pode ser resumida da seguinte
+forma:</p>
+<div id="cabeçalhos" class="section level4 unnumbered hasAnchor">
+<h4>Cabeçalhos<a href="documentos-dinâmicos.html#cabeçalhos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code># Título
 ## Sub-título
 ### Sub-sub-título</code></pre>
 </div>
-<div id="itálico" class="section level4 unnumbered">
-<h4>Itálico</h4>
+<div id="itálico" class="section level4 unnumbered hasAnchor">
+<h4>Itálico<a href="documentos-dinâmicos.html#itálico" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>*Este texto aparecerá em itálico.*</code></pre>
 <p><em>Este texto aparecerá em itálico.</em></p>
 </div>
-<div id="negrito" class="section level4 unnumbered">
-<h4>Negrito</h4>
+<div id="negrito" class="section level4 unnumbered hasAnchor">
+<h4>Negrito<a href="documentos-dinâmicos.html#negrito" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>**Este texto aparecerá em negrito.**</code></pre>
 <p><strong>Este texto aparecerá em negrito.</strong></p>
 </div>
-<div id="listas-não-ordenadas" class="section level4 unnumbered">
-<h4>Listas não-ordenadas</h4>
+<div id="listas-não-ordenadas" class="section level4 unnumbered hasAnchor">
+<h4>Listas não-ordenadas<a href="documentos-dinâmicos.html#listas-não-ordenadas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>- Primeiro item
 - Segundo item
 - Terceiro item</code></pre>
@@ -418,8 +548,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Terceiro item</li>
 </ul>
 </div>
-<div id="listas-ordenadas" class="section level4 unnumbered">
-<h4>Listas ordenadas</h4>
+<div id="listas-ordenadas" class="section level4 unnumbered hasAnchor">
+<h4>Listas ordenadas<a href="documentos-dinâmicos.html#listas-ordenadas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <pre><code>1. Primeiro item
 2. Segundo item
 3. Terceiro item</code></pre>
@@ -429,8 +559,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Terceiro item</li>
 </ol>
 </div>
-<div id="sub-listas" class="section level4 unnumbered">
-<h4>Sub-listas</h4>
+<div id="sub-listas" class="section level4 unnumbered hasAnchor">
+<h4>Sub-listas<a href="documentos-dinâmicos.html#sub-listas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Utilize 4 espaços para criar uma sub-lista:</p>
 <pre><code>1. Primeiro item
     - Um sub-item
@@ -447,50 +577,58 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Terceiro item</li>
 </ol>
 </div>
-<div id="links" class="section level4 unnumbered">
-<h4>Links</h4>
+<div id="links" class="section level4 unnumbered hasAnchor">
+<h4>Links<a href="documentos-dinâmicos.html#links" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Links para endereços Web podem ser inseridos com <code>[texto](link)</code>:</p>
 <pre><code>O criador do conceito de &quot;literate programming&quot; foi
 [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).</code></pre>
-<p>O criador do conceito de “literate programming” foi <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>.</p>
+<p>O criador do conceito de “literate programming” foi
+<a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>.</p>
 <pre><code>Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
 usar o R Markdown.</code></pre>
-<p>Devemos instalar o pacote <a href="http://yihui.name/knitr">knitr</a> para poder usar o R Markdown.</p>
+<p>Devemos instalar o pacote <a href="http://yihui.name/knitr">knitr</a> para poder
+usar o R Markdown.</p>
 </div>
-<div id="imagens" class="section level4 unnumbered">
-<h4>Imagens</h4>
-<p>Para inserir uma imagem, a sintaxe é a mesma de inserir um link, mas com uma exclamação (<code>!</code>) na frente: <code>![texto](imagem)</code>.</p>
+<div id="imagens" class="section level4 unnumbered hasAnchor">
+<h4>Imagens<a href="documentos-dinâmicos.html#imagens" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para inserir uma imagem, a sintaxe é a mesma de inserir um link, mas com
+uma exclamação (<code>!</code>) na frente: <code>![texto](imagem)</code>.</p>
 <p>O link para a imagem pode ser um enderço Web:</p>
 <pre><code>![Logo do R](img/Rlogo-5.png)</code></pre>
 <div class="figure">
-<img src="img/Rlogo-5.png" alt="Logo do R" />
+<img src="img/Rlogo-5.png" alt="" />
 <p class="caption">Logo do R</p>
 </div>
 <p>Ou um endereço local:</p>
 <pre><code>![Logo do Markdown](img/markdown.png)</code></pre>
 <div class="figure">
-<img src="img/markdown.png" alt="Logo do Markdown" />
+<img src="img/markdown.png" alt="" />
 <p class="caption">Logo do Markdown</p>
 </div>
 </div>
-<div id="parágrafo" class="section level4 unnumbered">
-<h4>Parágrafo</h4>
+<div id="parágrafo" class="section level4 unnumbered hasAnchor">
+<h4>Parágrafo<a href="documentos-dinâmicos.html#parágrafo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Para criar parágrafos basta pular uma linha:</p>
 <pre><code>O criador do conceito de &quot;literate programming&quot; foi
 [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
 
 Devemos instalar o pacote [knitr](http://yihui.name/knitr) para poder
 usar o R Markdown.</code></pre>
-<p>O criador do conceito de “literate programming” foi <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>.</p>
-<p>Devemos instalar o pacote <a href="http://yihui.name/knitr">knitr</a> para poder usar o R Markdown.</p>
+<p>O criador do conceito de “literate programming” foi
+<a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>.</p>
+<p>Devemos instalar o pacote <a href="http://yihui.name/knitr">knitr</a> para poder
+usar o R Markdown.</p>
 </div>
-<div id="códigos" class="section level4 unnumbered">
-<h4>Códigos</h4>
-<p>Para apresentar códigos na própria linha, colocamos o texto entre duas crases (<code>`</code>):</p>
+<div id="códigos" class="section level4 unnumbered hasAnchor">
+<h4>Códigos<a href="documentos-dinâmicos.html#códigos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para apresentar códigos na própria linha, colocamos o texto entre duas
+crases (<code></code> `):</p>
 <pre><code>Para gerar números aleatórios de uma distribuição normal no R, use a
 função `rnorm()`.</code></pre>
-<p>Para gerar números aleatórios de uma distribuição normal no R, use a função <code>rnorm()</code>.</p>
-<p>Para apresentar blocos de código, coloque o texto entre três crases seguidas (<code>```</code>) no início e no final. O bloco</p>
+<p>Para gerar números aleatórios de uma distribuição normal no R, use a
+função <code>rnorm()</code>.</p>
+<p>Para apresentar blocos de código, coloque o texto entre três crases
+seguidas (<code>```</code>) no início e no final. O bloco</p>
 <pre><code>```
 x &lt;- rnorm(n = 10, mean = 100, sd = 5)
 hist(x, main = &quot;&quot;)
@@ -498,10 +636,11 @@ hist(x, main = &quot;&quot;)
 <p>Irá gerar</p>
 <pre><code>x &lt;- rnorm(n = 10, mean = 100, sd = 5)
 hist(x, main = &quot;&quot;)</code></pre>
-<p>Note que esse código não será interpretado, ele apenas será mostrado no texto. Esse será o papel do R aqui mais adiante!</p>
+<p>Note que esse código não será interpretado, ele apenas será mostrado no
+texto. Esse será o papel do R aqui mais adiante!</p>
 </div>
-<div id="tabelas" class="section level4 unnumbered">
-<h4>Tabelas</h4>
+<div id="tabelas" class="section level4 unnumbered hasAnchor">
+<h4>Tabelas<a href="documentos-dinâmicos.html#tabelas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Tabelas podem ser escritas da seguinte forma:</p>
 <pre><code>    Caracter | Permissão
     ---------|----------
@@ -537,13 +676,15 @@ hist(x, main = &quot;&quot;)</code></pre>
 </tbody>
 </table>
 </div>
-<div id="equações-matemáticas" class="section level4 unnumbered">
-<h4>Equações matemáticas</h4>
-<p>Equações matemáticas podem ser escritas em formato LaTeX. A página HTML resultante irá renderizar as equações através do <a href="http://www.mathjax.org">MathJax</a>.</p>
+<div id="equações-matemáticas" class="section level4 unnumbered hasAnchor">
+<h4>Equações matemáticas<a href="documentos-dinâmicos.html#equações-matemáticas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Equações matemáticas podem ser escritas em formato LaTeX. A página
+HTML resultante irá renderizar as equações através do <a href="http://www.mathjax.org">MathJax</a>.</p>
 <p>Equações na própria linha podem ser inseridas entre <code>$</code>:</p>
 <pre><code>Um modelo de regressão linear simples:  $Y = \beta_0 + \beta_1 x + \epsilon$.</code></pre>
 <p>Um modelo de regressão linear simples: <span class="math inline">\(Y = \beta_0 + \beta_1 x + \epsilon\)</span>.</p>
-<p>Equações podem ser exibidas entre <code>$$</code> para ficarem centralizadas em uma linha própria:</p>
+<p>Equações podem ser exibidas entre <code>$$</code> para ficarem centralizadas em uma
+linha própria:</p>
 <pre><code>$$
 f(x;\mu,\sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}
 e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
@@ -554,9 +695,10 @@ e^{ -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2 }
 \]</span></p>
 </div>
 </div>
-<div id="escrevendo-um-documento-em-markdown" class="section level3">
-<h3><span class="header-section-number">A.3.2</span> Escrevendo um documento em Markdown</h3>
-<p>Um documento Markdown possui a extensão <code>.md</code> (embora não seja a única possível).</p>
+<div id="escrevendo-um-documento-em-markdown" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">A.3.2</span> Escrevendo um documento em Markdown<a href="documentos-dinâmicos.html#escrevendo-um-documento-em-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Um documento Markdown possui a extensão <code>.md</code> (embora não seja a única
+possível).</p>
 <p>Veja o arquivo de exemplo <a href="exemplos/Exemplo1.md">Exemplo1.md</a>:</p>
 <pre><code># Um documento em Markdown
 
@@ -593,29 +735,60 @@ Também podemos fazer um histograma dessa VA $X$ simulada
 ```
 hist(x)
 ```</code></pre>
-<p>Para converter um documento Markdown em HTML (ou outro formato) é necessário um <strong>conversor</strong>. O conversor padrão do Markdown é escrito em Perl, e pode ser integrado em diversas ferramentas, mas não é apropriado para usuários comuns. Para testar a conversão do documento, copie e cole na página do <a href="http://daringfireball.net/projects/markdown/dingus">Dingus</a>.</p>
+<p>Para converter um documento Markdown em HTML (ou outro formato) é
+necessário um <strong>conversor</strong>. O conversor padrão do Markdown é escrito em
+Perl, e pode ser integrado em diversas ferramentas, mas não é apropriado
+para usuários comuns. Para testar a conversão do documento, copie e cole
+na página do <a href="http://daringfireball.net/projects/markdown/dingus">Dingus</a>.</p>
 </div>
 </div>
-<div id="pandoc" class="section level2">
-<h2><span class="header-section-number">A.4</span> Pandoc</h2>
-<p>O <a href="http://pandoc.org/">Pandoc</a> é um conversor extremamente versátil, capaz de converter diversos formatos, incluindo Markdown para HTML.</p>
-<p>Se o Pandoc estiver instalado no seu sistema (Unix) é possível converter o documento na linha de comando (shell) com</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">pandoc</span> -f markdown -t html Exemplo1.md -o Exemplo1.html</code></pre></div>
-<p>O pacote <code>knitr</code> possui a função <code>pandoc()</code> que é um <em>wrapper</em> para executar o programa <code>pandoc</code> no sistema.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pandoc</span>(<span class="dt">input =</span> <span class="st">&quot;exemplos/Exemplo1.md&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)</code></pre></div>
-<p>Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo <a href="exemplos/Exemplo1.html">Exemplo1.html</a> no navegador.</p>
+<div id="pandoc" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">A.4</span> Pandoc<a href="documentos-dinâmicos.html#pandoc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O <a href="http://pandoc.org/">Pandoc</a> é um conversor extremamente versátil, capaz de converter
+diversos formatos, incluindo Markdown para HTML.</p>
+<p>Se o Pandoc estiver instalado no seu sistema (Unix) é possível
+converter o documento na linha de comando (shell) com</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb404-1"><a href="documentos-dinâmicos.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-f</span> markdown <span class="at">-t</span> html Exemplo1.md <span class="at">-o</span> Exemplo1.html</span></code></pre></div>
+<p>O pacote <code>knitr</code> possui a função <code>pandoc()</code> que é um <em>wrapper</em> para
+executar o programa <code>pandoc</code> no sistema.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="documentos-dinâmicos.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc</span>(<span class="at">input =</span> <span class="st">&quot;exemplos/Exemplo1.md&quot;</span>, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
+<p>Em ambos os casos, o resultado pode ser visualizado ao abrir o arquivo
+<a href="exemplos/Exemplo1.html">Exemplo1.html</a> no navegador.</p>
 </div>
-<div id="documentos-dinâmicos-com-markdown-e-r" class="section level2">
-<h2><span class="header-section-number">A.5</span> Documentos dinâmicos com Markdown e R</h2>
-<p>No exemplo anterior, escrevemos um documento em Markdown (<code>.md</code>) e inserimos códigos do R, que são apenas apresentados no documento final. Desse forma temos um documento <strong>estático</strong>, pois os códigos não são interpretados. Para fazermos esse documento ser <strong>dinâmico</strong>, vamos usar o pacote <strong>knitr</strong> a nosso favor, fazedo com que ele interprete e retorne resultados dos códigos que inserimos. Vamos denominar genericamente essa combinação de texto em Markdown e códigos do R de “R Markdown”.</p>
-<p>Arquivos escritos em R Markdown não podem ser compilados usando ferramentas padrão de conversão de Markdown. O código R deve ser avaliado antes da conversão usando o Pandoc, por exemplo. R Markdown pode ser convertido para Markdown através do knitr. Os resultados de códigos do R são inseridos entre o texto em Markdown, que pode então ser convertido para HTML (ou outros formatos) usando o Pandoc.</p>
-<p>O uso do R Markdown para criar documentos dinâmicos tem se tornado uma ferramenta chave atualmente em <em>literate statistical programming</em>, e substituiu largamente ferramentas anteriores como o Sweave.</p>
-<p>Os detalhes e opções do pacote knitr serão descritas mais adiante. Por enquanto, o que precisamos fazer para tornar esse documento dinâmico é alterar a extensão do arquivo de <code>.md</code> para <code>.Rmd</code>, e alterar a forma dos blocos de código. Os blocos de códigos (ou <em>chunks</em>) agora devem conter uma marcação especial para indicar que devem ser interpretados pelo R, através do knitr. Para isso, colocamos <code>{r}</code> no início de cada bloco, que agora ficam</p>
+<div id="documentos-dinâmicos-com-markdown-e-r" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">A.5</span> Documentos dinâmicos com Markdown e R<a href="documentos-dinâmicos.html#documentos-dinâmicos-com-markdown-e-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>No exemplo anterior, escrevemos um documento em Markdown (<code>.md</code>) e
+inserimos códigos do R, que são apenas apresentados no documento final.
+Desse forma temos um documento <strong>estático</strong>, pois os códigos não são
+interpretados. Para fazermos esse documento ser <strong>dinâmico</strong>, vamos usar
+o pacote <strong>knitr</strong> a nosso favor, fazedo com que ele interprete e
+retorne resultados dos códigos que inserimos. Vamos denominar
+genericamente essa combinação de texto em Markdown e códigos do R de “R
+Markdown”.</p>
+<p>Arquivos escritos em R Markdown não podem ser compilados usando
+ferramentas padrão de conversão de Markdown. O código R deve ser
+avaliado antes da conversão usando o Pandoc, por exemplo. R Markdown
+pode ser convertido para Markdown através do knitr. Os resultados de
+códigos do R são inseridos entre o texto em Markdown, que pode então ser
+convertido para HTML (ou outros formatos) usando o Pandoc.</p>
+<p>O uso do R Markdown para criar documentos dinâmicos tem se tornado uma
+ferramenta chave atualmente em <em>literate statistical programming</em>, e
+substituiu largamente ferramentas anteriores como o Sweave.</p>
+<p>Os detalhes e opções do pacote knitr serão descritas mais adiante. Por
+enquanto, o que precisamos fazer para tornar esse documento dinâmico é
+alterar a extensão do arquivo de <code>.md</code> para <code>.Rmd</code>, e alterar a forma
+dos blocos de código. Os blocos de códigos (ou <em>chunks</em>) agora devem
+conter uma marcação especial para indicar que devem ser interpretados
+pelo R, através do knitr. Para isso, colocamos <code>{r}</code> no início de cada
+bloco, que agora ficam</p>
 <pre><code>```{r}
 x &lt;- rnorm(30)
 ```</code></pre>
-<p>Usando o mesmo exemplo anterior, vamos renomear o arquivo <code>Exemplo1.md</code> para <code>Exemplo1-knitr.Rmd</code> e incluir a marção <code>{r}</code> nos blocos de código.</p>
-<p>Também é possível colocar códigos do R para serem renderizados na própria linha de texto com <code>`r `</code>. Por exemplo, <code>`r 2+2`</code> gera o resultado 4 no documento.</p>
+<p>Usando o mesmo exemplo anterior, vamos renomear o arquivo <code>Exemplo1.md</code>
+para <code>Exemplo1-knitr.Rmd</code> e incluir a marção <code>{r}</code> nos blocos de código.</p>
+<p>Também é possível colocar códigos do R para serem renderizados na
+própria linha de texto com <code>`r `</code>. Por exemplo,
+<code>`r 2+2`</code> gera o resultado 4 no documento.</p>
 <p>Veja o arquivo <a href="exemplos/Exemplo1-knitr.Rmd">Exemplo1-knitr.Rmd</a>.</p>
 <pre><code># Um documento em Markdown
 
@@ -658,39 +831,41 @@ hist(x)
 ```
 
 A média de $X$ é `r round(mean(x), 3)`.</code></pre>
-<p>Agora usamos o knitr, através da função <code>knit()</code> para compilar o documento <code>.Rmd</code> em um documento com sintaxe Markdown <code>.md</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">knit</span>(<span class="st">&quot;exemplos/Exemplo1-knitr.Rmd&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span>)
-
-
-processing file<span class="op">:</span><span class="st"> </span>exemplos<span class="op">/</span>Exemplo1<span class="op">-</span>knitr.Rmd
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
-  ordinary text without R code
-
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">451</span>
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
-  ordinary text without R code
-
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">452</span>
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
-   inline R code fragments
-output file<span class="op">:</span><span class="st"> </span>exemplos<span class="op">/</span>Exemplo1<span class="op">-</span>knitr.md
-[<span class="dv">1</span>] <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span></code></pre></div>
+<p>Agora usamos o knitr, através da função <code>knit()</code> para compilar o
+documento <code>.Rmd</code> em um documento com sintaxe Markdown <code>.md</code></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="documentos-dinâmicos.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">knit</span>(<span class="st">&quot;exemplos/Exemplo1-knitr.Rmd&quot;</span>, <span class="at">output =</span> <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span>)</span>
+<span id="cb408-2"><a href="documentos-dinâmicos.html#cb408-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-3"><a href="documentos-dinâmicos.html#cb408-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-4"><a href="documentos-dinâmicos.html#cb408-4" aria-hidden="true" tabindex="-1"></a>processing file<span class="sc">:</span> exemplos<span class="sc">/</span>Exemplo1<span class="sc">-</span>knitr.Rmd</span>
+<span id="cb408-5"><a href="documentos-dinâmicos.html#cb408-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-6"><a href="documentos-dinâmicos.html#cb408-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb408-7"><a href="documentos-dinâmicos.html#cb408-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb408-8"><a href="documentos-dinâmicos.html#cb408-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb408-9"><a href="documentos-dinâmicos.html#cb408-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..............                                                        <span class="sc">|</span>  <span class="dv">20</span>%</span>
+<span id="cb408-10"><a href="documentos-dinâmicos.html#cb408-10" aria-hidden="true" tabindex="-1"></a>  ordinary text without R code</span>
+<span id="cb408-11"><a href="documentos-dinâmicos.html#cb408-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-12"><a href="documentos-dinâmicos.html#cb408-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-13"><a href="documentos-dinâmicos.html#cb408-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb408-14"><a href="documentos-dinâmicos.html#cb408-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>............................                                          <span class="sc">|</span>  <span class="dv">40</span>%</span>
+<span id="cb408-15"><a href="documentos-dinâmicos.html#cb408-15" aria-hidden="true" tabindex="-1"></a>label<span class="sc">:</span> unnamed<span class="sc">-</span>chunk<span class="dv">-451</span></span>
+<span id="cb408-16"><a href="documentos-dinâmicos.html#cb408-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-17"><a href="documentos-dinâmicos.html#cb408-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb408-18"><a href="documentos-dinâmicos.html#cb408-18" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..........................................                            <span class="sc">|</span>  <span class="dv">60</span>%</span>
+<span id="cb408-19"><a href="documentos-dinâmicos.html#cb408-19" aria-hidden="true" tabindex="-1"></a>  ordinary text without R code</span>
+<span id="cb408-20"><a href="documentos-dinâmicos.html#cb408-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-21"><a href="documentos-dinâmicos.html#cb408-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-22"><a href="documentos-dinâmicos.html#cb408-22" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb408-23"><a href="documentos-dinâmicos.html#cb408-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>........................................................              <span class="sc">|</span>  <span class="dv">80</span>%</span>
+<span id="cb408-24"><a href="documentos-dinâmicos.html#cb408-24" aria-hidden="true" tabindex="-1"></a>label<span class="sc">:</span> unnamed<span class="sc">-</span>chunk<span class="dv">-452</span></span>
+<span id="cb408-25"><a href="documentos-dinâmicos.html#cb408-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb408-26"><a href="documentos-dinâmicos.html#cb408-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb408-27"><a href="documentos-dinâmicos.html#cb408-27" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>......................................................................<span class="sc">|</span> <span class="dv">100</span>%</span>
+<span id="cb408-28"><a href="documentos-dinâmicos.html#cb408-28" aria-hidden="true" tabindex="-1"></a>   inline R code fragments</span>
+<span id="cb408-29"><a href="documentos-dinâmicos.html#cb408-29" aria-hidden="true" tabindex="-1"></a>output file<span class="sc">:</span> exemplos<span class="sc">/</span>Exemplo1<span class="sc">-</span>knitr.md</span>
+<span id="cb408-30"><a href="documentos-dinâmicos.html#cb408-30" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span></span></code></pre></div>
 <p><img src="img/knit.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>O resultado da compilação pode ser vista no arquivo <a href="exemplos/Exemplo1-knitr.md">Exemplo1-knitr.md</a>.</p>
+<p>O resultado da compilação pode ser vista no arquivo
+<a href="exemplos/Exemplo1-knitr.md">Exemplo1-knitr.md</a>.</p>
 <pre><code># Um documento em Markdown
 
 ## Sobre o Markdown
@@ -739,66 +914,108 @@ hist(x)
 &lt;img src=&quot;figures/unnamed-chunk-452-1.png&quot; width=&quot;672&quot; style=&quot;display: block; margin: auto;&quot; /&gt;
 
 A média de $X$ é 0.029.</code></pre>
-<p>Agora temos um documento em Markdown com os códigos do R avaliados. Mas ainda precisamos processar esse arquivo para gerar o arquivo <code>.html</code> através do Pandoc</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pandoc</span>(<span class="dt">input =</span> <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;html&quot;</span>)
-Executing<span class="op">:</span><span class="st"> </span>pandoc <span class="op">-</span>t html <span class="op">-</span>o <span class="st">&#39;exemplos/Exemplo1-knitr.html&#39;</span> <span class="st">&#39;exemplos/Exemplo1-knitr.md&#39;</span>
-[<span class="dv">1</span>] <span class="st">&quot;exemplos/Exemplo1-knitr.html&quot;</span></code></pre></div>
-<p>que gera o arquivo <a href="exemplos/Exemplo1-knitr.html">Exemplo1-knitr.html</a> que pode ser visualizado no navegador.</p>
+<p>Agora temos um documento em Markdown com os códigos do R avaliados. Mas
+ainda precisamos processar esse arquivo para gerar o arquivo <code>.html</code>
+através do Pandoc</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="documentos-dinâmicos.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pandoc</span>(<span class="at">input =</span> <span class="st">&quot;exemplos/Exemplo1-knitr.md&quot;</span>, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>)</span>
+<span id="cb410-2"><a href="documentos-dinâmicos.html#cb410-2" aria-hidden="true" tabindex="-1"></a>Executing<span class="sc">:</span> pandoc <span class="sc">-</span>t html <span class="sc">-</span>o <span class="st">&#39;exemplos/Exemplo1-knitr.html&#39;</span> <span class="st">&#39;exemplos/Exemplo1-knitr.md&#39;</span></span>
+<span id="cb410-3"><a href="documentos-dinâmicos.html#cb410-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;exemplos/Exemplo1-knitr.html&quot;</span></span></code></pre></div>
+<p>que gera o arquivo
+<a href="exemplos/Exemplo1-knitr.html">Exemplo1-knitr.html</a> que pode
+ser visualizado no navegador.</p>
 </div>
-<div id="r-markdown-e-knitr" class="section level2">
-<h2><span class="header-section-number">A.6</span> R Markdown e knitr</h2>
-<p>O pacote knitr, como já mencionado, é uma combinação de várias ideias desenvolvidas separadamente em pacotes do R para <em>literate programming</em>, especialmente o Sweave. Este pacote suporta LaTeX, Markdown e HTML como <strong>linguagem de documentação</strong>, e algumas linguagens de programação, além do R, como por exemplo shell e Python. O resultado destes documentos pode ser exportado para PDF, HTML, ou até mesmo arquivos do MS Word. Daqui em diante, o nosso foco será no uso do knitr com Markdown e R, pela simplicidade e versatilidade dessa linguagem, gerando documentos dinâmicos em HTML. No entanto, a maioria das opções e o funcionamento geral do pacote é similar para LaTeX (e compilação para PDF) e HTML.</p>
-<p>Na seção anterior, nós criamos um arquivo com a extensão <code>.Rmd</code>, que é apropriada para documentos escritos em Markdown com R. Nós também usamos as funções <code>knitr()</code> para converter o documento para Markdown, e posteriormente a função <code>pandoc()</code> para gerar o HTML resultante. Esse é o processo básico para gerar documentos dinâmicos no R. No entanto, podemos estender esse processo para incorporar mais controle tanto sob os códigos que são gerados, quanto na apresentação do documento final.</p>
-<p>Para facilitar a criação de documentos dinâmicos no R, a equipe do RStudio desenvolveu o pacote <a href="http://rmarkdown.rstudio.com">rmarkdown</a>, que é baseado no knitr e Pandoc, e contém opções padrão para gerar documentos em vários formatos de maneira mais aprimorada.</p>
-<p>A principal função para gerar documentos em R Markdown do pacote rmarkdown é a <code>render()</code>. A função <code>render()</code> é uma <em>wrapper</em> que internamente chama a <code>knitr::knit()</code> e posteriormente converte o documento para <code>.html</code> usando o Pandoc. A diferença é que, além de ser um processo mais direto, a saída em formato HTML utiliza temas mais amigáveis, como o Twitter Bootstrap, que possibilita grandes opções de configuração mais avançada.</p>
+<div id="r-markdown-e-knitr" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">A.6</span> R Markdown e knitr<a href="documentos-dinâmicos.html#r-markdown-e-knitr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O pacote knitr, como já mencionado, é uma combinação de várias ideias
+desenvolvidas separadamente em pacotes do R para <em>literate programming</em>,
+especialmente o Sweave. Este pacote suporta LaTeX, Markdown e HTML
+como <strong>linguagem de documentação</strong>, e algumas linguagens de programação,
+além do R, como por exemplo shell e Python. O resultado destes
+documentos pode ser exportado para PDF, HTML, ou até mesmo arquivos do
+MS Word. Daqui em diante, o nosso foco será no uso do knitr com Markdown
+e R, pela simplicidade e versatilidade dessa linguagem, gerando
+documentos dinâmicos em HTML. No entanto, a maioria das opções e o
+funcionamento geral do pacote é similar para LaTeX (e compilação para
+PDF) e HTML.</p>
+<p>Na seção anterior, nós criamos um arquivo com a extensão <code>.Rmd</code>, que é
+apropriada para documentos escritos em Markdown com R. Nós também usamos
+as funções <code>knitr()</code> para converter o documento para Markdown, e
+posteriormente a função <code>pandoc()</code> para gerar o HTML resultante.
+Esse é o processo básico para gerar documentos dinâmicos no R. No
+entanto, podemos estender esse processo para incorporar mais controle
+tanto sob os códigos que são gerados, quanto na apresentação do
+documento final.</p>
+<p>Para facilitar a criação de documentos dinâmicos no R, a equipe do
+RStudio desenvolveu o pacote <a href="http://rmarkdown.rstudio.com">rmarkdown</a>, que é baseado no knitr e
+Pandoc, e contém opções padrão para gerar documentos em vários formatos
+de maneira mais aprimorada.</p>
+<p>A principal função para gerar documentos em R Markdown do pacote
+rmarkdown é a <code>render()</code>. A função <code>render()</code> é uma <em>wrapper</em> que
+internamente chama a <code>knitr::knit()</code> e posteriormente converte o
+documento para <code>.html</code> usando o Pandoc. A diferença é que, além de ser
+um processo mais direto, a saída em formato HTML utiliza temas mais
+amigáveis, como o Twitter Bootstrap, que possibilita grandes opções de
+configuração mais avançada.</p>
 <p>Para usar esse função você precisa:</p>
 <ol style="list-style-type: decimal">
-<li>Instalar o pacote <code>rmarkdown</code> com <code>install.packages(&quot;rmarkdown&quot;)</code></li>
+<li>Instalar o pacote <code>rmarkdown</code> com <code>install.packages("rmarkdown")</code></li>
 <li>Instalar o Pandoc no seu sistema</li>
 </ol>
-<p>No RStudio, esse pacote já vem instalado, assim como uma versão embutida do Pandoc.</p>
-<p>Usando o exemplo anterior, vamos compilar o arquivo <a href="exemplos/Exemplo2-knitr.Rmd">Exemplo2-knitr.Rmd</a>. O primeiro argumento da função é o nome (e local) do arquivo, e o segundo argumento é o formato de saída, que por padrão é HTML.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rmarkdown)
-<span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo2-knitr.Rmd&quot;</span>,  <span class="dt">output_format =</span> <span class="st">&quot;html_document&quot;</span>)
-
-
-processing file<span class="op">:</span><span class="st"> </span>Exemplo2<span class="op">-</span>knitr.Rmd
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
-  ordinary text without R code
-
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">1</span><span class="op">-</span><span class="dv">2</span>
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
-  ordinary text without R code
-
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">3</span><span class="op">-</span><span class="dv">4</span>
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
-   inline R code fragments
-output file<span class="op">:</span><span class="st"> </span>Exemplo2<span class="op">-</span>knitr.knit.md
-<span class="op">/</span>usr<span class="op">/</span>bin<span class="op">/</span>pandoc <span class="op">+</span>RTS <span class="op">-</span>K512m <span class="op">-</span>RTS Exemplo2<span class="op">-</span>knitr.utf8.md <span class="op">--</span>to html4 <span class="op">--</span>from markdown<span class="op">+</span>autolink_bare_uris<span class="op">+</span>tex_math_single_backslash <span class="op">--</span>output Exemplo2<span class="op">-</span>knitr.html <span class="op">--</span>smart <span class="op">--</span>email<span class="op">-</span>obfuscation none <span class="op">--</span>self<span class="op">-</span>contained <span class="op">--</span>standalone <span class="op">--</span>section<span class="op">-</span>divs <span class="op">--</span>template <span class="op">/</span>home<span class="op">/</span>travis<span class="op">/</span>R<span class="op">/</span>Library<span class="op">/</span>rmarkdown<span class="op">/</span>rmd<span class="op">/</span>h<span class="op">/</span>default.html <span class="op">--</span>no<span class="op">-</span>highlight <span class="op">--</span>variable highlightjs=<span class="dv">1</span> <span class="op">--</span>variable <span class="st">&#39;theme:bootstrap&#39;</span> <span class="op">--</span>include<span class="op">-</span><span class="cf">in</span><span class="op">-</span>header <span class="op">/</span>tmp<span class="op">/</span>RtmpFqTzQk<span class="op">/</span>rmarkdown<span class="op">-</span>str30fe76385f43.html <span class="op">--</span>mathjax <span class="op">--</span>variable <span class="st">&#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> 
-
-Output created<span class="op">:</span><span class="st"> </span>Exemplo2<span class="op">-</span>knitr.html</code></pre></div>
+<p>No RStudio, esse pacote já vem instalado, assim como uma versão embutida
+do Pandoc.</p>
+<p>Usando o exemplo anterior, vamos compilar o arquivo
+<a href="exemplos/Exemplo2-knitr.Rmd">Exemplo2-knitr.Rmd</a>. O primeiro argumento
+da função é o nome (e local) do arquivo, e o segundo argumento é o
+formato de saída, que por padrão é HTML.</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="documentos-dinâmicos.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb411-2"><a href="documentos-dinâmicos.html#cb411-2" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo2-knitr.Rmd&quot;</span>,  <span class="at">output_format =</span> <span class="st">&quot;html_document&quot;</span>)</span>
+<span id="cb411-3"><a href="documentos-dinâmicos.html#cb411-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-4"><a href="documentos-dinâmicos.html#cb411-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-5"><a href="documentos-dinâmicos.html#cb411-5" aria-hidden="true" tabindex="-1"></a>processing file<span class="sc">:</span> Exemplo2<span class="sc">-</span>knitr.Rmd</span>
+<span id="cb411-6"><a href="documentos-dinâmicos.html#cb411-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-7"><a href="documentos-dinâmicos.html#cb411-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb411-8"><a href="documentos-dinâmicos.html#cb411-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb411-9"><a href="documentos-dinâmicos.html#cb411-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb411-10"><a href="documentos-dinâmicos.html#cb411-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..............                                                        <span class="sc">|</span>  <span class="dv">20</span>%</span>
+<span id="cb411-11"><a href="documentos-dinâmicos.html#cb411-11" aria-hidden="true" tabindex="-1"></a>  ordinary text without R code</span>
+<span id="cb411-12"><a href="documentos-dinâmicos.html#cb411-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-13"><a href="documentos-dinâmicos.html#cb411-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-14"><a href="documentos-dinâmicos.html#cb411-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb411-15"><a href="documentos-dinâmicos.html#cb411-15" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>............................                                          <span class="sc">|</span>  <span class="dv">40</span>%</span>
+<span id="cb411-16"><a href="documentos-dinâmicos.html#cb411-16" aria-hidden="true" tabindex="-1"></a>label<span class="sc">:</span> unnamed<span class="sc">-</span>chunk<span class="dv">-1-2</span></span>
+<span id="cb411-17"><a href="documentos-dinâmicos.html#cb411-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-18"><a href="documentos-dinâmicos.html#cb411-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb411-19"><a href="documentos-dinâmicos.html#cb411-19" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..........................................                            <span class="sc">|</span>  <span class="dv">60</span>%</span>
+<span id="cb411-20"><a href="documentos-dinâmicos.html#cb411-20" aria-hidden="true" tabindex="-1"></a>  ordinary text without R code</span>
+<span id="cb411-21"><a href="documentos-dinâmicos.html#cb411-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-22"><a href="documentos-dinâmicos.html#cb411-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-23"><a href="documentos-dinâmicos.html#cb411-23" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb411-24"><a href="documentos-dinâmicos.html#cb411-24" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>........................................................              <span class="sc">|</span>  <span class="dv">80</span>%</span>
+<span id="cb411-25"><a href="documentos-dinâmicos.html#cb411-25" aria-hidden="true" tabindex="-1"></a>label<span class="sc">:</span> unnamed<span class="sc">-</span>chunk<span class="dv">-3-4</span></span>
+<span id="cb411-26"><a href="documentos-dinâmicos.html#cb411-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-27"><a href="documentos-dinâmicos.html#cb411-27" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb411-28"><a href="documentos-dinâmicos.html#cb411-28" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>......................................................................<span class="sc">|</span> <span class="dv">100</span>%</span>
+<span id="cb411-29"><a href="documentos-dinâmicos.html#cb411-29" aria-hidden="true" tabindex="-1"></a>   inline R code fragments</span>
+<span id="cb411-30"><a href="documentos-dinâmicos.html#cb411-30" aria-hidden="true" tabindex="-1"></a>output file<span class="sc">:</span> Exemplo2<span class="sc">-</span>knitr.knit.md</span>
+<span id="cb411-31"><a href="documentos-dinâmicos.html#cb411-31" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>bin<span class="sc">/</span>pandoc <span class="sc">+</span>RTS <span class="sc">-</span>K512m <span class="sc">-</span>RTS Exemplo2<span class="sc">-</span>knitr.knit.md <span class="sc">--</span>to html4 <span class="sc">--</span>from markdown<span class="sc">+</span>autolink_bare_uris<span class="sc">+</span>tex_math_single_backslash <span class="sc">--</span>output Exemplo2<span class="sc">-</span>knitr.html <span class="sc">--</span>lua<span class="sc">-</span>filter <span class="sc">/</span>home<span class="sc">/</span>runner<span class="sc">/</span>.local<span class="sc">/</span>share<span class="sc">/</span>renv<span class="sc">/</span>cache<span class="sc">/</span>v5<span class="sc">/</span>R<span class="fl">-4.2</span><span class="sc">/</span>x86_64<span class="sc">-</span>pc<span class="sc">-</span>linux<span class="sc">-</span>gnu<span class="sc">/</span>rmarkdown<span class="sc">/</span><span class="fl">2.17</span><span class="sc">/</span>e97c8be593e010f93520e8215c0f9189<span class="sc">/</span>rmarkdown<span class="sc">/</span>rmarkdown<span class="sc">/</span>lua<span class="sc">/</span>pagebreak.lua <span class="sc">--</span>lua<span class="sc">-</span>filter <span class="sc">/</span>home<span class="sc">/</span>runner<span class="sc">/</span>.local<span class="sc">/</span>share<span class="sc">/</span>renv<span class="sc">/</span>cache<span class="sc">/</span>v5<span class="sc">/</span>R<span class="fl">-4.2</span><span class="sc">/</span>x86_64<span class="sc">-</span>pc<span class="sc">-</span>linux<span class="sc">-</span>gnu<span class="sc">/</span>rmarkdown<span class="sc">/</span><span class="fl">2.17</span><span class="sc">/</span>e97c8be593e010f93520e8215c0f9189<span class="sc">/</span>rmarkdown<span class="sc">/</span>rmarkdown<span class="sc">/</span>lua<span class="sc">/</span>latex<span class="sc">-</span>div.lua <span class="sc">--</span>embed<span class="sc">-</span>resources <span class="sc">--</span>standalone <span class="sc">--</span>variable bs3<span class="ot">=</span><span class="cn">TRUE</span> <span class="sc">--</span>section<span class="sc">-</span>divs <span class="sc">--</span>template <span class="sc">/</span>home<span class="sc">/</span>runner<span class="sc">/</span>.local<span class="sc">/</span>share<span class="sc">/</span>renv<span class="sc">/</span>cache<span class="sc">/</span>v5<span class="sc">/</span>R<span class="fl">-4.2</span><span class="sc">/</span>x86_64<span class="sc">-</span>pc<span class="sc">-</span>linux<span class="sc">-</span>gnu<span class="sc">/</span>rmarkdown<span class="sc">/</span><span class="fl">2.17</span><span class="sc">/</span>e97c8be593e010f93520e8215c0f9189<span class="sc">/</span>rmarkdown<span class="sc">/</span>rmd<span class="sc">/</span>h<span class="sc">/</span>default.html <span class="sc">--</span>no<span class="sc">-</span>highlight <span class="sc">--</span>variable highlightjs<span class="ot">=</span><span class="dv">1</span> <span class="sc">--</span>variable theme<span class="ot">=</span>bootstrap <span class="sc">--</span>mathjax <span class="sc">--</span>variable <span class="st">&#39;mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> <span class="sc">--</span>include<span class="sc">-</span><span class="cf">in</span><span class="sc">-</span>header <span class="sc">/</span>tmp<span class="sc">/</span>Rtmp60E9Qj<span class="sc">/</span>rmarkdown<span class="sc">-</span>strbc5b325843d1.html </span>
+<span id="cb411-32"><a href="documentos-dinâmicos.html#cb411-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb411-33"><a href="documentos-dinâmicos.html#cb411-33" aria-hidden="true" tabindex="-1"></a>Output created<span class="sc">:</span> Exemplo2<span class="sc">-</span>knitr.html</span></code></pre></div>
 <p><img src="img/split_apply_combine.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>E o resultado pode ser visto no arquivo <a href="exemplos/Exemplo2-knitr.html">Exemplo2-knitr.html</a>.</p>
-<p>No RStudio, esse processo todo pode ser feito pelo botão <kbd>Knit<kbd>.</p>
-<div id="metadados" class="section level3">
-<h3><span class="header-section-number">A.6.1</span> Metadados</h3>
-<p>Uma opção interessante ao utilizar o Pandoc é incluir metados no formato <a href="http://yaml.org/">YAML</a> (<em>Yet Another Markup Language</em>). Os metadados em YAML são escritos em formato de lista aninhada, e o Pandoc usa essas informações para incluir, por exemplo, título, autor, e data em um documento.</p>
-<p>A opção mais importante para o <code>rmarkdown</code> é o campo <code>output</code>, que permite especificar o formato desejado de saída, o mesmo especificado no argumento <code>output_format =</code> da função <code>render()</code>.</p>
-<p>Os metadados em YAML são colocados sempre no <strong>início</strong> de um documento, e são delimitados por <code>---</code>. Um exemplo típico seria:</p>
+<p>E o resultado pode ser visto no arquivo
+<a href="exemplos/Exemplo2-knitr.html">Exemplo2-knitr.html</a>.</p>
+<p>No RStudio, esse processo todo pode ser feito pelo botão
+<kbd>Knit<kbd>.</p>
+<div id="metadados" class="section level3 hasAnchor" number="9.6.1">
+<h3><span class="header-section-number">A.6.1</span> Metadados<a href="documentos-dinâmicos.html#metadados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma opção interessante ao utilizar o Pandoc é incluir metados no formato
+<a href="http://yaml.org/">YAML</a> (<em>Yet Another Markup Language</em>). Os metadados em YAML são
+escritos em formato de lista aninhada, e o Pandoc usa essas informações
+para incluir, por exemplo, título, autor, e data em um documento.</p>
+<p>A opção mais importante para o <code>rmarkdown</code> é o campo <code>output</code>, que
+permite especificar o formato desejado de saída, o mesmo especificado no
+argumento <code>output_format =</code> da função <code>render()</code>.</p>
+<p>Os metadados em YAML são colocados sempre no <strong>início</strong> de um documento,
+e são delimitados por <code>---</code>. Um exemplo típico seria:</p>
 <pre><code>---
 title: &quot;Meu primeiro documento em R Markdown&quot;
 author: &quot;Fernando Mayer&quot;
@@ -806,45 +1023,50 @@ date: &quot;Abril, 2018&quot;
 output: html_document
 ---</code></pre>
 <p>Com isso, não é mais necessário especificar o argumento <code>output_format =</code> na chamada da função <code>render()</code>.</p>
-<p>Veja o arquivo <a href="exemplos/Exemplo1-yaml.Rmd">Exemplo1-yaml.Rmd</a>. Para renderizar esse aquivo, usamos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>)
-
-
-processing file<span class="op">:</span><span class="st"> </span>Exemplo1<span class="op">-</span>yaml.Rmd
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
-  ordinary text without R code
-
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">1</span><span class="op">-</span><span class="dv">2</span>
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
-  ordinary text without R code
-
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
-label<span class="op">:</span><span class="st"> </span>unnamed<span class="op">-</span>chunk<span class="op">-</span><span class="dv">3</span><span class="op">-</span><span class="dv">4</span>
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
-   inline R code fragments
-output file<span class="op">:</span><span class="st"> </span>Exemplo1<span class="op">-</span>yaml.knit.md
-<span class="op">/</span>usr<span class="op">/</span>bin<span class="op">/</span>pandoc <span class="op">+</span>RTS <span class="op">-</span>K512m <span class="op">-</span>RTS Exemplo1<span class="op">-</span>yaml.utf8.md <span class="op">--</span>to html4 <span class="op">--</span>from markdown<span class="op">+</span>autolink_bare_uris<span class="op">+</span>tex_math_single_backslash <span class="op">--</span>output Exemplo1<span class="op">-</span>yaml.html <span class="op">--</span>smart <span class="op">--</span>email<span class="op">-</span>obfuscation none <span class="op">--</span>self<span class="op">-</span>contained <span class="op">--</span>standalone <span class="op">--</span>section<span class="op">-</span>divs <span class="op">--</span>template <span class="op">/</span>home<span class="op">/</span>travis<span class="op">/</span>R<span class="op">/</span>Library<span class="op">/</span>rmarkdown<span class="op">/</span>rmd<span class="op">/</span>h<span class="op">/</span>default.html <span class="op">--</span>no<span class="op">-</span>highlight <span class="op">--</span>variable highlightjs=<span class="dv">1</span> <span class="op">--</span>variable <span class="st">&#39;theme:bootstrap&#39;</span> <span class="op">--</span>include<span class="op">-</span><span class="cf">in</span><span class="op">-</span>header <span class="op">/</span>tmp<span class="op">/</span>RtmpFqTzQk<span class="op">/</span>rmarkdown<span class="op">-</span>str30fe260ac15e.html <span class="op">--</span>mathjax <span class="op">--</span>variable <span class="st">&#39;mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> 
-
-Output created<span class="op">:</span><span class="st"> </span>Exemplo1<span class="op">-</span>yaml.html</code></pre></div>
-<p>O resultado final pode ser visto no arquivo <a href="exemplos/Exemplo1-yaml.html">Exemplo1-yaml.html</a>.</p>
+<p>Veja o arquivo <a href="exemplos/Exemplo1-yaml.Rmd">Exemplo1-yaml.Rmd</a>. Para
+renderizar esse aquivo, usamos:</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="documentos-dinâmicos.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>)</span>
+<span id="cb413-2"><a href="documentos-dinâmicos.html#cb413-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-3"><a href="documentos-dinâmicos.html#cb413-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-4"><a href="documentos-dinâmicos.html#cb413-4" aria-hidden="true" tabindex="-1"></a>processing file<span class="sc">:</span> Exemplo1<span class="sc">-</span>yaml.Rmd</span>
+<span id="cb413-5"><a href="documentos-dinâmicos.html#cb413-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-6"><a href="documentos-dinâmicos.html#cb413-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb413-7"><a href="documentos-dinâmicos.html#cb413-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb413-8"><a href="documentos-dinâmicos.html#cb413-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb413-9"><a href="documentos-dinâmicos.html#cb413-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..............                                                        <span class="sc">|</span>  <span class="dv">20</span>%</span>
+<span id="cb413-10"><a href="documentos-dinâmicos.html#cb413-10" aria-hidden="true" tabindex="-1"></a>  ordinary text without R code</span>
+<span id="cb413-11"><a href="documentos-dinâmicos.html#cb413-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-12"><a href="documentos-dinâmicos.html#cb413-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-13"><a href="documentos-dinâmicos.html#cb413-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb413-14"><a href="documentos-dinâmicos.html#cb413-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>............................                                          <span class="sc">|</span>  <span class="dv">40</span>%</span>
+<span id="cb413-15"><a href="documentos-dinâmicos.html#cb413-15" aria-hidden="true" tabindex="-1"></a>label<span class="sc">:</span> unnamed<span class="sc">-</span>chunk<span class="dv">-1-2</span></span>
+<span id="cb413-16"><a href="documentos-dinâmicos.html#cb413-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-17"><a href="documentos-dinâmicos.html#cb413-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb413-18"><a href="documentos-dinâmicos.html#cb413-18" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..........................................                            <span class="sc">|</span>  <span class="dv">60</span>%</span>
+<span id="cb413-19"><a href="documentos-dinâmicos.html#cb413-19" aria-hidden="true" tabindex="-1"></a>  ordinary text without R code</span>
+<span id="cb413-20"><a href="documentos-dinâmicos.html#cb413-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-21"><a href="documentos-dinâmicos.html#cb413-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-22"><a href="documentos-dinâmicos.html#cb413-22" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb413-23"><a href="documentos-dinâmicos.html#cb413-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>........................................................              <span class="sc">|</span>  <span class="dv">80</span>%</span>
+<span id="cb413-24"><a href="documentos-dinâmicos.html#cb413-24" aria-hidden="true" tabindex="-1"></a>label<span class="sc">:</span> unnamed<span class="sc">-</span>chunk<span class="dv">-3-4</span></span>
+<span id="cb413-25"><a href="documentos-dinâmicos.html#cb413-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-26"><a href="documentos-dinâmicos.html#cb413-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb413-27"><a href="documentos-dinâmicos.html#cb413-27" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>......................................................................<span class="sc">|</span> <span class="dv">100</span>%</span>
+<span id="cb413-28"><a href="documentos-dinâmicos.html#cb413-28" aria-hidden="true" tabindex="-1"></a>   inline R code fragments</span>
+<span id="cb413-29"><a href="documentos-dinâmicos.html#cb413-29" aria-hidden="true" tabindex="-1"></a>output file<span class="sc">:</span> Exemplo1<span class="sc">-</span>yaml.knit.md</span>
+<span id="cb413-30"><a href="documentos-dinâmicos.html#cb413-30" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>bin<span class="sc">/</span>pandoc <span class="sc">+</span>RTS <span class="sc">-</span>K512m <span class="sc">-</span>RTS Exemplo1<span class="sc">-</span>yaml.knit.md <span class="sc">--</span>to html4 <span class="sc">--</span>from markdown<span class="sc">+</span>autolink_bare_uris<span class="sc">+</span>tex_math_single_backslash <span class="sc">--</span>output Exemplo1<span class="sc">-</span>yaml.html <span class="sc">--</span>lua<span class="sc">-</span>filter <span class="sc">/</span>home<span class="sc">/</span>runner<span class="sc">/</span>.local<span class="sc">/</span>share<span class="sc">/</span>renv<span class="sc">/</span>cache<span class="sc">/</span>v5<span class="sc">/</span>R<span class="fl">-4.2</span><span class="sc">/</span>x86_64<span class="sc">-</span>pc<span class="sc">-</span>linux<span class="sc">-</span>gnu<span class="sc">/</span>rmarkdown<span class="sc">/</span><span class="fl">2.17</span><span class="sc">/</span>e97c8be593e010f93520e8215c0f9189<span class="sc">/</span>rmarkdown<span class="sc">/</span>rmarkdown<span class="sc">/</span>lua<span class="sc">/</span>pagebreak.lua <span class="sc">--</span>lua<span class="sc">-</span>filter <span class="sc">/</span>home<span class="sc">/</span>runner<span class="sc">/</span>.local<span class="sc">/</span>share<span class="sc">/</span>renv<span class="sc">/</span>cache<span class="sc">/</span>v5<span class="sc">/</span>R<span class="fl">-4.2</span><span class="sc">/</span>x86_64<span class="sc">-</span>pc<span class="sc">-</span>linux<span class="sc">-</span>gnu<span class="sc">/</span>rmarkdown<span class="sc">/</span><span class="fl">2.17</span><span class="sc">/</span>e97c8be593e010f93520e8215c0f9189<span class="sc">/</span>rmarkdown<span class="sc">/</span>rmarkdown<span class="sc">/</span>lua<span class="sc">/</span>latex<span class="sc">-</span>div.lua <span class="sc">--</span>embed<span class="sc">-</span>resources <span class="sc">--</span>standalone <span class="sc">--</span>variable bs3<span class="ot">=</span><span class="cn">TRUE</span> <span class="sc">--</span>section<span class="sc">-</span>divs <span class="sc">--</span>template <span class="sc">/</span>home<span class="sc">/</span>runner<span class="sc">/</span>.local<span class="sc">/</span>share<span class="sc">/</span>renv<span class="sc">/</span>cache<span class="sc">/</span>v5<span class="sc">/</span>R<span class="fl">-4.2</span><span class="sc">/</span>x86_64<span class="sc">-</span>pc<span class="sc">-</span>linux<span class="sc">-</span>gnu<span class="sc">/</span>rmarkdown<span class="sc">/</span><span class="fl">2.17</span><span class="sc">/</span>e97c8be593e010f93520e8215c0f9189<span class="sc">/</span>rmarkdown<span class="sc">/</span>rmd<span class="sc">/</span>h<span class="sc">/</span>default.html <span class="sc">--</span>no<span class="sc">-</span>highlight <span class="sc">--</span>variable highlightjs<span class="ot">=</span><span class="dv">1</span> <span class="sc">--</span>variable theme<span class="ot">=</span>bootstrap <span class="sc">--</span>mathjax <span class="sc">--</span>variable <span class="st">&#39;mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#39;</span> <span class="sc">--</span>include<span class="sc">-</span><span class="cf">in</span><span class="sc">-</span>header <span class="sc">/</span>tmp<span class="sc">/</span>Rtmp60E9Qj<span class="sc">/</span>rmarkdown<span class="sc">-</span>strbc5b6bfd6807.html </span>
+<span id="cb413-31"><a href="documentos-dinâmicos.html#cb413-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-32"><a href="documentos-dinâmicos.html#cb413-32" aria-hidden="true" tabindex="-1"></a>Output created<span class="sc">:</span> Exemplo1<span class="sc">-</span>yaml.html</span></code></pre></div>
+<p>O resultado final pode ser visto no arquivo
+<a href="exemplos/Exemplo1-yaml.html">Exemplo1-yaml.html</a>.</p>
 </div>
-<div id="convertendo-r-markdown-para-outros-formatos" class="section level3">
-<h3><span class="header-section-number">A.6.2</span> Convertendo R Markdown para outros formatos</h3>
-<p>Por padrão, a função <code>render()</code> gera um arquivo <code>.html</code>, mas existem outros formatos finais possíveis graças ao <strong>Pandoc</strong>.</p>
-<p>O pacote <code>rmarkdown</code> possui uma série de formatos de saída, que possuem os sufixos <code>_document</code> para documentos, e <code>_presentation</code> para apresentações (slides). Alguns deles:</p>
+<div id="convertendo-r-markdown-para-outros-formatos" class="section level3 hasAnchor" number="9.6.2">
+<h3><span class="header-section-number">A.6.2</span> Convertendo R Markdown para outros formatos<a href="documentos-dinâmicos.html#convertendo-r-markdown-para-outros-formatos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Por padrão, a função <code>render()</code> gera um arquivo <code>.html</code>, mas existem
+outros formatos finais possíveis graças ao <strong>Pandoc</strong>.</p>
+<p>O pacote <code>rmarkdown</code> possui uma série de formatos de saída, que possuem
+os sufixos <code>_document</code> para documentos, e <code>_presentation</code> para
+apresentações (slides). Alguns deles:</p>
 <ul>
 <li>Documentos:
 <ul>
@@ -860,30 +1082,39 @@ Output created<span class="op">:</span><span class="st"> </span>Exemplo1<span cl
 </ul></li>
 </ul>
 <p>Podemos converter um documento em R Markdown para PDF com</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>, <span class="dt">output_format =</span> <span class="st">&quot;pdf_document&quot;</span>)</code></pre></div>
-<p>O resultado é o arquivo <a href="exemplos/Exemplo1-yaml.pdf">Exemplo1-yaml.pdf</a>. A função <code>render()</code> usa o Pandoc para converter Markdown para LaTeX, e depois para PDF.</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="documentos-dinâmicos.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;pdf_document&quot;</span>)</span></code></pre></div>
+<p>O resultado é o arquivo
+<a href="exemplos/Exemplo1-yaml.pdf">Exemplo1-yaml.pdf</a>. A função <code>render()</code>
+usa o Pandoc para converter Markdown para LaTeX, e depois para PDF.</p>
 <p>Um documento do Word pode ser gerado com</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>, <span class="dt">output_format =</span> <span class="st">&quot;word_document&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="documentos-dinâmicos.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;word_document&quot;</span>)</span></code></pre></div>
 <p>Para gerar <a href="exemplos/Exemplo1-knitr.docx">Exemplo1-yaml.docx</a>.</p>
-<p>Apresentações em slides HTML podem ser geradas em diversos formatos, um deles é o <code>ioslides</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>,
-       <span class="dt">output_format =</span> <span class="st">&quot;ioslides_presentation&quot;</span>,
-       <span class="dt">output_file =</span> <span class="st">&quot;Exemplo1-yaml-ioslides.html&quot;</span>)</code></pre></div>
-<p>Veja o resultado em <a href="exemplos/Exemplo1-knitr-ioslides.html">Exemplo1-knitr-ioslides.html</a>.</p>
+<p>Apresentações em slides HTML podem ser geradas em diversos formatos, um
+deles é o <code>ioslides</code></p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="documentos-dinâmicos.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>,</span>
+<span id="cb416-2"><a href="documentos-dinâmicos.html#cb416-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">output_format =</span> <span class="st">&quot;ioslides_presentation&quot;</span>,</span>
+<span id="cb416-3"><a href="documentos-dinâmicos.html#cb416-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">output_file =</span> <span class="st">&quot;Exemplo1-yaml-ioslides.html&quot;</span>)</span></code></pre></div>
+<p>Veja o resultado em
+<a href="exemplos/Exemplo1-knitr-ioslides.html">Exemplo1-knitr-ioslides.html</a>.</p>
 <p>Apresentações em Beamer também podem ser geradas com</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>,
-       <span class="dt">output_format =</span> <span class="st">&quot;beamer_presentation&quot;</span>,
-       <span class="dt">output_file =</span> <span class="st">&quot;Exemplo1-yaml-beamer.pdf&quot;</span>)</code></pre></div>
-<p>Com resultado no arquivo <a href="exemplos/Exemplo1-yaml-beamer.pdf">Exemplo1-yaml-beamer.pdf</a>.</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="documentos-dinâmicos.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml.Rmd&quot;</span>,</span>
+<span id="cb417-2"><a href="documentos-dinâmicos.html#cb417-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">output_format =</span> <span class="st">&quot;beamer_presentation&quot;</span>,</span>
+<span id="cb417-3"><a href="documentos-dinâmicos.html#cb417-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">output_file =</span> <span class="st">&quot;Exemplo1-yaml-beamer.pdf&quot;</span>)</span></code></pre></div>
+<p>Com resultado no arquivo
+<a href="exemplos/Exemplo1-yaml-beamer.pdf">Exemplo1-yaml-beamer.pdf</a>.</p>
 </div>
-<div id="opções-do-knitr" class="section level3">
-<h3><span class="header-section-number">A.6.3</span> Opções do knitr</h3>
-<p>O pacote knitr possui diversas opções para controlar a saída dos resultados de códigos do R. Estas opções funcionam igualmente em blocos de código inseridos entre texto escrito em Markdown ou LaTeX.</p>
-<p>Para controlar a saída de código de um único <em>chunk</em>, coloque as opções individualmente</p>
+<div id="opções-do-knitr" class="section level3 hasAnchor" number="9.6.3">
+<h3><span class="header-section-number">A.6.3</span> Opções do knitr<a href="documentos-dinâmicos.html#opções-do-knitr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O pacote knitr possui diversas opções para controlar a saída dos
+resultados de códigos do R. Estas opções funcionam igualmente em blocos
+de código inseridos entre texto escrito em Markdown ou LaTeX.</p>
+<p>Para controlar a saída de código de um único <em>chunk</em>, coloque as opções
+individualmente</p>
 <pre><code>```{r, opt1=val1, opt2=val2}
 # código
 ```</code></pre>
-<p>Para controlar globalmente <strong>todos</strong> os <em>chunks</em> de um documento, use a função <code>knitr::opts_chunk$set()</code>:</p>
+<p>Para controlar globalmente <strong>todos</strong> os <em>chunks</em> de um documento, use a
+função <code>knitr::opts_chunk$set()</code>:</p>
 <pre><code>```{r, echo=FALSE}
 knitr::opts_chunk$set(opt1 = val1,
                       opt2 = val2
@@ -893,13 +1124,20 @@ knitr::opts_chunk$set(opt1 = val1,
 <ul>
 <li><code>eval = FALSE</code> para não avaliar o código, apenas mostrar</li>
 <li><code>echo = FALSE</code> para não mostrar o código, apenas as saídas</li>
-<li><code>results = &quot;hide&quot;</code> para não mostrar as saídas</li>
-<li><code>warning = FALSE</code> e <code>message = FALSE</code> para suprimir as mensagens de aviso</li>
-<li><code>fig.width = 5</code> and <code>fig.height = 5</code> para alterar o tamanho dos gráficos gerados pelo R (em polegadas)</li>
-<li><code>out.width = &quot;80%&quot;</code> para dimensionar a largura dos gráficos</li>
-<li><code>cache = TRUE</code> para armazenar os resultados, e evitar com que eles sejam executados todas as vezes que o documento é compilado</li>
+<li><code>results = "hide"</code> para não mostrar as saídas</li>
+<li><code>warning = FALSE</code> e <code>message = FALSE</code> para suprimir as mensagens de
+aviso</li>
+<li><code>fig.width = 5</code> and <code>fig.height = 5</code> para alterar o tamanho dos
+gráficos gerados pelo R (em polegadas)</li>
+<li><code>out.width = "80%"</code> para dimensionar a largura dos gráficos</li>
+<li><code>cache = TRUE</code> para armazenar os resultados, e evitar com que eles
+sejam executados todas as vezes que o documento é compilado</li>
 </ul>
-<p>Tabelas podem ser também geradas automaticamente a partir de resultados de funções do R. Para gerar uma tabela a partir de um objeto do R, podemos usar a função <code>knitr::kable()</code>. Para isso, também é necesário utilizar a opção <code>results = &quot;asis&quot;</code> no <em>chunk</em>, para que o resultado seja tratado como texto literal em Markdown.</p>
+<p>Tabelas podem ser também geradas automaticamente a partir de resultados
+de funções do R. Para gerar uma tabela a partir de um objeto do R,
+podemos usar a função <code>knitr::kable()</code>. Para isso, também é necesário
+utilizar a opção <code>results = "asis"</code> no <em>chunk</em>, para que o resultado
+seja tratado como texto literal em Markdown.</p>
 <pre><code>```{r, results="asis"}
 kable(head(iris))
 ```</code></pre>
@@ -959,7 +1197,10 @@ kable(head(iris))
 </tbody>
 </table>
 <p>A lista completa de opções está em <a href="http://yihui.name/knitr/options" class="uri">http://yihui.name/knitr/options</a>.</p>
-<p>Utilizando a opção <code>output:</code> um cabeçalho YAML, podemos informar mais de um formato para ser <strong>gerado ao mesmo tempo</strong> pelo rmarkdown. Por exemplo, para gerar documentos de saída em HTML e PDF, podemos especificar</p>
+<p>Utilizando a opção <code>output:</code> um cabeçalho YAML, podemos informar mais de
+um formato para ser <strong>gerado ao mesmo tempo</strong> pelo rmarkdown. Por
+exemplo, para gerar documentos de saída em HTML e PDF, podemos
+especificar</p>
 <pre><code>---
 title: &quot;Meu primeiro documento em R Markdown&quot;
 author: &quot;Fernando Mayer&quot;
@@ -969,48 +1210,65 @@ output:
   pdf_document: default
 ---</code></pre>
 <p>E compilar todos eles ao mesmo tempo com</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml2.Rmd&quot;</span>, <span class="dt">output_format =</span> <span class="st">&quot;all&quot;</span>)</code></pre></div>
-<p>Veja <a href="exemplos/Exemplo1-yaml2.html">Exemplo1-yaml2.html</a>, e <a href="exemplos/Exemplo1-yaml2.pdf">Exemplo1-yaml2.pdf</a>.</p>
-<p>Existem ainda alguns outros formatos disponíveis pelo pacote <strong>rmarkdown</strong>, que podem ser consultados <a href="https://rmarkdown.rstudio.com/formats.html">aqui</a>. Para cada formato, ainda existem diversas opções que podem ser modificadas através do YAML. Estas opções podem ser conferidas nos links específicos de cada formato na página citada anteriormente.</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="documentos-dinâmicos.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo1-yaml2.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p>Veja <a href="exemplos/Exemplo1-yaml2.html">Exemplo1-yaml2.html</a>, e
+<a href="exemplos/Exemplo1-yaml2.pdf">Exemplo1-yaml2.pdf</a>.</p>
+<p>Existem ainda alguns outros formatos disponíveis pelo pacote
+<strong>rmarkdown</strong>, que podem ser consultados
+<a href="https://rmarkdown.rstudio.com/formats.html">aqui</a>. Para cada formato,
+ainda existem diversas opções que podem ser modificadas através do YAML.
+Estas opções podem ser conferidas nos links específicos de cada formato
+na página citada anteriormente.</p>
 </div>
-<div id="citações" class="section level3">
-<h3><span class="header-section-number">A.6.4</span> Citações</h3>
-<p>Também é possível escrever documentos que com referências bibliográficas. Isso é possível pois o Pandoc suporta arquivos <strong>BibTeX</strong> (<code>.bib</code>), que é o formato padrão de armazenamento e gerenciamento de referências no LaTeX.</p>
+<div id="citações" class="section level3 hasAnchor" number="9.6.4">
+<h3><span class="header-section-number">A.6.4</span> Citações<a href="documentos-dinâmicos.html#citações" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Também é possível escrever documentos que com referências
+bibliográficas. Isso é possível pois o Pandoc suporta arquivos
+<strong>BibTeX</strong> (<code>.bib</code>), que é o formato padrão de armazenamento e
+gerenciamento de referências no LaTeX.</p>
 <p>Para isso, basta então especificar o arquivo <code>.bib</code> no YAML com a <em>tag</em>:</p>
 <pre><code>bibliography: referencias.bib</code></pre>
-<p>As citações são então feitas com <code>@&lt;identificador&gt;</code>. Veja o arquivo <a href="exemplos/Exemplo3-knitr.Rmd">Exemplo3-knitr.Rmd</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">render</span>(<span class="st">&quot;exemplos/Exemplo3-knitr.Rmd&quot;</span>, <span class="dt">output_format =</span> <span class="st">&quot;all&quot;</span>)</code></pre></div>
-<p>Dessa forma serão gerados 3 formatos diferentes: HTML, PDF e MS Word. Note que o tema usado para o HTML (<code>journal</code>) é uma possibilidade entre algumas disponíveis em <a href="https://bootswatch.com/" class="uri">https://bootswatch.com/</a>.</p>
+<p>As citações são então feitas com <code>@&lt;identificador&gt;</code>. Veja o arquivo
+<a href="exemplos/Exemplo3-knitr.Rmd">Exemplo3-knitr.Rmd</a>.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="documentos-dinâmicos.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;exemplos/Exemplo3-knitr.Rmd&quot;</span>, <span class="at">output_format =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p>Dessa forma serão gerados 3 formatos diferentes: HTML, PDF e MS Word.
+Note que o tema usado para o HTML (<code>journal</code>) é uma possibilidade entre
+algumas disponíveis em <a href="https://bootswatch.com/" class="uri">https://bootswatch.com/</a>.</p>
 </div>
-<div id="extraindo-código-fonte" class="section level3">
-<h3><span class="header-section-number">A.6.5</span> Extraindo código-fonte</h3>
-<p>Uma característica importante do <strong>knitr</strong> é a habilidade de extrair somente o código R de um documento dinâmico (<em>tangle</em>). Muitas vezes você só precisa do código e não do texto (e.g. para enviar para um colaborador).</p>
+<div id="extraindo-código-fonte" class="section level3 hasAnchor" number="9.6.5">
+<h3><span class="header-section-number">A.6.5</span> Extraindo código-fonte<a href="documentos-dinâmicos.html#extraindo-código-fonte" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma característica importante do <strong>knitr</strong> é a habilidade de extrair
+somente o código R de um documento dinâmico (<em>tangle</em>). Muitas vezes
+você só precisa do código e não do texto (e.g. para enviar para um
+colaborador).</p>
 <p>Para fazer isso, use a função <code>purl()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">purl</span>(<span class="st">&quot;exemplos/Exemplo3-knitr.Rmd&quot;</span>)
-
-
-processing file<span class="op">:</span><span class="st"> </span>exemplos<span class="op">/</span>Exemplo3<span class="op">-</span>knitr.Rmd
-
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..............                                                        <span class="op">|</span><span class="st">  </span><span class="dv">20</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>............................                                          <span class="op">|</span><span class="st">  </span><span class="dv">40</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>..........................................                            <span class="op">|</span><span class="st">  </span><span class="dv">60</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>........................................................              <span class="op">|</span><span class="st">  </span><span class="dv">80</span>%
-  <span class="op">|</span><span class="st">                                                                            </span>
-<span class="st">  </span><span class="er">|</span>......................................................................<span class="op">|</span><span class="st"> </span><span class="dv">100</span>%
-output file<span class="op">:</span><span class="st"> </span>Exemplo3<span class="op">-</span>knitr.R
-[<span class="dv">1</span>] <span class="st">&quot;Exemplo3-knitr.R&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="documentos-dinâmicos.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">purl</span>(<span class="st">&quot;exemplos/Exemplo3-knitr.Rmd&quot;</span>)</span>
+<span id="cb422-2"><a href="documentos-dinâmicos.html#cb422-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb422-3"><a href="documentos-dinâmicos.html#cb422-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb422-4"><a href="documentos-dinâmicos.html#cb422-4" aria-hidden="true" tabindex="-1"></a>processing file<span class="sc">:</span> exemplos<span class="sc">/</span>Exemplo3<span class="sc">-</span>knitr.Rmd</span>
+<span id="cb422-5"><a href="documentos-dinâmicos.html#cb422-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb422-6"><a href="documentos-dinâmicos.html#cb422-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb422-7"><a href="documentos-dinâmicos.html#cb422-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb422-8"><a href="documentos-dinâmicos.html#cb422-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb422-9"><a href="documentos-dinâmicos.html#cb422-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..............                                                        <span class="sc">|</span>  <span class="dv">20</span>%</span>
+<span id="cb422-10"><a href="documentos-dinâmicos.html#cb422-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb422-11"><a href="documentos-dinâmicos.html#cb422-11" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>............................                                          <span class="sc">|</span>  <span class="dv">40</span>%</span>
+<span id="cb422-12"><a href="documentos-dinâmicos.html#cb422-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb422-13"><a href="documentos-dinâmicos.html#cb422-13" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>..........................................                            <span class="sc">|</span>  <span class="dv">60</span>%</span>
+<span id="cb422-14"><a href="documentos-dinâmicos.html#cb422-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb422-15"><a href="documentos-dinâmicos.html#cb422-15" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>........................................................              <span class="sc">|</span>  <span class="dv">80</span>%</span>
+<span id="cb422-16"><a href="documentos-dinâmicos.html#cb422-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb422-17"><a href="documentos-dinâmicos.html#cb422-17" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>......................................................................<span class="sc">|</span> <span class="dv">100</span>%</span>
+<span id="cb422-18"><a href="documentos-dinâmicos.html#cb422-18" aria-hidden="true" tabindex="-1"></a>output file<span class="sc">:</span> Exemplo3<span class="sc">-</span>knitr.R</span>
+<span id="cb422-19"><a href="documentos-dinâmicos.html#cb422-19" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Exemplo3-knitr.R&quot;</span></span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
-<p>Isso criará um script R <a href="exemplos/Exemplo3-knitr.R">Exemplo3-knitr.R</a> com apenas os códigos presentes nos <em>chunks</em> do documento.</p>
+<p>Isso criará um script R <a href="exemplos/Exemplo3-knitr.R">Exemplo3-knitr.R</a>
+com apenas os códigos presentes nos <em>chunks</em> do documento.</p>
 </div>
-<div id="outras-linguagens" class="section level3">
-<h3><span class="header-section-number">A.6.6</span> Outras linguagens</h3>
-<p>O R Markdown (por meio do pacote <strong>knitr</strong>) suporta também o uso de outras linguagens diferentes do R, como:</p>
+<div id="outras-linguagens" class="section level3 hasAnchor" number="9.6.6">
+<h3><span class="header-section-number">A.6.6</span> Outras linguagens<a href="documentos-dinâmicos.html#outras-linguagens" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O R Markdown (por meio do pacote <strong>knitr</strong>) suporta também o uso de
+outras linguagens diferentes do R, como:</p>
 <ul>
 <li>Python</li>
 <li>C (Rcpp)</li>
@@ -1026,9 +1284,18 @@ output file<span class="op">:</span><span class="st"> </span>Exemplo3<span class
 <li>SAS</li>
 <li>Coffeescript</li>
 </ul>
-<p>Para isso, basta mudar a <em>engine</em> (primeira definição do chunk) para a linguagem desejada.</p>
-<p>Exemplos do uso de diferentes <em>engines</em> podem ser consultadas <a href="https://yihui.name/knitr/demo/engines/">aqui</a>. Este outro <a href="https://rmarkdown.rstudio.com/authoring_knitr_engines.html">link</a> mostra mais alguns exemplos.</p>
-<p>No arquivo <a href="exemplos/Exemplo-python.Rmd">Exemplo-python.Rmd</a> pode-se ver um exemplo de documento que mistura códigos em Python e R. Também é utilizado o pacote <a href="https://blog.rstudio.com/2016/03/29/feather/">feather</a> do Python e do R, para exportar/importar data frames de uma linguagem para outra dentro do mesmo documento.</p>
+<p>Para isso, basta mudar a <em>engine</em> (primeira definição do chunk) para a
+linguagem desejada.</p>
+<p>Exemplos do uso de diferentes <em>engines</em> podem ser consultadas
+<a href="https://yihui.name/knitr/demo/engines/">aqui</a>. Este outro
+<a href="https://rmarkdown.rstudio.com/authoring_knitr_engines.html">link</a>
+mostra mais alguns exemplos.</p>
+<p>No arquivo <a href="exemplos/Exemplo-python.Rmd">Exemplo-python.Rmd</a> pode-se ver
+um exemplo de documento que mistura códigos em Python e R. Também é
+utilizado o pacote
+<a href="https://blog.rstudio.com/2016/03/29/feather/">feather</a> do Python e do
+R, para exportar/importar data frames de uma linguagem para outra dentro
+do mesmo documento.</p>
 <!-- links -->
 
 </div>
@@ -1044,7 +1311,6 @@ output file<span class="op">:</span><span class="st"> </span>Exemplo3<span class
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1063,6 +1329,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter"],
 "google": true
 },
@@ -1081,14 +1348,17 @@ gitbook.start({
 "text": null
 },
 "download": ["ecr.pdf", "ecr.epub", "ecr.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "none",
 "scroll_highlight": true
 },
 "toolbar": {
 "position": "fixed"
-},
-"search": true
+}
 });
 });
 </script>
@@ -1098,8 +1368,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

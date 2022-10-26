@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B Programação Orientada a Objetos | Estatística Computacional com R</title>
   <meta name="description" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.19.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B Programação Orientada a Objetos | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -36,7 +35,8 @@
   
 <link rel="prev" href="documentos-dinâmicos.html"/>
 <link rel="next" href="scripts.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -52,7 +52,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66454501-6"></script>
 <script>
@@ -65,41 +67,91 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -114,17 +166,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-quem-este-material-é-destinado"><i class="fa fa-check"></i>Para quem este material é destinado?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#informação-de-sessão"><i class="fa fa-check"></i>Informação de sessão</a></li>
 </ul></li>
 <li class="part"><span><b>I R básico</b></span></li>
-<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
+<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
-<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
+<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
+<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#configuração-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
 <li class="chapter" data-level="1.3.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
 <li class="chapter" data-level="1.3.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#para-onde-vão-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
@@ -137,26 +193,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#referências"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a><ul>
-<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
+<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-argumentos"><i class="fa fa-check"></i><b>2.1.1</b> Outros tipos de argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#mecanismos-de-ajuda"><i class="fa fa-check"></i><b>2.2</b> Mecanismos de ajuda</a></li>
 <li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-função"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-1"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
+<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#nomes-de-objetos"><i class="fa fa-check"></i><b>2.4.1</b> Nomes de objetos</a></li>
 <li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-área-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-2"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a><ul>
+<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numéricos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
 <li class="chapter" data-level="2.5.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-vetores"><i class="fa fa-check"></i><b>2.5.2</b> Outros tipos de vetores</a></li>
 <li class="chapter" data-level="2.5.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#misturando-classes-de-objetos"><i class="fa fa-check"></i><b>2.5.3</b> Misturando classes de objetos</a></li>
 <li class="chapter" data-level="2.5.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#valores-perdidos-e-especiais"><i class="fa fa-check"></i><b>2.5.4</b> Valores perdidos e especiais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-3"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a><ul>
+<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#fator"><i class="fa fa-check"></i><b>2.6.1</b> Fator</a></li>
 <li class="chapter" data-level="2.6.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#matriz"><i class="fa fa-check"></i><b>2.6.2</b> Matriz</a></li>
 <li class="chapter" data-level="2.6.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#array"><i class="fa fa-check"></i><b>2.6.3</b> Array</a></li>
@@ -167,8 +228,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-4"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referências-1"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
-<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
+<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-5"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="3.1.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
@@ -176,7 +239,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.4" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-6"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
+<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
 <li class="chapter" data-level="3.2.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#a-função-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-7"><i class="fa fa-check"></i>Exercícios</a></li>
@@ -184,8 +248,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-8"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
-<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
+<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
 <li class="chapter" data-level="4.1.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
 <li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-9"><i class="fa fa-check"></i>Exercícios</a></li>
@@ -196,61 +262,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.6" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#carregando-dados-já-disponíveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
+<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-a-função-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
 <li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-11"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="4.2.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-os-formatos-textual-e-binário-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#informações-sobre-diretórios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a><ul>
+<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-12"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-seleção-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
-<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a><ul>
+<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-13"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a><ul>
+<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-14"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Estatística</b></span></li>
-<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
+<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
-<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
+<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
 <li class="chapter" data-level="6.2.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
 <li class="chapter" data-level="6.2.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
 <li class="chapter" data-level="6.2.4" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-contínua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
+<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
 <li class="chapter" data-level="6.3.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
 <li class="chapter" data-level="6.3.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#exercícios-15"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
+<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#conceitos-básicos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-16"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
+<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
 <li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
 <li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
 <li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
 <li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#a-função-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
+<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
 <li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
 <li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
 <li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
 <li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
@@ -260,16 +339,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
+<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
 <li class="chapter" data-level="A.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming-no-r"><i class="fa fa-check"></i><b>A.2</b> Literate Programming no R</a></li>
-<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a><ul>
+<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a>
+<ul>
 <li class="chapter" data-level="A.3.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#sintaxe-do-markdown"><i class="fa fa-check"></i><b>A.3.1</b> Sintaxe do Markdown</a></li>
 <li class="chapter" data-level="A.3.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#escrevendo-um-documento-em-markdown"><i class="fa fa-check"></i><b>A.3.2</b> Escrevendo um documento em Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#pandoc"><i class="fa fa-check"></i><b>A.4</b> Pandoc</a></li>
 <li class="chapter" data-level="A.5" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#documentos-dinâmicos-com-markdown-e-r"><i class="fa fa-check"></i><b>A.5</b> Documentos dinâmicos com Markdown e R</a></li>
-<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a><ul>
+<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a>
+<ul>
 <li class="chapter" data-level="A.6.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#metadados"><i class="fa fa-check"></i><b>A.6.1</b> Metadados</a></li>
 <li class="chapter" data-level="A.6.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#convertendo-r-markdown-para-outros-formatos"><i class="fa fa-check"></i><b>A.6.2</b> Convertendo R Markdown para outros formatos</a></li>
 <li class="chapter" data-level="A.6.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#opções-do-knitr"><i class="fa fa-check"></i><b>A.6.3</b> Opções do knitr</a></li>
@@ -297,113 +379,171 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="programação-orientada-a-objetos" class="section level1">
-<h1><span class="header-section-number">B</span> Programação Orientada a Objetos</h1>
-<p>Como vimos anteriormente, o R é uma linguagem de programação orientada à objetos. Dois conceitos fundamentais desse tipo de linguagem são os de <strong>classe</strong> e <strong>método</strong>. Já vimos também que todo objeto no R possui uma classe (que define sua estrutura) e analisamos algumas delas. O que seria então um método? Para responder essa pergunta precisamos entender inicialmente os tipos de orientação a objetos que o R possui.</p>
+<div id="programação-orientada-a-objetos" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">B</span> Programação Orientada a Objetos<a href="programação-orientada-a-objetos.html#programação-orientada-a-objetos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Como vimos anteriormente, o R é uma linguagem de programação orientada à
+objetos. Dois conceitos fundamentais desse tipo de linguagem são os de
+<strong>classe</strong> e <strong>método</strong>. Já vimos também que todo objeto no R possui uma
+classe (que define sua estrutura) e analisamos algumas delas. O que
+seria então um método? Para responder essa pergunta precisamos entender
+inicialmente os tipos de orientação a objetos que o R possui.</p>
 <p>O R possui 3 sitemas de orientação a objetos: <strong>S3</strong>, <strong>S4</strong>, e <strong>RC</strong>:</p>
 <ul>
-<li><strong>S3</strong>: implementa um estilo de programação orientada a objeto chamada de <em>generic-function</em>. Esse é o estilo mais básico de programação em R (e também o mais utilizado). A ideia é que existam <strong>funções genéricas</strong> que decidem qual método aplicar de acordo com a classe do objeto. Os métodos são definidos da mesma forma que qualquer função, mas chamados de amenira diferente. É um estilo de programação mais “informal”, mas possibilita uma grande liberdade para o programador.</li>
-<li><strong>S4</strong>: é um estilo mais formal, no sentido que que as funções genéricas devem possuir uma classe formal definida. Além disso, é possível também fazer o <strong>despacho múltiplo de métodos</strong>, ao contrário da classe S3.</li>
-<li><strong>RC</strong>: (<em>Reference Classes</em>, antes chamado de R5) é o sistema mais novo implementado no R. A principal diferença com os sistemas S3 e S4 é que métodos pertencem à objetos, não à funções. Isso faz com que objetos da classe RC se comportem mais como objetos da maioria das linguagens de programação, como Python, Java, e C#.</li>
+<li><strong>S3</strong>: implementa um estilo de programação orientada a objeto chamada
+de <em>generic-function</em>. Esse é o estilo mais básico de programação em R
+(e também o mais utilizado). A ideia é que existam <strong>funções
+genéricas</strong> que decidem qual método aplicar de acordo com a classe do
+objeto. Os métodos são definidos da mesma forma que qualquer função,
+mas chamados de amenira diferente. É um estilo de programação mais
+“informal”, mas possibilita uma grande liberdade para o programador.</li>
+<li><strong>S4</strong>: é um estilo mais formal, no sentido que que as funções
+genéricas devem possuir uma classe formal definida. Além disso, é
+possível também fazer o <strong>despacho múltiplo de métodos</strong>, ao contrário
+da classe S3.</li>
+<li><strong>RC</strong>: (<em>Reference Classes</em>, antes chamado de R5) é o sistema mais
+novo implementado no R. A principal diferença com os sistemas S3 e
+S4 é que métodos pertencem à objetos, não à funções. Isso faz com que
+objetos da classe RC se comportem mais como objetos da maioria das
+linguagens de programação, como Python, Java, e C#.</li>
 </ul>
-<p>Nesta sessão vamos abordar como funcionam os métodos como definidos pelo sistema S3, por ser o mais utilizado na prática para se criar novas funções no R. Para saber mais sobre os outros métodos, consulte o livro <a href="http://adv-r.had.co.nz/OO-essentials.html">Advanced R</a>.</p>
-<p>Vamos entender como uma função genérica pode ser criada através de um exemplo. Usando a função <code>methods()</code>, podemos verificar quais métodos estão disponíveis para uma determinada função, por exemplo, para a função <code>mean()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(mean)
-[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.POSIXct    
-[<span class="dv">5</span>] mean.POSIXlt     mean.quosure<span class="op">*</span><span class="st">    </span>mean.vctrs_vctr<span class="op">*</span>
-see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</code></pre></div>
-<p>O resultado são expressões do tipo <code>mean.&lt;classe&gt;</code>, onde <code>&lt;classe&gt;</code> é uma classe de objeto como aquelas vistas anteriormente. Isso significa que a função <code>mean()</code>, quando aplicada à um objeto da classe <code>Date</code>, por exemplo, pode ter um comportamento diferente quando a mesma função for aplicada à um objeto de outra classe (numérica).</p>
+<p>Nesta sessão vamos abordar como funcionam os métodos como definidos pelo
+sistema S3, por ser o mais utilizado na prática para se criar novas
+funções no R. Para saber mais sobre os outros métodos, consulte o livro
+<a href="http://adv-r.had.co.nz/OO-essentials.html">Advanced R</a>.</p>
+<p>Vamos entender como uma função genérica pode ser criada através de um
+exemplo. Usando a função <code>methods()</code>, podemos verificar quais métodos
+estão disponíveis para uma determinada função, por exemplo, para a
+função <code>mean()</code>:</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="programação-orientada-a-objetos.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(mean)</span>
+<span id="cb424-2"><a href="programação-orientada-a-objetos.html#cb424-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.POSIXct    </span>
+<span id="cb424-3"><a href="programação-orientada-a-objetos.html#cb424-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>] mean.POSIXlt     mean.quosure<span class="sc">*</span>    mean.vctrs_vctr<span class="sc">*</span></span>
+<span id="cb424-4"><a href="programação-orientada-a-objetos.html#cb424-4" aria-hidden="true" tabindex="-1"></a>see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</span></code></pre></div>
+<p>O resultado são expressões do tipo <code>mean.&lt;classe&gt;</code>, onde <code>&lt;classe&gt;</code> é
+uma classe de objeto como aquelas vistas anteriormente. Isso significa
+que a função <code>mean()</code>, quando aplicada à um objeto da classe <code>Date</code>, por
+exemplo, pode ter um comportamento diferente quando a mesma função for
+aplicada à um objeto de outra classe (numérica).</p>
 <p>Suponha que temos o seguinte vetor numérico:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
-vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
-<span class="kw">class</span>(vec)
-[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
-<p>e queremos calcular sua média. Basta aplicar a função <code>mean()</code> nesse objeto para obtermos o resultado esperado</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(vec)
-[<span class="dv">1</span>] <span class="fl">0.1088874</span></code></pre></div>
-<p>Mas isso só é possível porque existe um método definido espcificamente para um vetor da classe <code>numeric</code>, que nesse caso é a função <code>mean.default</code>. A função genérica nesse caso é a <code>mean()</code>, e a função método é a <code>mean.default</code>. Veja que não precisamos escrever onome inteiro da função genérica para que ela seja utilizada, como por exemplo,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean.default</span>(vec)
-[<span class="dv">1</span>] <span class="fl">0.1088874</span></code></pre></div>
-<p>Uma vez passado um objeto para uma função, é a classe do objeto que irá definir qual método utilizar, de acordo com os métodos disponíveis. Veja o que acontece se forcarmos o uso da função <code>mean.Date()</code> nesse vetor</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean.Date</span>(vec)
-[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></code></pre></div>
-<p>O resultado não faz sentido pois ele é específico para um objeto da classe <code>Date</code>.</p>
-<p>Tudo isso acontece por causa de um mecanismo chamado de <strong>despacho de métodos</strong> (<em>method dispatch</em>), que é responsável por identificar a classe do objeto e utilizar (“despachar”) a função método correta para aquela classe. Toda função genérica possui a mesma forma: uma chamada para a função <code>UseMethod()</code>, que especifica o nome genérico e o objeto a ser despachado. Por exemplo, veja o código fonte da função <code>mean()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean
-<span class="cf">function</span> (x, ...) 
-<span class="kw">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x16b2968</span><span class="op">&gt;</span>
-<span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
-<p>Agora veja o código fonte da função <code>mean.default</code>, que é o método específico para vetores numéricos</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.default
-<span class="cf">function</span> (x, <span class="dt">trim =</span> <span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>, ...) 
-{
-    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(x) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.complex</span>(x) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.logical</span>(x)) {
-        <span class="kw">warning</span>(<span class="st">&quot;argument is not numeric or logical: returning NA&quot;</span>)
-        <span class="kw">return</span>(<span class="ot">NA_real_</span>)
-    }
-    <span class="cf">if</span> (na.rm) 
-        x &lt;-<span class="st"> </span>x[<span class="op">!</span><span class="kw">is.na</span>(x)]
-    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(trim) <span class="op">||</span><span class="st"> </span><span class="kw">length</span>(trim) <span class="op">!=</span><span class="st"> </span>1L) 
-        <span class="kw">stop</span>(<span class="st">&quot;&#39;trim&#39; must be numeric of length one&quot;</span>)
-    n &lt;-<span class="st"> </span><span class="kw">length</span>(x)
-    <span class="cf">if</span> (trim <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>n) {
-        <span class="cf">if</span> (<span class="kw">is.complex</span>(x)) 
-            <span class="kw">stop</span>(<span class="st">&quot;trimmed means are not defined for complex data&quot;</span>)
-        <span class="cf">if</span> (<span class="kw">anyNA</span>(x)) 
-            <span class="kw">return</span>(<span class="ot">NA_real_</span>)
-        <span class="cf">if</span> (trim <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.5</span>) 
-            <span class="kw">return</span>(stats<span class="op">::</span><span class="kw">median</span>(x, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>))
-        lo &lt;-<span class="st"> </span><span class="kw">floor</span>(n <span class="op">*</span><span class="st"> </span>trim) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-        hi &lt;-<span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>lo
-        x &lt;-<span class="st"> </span><span class="kw">sort.int</span>(x, <span class="dt">partial =</span> <span class="kw">unique</span>(<span class="kw">c</span>(lo, hi)))[lo<span class="op">:</span>hi]
-    }
-    <span class="kw">.Internal</span>(<span class="kw">mean</span>(x))
-}
-<span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x5562480</span><span class="op">&gt;</span>
-<span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>base<span class="op">&gt;</span></code></pre></div>
-<p>Agora suponha que você ddeseja criar uma função que calcule a média para um objeto de uma classe diferente daquelas previamente definidas. Por exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das linhas de uma matriz.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
-mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">50</span>), <span class="dt">nrow =</span> <span class="dv">5</span>)
-<span class="kw">mean</span>(mat)
-[<span class="dv">1</span>] <span class="fl">0.1004483</span></code></pre></div>
-<p>O resultado é a média de todos os elementos, e não de cada linha. Nesse caso, podemos definir nossa própria função método para fazer o cálculo que precisamos. Por exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.matrix &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">rowMeans</span>(x)</code></pre></div>
-<p>Uma função método é sempre definida dessa forma: <code>&lt;funçãogenérica&gt;.&lt;classe&gt;</code>. Agora podemos ver novamente os métodos disponíveis para a função <code>mean()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">methods</span>(mean)
-[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.matrix     
-[<span class="dv">5</span>] mean.POSIXct     mean.POSIXlt     mean.quosure<span class="op">*</span><span class="st">    </span>mean.vctrs_vctr<span class="op">*</span>
-see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</code></pre></div>
-<p>e simplesmente aplicar a função genérica <code>mean()</code> à um objeto da classe <code>matrix</code> para obter o resultado que desejamos</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mat)
-[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span> <span class="st">&quot;array&quot;</span> 
-<span class="kw">mean</span>(mat)
-[<span class="dv">1</span>]  <span class="fl">0.09544402</span>  <span class="fl">0.12852087</span>  <span class="fl">0.06229588</span> <span class="op">-</span><span class="fl">0.01993810</span>  <span class="fl">0.23591872</span></code></pre></div>
-<p>Esse exemplo ilustra como é simples criar funções método para diferentes classes de objetos. Poderíamos fazer o mesmo para objetos das classes <code>data.frame</code> e <code>list</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean.data.frame &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">sapply</span>(x, mean, ...)
-mean.list &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) <span class="kw">lapply</span>(x, mean)</code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="programação-orientada-a-objetos.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb425-2"><a href="programação-orientada-a-objetos.html#cb425-2" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb425-3"><a href="programação-orientada-a-objetos.html#cb425-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec)</span>
+<span id="cb425-4"><a href="programação-orientada-a-objetos.html#cb425-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></span></code></pre></div>
+<p>e queremos calcular sua média. Basta aplicar a função <code>mean()</code> nesse
+objeto para obtermos o resultado esperado</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="programação-orientada-a-objetos.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vec)</span>
+<span id="cb426-2"><a href="programação-orientada-a-objetos.html#cb426-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1088874</span></span></code></pre></div>
+<p>Mas isso só é possível porque existe um método definido espcificamente
+para um vetor da classe <code>numeric</code>, que nesse caso é a função
+<code>mean.default</code>. A função genérica nesse caso é a <code>mean()</code>, e a função
+método é a <code>mean.default</code>. Veja que não precisamos escrever onome
+inteiro da função genérica para que ela seja utilizada, como por exemplo,</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="programação-orientada-a-objetos.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean.default</span>(vec)</span>
+<span id="cb427-2"><a href="programação-orientada-a-objetos.html#cb427-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1088874</span></span></code></pre></div>
+<p>Uma vez passado um objeto para uma função, é a classe do objeto que irá
+definir qual método utilizar, de acordo com os métodos disponíveis. Veja
+o que acontece se forcarmos o uso da função <code>mean.Date()</code> nesse vetor</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="programação-orientada-a-objetos.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean.Date</span>(vec)</span>
+<span id="cb428-2"><a href="programação-orientada-a-objetos.html#cb428-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></span></code></pre></div>
+<p>O resultado não faz sentido pois ele é específico para um objeto da
+classe <code>Date</code>.</p>
+<p>Tudo isso acontece por causa de um mecanismo chamado de <strong>despacho de
+métodos</strong> (<em>method dispatch</em>), que é responsável por identificar a
+classe do objeto e utilizar (“despachar”) a função método correta para
+aquela classe. Toda função genérica possui a mesma forma: uma chamada
+para a função <code>UseMethod()</code>, que especifica o nome genérico e o objeto a
+ser despachado. Por exemplo, veja o código fonte da função <code>mean()</code></p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="programação-orientada-a-objetos.html#cb429-1" aria-hidden="true" tabindex="-1"></a>mean</span>
+<span id="cb429-2"><a href="programação-orientada-a-objetos.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, ...) </span>
+<span id="cb429-3"><a href="programação-orientada-a-objetos.html#cb429-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb429-4"><a href="programação-orientada-a-objetos.html#cb429-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x56127f2bb030</span><span class="sc">&gt;</span></span>
+<span id="cb429-5"><a href="programação-orientada-a-objetos.html#cb429-5" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>base<span class="sc">&gt;</span></span></code></pre></div>
+<p>Agora veja o código fonte da função <code>mean.default</code>, que é o método
+específico para vetores numéricos</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="programação-orientada-a-objetos.html#cb430-1" aria-hidden="true" tabindex="-1"></a>mean.default</span>
+<span id="cb430-2"><a href="programação-orientada-a-objetos.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, <span class="at">trim =</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, ...) </span>
+<span id="cb430-3"><a href="programação-orientada-a-objetos.html#cb430-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb430-4"><a href="programação-orientada-a-objetos.html#cb430-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.complex</span>(x) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.logical</span>(x)) {</span>
+<span id="cb430-5"><a href="programação-orientada-a-objetos.html#cb430-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">warning</span>(<span class="st">&quot;argument is not numeric or logical: returning NA&quot;</span>)</span>
+<span id="cb430-6"><a href="programação-orientada-a-objetos.html#cb430-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb430-7"><a href="programação-orientada-a-objetos.html#cb430-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb430-8"><a href="programação-orientada-a-objetos.html#cb430-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">isTRUE</span>(na.rm)) </span>
+<span id="cb430-9"><a href="programação-orientada-a-objetos.html#cb430-9" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
+<span id="cb430-10"><a href="programação-orientada-a-objetos.html#cb430-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(trim) <span class="sc">||</span> <span class="fu">length</span>(trim) <span class="sc">!=</span> 1L) </span>
+<span id="cb430-11"><a href="programação-orientada-a-objetos.html#cb430-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;&#39;trim&#39; must be numeric of length one&quot;</span>)</span>
+<span id="cb430-12"><a href="programação-orientada-a-objetos.html#cb430-12" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb430-13"><a href="programação-orientada-a-objetos.html#cb430-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (trim <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> n) {</span>
+<span id="cb430-14"><a href="programação-orientada-a-objetos.html#cb430-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.complex</span>(x)) </span>
+<span id="cb430-15"><a href="programação-orientada-a-objetos.html#cb430-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stop</span>(<span class="st">&quot;trimmed means are not defined for complex data&quot;</span>)</span>
+<span id="cb430-16"><a href="programação-orientada-a-objetos.html#cb430-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">anyNA</span>(x)) </span>
+<span id="cb430-17"><a href="programação-orientada-a-objetos.html#cb430-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb430-18"><a href="programação-orientada-a-objetos.html#cb430-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (trim <span class="sc">&gt;=</span> <span class="fl">0.5</span>) </span>
+<span id="cb430-19"><a href="programação-orientada-a-objetos.html#cb430-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(stats<span class="sc">::</span><span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb430-20"><a href="programação-orientada-a-objetos.html#cb430-20" aria-hidden="true" tabindex="-1"></a>        lo <span class="ot">&lt;-</span> <span class="fu">floor</span>(n <span class="sc">*</span> trim) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb430-21"><a href="programação-orientada-a-objetos.html#cb430-21" aria-hidden="true" tabindex="-1"></a>        hi <span class="ot">&lt;-</span> n <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span> lo</span>
+<span id="cb430-22"><a href="programação-orientada-a-objetos.html#cb430-22" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> <span class="fu">sort.int</span>(x, <span class="at">partial =</span> <span class="fu">unique</span>(<span class="fu">c</span>(lo, hi)))[lo<span class="sc">:</span>hi]</span>
+<span id="cb430-23"><a href="programação-orientada-a-objetos.html#cb430-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb430-24"><a href="programação-orientada-a-objetos.html#cb430-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.Internal</span>(<span class="fu">mean</span>(x))</span>
+<span id="cb430-25"><a href="programação-orientada-a-objetos.html#cb430-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb430-26"><a href="programação-orientada-a-objetos.html#cb430-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x56127f684de0</span><span class="sc">&gt;</span></span>
+<span id="cb430-27"><a href="programação-orientada-a-objetos.html#cb430-27" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>base<span class="sc">&gt;</span></span></code></pre></div>
+<p>Agora suponha que você ddeseja criar uma função que calcule a média para
+um objeto de uma classe diferente daquelas previamente definidas. Por
+exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das
+linhas de uma matriz.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="programação-orientada-a-objetos.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb431-2"><a href="programação-orientada-a-objetos.html#cb431-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>), <span class="at">nrow =</span> <span class="dv">5</span>)</span>
+<span id="cb431-3"><a href="programação-orientada-a-objetos.html#cb431-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mat)</span>
+<span id="cb431-4"><a href="programação-orientada-a-objetos.html#cb431-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1004483</span></span></code></pre></div>
+<p>O resultado é a média de todos os elementos, e não de cada linha. Nesse
+caso, podemos definir nossa própria função método para fazer o cálculo
+que precisamos. Por exemplo:</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="programação-orientada-a-objetos.html#cb432-1" aria-hidden="true" tabindex="-1"></a>mean.matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">rowMeans</span>(x)</span></code></pre></div>
+<p>Uma função método é sempre definida dessa forma:
+<code>&lt;funçãogenérica&gt;.&lt;classe&gt;</code>. Agora podemos ver novamente os métodos
+disponíveis para a função <code>mean()</code></p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="programação-orientada-a-objetos.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(mean)</span>
+<span id="cb433-2"><a href="programação-orientada-a-objetos.html#cb433-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.matrix     </span>
+<span id="cb433-3"><a href="programação-orientada-a-objetos.html#cb433-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>] mean.POSIXct     mean.POSIXlt     mean.quosure<span class="sc">*</span>    mean.vctrs_vctr<span class="sc">*</span></span>
+<span id="cb433-4"><a href="programação-orientada-a-objetos.html#cb433-4" aria-hidden="true" tabindex="-1"></a>see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</span></code></pre></div>
+<p>e simplesmente aplicar a função genérica <code>mean()</code> à um objeto da classe
+<code>matrix</code> para obter o resultado que desejamos</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="programação-orientada-a-objetos.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat)</span>
+<span id="cb434-2"><a href="programação-orientada-a-objetos.html#cb434-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span> <span class="st">&quot;array&quot;</span> </span>
+<span id="cb434-3"><a href="programação-orientada-a-objetos.html#cb434-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mat)</span>
+<span id="cb434-4"><a href="programação-orientada-a-objetos.html#cb434-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">0.09544402</span>  <span class="fl">0.12852087</span>  <span class="fl">0.06229588</span> <span class="sc">-</span><span class="fl">0.01993810</span>  <span class="fl">0.23591872</span></span></code></pre></div>
+<p>Esse exemplo ilustra como é simples criar funções método para
+diferentes classes de objetos. Poderíamos fazer o mesmo para objetos das
+classes <code>data.frame</code> e <code>list</code></p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="programação-orientada-a-objetos.html#cb435-1" aria-hidden="true" tabindex="-1"></a>mean.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">sapply</span>(x, mean, ...)</span>
+<span id="cb435-2"><a href="programação-orientada-a-objetos.html#cb435-2" aria-hidden="true" tabindex="-1"></a>mean.list <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">lapply</span>(x, mean)</span></code></pre></div>
 <p>Aplicando em objetos dessas classes específicas, obtemos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Data frame
-<span class="kw">set.seed</span>(<span class="dv">1</span>)
-da &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">c1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),
-                 <span class="dt">c2 =</span> <span class="kw">runif</span>(<span class="dv">10</span>))
-<span class="kw">class</span>(da)
-[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span>
-<span class="kw">mean</span>(da)
-       c1        c2 
-<span class="fl">0.1322028</span> <span class="fl">0.4183230</span> 
-## Lista
-<span class="kw">set.seed</span>(<span class="dv">1</span>)
-dl &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>), <span class="kw">runif</span>(<span class="dv">50</span>))
-<span class="kw">class</span>(dl)
-[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span>
-<span class="kw">mean</span>(dl)
-[[<span class="dv">1</span>]]
-[<span class="dv">1</span>] <span class="fl">0.1322028</span>
-
-[[<span class="dv">2</span>]]
-[<span class="dv">1</span>] <span class="fl">0.4946632</span></code></pre></div>
-<p>Obviamente esse processo todo é extremamente importante ao se criar novas funções no R. Podemos tanto criar uma função genérica (como a <code>mean()</code>) e diversos métodos para ela usando classes de objetos existentes, quanto (inclusive) criar novas classes e funções método para elas. Essa é uma das grandes lberdades que o método S3 de orientação à objetos permite, e possivelmente um dos motivos pelos quais é relativamente simples criar pacotes inteiros no R.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="programação-orientada-a-objetos.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data frame</span></span>
+<span id="cb436-2"><a href="programação-orientada-a-objetos.html#cb436-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb436-3"><a href="programação-orientada-a-objetos.html#cb436-3" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb436-4"><a href="programação-orientada-a-objetos.html#cb436-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">c2 =</span> <span class="fu">runif</span>(<span class="dv">10</span>))</span>
+<span id="cb436-5"><a href="programação-orientada-a-objetos.html#cb436-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(da)</span>
+<span id="cb436-6"><a href="programação-orientada-a-objetos.html#cb436-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb436-7"><a href="programação-orientada-a-objetos.html#cb436-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(da)</span>
+<span id="cb436-8"><a href="programação-orientada-a-objetos.html#cb436-8" aria-hidden="true" tabindex="-1"></a>       c1        c2 </span>
+<span id="cb436-9"><a href="programação-orientada-a-objetos.html#cb436-9" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1322028</span> <span class="fl">0.4183230</span> </span>
+<span id="cb436-10"><a href="programação-orientada-a-objetos.html#cb436-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Lista</span></span>
+<span id="cb436-11"><a href="programação-orientada-a-objetos.html#cb436-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb436-12"><a href="programação-orientada-a-objetos.html#cb436-12" aria-hidden="true" tabindex="-1"></a>dl <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">runif</span>(<span class="dv">50</span>))</span>
+<span id="cb436-13"><a href="programação-orientada-a-objetos.html#cb436-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dl)</span>
+<span id="cb436-14"><a href="programação-orientada-a-objetos.html#cb436-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></span>
+<span id="cb436-15"><a href="programação-orientada-a-objetos.html#cb436-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dl)</span>
+<span id="cb436-16"><a href="programação-orientada-a-objetos.html#cb436-16" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb436-17"><a href="programação-orientada-a-objetos.html#cb436-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1322028</span></span>
+<span id="cb436-18"><a href="programação-orientada-a-objetos.html#cb436-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb436-19"><a href="programação-orientada-a-objetos.html#cb436-19" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb436-20"><a href="programação-orientada-a-objetos.html#cb436-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.4946632</span></span></code></pre></div>
+<p>Obviamente esse processo todo é extremamente importante ao se criar
+novas funções no R. Podemos tanto criar uma função genérica (como a
+<code>mean()</code>) e diversos métodos para ela usando classes de objetos
+existentes, quanto (inclusive) criar novas classes e funções método para
+elas. Essa é uma das grandes lberdades que o método S3 de orientação à
+objetos permite, e possivelmente um dos motivos pelos quais é
+relativamente simples criar pacotes inteiros no R.</p>
 
 </div>
             </section>
@@ -416,7 +556,6 @@ dl &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">r
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -435,6 +574,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter"],
 "google": true
 },
@@ -453,14 +593,17 @@ gitbook.start({
 "text": null
 },
 "download": ["ecr.pdf", "ecr.epub", "ecr.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "none",
 "scroll_highlight": true
 },
 "toolbar": {
 "position": "fixed"
-},
-"search": true
+}
 });
 });
 </script>
@@ -470,8 +613,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

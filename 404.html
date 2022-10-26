@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Computação científica e interação com o R | Estatística Computacional com R</title>
-  <meta name="description" content="1 Computação científica e interação com o R | Estatística Computacional com R" />
+  <title>Page not found | Estatística Computacional com R</title>
+  <meta name="description" content="Page not found | Estatística Computacional com R" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Computação científica e interação com o R | Estatística Computacional com R" />
+  <meta property="og:title" content="Page not found | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Computação científica e interação com o R | Estatística Computacional com R" />
+  <meta name="twitter:title" content="Page not found | Estatística Computacional com R" />
   
   
   
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="objetos-e-classes.html"/>
+
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -379,344 +379,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="computação-científica-e-interação-com-o-r" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Computação científica e interação com o R<a href="computação-científica-e-interação-com-o-r.html#computação-científica-e-interação-com-o-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="interagindo-com-o-computador" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Interagindo com o computador<a href="computação-científica-e-interação-com-o-r.html#interagindo-com-o-computador" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O que significa este ícone?</p>
-<p><img src="img/excelcsvgrey.png" width="50%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>É um documento do Microsoft Excel?</li>
-<li>É um arquivo de <strong>texto pleno</strong>, separado por vírgulas (CSV <em>comma
-separated values</em>);</li>
-<li>De fato, o nome do arquivo é <code>final.csv</code> e não <code>final</code>;</li>
-<li>O Excel pode sim abrir este arquivo… assim como milhares de outros
-programas!</li>
-</ul>
-<p>O que está acontecendo?</p>
-<ul>
-<li>O computador (leia-se, nesse caso, o sistema operacional Windows)
-“proteje” o usuário dos detalhes sujos.</li>
-<li>Isso é ruim? <strong>Sim!</strong></li>
-<li>O usuário se acostuma com o computador ditando as regras.</li>
-<li>É importante lembrar que é você quem deve dizer o que o computador
-deve fazer (nesse caso, com qual programa abrir certo arquivo).</li>
-</ul>
-<p>O que deve acontecer?</p>
-<ul>
-<li>Para a maioria dos usuários, a interação com o computador se limita a
-clicar em links, selecionar menus e caixas de diálogo.</li>
-<li>O problema com essa abordagem é que parece que o usuário é controlado
-pelo computador.</li>
-<li>A verdade deve ser o oposto!</li>
-<li>É o usuário que possui o controle e deve dizer para o computador
-exatamente o que fazer.</li>
-<li>Escrever código ainda tem a vantagem de deixar registrado tudo o que
-foi feito, possibilitando a reprodução e auditoria.</li>
-</ul>
-</div>
-<div id="editores-de-texto" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Editores de texto<a href="computação-científica-e-interação-com-o-r.html#editores-de-texto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Uma característica importante de códigos de programação é que eles são
-em <strong>texto puro</strong>, por isso precisamos de um bom <strong>editor de textos</strong>.</p>
-<p>Características de um bom editor:</p>
-<ul>
-<li><strong>Identação automática</strong>;</li>
-<li><strong>Complementação de parênteses</strong>;</li>
-<li><strong>Destaque de sintaxe</strong> (<em>syntax highlighting</em>);</li>
-<li><strong>Numeração de linhas</strong>;</li>
-<li><strong>Auto completar comandos</strong>.</li>
-</ul>
-<div id="editores-para-r" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Editores para R<a href="computação-científica-e-interação-com-o-r.html#editores-para-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Windows:</p>
-<ul>
-<li>Interface padrão: pouco recomendado.</li>
-<li>Tinn-R.</li>
-</ul>
-<p>Linux:</p>
-<ul>
-<li>Vim-R-plugin.</li>
-<li>Gedit-R-plugin.</li>
-</ul>
-<p>Todas as plataformas:</p>
-<ul>
-<li>Rstudio: recomendado para iniciantes.</li>
-<li>Emacs + ESS: altamente recomendado.</li>
-</ul>
-</div>
-</div>
-<div id="r" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> R<a href="computação-científica-e-interação-com-o-r.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<blockquote>
-<p><em>“The statistical software should help, by supporting each step from
-user to programmer, with as few intrusive barriers as possible.”</em></p>
-</blockquote>
-<blockquote>
-<p><em>“… to turn ideas into software, quickly and faithfully.”</em></p>
-</blockquote>
-<p>— John M. Chambers</p>
-<p>O R é um <em>dialeto</em> da linguagem de programação S que inclui:</p>
-<ul>
-<li><p><em>Ambiente</em> estatístico para análise de dados e produção de gráficos.</p></li>
-<li><p>Uma linguagem de programação completa:</p>
-<ul>
-<li>Interpretada (contrário de compilada).</li>
-<li>Orientada a objetos.</li>
-</ul>
-<p><em>Tudo no R é um objeto…</em></p></li>
-<li><p>Livre distribuição (código-aberto).</p></li>
-<li><p>18732 (em 2022-10-14) pacotes adicionais “oficiais”
-(disponíveis no repositório <a href="https://cran-r.c3sl.ufpr.br/web/packages/index.html">CRAN</a>).</p></li>
-</ul>
-<p>Pequeno histórico:</p>
-<ul>
-<li>1980: Linguagem S: desenvolvida por R. Becker, J. Chambers e A. Wilks
-(AT&amp;T Bell Laboratories);</li>
-<li>1980: Versão comercial: S-Plus (Insightful Corporation);</li>
-<li>1996: Versão livre: R desenvolvido por R. Ihaka e R. Gentleman
-(Universidade de Auckland);</li>
-<li>1997: R Development Core Team;</li>
-<li>Hoje: desenvolvedores principais (<em>core team</em>) e muitos outros colaboradores em
-todo o mundo;</li>
-<li>Estatísticos, matemáticos, programadores e profissionais de formação e atuação em outras áreas.</li>
-</ul>
-<div id="configuração-inicial" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Configuração inicial<a href="computação-científica-e-interação-com-o-r.html#configuração-inicial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>O <strong>diretório de trabalho</strong> é uma pasta onde o R será
-direcionado. Todos os arquivos que serão importados (base de dados,
-…) ou exportados (base de dados, gráficos, …) por ele
-ficarão nesta pasta.</p></li>
-<li><p>Existem duas maneiras de configurar o
-diretório de trabalho (suponha que vamos usar a pasta
-<code>~/estatcomp1</code>):</p></li>
-<li><p><code>1)</code> Utilizando a função <code>setwd()</code> dentro do R:</p></li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="computação-científica-e-interação-com-o-r.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/estatcomp1&quot;</span>)</span></code></pre></div>
-<ul>
-<li><code>2)</code> Pelo menu do RStudio em <code>Session &gt; Set Working Directory &gt; Choose Directory...</code>
-Confira o diretório que está trabalhando com a função</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="computação-científica-e-interação-com-o-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
-</div>
-<div id="o-r-como-uma-calculadora" class="section level3 hasAnchor" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> O R como uma calculadora<a href="computação-científica-e-interação-com-o-r.html#o-r-como-uma-calculadora" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>O símbolo <code>&gt;</code> indica que o R está pronto para receber um comando:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="computação-científica-e-interação-com-o-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb4-2"><a href="computação-científica-e-interação-com-o-r.html#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
-<p>O símbolo <code>&gt;</code> muda para <code>+</code> se o comando estiver incompleto:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="computação-científica-e-interação-com-o-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span></span>
-<span id="cb5-2"><a href="computação-científica-e-interação-com-o-r.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb5-3"><a href="computação-científica-e-interação-com-o-r.html#cb5-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
-<p>Espaços entre os números não fazem diferença:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="computação-científica-e-interação-com-o-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">+</span>         <span class="dv">2</span></span>
-<span id="cb6-2"><a href="computação-científica-e-interação-com-o-r.html#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
-</div>
-<div id="para-onde-vão-os-resultados" class="section level3 hasAnchor" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Para onde vão os resultados?<a href="computação-científica-e-interação-com-o-r.html#para-onde-vão-os-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="computação-científica-e-interação-com-o-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">7</span></span>
-<span id="cb7-2"><a href="computação-científica-e-interação-com-o-r.html#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">16</span></span></code></pre></div>
-<p><img src="img/script-commandline.png" width="50%" style="display: block; margin: auto;" /></p>
-<p><img src="img/script-commandlinedata.png" width="50%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Note que o resultado é apenas mostrado na tela, nada é salvo na
-memória (por enquanto).</li>
-</ul>
-</div>
-<div id="o-editor-de-scripts" class="section level3 hasAnchor" number="1.3.4">
-<h3><span class="header-section-number">1.3.4</span> O editor de scripts<a href="computação-científica-e-interação-com-o-r.html#o-editor-de-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Para criar rotinas computacionais é necessário utilizar um editor
-de scripts.</li>
-<li>Clique em <code>File &gt; New file &gt; R script</code>. Salve com a extensão
-<code>.R</code>.</li>
-<li>Para enviar comandos diretamente para o console, selecione-os e
-aperte <code>Ctrl + &lt;Enter&gt;</code>.</li>
-<li>Para adicionar comentários ao script, utiliza-se o símbolo
-<code>#</code> antes do texto e/ou comandos. O que estiver depois do
-símbolo não será interpretado pelo R. Portanto:</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="computação-científica-e-interação-com-o-r.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>     <span class="co"># esta linha será executada</span></span>
-<span id="cb8-2"><a href="computação-científica-e-interação-com-o-r.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 + 2     esta linha não será executada</span></span></code></pre></div>
-</div>
-<div id="operadores-aritméticos" class="section level3 hasAnchor" number="1.3.5">
-<h3><span class="header-section-number">1.3.5</span> Operadores aritméticos<a href="computação-científica-e-interação-com-o-r.html#operadores-aritméticos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<table>
-<thead>
-<tr class="header">
-<th>Operador</th>
-<th>Significado</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>+</code></td>
-<td>adição</td>
-</tr>
-<tr class="even">
-<td><code>-</code></td>
-<td>subtração</td>
-</tr>
-<tr class="odd">
-<td><code>*</code></td>
-<td>multiplicação</td>
-</tr>
-<tr class="even">
-<td><code>/</code></td>
-<td>divisão</td>
-</tr>
-<tr class="odd">
-<td><code>^</code> ou <code>**</code></td>
-<td>potência</td>
-</tr>
-<tr class="even">
-<td><code>sqrt()</code></td>
-<td>raíz quadrada</td>
-</tr>
-<tr class="odd">
-<td><code>exp()</code></td>
-<td>exponencial</td>
-</tr>
-<tr class="even">
-<td><code>log()</code>; <code>log2()</code>; <code>log10()</code></td>
-<td>logaritmos</td>
-</tr>
-<tr class="odd">
-<td><code>factorial()</code></td>
-<td>fatorial</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="ordens-de-execução" class="section level3 hasAnchor" number="1.3.6">
-<h3><span class="header-section-number">1.3.6</span> Ordens de execução<a href="computação-científica-e-interação-com-o-r.html#ordens-de-execução" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As operações são realizadas sempre seguindo as prioridades:</p>
-<ol style="list-style-type: decimal">
-<li>De dentro para fora de parênteses <code>()</code>.</li>
-<li>Potência e radiciação.</li>
-<li>Multiplicação e divisão.</li>
-<li>Adição e subtração.</li>
-</ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="computação-científica-e-interação-com-o-r.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">7</span></span>
-<span id="cb9-2"><a href="computação-científica-e-interação-com-o-r.html#cb9-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">7</span></span>
-<span id="cb9-3"><a href="computação-científica-e-interação-com-o-r.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> (<span class="dv">10</span> <span class="sc">+</span> <span class="dv">7</span>)</span>
-<span id="cb9-4"><a href="computação-científica-e-interação-com-o-r.html#cb9-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">7</span></span>
-<span id="cb9-5"><a href="computação-científica-e-interação-com-o-r.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">*</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">7</span>)</span>
-<span id="cb9-6"><a href="computação-científica-e-interação-com-o-r.html#cb9-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb9-7"><a href="computação-científica-e-interação-com-o-r.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">*</span> (<span class="dv">2</span> <span class="sc">-</span> (<span class="dv">10</span> <span class="sc">+</span> <span class="dv">7</span>))</span>
-<span id="cb9-8"><a href="computação-científica-e-interação-com-o-r.html#cb9-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">75</span></span>
-<span id="cb9-9"><a href="computação-científica-e-interação-com-o-r.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb9-10"><a href="computação-científica-e-interação-com-o-r.html#cb9-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span></span>
-<span id="cb9-11"><a href="computação-científica-e-interação-com-o-r.html#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">**</span><span class="dv">2</span></span>
-<span id="cb9-12"><a href="computação-científica-e-interação-com-o-r.html#cb9-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span></span>
-<span id="cb9-13"><a href="computação-científica-e-interação-com-o-r.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">9</span><span class="sc">**</span><span class="dv">2</span>)</span>
-<span id="cb9-14"><a href="computação-científica-e-interação-com-o-r.html#cb9-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">27</span></span>
-<span id="cb9-15"><a href="computação-científica-e-interação-com-o-r.html#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="dv">1</span>)</span>
-<span id="cb9-16"><a href="computação-científica-e-interação-com-o-r.html#cb9-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.718282</span></span>
-<span id="cb9-17"><a href="computação-científica-e-interação-com-o-r.html#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log2</span>(<span class="dv">16</span>)</span>
-<span id="cb9-18"><a href="computação-científica-e-interação-com-o-r.html#cb9-18" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code></pre></div>
-</div>
-<div id="exercícios" class="section level3 unnumbered hasAnchor">
-<h3>Exercícios<a href="computação-científica-e-interação-com-o-r.html#exercícios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Calcule a seguinte equação: <span class="math inline">\(32 + 16^2 - 25^3\)</span></li>
-<li>Divida o resultado por <span class="math inline">\(345\)</span></li>
-<li>Qual o resultado da expressão <span class="math inline">\(\frac{e^{-2} 2^{4} - 1}{4!}\)</span>?</li>
-<li>E do logaritmo desta expressão?</li>
-</ol>
-</div>
-<div id="salvando-resultados" class="section level3 hasAnchor" number="1.3.7">
-<h3><span class="header-section-number">1.3.7</span> “Salvando” resultados<a href="computação-científica-e-interação-com-o-r.html#salvando-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Do exercício anterior</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="computação-científica-e-interação-com-o-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">32</span> <span class="sc">+</span> <span class="dv">16</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">25</span><span class="sc">^</span><span class="dv">3</span></span>
-<span id="cb10-2"><a href="computação-científica-e-interação-com-o-r.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb10-3"><a href="computação-científica-e-interação-com-o-r.html#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">15337</span></span>
-<span id="cb10-4"><a href="computação-científica-e-interação-com-o-r.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">/</span><span class="dv">345</span></span>
-<span id="cb10-5"><a href="computação-científica-e-interação-com-o-r.html#cb10-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="fl">44.45507</span></span>
-<span id="cb10-6"><a href="computação-científica-e-interação-com-o-r.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (y <span class="ot">&lt;-</span> (<span class="fu">exp</span>(<span class="sc">-</span><span class="dv">2</span>) <span class="sc">*</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span><span class="fu">factorial</span>(<span class="dv">4</span>))</span>
-<span id="cb10-7"><a href="computação-científica-e-interação-com-o-r.html#cb10-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.04855686</span></span>
-<span id="cb10-8"><a href="computação-científica-e-interação-com-o-r.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(y)</span>
-<span id="cb10-9"><a href="computação-científica-e-interação-com-o-r.html#cb10-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="fl">3.02502</span></span></code></pre></div>
-<p>Quando criamos uma variável (<code>x</code>, <code>y</code>), ela fica armazenada
-<strong>temporariamente</strong> na memória RAM.</p>
-<p><img src="img/script-assign.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Para saber quais objetos foram criados, usamos a <strong>função</strong> <code>ls()</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="computação-científica-e-interação-com-o-r.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ls</span>()</span>
-<span id="cb11-2"><a href="computação-científica-e-interação-com-o-r.html#cb11-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;x&quot;</span> <span class="st">&quot;y&quot;</span></span></code></pre></div>
-<p>Estas variáveis ficam armazenadas no chamado <em>workspace</em> do R.</p>
-<ul>
-<li>O <em>workspace</em> consiste de tudo que foi criado durante uma sessão do R,
-e fica armazenado na memória RAM.</li>
-</ul>
-<p>Para efetivamente salvar essas variáveis, podemos armazenar esse <em>workspace</em>
-do R em disco, em um arquivo chamado <code>.Rdata</code></p>
-<p><img src="img/script-workspace.png" width="50%" style="display: block; margin: auto;" />
-<img src="img/script-workspacedata.png" width="50%" style="display: block; margin: auto;" /></p>
-<ul>
-<li>Quando o R é iniciado em um diretório com um arquivo <code>.Rdata</code>, as
-variáveis salvas são automaticamente carregadas.</li>
-<li>No entanto, é sempre melhor salvar os dados e o <strong>script</strong>, assim é
-possível gerar os resultados novamente, sem salvar nada sem
-necessidade.</li>
-<li>Veremos mais pra frente como salvar variáveis específicas, por
-exemplo, resultados de uma análise que leva muito tempo para ser
-executada.</li>
-<li>O mais importante é salvar o <strong>código</strong>, assim sabemos <strong>como</strong>
-chegamos a determinado resultado, e podemos recriá-lo.</li>
-</ul>
-</div>
-<div id="finalizando-o-programa" class="section level3 hasAnchor" number="1.3.8">
-<h3><span class="header-section-number">1.3.8</span> Finalizando o programa<a href="computação-científica-e-interação-com-o-r.html#finalizando-o-programa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A qualquer momento durante uma sessão você pode usar o comando</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="computação-científica-e-interação-com-o-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">save.image</span>()</span></code></pre></div>
-<p>No RStudio:</p>
-<ul>
-<li><code>File &gt; Save As...</code></li>
-<li>Na janela que abrir, digite o nome do arquivo (por exemplo
-<code>script_aula1</code>) e salve.</li>
-<li>Automaticamente o script será salvo com a extensão <code>.R</code>
-(nesse caso <code>script_aula1.R</code>) no diretório de trabalho que você
-configurou no início.</li>
-</ul>
-<p>Alternativamente, você pode também salvar toda sua área de trabalho,
-clicando em <code>Workspace &gt; Save As Default Workspace</code>. Este
-processo irá gerar dois arquivos:</p>
-<ul>
-<li><code>.Rdata</code>: contém todos os objetos criados durante uma
-sessão. Não é necessário (e nem recomendado) dar um nome antes do
-ponto. Dessa forma, a próxima vez que o programa for iniciado neste
-diretório, a área de trabalho será carregada automaticamente.</li>
-<li><code>.Rhistory</code>: um arquivo texto que contém todos os comandos
-que foram digitados no console.</li>
-</ul>
-<!-- ## Layout de código -->
-<!-- ## Formatos de arquivos -->
-<!-- ### Texto pleno -->
-<!-- ### CSV -->
-<!-- ### Encoding -->
-</div>
-</div>
-<div id="referências" class="section level2 unnumbered hasAnchor">
-<h2>Referências<a href="computação-científica-e-interação-com-o-r.html#referências" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Leek, J. <a href="https://leanpub.com/datastyle">The Elements of Data Analytic Style</a>. Leanpub, 2015.</li>
-<li>Murrell,
-P. <a href="https://www.stat.auckland.ac.nz/~paul/ItDT/HTML">Introduction to data technologies</a>. Boca
-Raton: Chapman &amp; Hall/CRC, 2009.</li>
-<li>Peng,
-RD. <a href="https://leanpub.com/rprogramming">R programming for data science</a>. Leanpub, 2015.</li>
-</ul>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="objetos-e-classes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

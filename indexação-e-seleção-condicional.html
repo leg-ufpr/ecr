@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Indexação e seleção condicional | Estatística Computacional com R</title>
   <meta name="description" content="3 Indexação e seleção condicional | Estatística Computacional com R" />
-  <meta name="generator" content="bookdown 0.19.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Indexação e seleção condicional | Estatística Computacional com R" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -36,7 +35,8 @@
   
 <link rel="prev" href="objetos-e-classes.html"/>
 <link rel="next" href="entrada-e-saída-de-dados-no-r.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -52,7 +52,9 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66454501-6"></script>
 <script>
@@ -65,41 +67,91 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -114,17 +166,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#para-quem-este-material-é-destinado"><i class="fa fa-check"></i>Para quem este material é destinado?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#informação-de-sessão"><i class="fa fa-check"></i>Informação de sessão</a></li>
 </ul></li>
 <li class="part"><span><b>I R básico</b></span></li>
-<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a><ul>
+<li class="chapter" data-level="1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html"><i class="fa fa-check"></i><b>1</b> Computação científica e interação com o R</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#interagindo-com-o-computador"><i class="fa fa-check"></i><b>1.1</b> Interagindo com o computador</a></li>
-<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a><ul>
+<li class="chapter" data-level="1.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-de-texto"><i class="fa fa-check"></i><b>1.2</b> Editores de texto</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#editores-para-r"><i class="fa fa-check"></i><b>1.2.1</b> Editores para R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a><ul>
+<li class="chapter" data-level="1.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#r"><i class="fa fa-check"></i><b>1.3</b> R</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#configuração-inicial"><i class="fa fa-check"></i><b>1.3.1</b> Configuração inicial</a></li>
 <li class="chapter" data-level="1.3.2" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#o-r-como-uma-calculadora"><i class="fa fa-check"></i><b>1.3.2</b> O R como uma calculadora</a></li>
 <li class="chapter" data-level="1.3.3" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#para-onde-vão-os-resultados"><i class="fa fa-check"></i><b>1.3.3</b> Para onde vão os resultados?</a></li>
@@ -137,26 +193,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#referências"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a><ul>
-<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a><ul>
+<li class="chapter" data-level="2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html"><i class="fa fa-check"></i><b>2</b> Objetos e classes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#funções-e-argumentos"><i class="fa fa-check"></i><b>2.1</b> Funções e argumentos</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-argumentos"><i class="fa fa-check"></i><b>2.1.1</b> Outros tipos de argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#mecanismos-de-ajuda"><i class="fa fa-check"></i><b>2.2</b> Mecanismos de ajuda</a></li>
 <li class="chapter" data-level="2.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#criando-uma-função"><i class="fa fa-check"></i><b>2.3</b> Criando uma função</a></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-1"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a><ul>
+<li class="chapter" data-level="2.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#objetos"><i class="fa fa-check"></i><b>2.4</b> Objetos</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#nomes-de-objetos"><i class="fa fa-check"></i><b>2.4.1</b> Nomes de objetos</a></li>
 <li class="chapter" data-level="2.4.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#gerenciando-a-área-de-trabalho"><i class="fa fa-check"></i><b>2.4.2</b> Gerenciando a área de trabalho</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-2"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a><ul>
+<li class="chapter" data-level="2.5" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#tipos-e-classes-de-objetos"><i class="fa fa-check"></i><b>2.5</b> Tipos e classes de objetos</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#vetores-numéricos"><i class="fa fa-check"></i><b>2.5.1</b> Vetores numéricos</a></li>
 <li class="chapter" data-level="2.5.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outros-tipos-de-vetores"><i class="fa fa-check"></i><b>2.5.2</b> Outros tipos de vetores</a></li>
 <li class="chapter" data-level="2.5.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#misturando-classes-de-objetos"><i class="fa fa-check"></i><b>2.5.3</b> Misturando classes de objetos</a></li>
 <li class="chapter" data-level="2.5.4" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#valores-perdidos-e-especiais"><i class="fa fa-check"></i><b>2.5.4</b> Valores perdidos e especiais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-3"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a><ul>
+<li class="chapter" data-level="2.6" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#outras-classes"><i class="fa fa-check"></i><b>2.6</b> Outras classes</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#fator"><i class="fa fa-check"></i><b>2.6.1</b> Fator</a></li>
 <li class="chapter" data-level="2.6.2" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#matriz"><i class="fa fa-check"></i><b>2.6.2</b> Matriz</a></li>
 <li class="chapter" data-level="2.6.3" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#array"><i class="fa fa-check"></i><b>2.6.3</b> Array</a></li>
@@ -167,8 +228,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#exercícios-4"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="" data-path="objetos-e-classes.html"><a href="objetos-e-classes.html#referências-1"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a><ul>
-<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a><ul>
+<li class="chapter" data-level="3" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html"><i class="fa fa-check"></i><b>3</b> Indexação e seleção condicional</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação"><i class="fa fa-check"></i><b>3.1</b> Indexação</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-vetores"><i class="fa fa-check"></i><b>3.1.1</b> Indexação de vetores</a></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-5"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="3.1.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-matrizes"><i class="fa fa-check"></i><b>3.1.2</b> Indexação de matrizes</a></li>
@@ -176,7 +239,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1.4" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#indexação-de-data-frames"><i class="fa fa-check"></i><b>3.1.4</b> Indexação de data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-6"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a><ul>
+<li class="chapter" data-level="3.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional"><i class="fa fa-check"></i><b>3.2</b> Seleção condicional</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#seleção-condicional-em-vetores"><i class="fa fa-check"></i><b>3.2.1</b> Seleção condicional em vetores</a></li>
 <li class="chapter" data-level="3.2.2" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#a-função-which"><i class="fa fa-check"></i><b>3.2.2</b> A função <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-7"><i class="fa fa-check"></i>Exercícios</a></li>
@@ -184,8 +248,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="indexação-e-seleção-condicional.html"><a href="indexação-e-seleção-condicional.html#exercícios-8"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a><ul>
-<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a><ul>
+<li class="chapter" data-level="4" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html"><i class="fa fa-check"></i><b>4</b> Entrada e saída de dados no R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados"><i class="fa fa-check"></i><b>4.1</b> Entrada de dados</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-de-dados-diretamente-no-r"><i class="fa fa-check"></i><b>4.1.1</b> Entrada de dados diretamente no R</a></li>
 <li class="chapter" data-level="4.1.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#entrada-via-teclado"><i class="fa fa-check"></i><b>4.1.2</b> Entrada via teclado</a></li>
 <li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-9"><i class="fa fa-check"></i>Exercícios</a></li>
@@ -196,61 +262,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.6" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#carregando-dados-já-disponíveis-no-r"><i class="fa fa-check"></i><b>4.1.6</b> Carregando dados já disponíveis no R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#importando-dados-de-outros-programas"><i class="fa fa-check"></i><b>4.1.7</b> Importando dados de outros programas</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a><ul>
+<li class="chapter" data-level="4.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#saída-de-dados-do-r"><i class="fa fa-check"></i><b>4.2</b> Saída de dados do R</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-a-função-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Usando a função <code>write.table()</code></a></li>
 <li class="chapter" data-level="" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#exercícios-11"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="4.2.2" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#usando-os-formatos-textual-e-binário-para-lerescrever-dados"><i class="fa fa-check"></i><b>4.2.2</b> Usando os formatos textual e binário para ler/escrever dados</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="entrada-e-saída-de-dados-no-r.html"><a href="entrada-e-saída-de-dados-no-r.html#informações-sobre-diretórios-e-arquivos"><i class="fa fa-check"></i><b>4.3</b> Informações sobre diretórios e arquivos</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a><ul>
+<li class="chapter" data-level="5" data-path="programando-com-dados.html"><a href="programando-com-dados.html"><i class="fa fa-check"></i><b>5</b> Programando com dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-repetição-for"><i class="fa fa-check"></i><b>5.1</b> Estrutura de repetição <code>for()</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-12"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="programando-com-dados.html"><a href="programando-com-dados.html#estrutura-de-seleção-if"><i class="fa fa-check"></i><b>5.2</b> Estrutura de seleção <code>if()</code></a></li>
-<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a><ul>
+<li class="chapter" data-level="5.3" data-path="programando-com-dados.html"><a href="programando-com-dados.html#o-modo-r-vetorização"><i class="fa fa-check"></i><b>5.3</b> O modo R: vetorização</a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-13"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a><ul>
+<li class="chapter" data-level="5.4" data-path="programando-com-dados.html"><a href="programando-com-dados.html#outras-estruturas-while-e-repeat"><i class="fa fa-check"></i><b>5.4</b> Outras estruturas: while e repeat</a>
+<ul>
 <li class="chapter" data-level="" data-path="programando-com-dados.html"><a href="programando-com-dados.html#exercícios-14"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Estatística</b></span></li>
-<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a><ul>
+<li class="chapter" data-level="6" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html"><i class="fa fa-check"></i><b>6</b> Análise exploratória de dados</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#o-conjunto-de-dados-milsa"><i class="fa fa-check"></i><b>6.1</b> O conjunto de dados <code>milsa</code></a></li>
-<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a><ul>
+<li class="chapter" data-level="6.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-univariada"><i class="fa fa-check"></i><b>6.2</b> Análise univariada</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-nominal"><i class="fa fa-check"></i><b>6.2.1</b> Variável Qualitativa Nominal</a></li>
 <li class="chapter" data-level="6.2.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-qualitativa-ordinal"><i class="fa fa-check"></i><b>6.2.2</b> Variável Qualitativa Ordinal</a></li>
 <li class="chapter" data-level="6.2.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-discreta"><i class="fa fa-check"></i><b>6.2.3</b> Variável quantitativa discreta</a></li>
 <li class="chapter" data-level="6.2.4" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#variável-quantitativa-contínua"><i class="fa fa-check"></i><b>6.2.4</b> Variável quantitativa contínua</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a><ul>
+<li class="chapter" data-level="6.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#análise-bivariada"><i class="fa fa-check"></i><b>6.3</b> Análise Bivariada</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-qualitativa"><i class="fa fa-check"></i><b>6.3.1</b> Qualitativa <em>vs</em> qualitativa</a></li>
 <li class="chapter" data-level="6.3.2" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#qualitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.2</b> Qualitativa <em>vs</em> quantitativa</a></li>
 <li class="chapter" data-level="6.3.3" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#quantitativa-vs-quantitativa"><i class="fa fa-check"></i><b>6.3.3</b> Quantitativa <em>vs</em> Quantitativa</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="análise-exploratória-de-dados.html"><a href="análise-exploratória-de-dados.html#exercícios-15"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a><ul>
+<li class="chapter" data-level="7" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>7</b> Probabilidade e variáveis aleatórias</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#conceitos-básicos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.1</b> Conceitos básicos sobre distribuições de probabilidade</a></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-16"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a><ul>
+<li class="chapter" data-level="7.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.2</b> Distribuições de Probabilidade</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-normal"><i class="fa fa-check"></i><b>7.2.1</b> Distribuição Normal</a></li>
 <li class="chapter" data-level="7.2.2" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-binomial"><i class="fa fa-check"></i><b>7.2.2</b> Distribuição Binomial</a></li>
 <li class="chapter" data-level="7.2.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-de-poisson"><i class="fa fa-check"></i><b>7.2.3</b> Distribuição de Poisson</a></li>
 <li class="chapter" data-level="7.2.4" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#distribuição-uniforme"><i class="fa fa-check"></i><b>7.2.4</b> Distribuição Uniforme</a></li>
 <li class="chapter" data-level="7.2.5" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#a-função-sample"><i class="fa fa-check"></i><b>7.2.5</b> A função <code>sample()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a><ul>
+<li class="chapter" data-level="7.3" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#complementos-sobre-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>7.3</b> Complementos sobre distribuições de probabilidade</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#probabilidades-e-integrais"><i class="fa fa-check"></i><b>7.3.1</b> Probabilidades e integrais</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="probabilidade-e-variáveis-aleatórias.html"><a href="probabilidade-e-variáveis-aleatórias.html#exercícios-17"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a><ul>
+<li class="chapter" data-level="8" data-path="inferência-estatística.html"><a href="inferência-estatística.html"><i class="fa fa-check"></i><b>8</b> Inferência estatística</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#introdução-ao-pensamento-estatístico"><i class="fa fa-check"></i><b>8.1</b> Introdução ao pensamento estatístico</a></li>
 <li class="chapter" data-level="8.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#estimação-pontual-e-intervalos-de-confiança"><i class="fa fa-check"></i><b>8.2</b> Estimação pontual e intervalos de confiança</a></li>
 <li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-18"><i class="fa fa-check"></i>Exercícios</a></li>
-<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a><ul>
+<li class="chapter" data-level="8.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-de-hipótese"><i class="fa fa-check"></i><b>8.3</b> Teste de hipótese</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-one-sample-t-test"><i class="fa fa-check"></i><b>8.3.1</b> Teste t (one sample t-test)</a></li>
 <li class="chapter" data-level="8.3.2" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-independent-two-sample-t-test"><i class="fa fa-check"></i><b>8.3.2</b> Teste t (independent two sample t-test)</a></li>
 <li class="chapter" data-level="8.3.3" data-path="inferência-estatística.html"><a href="inferência-estatística.html#teste-t-variância-diferentes"><i class="fa fa-check"></i><b>8.3.3</b> Teste t variância diferentes</a></li>
@@ -260,16 +339,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="inferência-estatística.html"><a href="inferência-estatística.html#exercícios-19"><i class="fa fa-check"></i>Exercícios</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a><ul>
+<li class="chapter" data-level="A" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html"><i class="fa fa-check"></i><b>A</b> Documentos dinâmicos</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming"><i class="fa fa-check"></i><b>A.1</b> Literate Programming</a></li>
 <li class="chapter" data-level="A.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#literate-programming-no-r"><i class="fa fa-check"></i><b>A.2</b> Literate Programming no R</a></li>
-<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a><ul>
+<li class="chapter" data-level="A.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#markdown"><i class="fa fa-check"></i><b>A.3</b> Markdown</a>
+<ul>
 <li class="chapter" data-level="A.3.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#sintaxe-do-markdown"><i class="fa fa-check"></i><b>A.3.1</b> Sintaxe do Markdown</a></li>
 <li class="chapter" data-level="A.3.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#escrevendo-um-documento-em-markdown"><i class="fa fa-check"></i><b>A.3.2</b> Escrevendo um documento em Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#pandoc"><i class="fa fa-check"></i><b>A.4</b> Pandoc</a></li>
 <li class="chapter" data-level="A.5" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#documentos-dinâmicos-com-markdown-e-r"><i class="fa fa-check"></i><b>A.5</b> Documentos dinâmicos com Markdown e R</a></li>
-<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a><ul>
+<li class="chapter" data-level="A.6" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#r-markdown-e-knitr"><i class="fa fa-check"></i><b>A.6</b> R Markdown e knitr</a>
+<ul>
 <li class="chapter" data-level="A.6.1" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#metadados"><i class="fa fa-check"></i><b>A.6.1</b> Metadados</a></li>
 <li class="chapter" data-level="A.6.2" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#convertendo-r-markdown-para-outros-formatos"><i class="fa fa-check"></i><b>A.6.2</b> Convertendo R Markdown para outros formatos</a></li>
 <li class="chapter" data-level="A.6.3" data-path="documentos-dinâmicos.html"><a href="documentos-dinâmicos.html#opções-do-knitr"><i class="fa fa-check"></i><b>A.6.3</b> Opções do knitr</a></li>
@@ -297,11 +379,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="indexação-e-seleção-condicional" class="section level1">
-<h1><span class="header-section-number">3</span> Indexação e seleção condicional</h1>
-<div id="indexação" class="section level2">
-<h2><span class="header-section-number">3.1</span> Indexação</h2>
-<p>Existem 6 maneiras diferentes de indexar valores no R. Podemos indexar usando:</p>
+<div id="indexação-e-seleção-condicional" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Indexação e seleção condicional<a href="indexação-e-seleção-condicional.html#indexação-e-seleção-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="indexação" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Indexação<a href="indexação-e-seleção-condicional.html#indexação" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Existem 6 maneiras diferentes de indexar valores no R. Podemos indexar
+usando:</p>
 <ul>
 <li>Inteiros positivos.</li>
 <li>Inteiros negativos.</li>
@@ -310,488 +393,569 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Nomes.</li>
 <li>Valores lógicos.</li>
 </ul>
-<p>Existem três tipos de operadores que podem ser usados para indexar (e selecionar) <strong>sub-conjuntos</strong> (<em>subsets</em>) de objetos no R:</p>
+<p>Existem três tipos de operadores que podem ser usados para indexar (e
+selecionar) <strong>sub-conjuntos</strong> (<em>subsets</em>) de objetos no R:</p>
 <ul>
-<li>O operador <code>[ ]</code> sempre retorna um objeto da mesma classe que o original. Pode ser usado para selecionar múltiplos elementos de um objeto.</li>
-<li>O operador<code>[[ ]]</code> é usado para extrair elementos de uma <strong>lista</strong> ou <strong>data frame</strong>. Pode ser usado para extrair um único elemento, e a classe do objeto retornado não precisa necessariamente ser uma lista ou data frame.</li>
-<li>O operador <code>$</code> é usado para extrair elementos <strong>nomeados</strong> de uma lista ou data frame. É similar ao operador <code>[[ ]]</code>.</li>
+<li>O operador <code>[ ]</code> sempre retorna um objeto da mesma classe que o
+original. Pode ser usado para selecionar múltiplos elementos de um
+objeto.</li>
+<li>O operador<code>[[ ]]</code> é usado para extrair elementos de uma <strong>lista</strong> ou
+<strong>data frame</strong>. Pode ser usado para extrair um único elemento, e a
+classe do objeto retornado não precisa necessariamente ser uma lista
+ou data frame.</li>
+<li>O operador <code>$</code> é usado para extrair elementos <strong>nomeados</strong> de uma
+lista ou data frame. É similar ao operador <code>[[ ]]</code>.</li>
 </ul>
-<div id="indexação-de-vetores" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Indexação de vetores</h3>
+<div id="indexação-de-vetores" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Indexação de vetores<a href="indexação-e-seleção-condicional.html#indexação-de-vetores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Observe o seguinte vetor de contagens</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>)
-cont
-[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="ot">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="indexação-e-seleção-condicional.html#cb117-1" aria-hidden="true" tabindex="-1"></a>cont <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">4</span>, <span class="cn">NA</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span>
+<span id="cb117-2"><a href="indexação-e-seleção-condicional.html#cb117-2" aria-hidden="true" tabindex="-1"></a>cont</span>
+<span id="cb117-3"><a href="indexação-e-seleção-condicional.html#cb117-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="cn">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></span></code></pre></div>
 <p>Para acessar o valor que está na posição 4, faça:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="dv">4</span>]
-[<span class="dv">1</span>] <span class="dv">9</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="indexação-e-seleção-condicional.html#cb118-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="dv">4</span>]</span>
+<span id="cb118-2"><a href="indexação-e-seleção-condicional.html#cb118-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">9</span></span></code></pre></div>
 <div class="alert alert-warning">
-<p>Os colchetes <code>[ ]</code> são utilizados para <strong>extração</strong> (seleção de um intervalo de dados) ou <strong>substituição</strong> de elementos. O valor dentro dos colchetes é chamado de <strong>índice</strong>.</p>
+<p>Os colchetes <code>[ ]</code> são utilizados para <strong>extração</strong> (seleção de um
+intervalo de dados) ou <strong>substituição</strong> de elementos. O valor dentro
+dos colchetes é chamado de <strong>índice</strong>.</p>
 </div>
-<p>Para acessar os valores nas posições 1, 4 e 8 é necessário o uso da função <code>c()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)]
-[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">9</span> <span class="dv">9</span></code></pre></div>
+<p>Para acessar os valores nas posições 1, 4 e 8 é necessário o uso da
+função <code>c()</code>:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="indexação-e-seleção-condicional.html#cb119-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)]</span>
+<span id="cb119-2"><a href="indexação-e-seleção-condicional.html#cb119-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">9</span> <span class="dv">9</span></span></code></pre></div>
 <p>Ou:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)
-cont[ind]
-[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">9</span> <span class="dv">9</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="indexação-e-seleção-condicional.html#cb120-1" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)</span>
+<span id="cb120-2"><a href="indexação-e-seleção-condicional.html#cb120-2" aria-hidden="true" tabindex="-1"></a>cont[ind]</span>
+<span id="cb120-3"><a href="indexação-e-seleção-condicional.html#cb120-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">9</span> <span class="dv">9</span></span></code></pre></div>
 <div class="alert alert-warning">
-<p>Note que os índices no R começam em 1, e não em 0, como em algumas outras linguagens.</p>
+<p>Note que os índices no R começam em 1, e não em 0, como em algumas outras
+linguagens.</p>
 </div>
-<p>Para selecionar todos os valores, <strong>excluindo</strong> aquele da posição 4, usamos um índice negativo</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="op">-</span><span class="dv">4</span>]
-[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="ot">NA</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></code></pre></div>
-<p>Da mesma forma se quiséssemos todos os valores, menos aqueles das posições 1, 4 e 8:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)]
-[<span class="dv">1</span>]  <span class="dv">4</span> <span class="ot">NA</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span></code></pre></div>
-<p>Também é possível selecionar uma sequência de elementos (com qualquer uma das funções de gerar sequências que já vimos antes):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleciona os elementos de 1 a 5
-cont[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
-[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="ot">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>
-## Seleciona os elementos nas posições ímpar
-cont[<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dt">by =</span> <span class="dv">2</span>)]
-[<span class="dv">1</span>]  <span class="dv">8</span> <span class="ot">NA</span>  <span class="dv">6</span>  <span class="dv">7</span></code></pre></div>
-<p>Mas note que para selecionar todos menos aqueles de uma sequência, precisamos colocá-la entre parênteses</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
-Error <span class="cf">in</span> cont[<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]<span class="op">:</span><span class="st"> </span>only <span class="dv">0</span><span class="st">&#39;s may be mixed with negative subscripts</span>
-<span class="st">cont[-(1:5)]</span>
-<span class="st">[1] 1 7 9</span></code></pre></div>
-<p>Para selecionar todos os elementos que sejam <code>NA</code>, ou todos menos os <code>NA</code>s, precisamos usar a função <code>is.na()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Para selecionar os NAs
-cont[<span class="kw">is.na</span>(cont)]
-[<span class="dv">1</span>] <span class="ot">NA</span>
-## Para selecionar todos menos os NAs
-cont[<span class="op">!</span><span class="kw">is.na</span>(cont)]
-[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">4</span> <span class="dv">9</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">9</span></code></pre></div>
+<p>Para selecionar todos os valores, <strong>excluindo</strong> aquele da posição 4,
+usamos um índice negativo</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="indexação-e-seleção-condicional.html#cb121-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="sc">-</span><span class="dv">4</span>]</span>
+<span id="cb121-2"><a href="indexação-e-seleção-condicional.html#cb121-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="cn">NA</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></span></code></pre></div>
+<p>Da mesma forma se quiséssemos todos os valores, menos aqueles das
+posições 1, 4 e 8:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="indexação-e-seleção-condicional.html#cb122-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">8</span>)]</span>
+<span id="cb122-2"><a href="indexação-e-seleção-condicional.html#cb122-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">4</span> <span class="cn">NA</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span></span></code></pre></div>
+<p>Também é possível selecionar uma sequência de elementos (com qualquer
+uma das funções de gerar sequências que já vimos antes):</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="indexação-e-seleção-condicional.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Seleciona os elementos de 1 a 5</span></span>
+<span id="cb123-2"><a href="indexação-e-seleção-condicional.html#cb123-2" aria-hidden="true" tabindex="-1"></a>cont[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb123-3"><a href="indexação-e-seleção-condicional.html#cb123-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="cn">NA</span>  <span class="dv">9</span>  <span class="dv">6</span></span>
+<span id="cb123-4"><a href="indexação-e-seleção-condicional.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Seleciona os elementos nas posições ímpar</span></span>
+<span id="cb123-5"><a href="indexação-e-seleção-condicional.html#cb123-5" aria-hidden="true" tabindex="-1"></a>cont[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="at">by =</span> <span class="dv">2</span>)]</span>
+<span id="cb123-6"><a href="indexação-e-seleção-condicional.html#cb123-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span> <span class="cn">NA</span>  <span class="dv">6</span>  <span class="dv">7</span></span></code></pre></div>
+<p>Mas note que para selecionar todos menos aqueles de uma sequência,
+precisamos colocá-la entre parênteses</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="indexação-e-seleção-condicional.html#cb124-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb124-2"><a href="indexação-e-seleção-condicional.html#cb124-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> cont[<span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]<span class="sc">:</span> only <span class="dv">0</span><span class="st">&#39;s may be mixed with negative subscripts</span></span>
+<span id="cb124-3"><a href="indexação-e-seleção-condicional.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="st">cont[-(1:5)]</span></span>
+<span id="cb124-4"><a href="indexação-e-seleção-condicional.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="st">[1] 1 7 9</span></span></code></pre></div>
+<p>Para selecionar todos os elementos que sejam <code>NA</code>, ou todos menos os
+<code>NA</code>s, precisamos usar a função <code>is.na()</code></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="indexação-e-seleção-condicional.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Para selecionar os NAs</span></span>
+<span id="cb125-2"><a href="indexação-e-seleção-condicional.html#cb125-2" aria-hidden="true" tabindex="-1"></a>cont[<span class="fu">is.na</span>(cont)]</span>
+<span id="cb125-3"><a href="indexação-e-seleção-condicional.html#cb125-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
+<span id="cb125-4"><a href="indexação-e-seleção-condicional.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Para selecionar todos menos os NAs</span></span>
+<span id="cb125-5"><a href="indexação-e-seleção-condicional.html#cb125-5" aria-hidden="true" tabindex="-1"></a>cont[<span class="sc">!</span><span class="fu">is.na</span>(cont)]</span>
+<span id="cb125-6"><a href="indexação-e-seleção-condicional.html#cb125-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">4</span> <span class="dv">9</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">9</span></span></code></pre></div>
 <p>Para substituir os <code>NA</code>s por algum valor (<em>e.g.</em> 0):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="kw">is.na</span>(cont)] &lt;-<span class="st"> </span><span class="dv">0</span>
-cont
-[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">4</span> <span class="dv">0</span> <span class="dv">9</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">9</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="indexação-e-seleção-condicional.html#cb126-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="fu">is.na</span>(cont)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb126-2"><a href="indexação-e-seleção-condicional.html#cb126-2" aria-hidden="true" tabindex="-1"></a>cont</span>
+<span id="cb126-3"><a href="indexação-e-seleção-condicional.html#cb126-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span> <span class="dv">4</span> <span class="dv">0</span> <span class="dv">9</span> <span class="dv">6</span> <span class="dv">1</span> <span class="dv">7</span> <span class="dv">9</span></span></code></pre></div>
 <p>E para especificar <code>NA</code> para algum valor</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(cont) &lt;-<span class="st"> </span><span class="dv">3</span>
-cont
-[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="ot">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span>
-## Mais seguro do que
-<span class="co"># cont[3] &lt;- NA</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="indexação-e-seleção-condicional.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(cont) <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb127-2"><a href="indexação-e-seleção-condicional.html#cb127-2" aria-hidden="true" tabindex="-1"></a>cont</span>
+<span id="cb127-3"><a href="indexação-e-seleção-condicional.html#cb127-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="cn">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></span>
+<span id="cb127-4"><a href="indexação-e-seleção-condicional.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Mais seguro do que</span></span>
+<span id="cb127-5"><a href="indexação-e-seleção-condicional.html#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cont[3] &lt;- NA</span></span></code></pre></div>
 <div class="alert alert-warning">
-<p>Note que se utilizarmos o operador de atribuição <code>&lt;-</code> em conjunto com uma indexação, estaremos <strong>substituindo</strong> os valores selecionados pelos valores do lado direito do operador de atribuição.</p>
+<p>Note que se utilizarmos o operador de atribuição <code>&lt;-</code> em conjunto com
+uma indexação, estaremos <strong>substituindo</strong> os valores selecionados
+pelos valores do lado direito do operador de atribuição.</p>
 </div>
-<p>Podemos também utilizar mais duas formas de indexação no R: espaços em branco e zero:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont[<span class="dv">0</span>]
-<span class="kw">numeric</span>(<span class="dv">0</span>)
-cont[]
-[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="ot">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></code></pre></div>
-<p>Note que o índice zero não existe no R, mas ao utilizá-lo é retornado um vetor “vazio”, ou um vetor de comprimento zero. Essa forma de indexação é raramente utilizada no R.</p>
-<p>Ao deixar um espaço em branco, estamos simplesmente informando que queremos todos os valores daquele vetor. Essa forma de indexação será particularmente útil para objetos que possuem duas ou mais dimensões, como matrizes e data frames.</p>
+<p>Podemos também utilizar mais duas formas de indexação no R: espaços em
+branco e zero:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="indexação-e-seleção-condicional.html#cb128-1" aria-hidden="true" tabindex="-1"></a>cont[<span class="dv">0</span>]</span>
+<span id="cb128-2"><a href="indexação-e-seleção-condicional.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">numeric</span>(<span class="dv">0</span>)</span>
+<span id="cb128-3"><a href="indexação-e-seleção-condicional.html#cb128-3" aria-hidden="true" tabindex="-1"></a>cont[]</span>
+<span id="cb128-4"><a href="indexação-e-seleção-condicional.html#cb128-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">8</span>  <span class="dv">4</span> <span class="cn">NA</span>  <span class="dv">9</span>  <span class="dv">6</span>  <span class="dv">1</span>  <span class="dv">7</span>  <span class="dv">9</span></span></code></pre></div>
+<p>Note que o índice zero não existe no R, mas ao utilizá-lo é retornado um
+vetor “vazio”, ou um vetor de comprimento zero. Essa forma de indexação
+é raramente utilizada no R.</p>
+<p>Ao deixar um espaço em branco, estamos simplesmente informando que
+queremos todos os valores daquele vetor. Essa forma de indexação será
+particularmente útil para objetos que possuem duas ou mais dimensões,
+como matrizes e data frames.</p>
 </div>
-<div id="exercícios-5" class="section level3 unnumbered">
-<h3>Exercícios</h3>
+<div id="exercícios-5" class="section level3 unnumbered hasAnchor">
+<h3>Exercícios<a href="indexação-e-seleção-condicional.html#exercícios-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Crie um vetor com os valores: <code>88, 5, 12, 13</code>.</li>
 <li>Selecione o elemento na posição 3.</li>
 <li>Selecione o valor 88.</li>
 <li>Selecione os valores 13 e 5.</li>
 <li>Selecione todos os valores, menos o 88 e o 13.</li>
-<li>Insira o valor 168 <strong>entre</strong> os valores 12 e 13, criando um novo objeto.</li>
+<li>Insira o valor 168 <strong>entre</strong> os valores 12 e 13, criando um novo
+objeto.</li>
 </ol>
-<div id="vetores-nomeados" class="section level4">
-<h4><span class="header-section-number">3.1.1.1</span> Vetores nomeados</h4>
-<p>Quando vetores possuem seus componentes <strong>nomeados</strong>, a indexação pode ser realizada pelos nomes destes componentes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Atribui as letras &quot;a&quot;, &quot;b&quot;, ..., &quot;h&quot; para os componentes de cont
-<span class="kw">names</span>(cont) &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cont)]
-## Acessando o quarto elemento
-cont[<span class="st">&quot;d&quot;</span>]
-d 
-<span class="dv">9</span> 
-## Acessando o sexto e o primeiro elemento
-cont[<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;a&quot;</span>)]
-f a 
-<span class="dv">1</span> <span class="dv">8</span> </code></pre></div>
+<div id="vetores-nomeados" class="section level4 hasAnchor" number="3.1.1.1">
+<h4><span class="header-section-number">3.1.1.1</span> Vetores nomeados<a href="indexação-e-seleção-condicional.html#vetores-nomeados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Quando vetores possuem seus componentes <strong>nomeados</strong>, a indexação pode
+ser realizada pelos nomes destes componentes.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="indexação-e-seleção-condicional.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Atribui as letras &quot;a&quot;, &quot;b&quot;, ..., &quot;h&quot; para os componentes de cont</span></span>
+<span id="cb129-2"><a href="indexação-e-seleção-condicional.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cont) <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cont)]</span>
+<span id="cb129-3"><a href="indexação-e-seleção-condicional.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Acessando o quarto elemento</span></span>
+<span id="cb129-4"><a href="indexação-e-seleção-condicional.html#cb129-4" aria-hidden="true" tabindex="-1"></a>cont[<span class="st">&quot;d&quot;</span>]</span>
+<span id="cb129-5"><a href="indexação-e-seleção-condicional.html#cb129-5" aria-hidden="true" tabindex="-1"></a>d </span>
+<span id="cb129-6"><a href="indexação-e-seleção-condicional.html#cb129-6" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span> </span>
+<span id="cb129-7"><a href="indexação-e-seleção-condicional.html#cb129-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Acessando o sexto e o primeiro elemento</span></span>
+<span id="cb129-8"><a href="indexação-e-seleção-condicional.html#cb129-8" aria-hidden="true" tabindex="-1"></a>cont[<span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;a&quot;</span>)]</span>
+<span id="cb129-9"><a href="indexação-e-seleção-condicional.html#cb129-9" aria-hidden="true" tabindex="-1"></a>f a </span>
+<span id="cb129-10"><a href="indexação-e-seleção-condicional.html#cb129-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">8</span> </span></code></pre></div>
 <p>Dica: veja <code>?letters</code></p>
 </div>
 </div>
-<div id="indexação-de-matrizes" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> Indexação de matrizes</h3>
+<div id="indexação-de-matrizes" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Indexação de matrizes<a href="indexação-e-seleção-condicional.html#indexação-de-matrizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Considere a seguinte matriz</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)
-mat
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]
-[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">7</span>
-[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">5</span>    <span class="dv">8</span>
-[<span class="dv">3</span>,]    <span class="dv">3</span>    <span class="dv">6</span>    <span class="dv">9</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="indexação-e-seleção-condicional.html#cb130-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb130-2"><a href="indexação-e-seleção-condicional.html#cb130-2" aria-hidden="true" tabindex="-1"></a>mat</span>
+<span id="cb130-3"><a href="indexação-e-seleção-condicional.html#cb130-3" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb130-4"><a href="indexação-e-seleção-condicional.html#cb130-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">7</span></span>
+<span id="cb130-5"><a href="indexação-e-seleção-condicional.html#cb130-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">5</span>    <span class="dv">8</span></span>
+<span id="cb130-6"><a href="indexação-e-seleção-condicional.html#cb130-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,]    <span class="dv">3</span>    <span class="dv">6</span>    <span class="dv">9</span></span></code></pre></div>
 <p>Acesse o valor que está na linha 2 da coluna 3:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat[<span class="dv">2</span>, <span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">8</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="indexação-e-seleção-condicional.html#cb131-1" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb131-2"><a href="indexação-e-seleção-condicional.html#cb131-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
 <div class="alert alert-warning">
 <p>A indexação de matrizes sempre segue a ordem <code>[linha, coluna]</code></p>
 </div>
-<p>Para acessar todas as linhas da coluna 1, deixamos o espaço em branco (que também é uma forma de seleção, como vimos) na posição das linhas e especificamos a coluna desejada</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat[, <span class="dv">1</span>]
-[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></code></pre></div>
+<p>Para acessar todas as linhas da coluna 1, deixamos o espaço em branco
+(que também é uma forma de seleção, como vimos) na posição das linhas e
+especificamos a coluna desejada</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="indexação-e-seleção-condicional.html#cb132-1" aria-hidden="true" tabindex="-1"></a>mat[, <span class="dv">1</span>]</span>
+<span id="cb132-2"><a href="indexação-e-seleção-condicional.html#cb132-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span></code></pre></div>
 <p>Para acessar todas as colunas da linha 1, usamos a mesma lógica</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat[<span class="dv">1</span>, ]
-[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></code></pre></div>
-<p>Note que o resultado destas extrações trazem os valores internos das matrizes, mas com a dimensão reduzida (nestes casos para uma dimensão). Se o objetivo for, por exemplo, extrair uma parte da matriz, mas mantendo as duas dimensões, então precisamos usar o argumento <code>drop</code> da “função” <code>[</code> (sim, também é uma função; veja <code>&quot;?[&quot;</code>). Veja as diferenças:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat[<span class="dv">3</span>, <span class="dv">2</span>]
-[<span class="dv">1</span>] <span class="dv">6</span>
-mat[<span class="dv">3</span>, <span class="dv">2</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]
-     [,<span class="dv">1</span>]
-[<span class="dv">1</span>,]    <span class="dv">6</span>
-mat[<span class="dv">1</span>, ]
-[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span>
-mat[<span class="dv">1</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>]
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]
-[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">7</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="indexação-e-seleção-condicional.html#cb133-1" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span>, ]</span>
+<span id="cb133-2"><a href="indexação-e-seleção-condicional.html#cb133-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span></code></pre></div>
+<p>Note que o resultado destas extrações trazem os valores internos das
+matrizes, mas com a dimensão reduzida (nestes casos para uma
+dimensão). Se o objetivo for, por exemplo, extrair uma parte da matriz,
+mas mantendo as duas dimensões, então precisamos usar o argumento <code>drop</code>
+da “função” <code>[</code> (sim, também é uma função; veja <code>"?["</code>).
+Veja as diferenças:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="indexação-e-seleção-condicional.html#cb134-1" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">3</span>, <span class="dv">2</span>]</span>
+<span id="cb134-2"><a href="indexação-e-seleção-condicional.html#cb134-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span>
+<span id="cb134-3"><a href="indexação-e-seleção-condicional.html#cb134-3" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">3</span>, <span class="dv">2</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb134-4"><a href="indexação-e-seleção-condicional.html#cb134-4" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>]</span>
+<span id="cb134-5"><a href="indexação-e-seleção-condicional.html#cb134-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">6</span></span>
+<span id="cb134-6"><a href="indexação-e-seleção-condicional.html#cb134-6" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span>, ]</span>
+<span id="cb134-7"><a href="indexação-e-seleção-condicional.html#cb134-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span>
+<span id="cb134-8"><a href="indexação-e-seleção-condicional.html#cb134-8" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span>, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb134-9"><a href="indexação-e-seleção-condicional.html#cb134-9" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]</span>
+<span id="cb134-10"><a href="indexação-e-seleção-condicional.html#cb134-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">4</span>    <span class="dv">7</span></span></code></pre></div>
 <p>Para acessar as linhas 1 e 3 das colunas 2 e 3:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]
-     [,<span class="dv">1</span>] [,<span class="dv">2</span>]
-[<span class="dv">1</span>,]    <span class="dv">4</span>    <span class="dv">7</span>
-[<span class="dv">2</span>,]    <span class="dv">6</span>    <span class="dv">9</span></code></pre></div>
-<p>E note que aqui a dimensão já é 2 pois naturalmente o resultado precisa ser representado em duas dimensões.</p>
-<div id="matrizes-nomeadas" class="section level4">
-<h4><span class="header-section-number">3.1.2.1</span> Matrizes nomeadas</h4>
-<p>Se as matrizes tiverem linhas e/ou colunas nomeadas, a indexação também pode ser feita com os nomes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##----------------------------------------------------------------------
-## Nomes das colunas
-<span class="kw">colnames</span>(mat) &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
-## Todas as linhas da coluna B
-mat[, <span class="st">&quot;B&quot;</span>]
-[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span>
-## Elemento da linha 1 e coluna C
-mat[<span class="dv">1</span>, <span class="st">&quot;C&quot;</span>]
-C 
-<span class="dv">7</span> 
-##----------------------------------------------------------------------
-## Nomes das linhas
-<span class="kw">rownames</span>(mat) &lt;-<span class="st"> </span>LETTERS[<span class="dv">24</span><span class="op">:</span><span class="dv">26</span>]
-## Todas as colunas da linha X
-mat[<span class="st">&quot;X&quot;</span>, ]
-A B C 
-<span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span> 
-## Elemento da linha Y e coluna A
-mat[<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;A&quot;</span>]
-[<span class="dv">1</span>] <span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="indexação-e-seleção-condicional.html#cb135-1" aria-hidden="true" tabindex="-1"></a>mat[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]</span>
+<span id="cb135-2"><a href="indexação-e-seleção-condicional.html#cb135-2" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb135-3"><a href="indexação-e-seleção-condicional.html#cb135-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">4</span>    <span class="dv">7</span></span>
+<span id="cb135-4"><a href="indexação-e-seleção-condicional.html#cb135-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">6</span>    <span class="dv">9</span></span></code></pre></div>
+<p>E note que aqui a dimensão já é 2 pois naturalmente o resultado precisa
+ser representado em duas dimensões.</p>
+<div id="matrizes-nomeadas" class="section level4 hasAnchor" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> Matrizes nomeadas<a href="indexação-e-seleção-condicional.html#matrizes-nomeadas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Se as matrizes tiverem linhas e/ou colunas nomeadas, a indexação também
+pode ser feita com os nomes.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="indexação-e-seleção-condicional.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="do">##----------------------------------------------------------------------</span></span>
+<span id="cb136-2"><a href="indexação-e-seleção-condicional.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Nomes das colunas</span></span>
+<span id="cb136-3"><a href="indexação-e-seleção-condicional.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb136-4"><a href="indexação-e-seleção-condicional.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Todas as linhas da coluna B</span></span>
+<span id="cb136-5"><a href="indexação-e-seleção-condicional.html#cb136-5" aria-hidden="true" tabindex="-1"></a>mat[, <span class="st">&quot;B&quot;</span>]</span>
+<span id="cb136-6"><a href="indexação-e-seleção-condicional.html#cb136-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span></span>
+<span id="cb136-7"><a href="indexação-e-seleção-condicional.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Elemento da linha 1 e coluna C</span></span>
+<span id="cb136-8"><a href="indexação-e-seleção-condicional.html#cb136-8" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">1</span>, <span class="st">&quot;C&quot;</span>]</span>
+<span id="cb136-9"><a href="indexação-e-seleção-condicional.html#cb136-9" aria-hidden="true" tabindex="-1"></a>C </span>
+<span id="cb136-10"><a href="indexação-e-seleção-condicional.html#cb136-10" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> </span>
+<span id="cb136-11"><a href="indexação-e-seleção-condicional.html#cb136-11" aria-hidden="true" tabindex="-1"></a><span class="do">##----------------------------------------------------------------------</span></span>
+<span id="cb136-12"><a href="indexação-e-seleção-condicional.html#cb136-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Nomes das linhas</span></span>
+<span id="cb136-13"><a href="indexação-e-seleção-condicional.html#cb136-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mat) <span class="ot">&lt;-</span> LETTERS[<span class="dv">24</span><span class="sc">:</span><span class="dv">26</span>]</span>
+<span id="cb136-14"><a href="indexação-e-seleção-condicional.html#cb136-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Todas as colunas da linha X</span></span>
+<span id="cb136-15"><a href="indexação-e-seleção-condicional.html#cb136-15" aria-hidden="true" tabindex="-1"></a>mat[<span class="st">&quot;X&quot;</span>, ]</span>
+<span id="cb136-16"><a href="indexação-e-seleção-condicional.html#cb136-16" aria-hidden="true" tabindex="-1"></a>A B C </span>
+<span id="cb136-17"><a href="indexação-e-seleção-condicional.html#cb136-17" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span> </span>
+<span id="cb136-18"><a href="indexação-e-seleção-condicional.html#cb136-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Elemento da linha Y e coluna A</span></span>
+<span id="cb136-19"><a href="indexação-e-seleção-condicional.html#cb136-19" aria-hidden="true" tabindex="-1"></a>mat[<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;A&quot;</span>]</span>
+<span id="cb136-20"><a href="indexação-e-seleção-condicional.html#cb136-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code></pre></div>
 </div>
 </div>
-<div id="indexação-de-listas" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Indexação de listas</h3>
+<div id="indexação-de-listas" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Indexação de listas<a href="indexação-e-seleção-condicional.html#indexação-de-listas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Considere a seguinte lista:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">4</span>), mat, <span class="dv">5</span><span class="op">:</span><span class="dv">0</span>)
-lis
-[[<span class="dv">1</span>]]
-[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span>
-
-[[<span class="dv">2</span>]]
-  A B C
-X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span>
-Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span>
-Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>
-
-[[<span class="dv">3</span>]]
-[<span class="dv">1</span>] <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">0</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="indexação-e-seleção-condicional.html#cb137-1" aria-hidden="true" tabindex="-1"></a>lis <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">4</span>), mat, <span class="dv">5</span><span class="sc">:</span><span class="dv">0</span>)</span>
+<span id="cb137-2"><a href="indexação-e-seleção-condicional.html#cb137-2" aria-hidden="true" tabindex="-1"></a>lis</span>
+<span id="cb137-3"><a href="indexação-e-seleção-condicional.html#cb137-3" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb137-4"><a href="indexação-e-seleção-condicional.html#cb137-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span></span>
+<span id="cb137-5"><a href="indexação-e-seleção-condicional.html#cb137-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-6"><a href="indexação-e-seleção-condicional.html#cb137-6" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb137-7"><a href="indexação-e-seleção-condicional.html#cb137-7" aria-hidden="true" tabindex="-1"></a>  A B C</span>
+<span id="cb137-8"><a href="indexação-e-seleção-condicional.html#cb137-8" aria-hidden="true" tabindex="-1"></a>X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span>
+<span id="cb137-9"><a href="indexação-e-seleção-condicional.html#cb137-9" aria-hidden="true" tabindex="-1"></a>Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span></span>
+<span id="cb137-10"><a href="indexação-e-seleção-condicional.html#cb137-10" aria-hidden="true" tabindex="-1"></a>Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span></span>
+<span id="cb137-11"><a href="indexação-e-seleção-condicional.html#cb137-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-12"><a href="indexação-e-seleção-condicional.html#cb137-12" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
+<span id="cb137-13"><a href="indexação-e-seleção-condicional.html#cb137-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">0</span></span></code></pre></div>
 <p>Podemos acessar um componente da lista da maneira usual</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis[<span class="dv">1</span>]
-[[<span class="dv">1</span>]]
-[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="indexação-e-seleção-condicional.html#cb138-1" aria-hidden="true" tabindex="-1"></a>lis[<span class="dv">1</span>]</span>
+<span id="cb138-2"><a href="indexação-e-seleção-condicional.html#cb138-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb138-3"><a href="indexação-e-seleção-condicional.html#cb138-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span></span></code></pre></div>
 <p>Mas note que esse objeto continua sendo uma lista</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(lis[<span class="dv">1</span>])
-[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></code></pre></div>
-<p>Geralmente o que queremos é acessar os elementos que estão <strong>contidos</strong> nos componentes da lista, e para isso precisamos usar <code>[[</code> no lugar de <code>[</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis[[<span class="dv">1</span>]]
-[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span>
-<span class="kw">class</span>(lis[[<span class="dv">1</span>]])
-[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></code></pre></div>
-<p>Isso é importante, por exemplo, se quisessemos aplicar uma função qualquer a um componente da lista. No primeiro caso isso não é possível pois o conteúdo continua dentro de uma lista, enquanto que no segundo caso os valores retornados são os próprios números:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(lis[<span class="dv">1</span>])
-Warning <span class="cf">in</span> <span class="kw">mean.default</span>(lis[<span class="dv">1</span>])<span class="op">:</span><span class="st"> </span>argument is not numeric or logical<span class="op">:</span><span class="st"> </span>returning
-<span class="ot">NA</span>
-[<span class="dv">1</span>] <span class="ot">NA</span>
-<span class="kw">mean</span>(lis[[<span class="dv">1</span>]])
-[<span class="dv">1</span>] <span class="fl">5.5</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="indexação-e-seleção-condicional.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(lis[<span class="dv">1</span>])</span>
+<span id="cb139-2"><a href="indexação-e-seleção-condicional.html#cb139-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></span></code></pre></div>
+<p>Geralmente o que queremos é acessar os elementos que estão <strong>contidos</strong>
+nos componentes da lista, e para isso precisamos usar <code>[[</code> no lugar de
+<code>[</code>:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="indexação-e-seleção-condicional.html#cb140-1" aria-hidden="true" tabindex="-1"></a>lis[[<span class="dv">1</span>]]</span>
+<span id="cb140-2"><a href="indexação-e-seleção-condicional.html#cb140-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span></span>
+<span id="cb140-3"><a href="indexação-e-seleção-condicional.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(lis[[<span class="dv">1</span>]])</span>
+<span id="cb140-4"><a href="indexação-e-seleção-condicional.html#cb140-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;numeric&quot;</span></span></code></pre></div>
+<p>Isso é importante, por exemplo, se quisessemos aplicar uma função
+qualquer a um componente da lista. No primeiro caso isso não é possível
+pois o conteúdo continua dentro de uma lista, enquanto que no segundo
+caso os valores retornados são os próprios números:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="indexação-e-seleção-condicional.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(lis[<span class="dv">1</span>])</span>
+<span id="cb141-2"><a href="indexação-e-seleção-condicional.html#cb141-2" aria-hidden="true" tabindex="-1"></a>Warning <span class="cf">in</span> <span class="fu">mean.default</span>(lis[<span class="dv">1</span>])<span class="sc">:</span> argument is not numeric or logical<span class="sc">:</span> returning</span>
+<span id="cb141-3"><a href="indexação-e-seleção-condicional.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span></span>
+<span id="cb141-4"><a href="indexação-e-seleção-condicional.html#cb141-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
+<span id="cb141-5"><a href="indexação-e-seleção-condicional.html#cb141-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(lis[[<span class="dv">1</span>]])</span>
+<span id="cb141-6"><a href="indexação-e-seleção-condicional.html#cb141-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.5</span></span></code></pre></div>
 <p>Para acessar o segundo <strong>componente</strong> da lista:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis[[<span class="dv">2</span>]]
-  A B C
-X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span>
-Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span>
-Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="indexação-e-seleção-condicional.html#cb142-1" aria-hidden="true" tabindex="-1"></a>lis[[<span class="dv">2</span>]]</span>
+<span id="cb142-2"><a href="indexação-e-seleção-condicional.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  A B C</span>
+<span id="cb142-3"><a href="indexação-e-seleção-condicional.html#cb142-3" aria-hidden="true" tabindex="-1"></a>X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span>
+<span id="cb142-4"><a href="indexação-e-seleção-condicional.html#cb142-4" aria-hidden="true" tabindex="-1"></a>Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span></span>
+<span id="cb142-5"><a href="indexação-e-seleção-condicional.html#cb142-5" aria-hidden="true" tabindex="-1"></a>Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span></span></code></pre></div>
 <p>Para acessar o terceiro valor do primeiro componente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis[[<span class="dv">1</span>]][<span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">7</span></code></pre></div>
-<p>Note que o segundo elemento da lista é uma matriz, portanto a indexação da matriz <em>dentro da lista</em> também segue o mesmo padrão</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis[[<span class="dv">2</span>]][<span class="dv">2</span>, <span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">8</span></code></pre></div>
-<p>Se a lista tiver componentes <strong>nomeados</strong>, eles podem ser acessados com o operador <code>$</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">vetor1 =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">4</span>), <span class="dt">mat =</span> mat, <span class="dt">vetor2 =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">0</span>)
-## Ou
-## names(lis) &lt;- c(&quot;vetor1&quot;, &quot;mat&quot;, &quot;vetor2&quot;)
-lis
-<span class="op">$</span>vetor1
-[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span>
-
-<span class="op">$</span>mat
-  A B C
-X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span>
-Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span>
-Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>
-
-<span class="op">$</span>vetor2
-[<span class="dv">1</span>] <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">0</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Acesando o segundo componente
-lis<span class="op">$</span>mat
-  A B C
-X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span>
-Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span>
-Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>
-## Linha 2 e coluna 3
-lis<span class="op">$</span>mat[<span class="dv">2</span>, <span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">8</span>
-## Terceiro elemento do primeiro componente
-lis<span class="op">$</span>vetor1[<span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">7</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="indexação-e-seleção-condicional.html#cb143-1" aria-hidden="true" tabindex="-1"></a>lis[[<span class="dv">1</span>]][<span class="dv">3</span>]</span>
+<span id="cb143-2"><a href="indexação-e-seleção-condicional.html#cb143-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code></pre></div>
+<p>Note que o segundo elemento da lista é uma matriz, portanto a indexação
+da matriz <em>dentro da lista</em> também segue o mesmo padrão</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="indexação-e-seleção-condicional.html#cb144-1" aria-hidden="true" tabindex="-1"></a>lis[[<span class="dv">2</span>]][<span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb144-2"><a href="indexação-e-seleção-condicional.html#cb144-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code></pre></div>
+<p>Se a lista tiver componentes <strong>nomeados</strong>, eles podem ser acessados com
+o operador <code>$</code>:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="indexação-e-seleção-condicional.html#cb145-1" aria-hidden="true" tabindex="-1"></a>lis <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">vetor1 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">4</span>), <span class="at">mat =</span> mat, <span class="at">vetor2 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">0</span>)</span>
+<span id="cb145-2"><a href="indexação-e-seleção-condicional.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Ou</span></span>
+<span id="cb145-3"><a href="indexação-e-seleção-condicional.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="do">## names(lis) &lt;- c(&quot;vetor1&quot;, &quot;mat&quot;, &quot;vetor2&quot;)</span></span>
+<span id="cb145-4"><a href="indexação-e-seleção-condicional.html#cb145-4" aria-hidden="true" tabindex="-1"></a>lis</span>
+<span id="cb145-5"><a href="indexação-e-seleção-condicional.html#cb145-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>vetor1</span>
+<span id="cb145-6"><a href="indexação-e-seleção-condicional.html#cb145-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">8</span> <span class="dv">7</span> <span class="dv">4</span></span>
+<span id="cb145-7"><a href="indexação-e-seleção-condicional.html#cb145-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-8"><a href="indexação-e-seleção-condicional.html#cb145-8" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>mat</span>
+<span id="cb145-9"><a href="indexação-e-seleção-condicional.html#cb145-9" aria-hidden="true" tabindex="-1"></a>  A B C</span>
+<span id="cb145-10"><a href="indexação-e-seleção-condicional.html#cb145-10" aria-hidden="true" tabindex="-1"></a>X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span>
+<span id="cb145-11"><a href="indexação-e-seleção-condicional.html#cb145-11" aria-hidden="true" tabindex="-1"></a>Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span></span>
+<span id="cb145-12"><a href="indexação-e-seleção-condicional.html#cb145-12" aria-hidden="true" tabindex="-1"></a>Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span></span>
+<span id="cb145-13"><a href="indexação-e-seleção-condicional.html#cb145-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-14"><a href="indexação-e-seleção-condicional.html#cb145-14" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>vetor2</span>
+<span id="cb145-15"><a href="indexação-e-seleção-condicional.html#cb145-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="indexação-e-seleção-condicional.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Acesando o segundo componente</span></span>
+<span id="cb146-2"><a href="indexação-e-seleção-condicional.html#cb146-2" aria-hidden="true" tabindex="-1"></a>lis<span class="sc">$</span>mat</span>
+<span id="cb146-3"><a href="indexação-e-seleção-condicional.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  A B C</span>
+<span id="cb146-4"><a href="indexação-e-seleção-condicional.html#cb146-4" aria-hidden="true" tabindex="-1"></a>X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span>
+<span id="cb146-5"><a href="indexação-e-seleção-condicional.html#cb146-5" aria-hidden="true" tabindex="-1"></a>Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span></span>
+<span id="cb146-6"><a href="indexação-e-seleção-condicional.html#cb146-6" aria-hidden="true" tabindex="-1"></a>Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span></span>
+<span id="cb146-7"><a href="indexação-e-seleção-condicional.html#cb146-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Linha 2 e coluna 3</span></span>
+<span id="cb146-8"><a href="indexação-e-seleção-condicional.html#cb146-8" aria-hidden="true" tabindex="-1"></a>lis<span class="sc">$</span>mat[<span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb146-9"><a href="indexação-e-seleção-condicional.html#cb146-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span>
+<span id="cb146-10"><a href="indexação-e-seleção-condicional.html#cb146-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Terceiro elemento do primeiro componente</span></span>
+<span id="cb146-11"><a href="indexação-e-seleção-condicional.html#cb146-11" aria-hidden="true" tabindex="-1"></a>lis<span class="sc">$</span>vetor1[<span class="dv">3</span>]</span>
+<span id="cb146-12"><a href="indexação-e-seleção-condicional.html#cb146-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code></pre></div>
 <p>Ou então</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lis[[<span class="st">&quot;mat&quot;</span>]]
-  A B C
-X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span>
-Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span>
-Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>
-lis[[<span class="st">&quot;vetor1&quot;</span>]][<span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">7</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="indexação-e-seleção-condicional.html#cb147-1" aria-hidden="true" tabindex="-1"></a>lis[[<span class="st">&quot;mat&quot;</span>]]</span>
+<span id="cb147-2"><a href="indexação-e-seleção-condicional.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  A B C</span>
+<span id="cb147-3"><a href="indexação-e-seleção-condicional.html#cb147-3" aria-hidden="true" tabindex="-1"></a>X <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span></span>
+<span id="cb147-4"><a href="indexação-e-seleção-condicional.html#cb147-4" aria-hidden="true" tabindex="-1"></a>Y <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span></span>
+<span id="cb147-5"><a href="indexação-e-seleção-condicional.html#cb147-5" aria-hidden="true" tabindex="-1"></a>Z <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span></span>
+<span id="cb147-6"><a href="indexação-e-seleção-condicional.html#cb147-6" aria-hidden="true" tabindex="-1"></a>lis[[<span class="st">&quot;vetor1&quot;</span>]][<span class="dv">3</span>]</span>
+<span id="cb147-7"><a href="indexação-e-seleção-condicional.html#cb147-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code></pre></div>
 <div class="alert alert-warning">
-<p>O símbolo <code>$</code> é utilizado para acessar componentes <strong>nomeados</strong> de listas ou data frames.</p>
+<p>O símbolo <code>$</code> é utilizado para acessar componentes <strong>nomeados</strong> de
+listas ou data frames.</p>
 </div>
 </div>
-<div id="indexação-de-data-frames" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> Indexação de data frames</h3>
+<div id="indexação-de-data-frames" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Indexação de data frames<a href="indexação-e-seleção-condicional.html#indexação-de-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Considere o seguinte data frame</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">A =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">B =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="ot">NA</span>, <span class="dv">5</span>, <span class="dv">8</span>))
-da
-  A  B
-<span class="dv">1</span> <span class="dv">4</span>  <span class="dv">2</span>
-<span class="dv">2</span> <span class="dv">3</span> <span class="ot">NA</span>
-<span class="dv">3</span> <span class="dv">2</span>  <span class="dv">5</span>
-<span class="dv">4</span> <span class="dv">1</span>  <span class="dv">8</span></code></pre></div>
-<p>Para acessar o segundo elemento da primeira coluna (segue a mesma lógica da indexação de matrizes pois também possui duas dimensões):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[<span class="dv">2</span>, <span class="dv">1</span>]
-[<span class="dv">1</span>] <span class="dv">3</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="indexação-e-seleção-condicional.html#cb148-1" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">B =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">8</span>))</span>
+<span id="cb148-2"><a href="indexação-e-seleção-condicional.html#cb148-2" aria-hidden="true" tabindex="-1"></a>da</span>
+<span id="cb148-3"><a href="indexação-e-seleção-condicional.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  A  B</span>
+<span id="cb148-4"><a href="indexação-e-seleção-condicional.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span>  <span class="dv">2</span></span>
+<span id="cb148-5"><a href="indexação-e-seleção-condicional.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">3</span> <span class="cn">NA</span></span>
+<span id="cb148-6"><a href="indexação-e-seleção-condicional.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2</span>  <span class="dv">5</span></span>
+<span id="cb148-7"><a href="indexação-e-seleção-condicional.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">1</span>  <span class="dv">8</span></span></code></pre></div>
+<p>Para acessar o segundo elemento da primeira coluna (segue a mesma lógica
+da indexação de matrizes pois também possui duas dimensões):</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="indexação-e-seleção-condicional.html#cb149-1" aria-hidden="true" tabindex="-1"></a>da[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb149-2"><a href="indexação-e-seleção-condicional.html#cb149-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span></code></pre></div>
 <p>Acesse todas as linhas da coluna B:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[, <span class="dv">2</span>]
-[<span class="dv">1</span>]  <span class="dv">2</span> <span class="ot">NA</span>  <span class="dv">5</span>  <span class="dv">8</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="indexação-e-seleção-condicional.html#cb150-1" aria-hidden="true" tabindex="-1"></a>da[, <span class="dv">2</span>]</span>
+<span id="cb150-2"><a href="indexação-e-seleção-condicional.html#cb150-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span> <span class="cn">NA</span>  <span class="dv">5</span>  <span class="dv">8</span></span></code></pre></div>
 <p>Ou usando o nome da coluna:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[,<span class="st">&quot;B&quot;</span>]
-[<span class="dv">1</span>]  <span class="dv">2</span> <span class="ot">NA</span>  <span class="dv">5</span>  <span class="dv">8</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="indexação-e-seleção-condicional.html#cb151-1" aria-hidden="true" tabindex="-1"></a>da[,<span class="st">&quot;B&quot;</span>]</span>
+<span id="cb151-2"><a href="indexação-e-seleção-condicional.html#cb151-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span> <span class="cn">NA</span>  <span class="dv">5</span>  <span class="dv">8</span></span></code></pre></div>
 <p>Todas as colunas da linha 1:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[<span class="dv">1</span>, ]
-  A B
-<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="indexação-e-seleção-condicional.html#cb152-1" aria-hidden="true" tabindex="-1"></a>da[<span class="dv">1</span>, ]</span>
+<span id="cb152-2"><a href="indexação-e-seleção-condicional.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  A B</span>
+<span id="cb152-3"><a href="indexação-e-seleção-condicional.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span></span></code></pre></div>
 <p>Ou usando o “nome” da linha:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[<span class="st">&quot;1&quot;</span>, ]
-  A B
-<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span></code></pre></div>
-<p>Note que o argumento <code>drop=</code> também é válido se quiser manter a dimensão do objeto</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[, <span class="st">&quot;B&quot;</span>]
-[<span class="dv">1</span>]  <span class="dv">2</span> <span class="ot">NA</span>  <span class="dv">5</span>  <span class="dv">8</span>
-da[, <span class="st">&quot;B&quot;</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]
-   B
-<span class="dv">1</span>  <span class="dv">2</span>
-<span class="dv">2</span> <span class="ot">NA</span>
-<span class="dv">3</span>  <span class="dv">5</span>
-<span class="dv">4</span>  <span class="dv">8</span></code></pre></div>
-<p>Como o data frame é um caso particular de uma lista (onde todos os componentes tem o mesmo comprimento), as colunas de um data frame também podem ser acessadas com <code>$</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da<span class="op">$</span>A
-[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="indexação-e-seleção-condicional.html#cb153-1" aria-hidden="true" tabindex="-1"></a>da[<span class="st">&quot;1&quot;</span>, ]</span>
+<span id="cb153-2"><a href="indexação-e-seleção-condicional.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  A B</span>
+<span id="cb153-3"><a href="indexação-e-seleção-condicional.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span></span></code></pre></div>
+<p>Note que o argumento <code>drop=</code> também é válido se quiser manter a dimensão
+do objeto</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="indexação-e-seleção-condicional.html#cb154-1" aria-hidden="true" tabindex="-1"></a>da[, <span class="st">&quot;B&quot;</span>]</span>
+<span id="cb154-2"><a href="indexação-e-seleção-condicional.html#cb154-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span> <span class="cn">NA</span>  <span class="dv">5</span>  <span class="dv">8</span></span>
+<span id="cb154-3"><a href="indexação-e-seleção-condicional.html#cb154-3" aria-hidden="true" tabindex="-1"></a>da[, <span class="st">&quot;B&quot;</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb154-4"><a href="indexação-e-seleção-condicional.html#cb154-4" aria-hidden="true" tabindex="-1"></a>   B</span>
+<span id="cb154-5"><a href="indexação-e-seleção-condicional.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">2</span></span>
+<span id="cb154-6"><a href="indexação-e-seleção-condicional.html#cb154-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="cn">NA</span></span>
+<span id="cb154-7"><a href="indexação-e-seleção-condicional.html#cb154-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">5</span></span>
+<span id="cb154-8"><a href="indexação-e-seleção-condicional.html#cb154-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">8</span></span></code></pre></div>
+<p>Como o data frame é um caso particular de uma lista (onde todos os
+componentes tem o mesmo comprimento), as colunas de um data frame também
+podem ser acessadas com <code>$</code>:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="indexação-e-seleção-condicional.html#cb155-1" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>A</span>
+<span id="cb155-2"><a href="indexação-e-seleção-condicional.html#cb155-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></span></code></pre></div>
 <p>Para acessar o terceiro elemento da coluna B:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da<span class="op">$</span>B[<span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">5</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="indexação-e-seleção-condicional.html#cb156-1" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>B[<span class="dv">3</span>]</span>
+<span id="cb156-2"><a href="indexação-e-seleção-condicional.html#cb156-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>Para acessar os elementos nas posições 2 e 4 da coluna B:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da<span class="op">$</span>B[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]
-[<span class="dv">1</span>] <span class="ot">NA</span>  <span class="dv">8</span></code></pre></div>
-<p>Assim como nas listas, podemos indexar um data frame usando apenas um índice, que nesse caso retorna a coluna (componente) do data frame:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[<span class="dv">1</span>]
-  A
-<span class="dv">1</span> <span class="dv">4</span>
-<span class="dv">2</span> <span class="dv">3</span>
-<span class="dv">3</span> <span class="dv">2</span>
-<span class="dv">4</span> <span class="dv">1</span>
-<span class="kw">class</span>(da[<span class="dv">1</span>])
-[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span></code></pre></div>
-<p>Note que dessa forma a classe é mantida. Também podemos indexar os data frames usando <code>[[</code> da mesma forma como em listas</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[[<span class="dv">1</span>]]
-[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span>
-da[[<span class="st">&quot;A&quot;</span>]]
-[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span>
-da[[<span class="st">&quot;A&quot;</span>]][<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]
-[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">2</span></code></pre></div>
-<p>Para lidar com <code>NA</code>s em data frames, podemos também usar a função <code>is.na()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[<span class="kw">is.na</span>(da), ] <span class="co"># nao retorna o resultado esperado</span>
-    A  B
-<span class="ot">NA</span> <span class="ot">NA</span> <span class="ot">NA</span>
-## Deve ser feito por coluna
-da[<span class="kw">is.na</span>(da<span class="op">$</span>A), ]
-[<span class="dv">1</span>] A B
-<span class="op">&lt;</span><span class="dv">0</span> rows<span class="op">&gt;</span><span class="st"> </span>(or <span class="dv">0</span><span class="op">-</span>length row.names)
-da[<span class="kw">is.na</span>(da<span class="op">$</span>B), ]
-  A  B
-<span class="dv">2</span> <span class="dv">3</span> <span class="ot">NA</span>
-## De maneira geral
-<span class="kw">is.na</span>(da)
-         A     B
-[<span class="dv">1</span>,] <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-[<span class="dv">2</span>,] <span class="ot">FALSE</span>  <span class="ot">TRUE</span>
-[<span class="dv">3</span>,] <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-[<span class="dv">4</span>,] <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-<span class="kw">is.na</span>(da<span class="op">$</span>A)
-[<span class="dv">1</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-<span class="kw">is.na</span>(da<span class="op">$</span>B)
-[<span class="dv">1</span>] <span class="ot">FALSE</span>  <span class="ot">TRUE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span></code></pre></div>
-<p>Para remover as linhas que possuem <code>NA</code>, note que será necessário remover todas as colunas daquela linha, pois data frames não podem ter colunas de comprimentos diferentes</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da[<span class="op">!</span><span class="kw">is.na</span>(da<span class="op">$</span>B), ]
-  A B
-<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span>
-<span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span>
-<span class="dv">4</span> <span class="dv">1</span> <span class="dv">8</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="indexação-e-seleção-condicional.html#cb157-1" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>B[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
+<span id="cb157-2"><a href="indexação-e-seleção-condicional.html#cb157-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span>  <span class="dv">8</span></span></code></pre></div>
+<p>Assim como nas listas, podemos indexar um data frame usando apenas um
+índice, que nesse caso retorna a coluna (componente) do data frame:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="indexação-e-seleção-condicional.html#cb158-1" aria-hidden="true" tabindex="-1"></a>da[<span class="dv">1</span>]</span>
+<span id="cb158-2"><a href="indexação-e-seleção-condicional.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  A</span>
+<span id="cb158-3"><a href="indexação-e-seleção-condicional.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span></span>
+<span id="cb158-4"><a href="indexação-e-seleção-condicional.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">3</span></span>
+<span id="cb158-5"><a href="indexação-e-seleção-condicional.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2</span></span>
+<span id="cb158-6"><a href="indexação-e-seleção-condicional.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">1</span></span>
+<span id="cb158-7"><a href="indexação-e-seleção-condicional.html#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(da[<span class="dv">1</span>])</span>
+<span id="cb158-8"><a href="indexação-e-seleção-condicional.html#cb158-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span></span></code></pre></div>
+<p>Note que dessa forma a classe é mantida. Também podemos indexar os data
+frames usando <code>[[</code> da mesma forma como em listas</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="indexação-e-seleção-condicional.html#cb159-1" aria-hidden="true" tabindex="-1"></a>da[[<span class="dv">1</span>]]</span>
+<span id="cb159-2"><a href="indexação-e-seleção-condicional.html#cb159-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></span>
+<span id="cb159-3"><a href="indexação-e-seleção-condicional.html#cb159-3" aria-hidden="true" tabindex="-1"></a>da[[<span class="st">&quot;A&quot;</span>]]</span>
+<span id="cb159-4"><a href="indexação-e-seleção-condicional.html#cb159-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></span>
+<span id="cb159-5"><a href="indexação-e-seleção-condicional.html#cb159-5" aria-hidden="true" tabindex="-1"></a>da[[<span class="st">&quot;A&quot;</span>]][<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb159-6"><a href="indexação-e-seleção-condicional.html#cb159-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">2</span></span></code></pre></div>
+<p>Para lidar com <code>NA</code>s em data frames, podemos também usar a função
+<code>is.na()</code></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="indexação-e-seleção-condicional.html#cb160-1" aria-hidden="true" tabindex="-1"></a>da[<span class="fu">is.na</span>(da), ] <span class="co"># nao retorna o resultado esperado</span></span>
+<span id="cb160-2"><a href="indexação-e-seleção-condicional.html#cb160-2" aria-hidden="true" tabindex="-1"></a>    A  B</span>
+<span id="cb160-3"><a href="indexação-e-seleção-condicional.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="cn">NA</span> <span class="cn">NA</span></span>
+<span id="cb160-4"><a href="indexação-e-seleção-condicional.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Deve ser feito por coluna</span></span>
+<span id="cb160-5"><a href="indexação-e-seleção-condicional.html#cb160-5" aria-hidden="true" tabindex="-1"></a>da[<span class="fu">is.na</span>(da<span class="sc">$</span>A), ]</span>
+<span id="cb160-6"><a href="indexação-e-seleção-condicional.html#cb160-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] A B</span>
+<span id="cb160-7"><a href="indexação-e-seleção-condicional.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="dv">0</span> rows<span class="sc">&gt;</span> (or <span class="dv">0</span><span class="sc">-</span>length row.names)</span>
+<span id="cb160-8"><a href="indexação-e-seleção-condicional.html#cb160-8" aria-hidden="true" tabindex="-1"></a>da[<span class="fu">is.na</span>(da<span class="sc">$</span>B), ]</span>
+<span id="cb160-9"><a href="indexação-e-seleção-condicional.html#cb160-9" aria-hidden="true" tabindex="-1"></a>  A  B</span>
+<span id="cb160-10"><a href="indexação-e-seleção-condicional.html#cb160-10" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dv">3</span> <span class="cn">NA</span></span>
+<span id="cb160-11"><a href="indexação-e-seleção-condicional.html#cb160-11" aria-hidden="true" tabindex="-1"></a><span class="do">## De maneira geral</span></span>
+<span id="cb160-12"><a href="indexação-e-seleção-condicional.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(da)</span>
+<span id="cb160-13"><a href="indexação-e-seleção-condicional.html#cb160-13" aria-hidden="true" tabindex="-1"></a>         A     B</span>
+<span id="cb160-14"><a href="indexação-e-seleção-condicional.html#cb160-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,] <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb160-15"><a href="indexação-e-seleção-condicional.html#cb160-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,] <span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
+<span id="cb160-16"><a href="indexação-e-seleção-condicional.html#cb160-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,] <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb160-17"><a href="indexação-e-seleção-condicional.html#cb160-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">4</span>,] <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb160-18"><a href="indexação-e-seleção-condicional.html#cb160-18" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(da<span class="sc">$</span>A)</span>
+<span id="cb160-19"><a href="indexação-e-seleção-condicional.html#cb160-19" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb160-20"><a href="indexação-e-seleção-condicional.html#cb160-20" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(da<span class="sc">$</span>B)</span>
+<span id="cb160-21"><a href="indexação-e-seleção-condicional.html#cb160-21" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span>  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
+<p>Para remover as linhas que possuem <code>NA</code>, note que será necessário
+remover todas as colunas daquela linha, pois data frames não podem ter
+colunas de comprimentos diferentes</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="indexação-e-seleção-condicional.html#cb161-1" aria-hidden="true" tabindex="-1"></a>da[<span class="sc">!</span><span class="fu">is.na</span>(da<span class="sc">$</span>B), ]</span>
+<span id="cb161-2"><a href="indexação-e-seleção-condicional.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  A B</span>
+<span id="cb161-3"><a href="indexação-e-seleção-condicional.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span></span>
+<span id="cb161-4"><a href="indexação-e-seleção-condicional.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span></span>
+<span id="cb161-5"><a href="indexação-e-seleção-condicional.html#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">1</span> <span class="dv">8</span></span></code></pre></div>
 <p>A função <code>complete.cases()</code> facilita esse processo. Veja o resultado</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">complete.cases</span>(da)
-[<span class="dv">1</span>]  <span class="ot">TRUE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span>  <span class="ot">TRUE</span>
-da[<span class="kw">complete.cases</span>(da), ]
-  A B
-<span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span>
-<span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span>
-<span class="dv">4</span> <span class="dv">1</span> <span class="dv">8</span></code></pre></div>
-<div id="a-função-with" class="section level4">
-<h4><span class="header-section-number">3.1.4.1</span> A função <code>with()</code></h4>
-<p>Para evitar fazer muitas indexações de um mesmo data frame, por exemplo, podemos utilizar a função <code>with()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(da, A)
-[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="indexação-e-seleção-condicional.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete.cases</span>(da)</span>
+<span id="cb162-2"><a href="indexação-e-seleção-condicional.html#cb162-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span>  <span class="cn">TRUE</span></span>
+<span id="cb162-3"><a href="indexação-e-seleção-condicional.html#cb162-3" aria-hidden="true" tabindex="-1"></a>da[<span class="fu">complete.cases</span>(da), ]</span>
+<span id="cb162-4"><a href="indexação-e-seleção-condicional.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  A B</span>
+<span id="cb162-5"><a href="indexação-e-seleção-condicional.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">4</span> <span class="dv">2</span></span>
+<span id="cb162-6"><a href="indexação-e-seleção-condicional.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span></span>
+<span id="cb162-7"><a href="indexação-e-seleção-condicional.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">1</span> <span class="dv">8</span></span></code></pre></div>
+<div id="a-função-with" class="section level4 hasAnchor" number="3.1.4.1">
+<h4><span class="header-section-number">3.1.4.1</span> A função <code>with()</code><a href="indexação-e-seleção-condicional.html#a-função-with" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para evitar fazer muitas indexações de um mesmo data frame, por exemplo,
+podemos utilizar a função <code>with()</code></p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="indexação-e-seleção-condicional.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(da, A)</span>
+<span id="cb163-2"><a href="indexação-e-seleção-condicional.html#cb163-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></span></code></pre></div>
 <p>é o mesmo que</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da<span class="op">$</span>A
-[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></code></pre></div>
-<p>Também é útil para acessar elementos específicos dentro de data frames. Por exemplo, o terceiro elemento da coluna B</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(da, B[<span class="dv">3</span>])
-[<span class="dv">1</span>] <span class="dv">5</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="indexação-e-seleção-condicional.html#cb164-1" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>A</span>
+<span id="cb164-2"><a href="indexação-e-seleção-condicional.html#cb164-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span></span></code></pre></div>
+<p>Também é útil para acessar elementos específicos dentro de data
+frames. Por exemplo, o terceiro elemento da coluna B</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="indexação-e-seleção-condicional.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(da, B[<span class="dv">3</span>])</span>
+<span id="cb165-2"><a href="indexação-e-seleção-condicional.html#cb165-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
 <p>E também para aplicar funções nas colunas do data frame</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">with</span>(da, <span class="kw">mean</span>(A))
-[<span class="dv">1</span>] <span class="fl">2.5</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="indexação-e-seleção-condicional.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(da, <span class="fu">mean</span>(A))</span>
+<span id="cb166-2"><a href="indexação-e-seleção-condicional.html#cb166-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.5</span></span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="exercícios-6" class="section level2 unnumbered">
-<h2>Exercícios</h2>
+<div id="exercícios-6" class="section level2 unnumbered hasAnchor">
+<h2>Exercícios<a href="indexação-e-seleção-condicional.html#exercícios-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Crie a seguinte matriz <span class="math display">\[\left[ \begin{array}{ccc}
-        4 &amp; 16 &amp; 2 \\
-        10 &amp; 5 &amp; 11 \\
-        9 &amp; 9 &amp; 5 \\
-        2 &amp; 0 &amp; NA
-        \end{array} \right].\]</span></li>
+<li>Crie a seguinte matriz
+<span class="math display">\[\left[ \begin{array}{ccc}
+         4 &amp; 16 &amp; 2 \\
+         10 &amp; 5 &amp; 11 \\
+         9 &amp; 9 &amp; 5 \\
+         2 &amp; 0 &amp; NA
+         \end{array} \right].\]</span></li>
 <li>Acesse o elemento na quarta linha e na segunda coluna.</li>
-<li>Acesse todos os elementos, com exceção da segunda coluna e da terceira linha.</li>
-<li>Crie uma lista (nomeada) com 3 componentes: um vetor numérico de comprimento 10, um vetor de caracteres de comprimento 7 e a matriz do exercício anterior.</li>
-<li>Acesse os elementos nas posições de 5 a 3 do primeiro componente da lista.</li>
+<li>Acesse todos os elementos, com exceção da segunda coluna e da
+terceira linha.</li>
+<li>Crie uma lista (nomeada) com 3 componentes: um vetor numérico de
+comprimento 10, um vetor de caracteres de comprimento 7 e a matriz
+do exercício anterior.</li>
+<li>Acesse os elementos nas posições de 5 a 3 do primeiro componente da
+lista.</li>
 <li>Acesse os caracteres de todas as posições, menos da 2 e 6.</li>
 <li>Acesse todas as linhas da coluna 3 da matriz dentro desta lista.</li>
-<li>“Crie” um novo componente nessa lista (usando <code>$</code>), contendo 30 valores aleatórios de uma distribuição normal <span class="math inline">\(\text{N}(12, 4)\)</span> (veja <code>?rnorm</code>).</li>
-<li>Crie um data frame que contenha duas colunas: a primeira com as letras de “A” até “J”, e outra com o resultado de uma chamada da função <code>runif(7, 1, 5)</code>.</li>
+<li>“Crie” um novo componente nessa lista (usando <code>$</code>), contendo 30
+valores aleatórios de uma distribuição normal <span class="math inline">\(\text{N}(12, 4)\)</span>
+(veja <code>?rnorm</code>).</li>
+<li>Crie um data frame que contenha duas colunas: a primeira com as
+letras de “A” até “J”, e outra com o resultado de uma chamada da
+função <code>runif(7, 1, 5)</code>.</li>
 <li>Extraia as duas primeiras linhas desse data frame.</li>
 <li>Extraia as duas últimas linhas desse data frame.</li>
 <li>Qual é o valor que está na linha 6 e coluna 1?</li>
 <li>Qual é o valor que está na linha 4 da coluna 2?</li>
-<li>Como você faria para contar quantos valores perdidos (<code>NA</code>s) existem nesse data frame?</li>
+<li>Como você faria para contar quantos valores perdidos (<code>NA</code>s) existem
+nesse data frame?</li>
 <li>Elimine os <code>NA</code>s deste data frame.</li>
-<li>Crie uma nova coluna neste data frame, com valores numéricos (quaisquer).</li>
-<li>Crie mais um componente na lista anterior, que será também uma lista com dois componentes: <code>A</code> com os valores <code>1:5</code>, e <code>B</code> com as letras de “a” a “f”.</li>
+<li>Crie uma nova coluna neste data frame, com valores numéricos
+(quaisquer).</li>
+<li>Crie mais um componente na lista anterior, que será também uma lista
+com dois componentes: <code>A</code> com os valores <code>1:5</code>, e <code>B</code> com as letras
+de “a” a “f”.</li>
 <li>Acesse o número 4 de <code>A</code>.</li>
 <li>Acesse a letra “c” de <code>B</code>.</li>
 </ol>
 </div>
-<div id="seleção-condicional" class="section level2">
-<h2><span class="header-section-number">3.2</span> Seleção condicional</h2>
-<div id="seleção-condicional-em-vetores" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Seleção condicional em vetores</h3>
+<div id="seleção-condicional" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Seleção condicional<a href="indexação-e-seleção-condicional.html#seleção-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="seleção-condicional-em-vetores" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Seleção condicional em vetores<a href="indexação-e-seleção-condicional.html#seleção-condicional-em-vetores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="alert alert-warning">
-<p>A <strong>seleção condicional</strong> serve para extrair dados que satisfaçam algum critério, usando <strong>expressões condicionais</strong> e <strong>operadores lógicos</strong>.</p>
+<p>A <strong>seleção condicional</strong> serve para extrair dados que satisfaçam
+algum critério, usando <strong>expressões condicionais</strong> e <strong>operadores
+lógicos</strong>.</p>
 </div>
 <p>Considere o seguinte vetor</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">79</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">14</span>)</code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="indexação-e-seleção-condicional.html#cb167-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">79</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">14</span>)</span></code></pre></div>
 <p>Selecione apenas os valores maiores do que 15:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>]
-[<span class="dv">1</span>] <span class="dv">42</span> <span class="dv">28</span> <span class="dv">79</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="indexação-e-seleção-condicional.html#cb168-1" aria-hidden="true" tabindex="-1"></a>dados[dados <span class="sc">&gt;</span> <span class="dv">15</span>]</span>
+<span id="cb168-2"><a href="indexação-e-seleção-condicional.html#cb168-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">42</span> <span class="dv">28</span> <span class="dv">79</span></span></code></pre></div>
 <p>Selecione os valores maiores que 15 E menores ou iguais a 35:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dados <span class="op">&lt;=</span><span class="st"> </span><span class="dv">35</span>]
-[<span class="dv">1</span>] <span class="dv">28</span></code></pre></div>
-<p>Para entender como funciona a seleção condicional, observe apenas o resultado da condição dentro do colchetes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Usando &amp; (e)
-dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dados <span class="op">&lt;=</span><span class="st"> </span><span class="dv">35</span>
-[<span class="dv">1</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-## Usando | (ou)
-dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">|</span><span class="st"> </span>dados <span class="op">&lt;=</span><span class="st"> </span><span class="dv">35</span>
-[<span class="dv">1</span>] <span class="ot">TRUE</span> <span class="ot">TRUE</span> <span class="ot">TRUE</span> <span class="ot">TRUE</span> <span class="ot">TRUE</span> <span class="ot">TRUE</span> <span class="ot">TRUE</span> <span class="ot">TRUE</span></code></pre></div>
-<p>Os valores selecionados serão aqueles em que a condição for <code>TRUE</code>, no primeiro caso apenas o quarto elemento do vetor <code>dados</code>.</p>
-<p>A seleção condicional também é muito útil para selecionar elementos de um vetor, baseado em uma condição de outro vetor.</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="indexação-e-seleção-condicional.html#cb169-1" aria-hidden="true" tabindex="-1"></a>dados[dados <span class="sc">&gt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> dados <span class="sc">&lt;=</span> <span class="dv">35</span>]</span>
+<span id="cb169-2"><a href="indexação-e-seleção-condicional.html#cb169-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">28</span></span></code></pre></div>
+<p>Para entender como funciona a seleção condicional, observe apenas o
+resultado da condição dentro do colchetes:</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="indexação-e-seleção-condicional.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Usando &amp; (e)</span></span>
+<span id="cb170-2"><a href="indexação-e-seleção-condicional.html#cb170-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">&gt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> dados <span class="sc">&lt;=</span> <span class="dv">35</span></span>
+<span id="cb170-3"><a href="indexação-e-seleção-condicional.html#cb170-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb170-4"><a href="indexação-e-seleção-condicional.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Usando | (ou)</span></span>
+<span id="cb170-5"><a href="indexação-e-seleção-condicional.html#cb170-5" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">&gt;</span> <span class="dv">15</span> <span class="sc">|</span> dados <span class="sc">&lt;=</span> <span class="dv">35</span></span>
+<span id="cb170-6"><a href="indexação-e-seleção-condicional.html#cb170-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span> <span class="cn">TRUE</span> <span class="cn">TRUE</span> <span class="cn">TRUE</span> <span class="cn">TRUE</span> <span class="cn">TRUE</span> <span class="cn">TRUE</span> <span class="cn">TRUE</span></span></code></pre></div>
+<p>Os valores selecionados serão aqueles em que a condição for
+<code>TRUE</code>, no primeiro caso apenas o quarto elemento do vetor <code>dados</code>.</p>
+<p>A seleção condicional também é muito útil para selecionar elementos de
+um vetor, baseado em uma condição de outro vetor.</p>
 <p>Considere o seguinte vetor de caracteres</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cara &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(dados)]</code></pre></div>
-<p>Considere que de alguma forma, os objetos <code>dados</code> e <code>cara</code> possuem alguma relação. Sendo assim, podemos selecionar elementos de <code>dados</code>, baseados em alguma condição de <code>cara</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Elemento de dados onde cara é igual a &quot;c&quot;
-dados[cara <span class="op">==</span><span class="st"> &quot;c&quot;</span>]
-[<span class="dv">1</span>] <span class="dv">42</span></code></pre></div>
-<p>Se quisermos selecionar mais de um elemento de <code>dados</code>, baseado em uma condição de <code>cara</code>?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Elementos de dados onde cara é igual a &quot;a&quot; e &quot;c&quot;
-cara <span class="op">==</span><span class="st"> &quot;a&quot;</span> <span class="op">&amp;</span><span class="st"> </span>cara <span class="op">==</span><span class="st"> &quot;c&quot;</span> <span class="co"># porque não funciona?</span>
-[<span class="dv">1</span>] <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-cara <span class="op">==</span><span class="st"> &quot;a&quot;</span> <span class="op">|</span><span class="st"> </span>cara <span class="op">==</span><span class="st"> &quot;c&quot;</span>
-[<span class="dv">1</span>]  <span class="ot">TRUE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-dados[cara <span class="op">==</span><span class="st"> &quot;a&quot;</span> <span class="op">|</span><span class="st"> </span>cara <span class="op">==</span><span class="st"> &quot;c&quot;</span>]
-[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">42</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="indexação-e-seleção-condicional.html#cb171-1" aria-hidden="true" tabindex="-1"></a>cara <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dados)]</span></code></pre></div>
+<p>Considere que de alguma forma, os objetos <code>dados</code> e <code>cara</code> possuem
+alguma relação. Sendo assim, podemos selecionar elementos de <code>dados</code>,
+baseados em alguma condição de <code>cara</code></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="indexação-e-seleção-condicional.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Elemento de dados onde cara é igual a &quot;c&quot;</span></span>
+<span id="cb172-2"><a href="indexação-e-seleção-condicional.html#cb172-2" aria-hidden="true" tabindex="-1"></a>dados[cara <span class="sc">==</span> <span class="st">&quot;c&quot;</span>]</span>
+<span id="cb172-3"><a href="indexação-e-seleção-condicional.html#cb172-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">42</span></span></code></pre></div>
+<p>Se quisermos selecionar mais de um elemento de <code>dados</code>, baseado em uma
+condição de <code>cara</code>?</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="indexação-e-seleção-condicional.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Elementos de dados onde cara é igual a &quot;a&quot; e &quot;c&quot;</span></span>
+<span id="cb173-2"><a href="indexação-e-seleção-condicional.html#cb173-2" aria-hidden="true" tabindex="-1"></a>cara <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">&amp;</span> cara <span class="sc">==</span> <span class="st">&quot;c&quot;</span> <span class="co"># porque não funciona?</span></span>
+<span id="cb173-3"><a href="indexação-e-seleção-condicional.html#cb173-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb173-4"><a href="indexação-e-seleção-condicional.html#cb173-4" aria-hidden="true" tabindex="-1"></a>cara <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">|</span> cara <span class="sc">==</span> <span class="st">&quot;c&quot;</span></span>
+<span id="cb173-5"><a href="indexação-e-seleção-condicional.html#cb173-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb173-6"><a href="indexação-e-seleção-condicional.html#cb173-6" aria-hidden="true" tabindex="-1"></a>dados[cara <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">|</span> cara <span class="sc">==</span> <span class="st">&quot;c&quot;</span>]</span>
+<span id="cb173-7"><a href="indexação-e-seleção-condicional.html#cb173-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">42</span></span></code></pre></div>
 <p>Uma solução melhor seria se pudessemos usar</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[cara <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]
-[<span class="dv">1</span>] <span class="dv">5</span></code></pre></div>
-<p>mas nesse caso só temos o primeiro elemento. Um operador muito útil nestes casos é o <code>%in%</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[cara <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]
-[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">42</span>
-cara <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)
-[<span class="dv">1</span>]  <span class="ot">TRUE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="indexação-e-seleção-condicional.html#cb174-1" aria-hidden="true" tabindex="-1"></a>dados[cara <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]</span>
+<span id="cb174-2"><a href="indexação-e-seleção-condicional.html#cb174-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span></code></pre></div>
+<p>mas nesse caso só temos o primeiro elemento. Um operador muito útil
+nestes casos é o <code>%in%</code></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="indexação-e-seleção-condicional.html#cb175-1" aria-hidden="true" tabindex="-1"></a>dados[cara <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]</span>
+<span id="cb175-2"><a href="indexação-e-seleção-condicional.html#cb175-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">42</span></span>
+<span id="cb175-3"><a href="indexação-e-seleção-condicional.html#cb175-3" aria-hidden="true" tabindex="-1"></a>cara <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb175-4"><a href="indexação-e-seleção-condicional.html#cb175-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
 <p>Veja a diferença</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cara <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)
-[<span class="dv">1</span>]  <span class="ot">TRUE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span>
-cara <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)
-[<span class="dv">1</span>]  <span class="ot">TRUE</span> <span class="ot">FALSE</span>  <span class="ot">TRUE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span> <span class="ot">FALSE</span></code></pre></div>
-<p>Também é possível fazer a seleção de <code>cara</code>, baseado em uma condição em <code>dados</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Elemento de cara onde dados é igual a 15
-cara[dados <span class="op">==</span><span class="st"> </span><span class="dv">15</span>]
-[<span class="dv">1</span>] <span class="st">&quot;b&quot;</span>
-## Elemento de cara onde dados for maior do que 30
-cara[dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>]
-[<span class="dv">1</span>] <span class="st">&quot;c&quot;</span> <span class="st">&quot;e&quot;</span>
-## Elemento de cara onde dados for igual a 4 ou 14
-cara[dados <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">14</span>)]
-[<span class="dv">1</span>] <span class="st">&quot;f&quot;</span> <span class="st">&quot;h&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="indexação-e-seleção-condicional.html#cb176-1" aria-hidden="true" tabindex="-1"></a>cara <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb176-2"><a href="indexação-e-seleção-condicional.html#cb176-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb176-3"><a href="indexação-e-seleção-condicional.html#cb176-3" aria-hidden="true" tabindex="-1"></a>cara <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb176-4"><a href="indexação-e-seleção-condicional.html#cb176-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span></code></pre></div>
+<p>Também é possível fazer a seleção de <code>cara</code>, baseado em uma condição em
+<code>dados</code></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="indexação-e-seleção-condicional.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Elemento de cara onde dados é igual a 15</span></span>
+<span id="cb177-2"><a href="indexação-e-seleção-condicional.html#cb177-2" aria-hidden="true" tabindex="-1"></a>cara[dados <span class="sc">==</span> <span class="dv">15</span>]</span>
+<span id="cb177-3"><a href="indexação-e-seleção-condicional.html#cb177-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;b&quot;</span></span>
+<span id="cb177-4"><a href="indexação-e-seleção-condicional.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Elemento de cara onde dados for maior do que 30</span></span>
+<span id="cb177-5"><a href="indexação-e-seleção-condicional.html#cb177-5" aria-hidden="true" tabindex="-1"></a>cara[dados <span class="sc">&gt;</span> <span class="dv">30</span>]</span>
+<span id="cb177-6"><a href="indexação-e-seleção-condicional.html#cb177-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;c&quot;</span> <span class="st">&quot;e&quot;</span></span>
+<span id="cb177-7"><a href="indexação-e-seleção-condicional.html#cb177-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Elemento de cara onde dados for igual a 4 ou 14</span></span>
+<span id="cb177-8"><a href="indexação-e-seleção-condicional.html#cb177-8" aria-hidden="true" tabindex="-1"></a>cara[dados <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">14</span>)]</span>
+<span id="cb177-9"><a href="indexação-e-seleção-condicional.html#cb177-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;f&quot;</span> <span class="st">&quot;h&quot;</span></span></code></pre></div>
 </div>
-<div id="a-função-which" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> A função <code>which()</code></h3>
-<p>Até agora vimos seleções condicionais que nos retornavam o resultado de uma expressão condicional em vetores. No entanto, muitas vezes estamos interessados em saber a <strong>posição</strong> do resultado de uma expressão condicional, ao invés do resultado em si.</p>
-<p>A fução <code>which()</code> retorna as posições dos elementos que retornarem <code>TRUE</code> em uma expressão condicional.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Elementos maiores de 15
-dados[dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>]
-[<span class="dv">1</span>] <span class="dv">42</span> <span class="dv">28</span> <span class="dv">79</span>
-<span class="kw">which</span>(dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>)
-[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>
-## Elementos maiores de 15 e menores ou iguais a 35
-dados[dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dados <span class="op">&lt;=</span><span class="st"> </span><span class="dv">35</span>]
-[<span class="dv">1</span>] <span class="dv">28</span>
-<span class="kw">which</span>(dados <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">&amp;</span><span class="st"> </span>dados <span class="op">&lt;=</span><span class="st"> </span><span class="dv">35</span>)
-[<span class="dv">1</span>] <span class="dv">4</span>
-## Elementos de dados onde cara igual a &quot;c&quot;
-dados[cara <span class="op">==</span><span class="st"> &quot;c&quot;</span>]
-[<span class="dv">1</span>] <span class="dv">42</span>
-<span class="kw">which</span>(cara <span class="op">==</span><span class="st"> &quot;c&quot;</span>)
-[<span class="dv">1</span>] <span class="dv">3</span>
-## Elementos de dados onde cara é igual a &quot;a&quot; ou &quot;c&quot;
-dados[cara <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]
-[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">42</span>
-<span class="kw">which</span>(cara <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>))
-[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span></code></pre></div>
+<div id="a-função-which" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> A função <code>which()</code><a href="indexação-e-seleção-condicional.html#a-função-which" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Até agora vimos seleções condicionais que nos retornavam o resultado de
+uma expressão condicional em vetores. No entanto, muitas vezes estamos
+interessados em saber a <strong>posição</strong> do resultado de uma expressão
+condicional, ao invés do resultado em si.</p>
+<p>A fução <code>which()</code> retorna as posições dos elementos que retornarem
+<code>TRUE</code> em uma expressão condicional.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="indexação-e-seleção-condicional.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Elementos maiores de 15</span></span>
+<span id="cb178-2"><a href="indexação-e-seleção-condicional.html#cb178-2" aria-hidden="true" tabindex="-1"></a>dados[dados <span class="sc">&gt;</span> <span class="dv">15</span>]</span>
+<span id="cb178-3"><a href="indexação-e-seleção-condicional.html#cb178-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">42</span> <span class="dv">28</span> <span class="dv">79</span></span>
+<span id="cb178-4"><a href="indexação-e-seleção-condicional.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(dados <span class="sc">&gt;</span> <span class="dv">15</span>)</span>
+<span id="cb178-5"><a href="indexação-e-seleção-condicional.html#cb178-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span></span>
+<span id="cb178-6"><a href="indexação-e-seleção-condicional.html#cb178-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Elementos maiores de 15 e menores ou iguais a 35</span></span>
+<span id="cb178-7"><a href="indexação-e-seleção-condicional.html#cb178-7" aria-hidden="true" tabindex="-1"></a>dados[dados <span class="sc">&gt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> dados <span class="sc">&lt;=</span> <span class="dv">35</span>]</span>
+<span id="cb178-8"><a href="indexação-e-seleção-condicional.html#cb178-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">28</span></span>
+<span id="cb178-9"><a href="indexação-e-seleção-condicional.html#cb178-9" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(dados <span class="sc">&gt;</span> <span class="dv">15</span> <span class="sc">&amp;</span> dados <span class="sc">&lt;=</span> <span class="dv">35</span>)</span>
+<span id="cb178-10"><a href="indexação-e-seleção-condicional.html#cb178-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span>
+<span id="cb178-11"><a href="indexação-e-seleção-condicional.html#cb178-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Elementos de dados onde cara igual a &quot;c&quot;</span></span>
+<span id="cb178-12"><a href="indexação-e-seleção-condicional.html#cb178-12" aria-hidden="true" tabindex="-1"></a>dados[cara <span class="sc">==</span> <span class="st">&quot;c&quot;</span>]</span>
+<span id="cb178-13"><a href="indexação-e-seleção-condicional.html#cb178-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">42</span></span>
+<span id="cb178-14"><a href="indexação-e-seleção-condicional.html#cb178-14" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(cara <span class="sc">==</span> <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb178-15"><a href="indexação-e-seleção-condicional.html#cb178-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
+<span id="cb178-16"><a href="indexação-e-seleção-condicional.html#cb178-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Elementos de dados onde cara é igual a &quot;a&quot; ou &quot;c&quot;</span></span>
+<span id="cb178-17"><a href="indexação-e-seleção-condicional.html#cb178-17" aria-hidden="true" tabindex="-1"></a>dados[cara <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>)]</span>
+<span id="cb178-18"><a href="indexação-e-seleção-condicional.html#cb178-18" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">5</span> <span class="dv">42</span></span>
+<span id="cb178-19"><a href="indexação-e-seleção-condicional.html#cb178-19" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(cara <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>))</span>
+<span id="cb178-20"><a href="indexação-e-seleção-condicional.html#cb178-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span></span></code></pre></div>
 </div>
-<div id="exercícios-7" class="section level3 unnumbered">
-<h3>Exercícios</h3>
+<div id="exercícios-7" class="section level3 unnumbered hasAnchor">
+<h3>Exercícios<a href="indexação-e-seleção-condicional.html#exercícios-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Crie um vetor (<code>x</code>) com os valores 3, 8, 10, 4, 9, 7, 1, 9, 2, 4.</li>
 <li>Selecione os elementos maiores ou iguais a 5.</li>
@@ -801,85 +965,98 @@ dados[cara <span class="op">%in%</span><span class="st"> </span><span class="kw"
 <li>Selecione os elementos de x onde a for igual a “F”.</li>
 <li>Selecione os elementos de x onde a for igual a “B”, “D”, e “H”.</li>
 <li>Qual a posição do número 10 em x?</li>
-<li>Quais as posições dos valores maiores ou iguais a 8 e menores ou iguais a 10 em x?</li>
+<li>Quais as posições dos valores maiores ou iguais a 8 e menores ou
+iguais a 10 em x?</li>
 <li>Quais as posições das letras “A”, “B”, “D” em a?</li>
 </ol>
 </div>
-<div id="seleção-condicional-em-data-frames" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Seleção condicional em data frames</h3>
+<div id="seleção-condicional-em-data-frames" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Seleção condicional em data frames<a href="indexação-e-seleção-condicional.html#seleção-condicional-em-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Considere o seguinte data frame</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2003</span>, <span class="dv">2004</span>, <span class="dv">2005</span>),
-                    <span class="dt">captura =</span> <span class="kw">c</span>(<span class="dv">26</span>, <span class="dv">18</span>, <span class="dv">25</span>, <span class="dv">32</span>, <span class="ot">NA</span>),
-                    <span class="dt">porto =</span> <span class="kw">c</span>(<span class="st">&quot;SP&quot;</span>, <span class="st">&quot;RS&quot;</span>, <span class="st">&quot;SC&quot;</span>, <span class="st">&quot;SC&quot;</span>, <span class="st">&quot;RN&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="indexação-e-seleção-condicional.html#cb179-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ano =</span> <span class="fu">c</span>(<span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2003</span>, <span class="dv">2004</span>, <span class="dv">2005</span>),</span>
+<span id="cb179-2"><a href="indexação-e-seleção-condicional.html#cb179-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">captura =</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">18</span>, <span class="dv">25</span>, <span class="dv">32</span>, <span class="cn">NA</span>),</span>
+<span id="cb179-3"><a href="indexação-e-seleção-condicional.html#cb179-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">porto =</span> <span class="fu">c</span>(<span class="st">&quot;SP&quot;</span>, <span class="st">&quot;RS&quot;</span>, <span class="st">&quot;SC&quot;</span>, <span class="st">&quot;SC&quot;</span>, <span class="st">&quot;RN&quot;</span>))</span></code></pre></div>
 <p>Extraia deste objeto apenas a linha correspondente ao ano 2004:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>ano <span class="op">==</span><span class="st"> </span><span class="dv">2004</span>, ]
-   ano captura porto
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="indexação-e-seleção-condicional.html#cb180-1" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>ano <span class="sc">==</span> <span class="dv">2004</span>, ]</span>
+<span id="cb180-2"><a href="indexação-e-seleção-condicional.html#cb180-2" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb180-3"><a href="indexação-e-seleção-condicional.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span></code></pre></div>
 <p>Mostre as linhas apenas do porto “SC”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>porto <span class="op">==</span><span class="st"> &quot;SC&quot;</span>, ]
-   ano captura porto
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</code></pre></div>
-<p>Observe as linhas onde a captura seja maior que 20, selecionando apenas a coluna <code>captura</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="st">&quot;captura&quot;</span>]
-[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">25</span> <span class="dv">32</span> <span class="ot">NA</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="indexação-e-seleção-condicional.html#cb181-1" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>porto <span class="sc">==</span> <span class="st">&quot;SC&quot;</span>, ]</span>
+<span id="cb181-2"><a href="indexação-e-seleção-condicional.html#cb181-2" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb181-3"><a href="indexação-e-seleção-condicional.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb181-4"><a href="indexação-e-seleção-condicional.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span></code></pre></div>
+<p>Observe as linhas onde a captura seja maior que 20, selecionando apenas
+a coluna <code>captura</code>:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="indexação-e-seleção-condicional.html#cb182-1" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="st">&quot;captura&quot;</span>]</span>
+<span id="cb182-2"><a href="indexação-e-seleção-condicional.html#cb182-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">25</span> <span class="dv">32</span> <span class="cn">NA</span></span></code></pre></div>
 <p>Também exclua as linhas com <code>NA</code>s (agora com todas as colunas):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(dados<span class="op">$</span>captura), ]
-   ano captura porto
-<span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC
-dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">complete.cases</span>(dados), ]
-   ano captura porto
-<span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="indexação-e-seleção-condicional.html#cb183-1" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>captura), ]</span>
+<span id="cb183-2"><a href="indexação-e-seleção-condicional.html#cb183-2" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb183-3"><a href="indexação-e-seleção-condicional.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP</span>
+<span id="cb183-4"><a href="indexação-e-seleção-condicional.html#cb183-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb183-5"><a href="indexação-e-seleção-condicional.html#cb183-5" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span>
+<span id="cb183-6"><a href="indexação-e-seleção-condicional.html#cb183-6" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="fu">complete.cases</span>(dados), ]</span>
+<span id="cb183-7"><a href="indexação-e-seleção-condicional.html#cb183-7" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb183-8"><a href="indexação-e-seleção-condicional.html#cb183-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP</span>
+<span id="cb183-9"><a href="indexação-e-seleção-condicional.html#cb183-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb183-10"><a href="indexação-e-seleção-condicional.html#cb183-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span></code></pre></div>
 <p>A condição pode ser feita com diferentes colunas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span> <span class="op">&amp;</span><span class="st"> </span>dados<span class="op">$</span>porto <span class="op">==</span><span class="st"> &quot;SP&quot;</span>, ]
-   ano captura porto
-<span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP</code></pre></div>
-<p>A função <code>subset()</code> serve para os mesmos propósitos, e facilita todo o processo de seleção condicional:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dados[dados<span class="op">$</span>porto <span class="op">==</span><span class="st"> &quot;SC&quot;</span>, ]
-   ano captura porto
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC
-<span class="kw">subset</span>(dados, porto <span class="op">==</span><span class="st"> &quot;SC&quot;</span>)
-   ano captura porto
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC
-dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, ]
-    ano captura porto
-<span class="dv">1</span>  <span class="dv">2001</span>      <span class="dv">26</span>    SP
-<span class="dv">3</span>  <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span>  <span class="dv">2004</span>      <span class="dv">32</span>    SC
-<span class="ot">NA</span>   <span class="ot">NA</span>      <span class="ot">NA</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span>
-<span class="kw">subset</span>(dados, captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>)
-   ano captura porto
-<span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC
-dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(dados<span class="op">$</span>captura), ]
-   ano captura porto
-<span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP
-<span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC
-<span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC
-dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="st">&quot;captura&quot;</span>]
-[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">25</span> <span class="dv">32</span> <span class="ot">NA</span>
-<span class="kw">subset</span>(dados, captura <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dt">select =</span> captura)
-  captura
-<span class="dv">1</span>      <span class="dv">26</span>
-<span class="dv">3</span>      <span class="dv">25</span>
-<span class="dv">4</span>      <span class="dv">32</span></code></pre></div>
-<p>A grande vantagem é que a função <code>subset()</code> já lida com os <code>NA</code>s (se isso for o que você precisa).</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="indexação-e-seleção-condicional.html#cb184-1" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">25</span> <span class="sc">&amp;</span> dados<span class="sc">$</span>porto <span class="sc">==</span> <span class="st">&quot;SP&quot;</span>, ]</span>
+<span id="cb184-2"><a href="indexação-e-seleção-condicional.html#cb184-2" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb184-3"><a href="indexação-e-seleção-condicional.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP</span></code></pre></div>
+<p>A função <code>subset()</code> serve para os mesmos propósitos, e facilita todo o
+processo de seleção condicional:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="indexação-e-seleção-condicional.html#cb185-1" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>porto <span class="sc">==</span> <span class="st">&quot;SC&quot;</span>, ]</span>
+<span id="cb185-2"><a href="indexação-e-seleção-condicional.html#cb185-2" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb185-3"><a href="indexação-e-seleção-condicional.html#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb185-4"><a href="indexação-e-seleção-condicional.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span>
+<span id="cb185-5"><a href="indexação-e-seleção-condicional.html#cb185-5" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(dados, porto <span class="sc">==</span> <span class="st">&quot;SC&quot;</span>)</span>
+<span id="cb185-6"><a href="indexação-e-seleção-condicional.html#cb185-6" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb185-7"><a href="indexação-e-seleção-condicional.html#cb185-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb185-8"><a href="indexação-e-seleção-condicional.html#cb185-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span>
+<span id="cb185-9"><a href="indexação-e-seleção-condicional.html#cb185-9" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">20</span>, ]</span>
+<span id="cb185-10"><a href="indexação-e-seleção-condicional.html#cb185-10" aria-hidden="true" tabindex="-1"></a>    ano captura porto</span>
+<span id="cb185-11"><a href="indexação-e-seleção-condicional.html#cb185-11" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">2001</span>      <span class="dv">26</span>    SP</span>
+<span id="cb185-12"><a href="indexação-e-seleção-condicional.html#cb185-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb185-13"><a href="indexação-e-seleção-condicional.html#cb185-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="dv">2004</span>      <span class="dv">32</span>    SC</span>
+<span id="cb185-14"><a href="indexação-e-seleção-condicional.html#cb185-14" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span>   <span class="cn">NA</span>      <span class="cn">NA</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span></span>
+<span id="cb185-15"><a href="indexação-e-seleção-condicional.html#cb185-15" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(dados, captura <span class="sc">&gt;</span> <span class="dv">20</span>)</span>
+<span id="cb185-16"><a href="indexação-e-seleção-condicional.html#cb185-16" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb185-17"><a href="indexação-e-seleção-condicional.html#cb185-17" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP</span>
+<span id="cb185-18"><a href="indexação-e-seleção-condicional.html#cb185-18" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb185-19"><a href="indexação-e-seleção-condicional.html#cb185-19" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span>
+<span id="cb185-20"><a href="indexação-e-seleção-condicional.html#cb185-20" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>captura), ]</span>
+<span id="cb185-21"><a href="indexação-e-seleção-condicional.html#cb185-21" aria-hidden="true" tabindex="-1"></a>   ano captura porto</span>
+<span id="cb185-22"><a href="indexação-e-seleção-condicional.html#cb185-22" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2001</span>      <span class="dv">26</span>    SP</span>
+<span id="cb185-23"><a href="indexação-e-seleção-condicional.html#cb185-23" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dv">2003</span>      <span class="dv">25</span>    SC</span>
+<span id="cb185-24"><a href="indexação-e-seleção-condicional.html#cb185-24" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="dv">2004</span>      <span class="dv">32</span>    SC</span>
+<span id="cb185-25"><a href="indexação-e-seleção-condicional.html#cb185-25" aria-hidden="true" tabindex="-1"></a>dados[dados<span class="sc">$</span>captura <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="st">&quot;captura&quot;</span>]</span>
+<span id="cb185-26"><a href="indexação-e-seleção-condicional.html#cb185-26" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">26</span> <span class="dv">25</span> <span class="dv">32</span> <span class="cn">NA</span></span>
+<span id="cb185-27"><a href="indexação-e-seleção-condicional.html#cb185-27" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(dados, captura <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="at">select =</span> captura)</span>
+<span id="cb185-28"><a href="indexação-e-seleção-condicional.html#cb185-28" aria-hidden="true" tabindex="-1"></a>  captura</span>
+<span id="cb185-29"><a href="indexação-e-seleção-condicional.html#cb185-29" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">26</span></span>
+<span id="cb185-30"><a href="indexação-e-seleção-condicional.html#cb185-30" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">25</span></span>
+<span id="cb185-31"><a href="indexação-e-seleção-condicional.html#cb185-31" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>      <span class="dv">32</span></span></code></pre></div>
+<p>A grande vantagem é que a função <code>subset()</code> já lida com os <code>NA</code>s (se
+isso for o que você precisa).</p>
 </div>
-<div id="exercícios-8" class="section level3 unnumbered">
-<h3>Exercícios</h3>
+<div id="exercícios-8" class="section level3 unnumbered hasAnchor">
+<h3>Exercícios<a href="indexação-e-seleção-condicional.html#exercícios-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Você contou 42 caranguejos na Joaquina, 34 no Campeche, 59 na Armação e 18 na Praia Mole. Crie um data frame para armazenar estas informações (número de caranguejos observados e local).</li>
-<li>Com o data frame criado no exercício anterior, mostre qual a praia onde foram coletadas menos de 30 caranguejos (usando seleção condicional!).</li>
-<li>Crie uma nova coluna (região) neste data frame indicando que Joaquina e Praia Mole estão localizadas no leste da ilha (leste) e Campeche e Armação estão no sul (sul).</li>
-<li>Selecione as praias de região leste que possuem menos de 20 caranguejos contados.</li>
-<li>Você está interessado em saber em qual das duas praias do sul, o número de caranguejos contados foi maior do que 40. Usando a seleção condicional, mostre essa informação na tela.</li>
+<li>Você contou 42 caranguejos na Joaquina, 34 no Campeche, 59 na
+Armação e 18 na Praia Mole. Crie um data frame para armazenar estas
+informações (número de caranguejos observados e local).</li>
+<li>Com o data frame criado no exercício anterior,
+mostre qual a praia onde foram coletadas menos de 30 caranguejos
+(usando seleção condicional!).</li>
+<li>Crie uma nova coluna (região) neste data frame indicando que
+Joaquina e Praia Mole estão localizadas no leste da ilha (leste) e
+Campeche e Armação estão no sul (sul).</li>
+<li>Selecione as praias de região leste que possuem menos de 20
+caranguejos contados.</li>
+<li>Você está interessado em saber em qual das duas praias do sul, o
+número de caranguejos contados foi maior do que 40. Usando a seleção
+condicional, mostre essa informação na tela.</li>
 <li>Qual região possui praias com mais de 50 caranguejos contados?</li>
 </ol>
 
@@ -896,7 +1073,6 @@ dados[dados<span class="op">$</span>captura <span class="op">&gt;</span><span cl
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -915,6 +1091,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter"],
 "google": true
 },
@@ -933,14 +1110,17 @@ gitbook.start({
 "text": null
 },
 "download": ["ecr.pdf", "ecr.epub", "ecr.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "none",
 "scroll_highlight": true
 },
 "toolbar": {
 "position": "fixed"
-},
-"search": true
+}
 });
 });
 </script>
@@ -950,8 +1130,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
