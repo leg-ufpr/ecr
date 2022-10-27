@@ -20,7 +20,7 @@ knitr::include_graphics("img/excelcsvgrey.png")
 O que está acontecendo?
 
 - O computador (leia-se, nesse caso, o sistema operacional Windows)
-  "proteje" o usuário dos detalhes sujos.
+  "proteje" o usuário dos "detalhes sujos".
 - Isso é ruim? **Sim!**
 - O usuário se acostuma com o computador ditando as regras.
 - É importante lembrar que é você quem deve dizer o que o computador
@@ -300,7 +300,13 @@ processo irá gerar dois arquivos:
 
 <!-- ### CSV -->
 
-<!-- ### Encoding -->
+### Encoding
+
+Caracteres especiais (cedilha, acentos, dentre outros) podem gerar problemas de visualização
+entre diferentes sistemas operacionais que utilizam diferentes codificações (*encodings*).
+Não iremos tratar disto neste momento, mas se voce visualizar estes caracteres de maneira "estranha" é porque
+irá precisar conciliar os "encodings".
+
 
 ## Referências {-}
 
