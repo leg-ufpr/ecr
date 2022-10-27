@@ -11,6 +11,7 @@ operadores-aritméticos
 ordens-de-execução
 salvando-resultados
 finalizando-o-programa
+encoding
 objetos-e-classes
 funções-e-argumentos
 outros-tipos-de-argumentos

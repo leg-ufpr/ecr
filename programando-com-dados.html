@@ -190,6 +190,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#exercícios"><i class="fa fa-check"></i>Exercícios</a></li>
 <li class="chapter" data-level="1.3.7" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#salvando-resultados"><i class="fa fa-check"></i><b>1.3.7</b> “Salvando” resultados</a></li>
 <li class="chapter" data-level="1.3.8" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#finalizando-o-programa"><i class="fa fa-check"></i><b>1.3.8</b> Finalizando o programa</a></li>
+<li class="chapter" data-level="1.3.9" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#encoding"><i class="fa fa-check"></i><b>1.3.9</b> Encoding</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="computação-científica-e-interação-com-o-r.html"><a href="computação-científica-e-interação-com-o-r.html#referências"><i class="fa fa-check"></i>Referências</a></li>
 </ul></li>
@@ -836,7 +837,7 @@ reciclagem.</p>
 <span id="cb255-7"><a href="programando-com-dados.html#cb255-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb255-8"><a href="programando-com-dados.html#cb255-8" aria-hidden="true" tabindex="-1"></a>st1</span>
 <span id="cb255-9"><a href="programando-com-dados.html#cb255-9" aria-hidden="true" tabindex="-1"></a>   user  system elapsed </span>
-<span id="cb255-10"><a href="programando-com-dados.html#cb255-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.075</span>   <span class="fl">0.000</span>   <span class="fl">0.075</span> </span>
+<span id="cb255-10"><a href="programando-com-dados.html#cb255-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.074</span>   <span class="fl">0.000</span>   <span class="fl">0.075</span> </span>
 <span id="cb255-11"><a href="programando-com-dados.html#cb255-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb255-12"><a href="programando-com-dados.html#cb255-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Tempo de execução usando a regra da reciclagem</span></span>
 <span id="cb255-13"><a href="programando-com-dados.html#cb255-13" aria-hidden="true" tabindex="-1"></a>st2 <span class="ot">&lt;-</span> <span class="fu">system.time</span>(</span>
@@ -844,11 +845,11 @@ reciclagem.</p>
 <span id="cb255-15"><a href="programando-com-dados.html#cb255-15" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb255-16"><a href="programando-com-dados.html#cb255-16" aria-hidden="true" tabindex="-1"></a>st2</span>
 <span id="cb255-17"><a href="programando-com-dados.html#cb255-17" aria-hidden="true" tabindex="-1"></a>   user  system elapsed </span>
-<span id="cb255-18"><a href="programando-com-dados.html#cb255-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.002</span>   <span class="fl">0.000</span>   <span class="fl">0.001</span> </span></code></pre></div>
+<span id="cb255-18"><a href="programando-com-dados.html#cb255-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.002</span>   <span class="fl">0.000</span>   <span class="fl">0.002</span> </span></code></pre></div>
 <p>Olhando o resultado de <code>elapsed</code>, que é o tempo total de execução de uma
 função medido por <code>system.time()</code>, notamos que usando a regra da
 reciclagem, o cálculo é aproximadamente
-<span class="math inline">\(0.075/10\times 10^{-4} = 75\)</span> vezes mais rápido.
+<span class="math inline">\(0.075/0.002 = 37.5\)</span> vezes mais rápido.
 Claramente esse é só um exemplo de um cálculo muito simples. Mas em
 situações mais complexas, a diferença entre o tempo de execução das duas
 formas pode ser muito maior.</p>
@@ -887,10 +888,10 @@ resultados do loop <strong>antes</strong> de executá-lo.</li>
 <span id="cb256-21"><a href="programando-com-dados.html#cb256-21" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb256-22"><a href="programando-com-dados.html#cb256-22" aria-hidden="true" tabindex="-1"></a>st2</span>
 <span id="cb256-23"><a href="programando-com-dados.html#cb256-23" aria-hidden="true" tabindex="-1"></a>   user  system elapsed </span>
-<span id="cb256-24"><a href="programando-com-dados.html#cb256-24" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.298</span>   <span class="fl">0.032</span>   <span class="fl">0.330</span> </span></code></pre></div>
+<span id="cb256-24"><a href="programando-com-dados.html#cb256-24" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.290</span>   <span class="fl">0.008</span>   <span class="fl">0.297</span> </span></code></pre></div>
 <p>Essa simples diferença gera um aumento de tempo de execução da segunda
 forma em aproximadamente
-0.33/0.077 = 4.29 vezes. Isso acontece
+0.297/0.077 = 3.86 vezes. Isso acontece
 porque, da segunda forma, o vetor <code>out</code> precisa ter seu tamanho
 aumentado com um elemento a cada iteração. Para fazer isso, o R precisa
 encontrar um espaço na memória que possa armazenar o objeto maior. É

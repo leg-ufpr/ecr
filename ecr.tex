@@ -185,7 +185,7 @@ Departamento de Estatística (DEST)\\
 Universidade Federal do Paraná (UFPR)\\
 \strut \\
 2018-07-24\\
-Última atualização: 2022-10-26}
+Última atualização: 2022-10-27}
 
 \begin{document}
 \maketitle
@@ -227,7 +227,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Wednesday, 26 October, 2022, 17:38
+Thursday, 27 October, 2022, 21:38
 ----------------------------------------
 R version 4.2.1 (2022-06-23)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -289,7 +289,7 @@ O que está acontecendo?
 \tightlist
 \item
   O computador (leia-se, nesse caso, o sistema operacional Windows)
-  ``proteje'' o usuário dos detalhes sujos.
+  ``proteje'' o usuário dos ``detalhes sujos''.
 \item
   Isso é ruim? \textbf{Sim!}
 \item
@@ -734,6 +734,14 @@ processo irá gerar dois arquivos:
   \texttt{.Rhistory}: um arquivo texto que contém todos os comandos
   que foram digitados no console.
 \end{itemize}
+
+\hypertarget{encoding}{%
+\subsection{Encoding}\label{encoding}}
+
+Caracteres especiais (cedilha, acentos, dentre outros) podem gerar problemas de visualização
+entre diferentes sistemas operacionais que utilizam diferentes codificações (\emph{encodings}).
+Não iremos tratar disto neste momento, mas se voce visualizar estes caracteres de maneira ``estranha'' é porque
+irá precisar conciliar os ``encodings''.
 
 \hypertarget{referuxeancias}{%
 \section*{Referências}\label{referuxeancias}}
@@ -5762,7 +5770,7 @@ reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.075}   \FloatTok{0.000}   \FloatTok{0.074} 
+  \FloatTok{0.079}   \FloatTok{0.000}   \FloatTok{0.080} 
 
 \DocumentationTok{\#\# Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(}
@@ -5770,14 +5778,14 @@ reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.002}   \FloatTok{0.001}   \FloatTok{0.002} 
+  \FloatTok{0.002}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução de uma
 função medido por \texttt{system.time()}, notamos que usando a regra da
 reciclagem, o cálculo é aproximadamente
-\(0.074/0.002 = 37\) vezes mais rápido.
+\(0.08/0.002 = 40\) vezes mais rápido.
 Claramente esse é só um exemplo de um cálculo muito simples. Mas em
 situações mais complexas, a diferença entre o tempo de execução das duas
 formas pode ser muito maior.
@@ -5812,7 +5820,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.072}   \FloatTok{0.004}   \FloatTok{0.076} 
+  \FloatTok{0.076}   \FloatTok{0.000}   \FloatTok{0.076} 
 
 \DocumentationTok{\#\# Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(\{}
@@ -5823,13 +5831,13 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.302}   \FloatTok{0.027}   \FloatTok{0.330} 
+  \FloatTok{0.290}   \FloatTok{0.012}   \FloatTok{0.302} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
 forma em aproximadamente
-0.33/0.076 = 4.34 vezes. Isso acontece
+0.302/0.076 = 3.97 vezes. Isso acontece
 porque, da segunda forma, o vetor \texttt{out} precisa ter seu tamanho
 aumentado com um elemento a cada iteração. Para fazer isso, o R precisa
 encontrar um espaço na memória que possa armazenar o objeto maior. É
@@ -10347,7 +10355,7 @@ formato de saída, que por padrão é HTML.
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{......................................................................}\SpecialCharTok{|} \DecValTok{100}\NormalTok{\%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\SpecialCharTok{:}\NormalTok{ Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.knit.md}
-\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{Rtmp7PiNwH}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str3549625e526.html }
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{RtmpANCgNA}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str35a54e85bbde.html }
 
 \NormalTok{Output created}\SpecialCharTok{:}\NormalTok{ Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -10409,7 +10417,7 @@ renderizar esse aquivo, usamos:
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{......................................................................}\SpecialCharTok{|} \DecValTok{100}\NormalTok{\%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\SpecialCharTok{:}\NormalTok{ Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.knit.md}
-\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{Rtmp7PiNwH}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str35497a725ef1.html }
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{RtmpANCgNA}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str35a566a8f753.html }
 
 \NormalTok{Output created}\SpecialCharTok{:}\NormalTok{ Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -10828,7 +10836,7 @@ ser despachado. Por exemplo, veja o código fonte da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x563a9d7eafa0}\SpecialCharTok{\textgreater{}}
+\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x560d0036a208}\SpecialCharTok{\textgreater{}}
 \ErrorTok{\textless{}}\NormalTok{environment}\SpecialCharTok{:}\NormalTok{ namespace}\SpecialCharTok{:}\NormalTok{base}\SpecialCharTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
@@ -10863,7 +10871,7 @@ específico para vetores numéricos
 \NormalTok{    \}}
     \FunctionTok{.Internal}\NormalTok{(}\FunctionTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x563a9dbb4f20}\SpecialCharTok{\textgreater{}}
+\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x560d00733f20}\SpecialCharTok{\textgreater{}}
 \ErrorTok{\textless{}}\NormalTok{environment}\SpecialCharTok{:}\NormalTok{ namespace}\SpecialCharTok{:}\NormalTok{base}\SpecialCharTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
