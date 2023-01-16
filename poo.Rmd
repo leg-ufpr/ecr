@@ -14,7 +14,7 @@ O R possui 3 sitemas de orientação a objetos: **S3**, **S4**, e **RC**:
   (e também o mais utilizado). A ideia é que existam **funções
   genéricas** que decidem qual método aplicar de acordo com a classe do
   objeto. Os métodos são definidos da mesma forma que qualquer função,
-  mas chamados de amenira diferente. É um estilo de programação mais
+  mas chamados de maneira diferente. É um estilo de programação mais
   "informal", mas possibilita uma grande liberdade para o programador.
 - **S4**: é um estilo mais formal, no sentido que que as funções
   genéricas devem possuir uma classe formal definida. Além disso, é
@@ -81,6 +81,29 @@ mean.Date(vec)
 
 O resultado não faz sentido pois ele é específico para um objeto da
 classe `Date`.
+
+Pode-se ainda alterar a classe de um objeto, que passa a ser tratado
+pelo método associado a esta classe, se houver.
+
+```{r}
+class(vec) <- "Date"
+mean(vec)
+```
+
+Em S3 um objeto pode ter mais de uma classe e neste caso a procura por método segue a ordem de especificação.
+Procura-se, sequencialmente, métodos para todos as classes definidas. 
+
+```{r}
+class(vec) <- c("numeric", "Date")
+mean(vec)
+class(vec) <- c("Date", "numeric")
+mean(vec)
+class(vec) <- c("foo", "Date")
+mean(vec)
+```
+
+
+
 
 Tudo isso acontece por causa de um mecanismo chamado de **despacho de
 métodos** (*method dispatch*), que é responsável por identificar a
