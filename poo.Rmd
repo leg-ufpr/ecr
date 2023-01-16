@@ -64,7 +64,7 @@ mean(vec)
 Mas isso só é possível porque existe um método definido espcificamente
 para um vetor da classe `numeric`, que nesse caso é a função
 `mean.default`. A função genérica nesse caso é a `mean()`, e a função
-método é a `mean.default`. Veja que não precisamos escrever onome
+método é a `mean.default`. Veja que não precisamos escrever o nome
 inteiro da função genérica para que ela seja utilizada, como por exemplo,
 
 ```{r}
@@ -73,7 +73,7 @@ mean.default(vec)
 
 Uma vez passado um objeto para uma função, é a classe do objeto que irá
 definir qual método utilizar, de acordo com os métodos disponíveis. Veja
-o que acontece se forcarmos o uso da função `mean.Date()` nesse vetor
+o que acontece se forçarmos o uso da função `mean.Date()` nesse vetor
 
 ```{r}
 mean.Date(vec)
@@ -92,6 +92,7 @@ mean(vec)
 
 Em S3 um objeto pode ter mais de uma classe e neste caso a procura por método segue a ordem de especificação.
 Procura-se, sequencialmente, métodos para todos as classes definidas. 
+Veja esta sequência de três atribuições de classes.
 
 ```{r}
 class(vec) <- c("numeric", "Date")
@@ -102,7 +103,10 @@ class(vec) <- c("foo", "Date")
 mean(vec)
 ```
 
-
+Em todos casos foi processada o método `mean.Date()`. 
+Na primeira e terceira porque não existe método específico para
+classes `numeric` ou `foo`. Na segunda porque `Date` era a primeira classe
+do objeto para qual há um método específico.
 
 
 Tudo isso acontece por causa de um mecanismo chamado de **despacho de
