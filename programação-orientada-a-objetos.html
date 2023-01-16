@@ -395,7 +395,7 @@ de <em>generic-function</em>. Esse é o estilo mais básico de programação em 
 (e também o mais utilizado). A ideia é que existam <strong>funções
 genéricas</strong> que decidem qual método aplicar de acordo com a classe do
 objeto. Os métodos são definidos da mesma forma que qualquer função,
-mas chamados de amenira diferente. É um estilo de programação mais
+mas chamados de maneira diferente. É um estilo de programação mais
 “informal”, mas possibilita uma grande liberdade para o programador.</li>
 <li><strong>S4</strong>: é um estilo mais formal, no sentido que que as funções
 genéricas devem possuir uma classe formal definida. Além disso, é
@@ -447,97 +447,113 @@ o que acontece se forcarmos o uso da função <code>mean.Date()</code> nesse vet
 <span id="cb428-2"><a href="programação-orientada-a-objetos.html#cb428-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></span></code></pre></div>
 <p>O resultado não faz sentido pois ele é específico para um objeto da
 classe <code>Date</code>.</p>
+<p>Pode-se ainda alterar a classe de um objeto, que passa a ser tratado
+pelo método associado a esta classe, se houver.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="programação-orientada-a-objetos.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec) <span class="ot">&lt;-</span> <span class="st">&quot;Date&quot;</span></span>
+<span id="cb429-2"><a href="programação-orientada-a-objetos.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vec)</span>
+<span id="cb429-3"><a href="programação-orientada-a-objetos.html#cb429-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></span></code></pre></div>
+<p>Em S3 um objeto pode ter mais de uma classe e neste caso a procura por método segue a ordem de especificação.
+Procura-se, sequencialmente, métodos para todos as classes definidas.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="programação-orientada-a-objetos.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;Date&quot;</span>)</span>
+<span id="cb430-2"><a href="programação-orientada-a-objetos.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vec)</span>
+<span id="cb430-3"><a href="programação-orientada-a-objetos.html#cb430-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></span>
+<span id="cb430-4"><a href="programação-orientada-a-objetos.html#cb430-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;numeric&quot;</span>)</span>
+<span id="cb430-5"><a href="programação-orientada-a-objetos.html#cb430-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vec)</span>
+<span id="cb430-6"><a href="programação-orientada-a-objetos.html#cb430-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></span>
+<span id="cb430-7"><a href="programação-orientada-a-objetos.html#cb430-7" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(vec) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;Date&quot;</span>)</span>
+<span id="cb430-8"><a href="programação-orientada-a-objetos.html#cb430-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vec)</span>
+<span id="cb430-9"><a href="programação-orientada-a-objetos.html#cb430-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;1970-01-01&quot;</span></span></code></pre></div>
 <p>Tudo isso acontece por causa de um mecanismo chamado de <strong>despacho de
 métodos</strong> (<em>method dispatch</em>), que é responsável por identificar a
 classe do objeto e utilizar (“despachar”) a função método correta para
 aquela classe. Toda função genérica possui a mesma forma: uma chamada
 para a função <code>UseMethod()</code>, que especifica o nome genérico e o objeto a
 ser despachado. Por exemplo, veja o código fonte da função <code>mean()</code></p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="programação-orientada-a-objetos.html#cb429-1" aria-hidden="true" tabindex="-1"></a>mean</span>
-<span id="cb429-2"><a href="programação-orientada-a-objetos.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, ...) </span>
-<span id="cb429-3"><a href="programação-orientada-a-objetos.html#cb429-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb429-4"><a href="programação-orientada-a-objetos.html#cb429-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x55b0d340d208</span><span class="sc">&gt;</span></span>
-<span id="cb429-5"><a href="programação-orientada-a-objetos.html#cb429-5" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>base<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="programação-orientada-a-objetos.html#cb431-1" aria-hidden="true" tabindex="-1"></a>mean</span>
+<span id="cb431-2"><a href="programação-orientada-a-objetos.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, ...) </span>
+<span id="cb431-3"><a href="programação-orientada-a-objetos.html#cb431-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb431-4"><a href="programação-orientada-a-objetos.html#cb431-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x556d85b5d590</span><span class="sc">&gt;</span></span>
+<span id="cb431-5"><a href="programação-orientada-a-objetos.html#cb431-5" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>base<span class="sc">&gt;</span></span></code></pre></div>
 <p>Agora veja o código fonte da função <code>mean.default</code>, que é o método
 específico para vetores numéricos</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="programação-orientada-a-objetos.html#cb430-1" aria-hidden="true" tabindex="-1"></a>mean.default</span>
-<span id="cb430-2"><a href="programação-orientada-a-objetos.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, <span class="at">trim =</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, ...) </span>
-<span id="cb430-3"><a href="programação-orientada-a-objetos.html#cb430-3" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb430-4"><a href="programação-orientada-a-objetos.html#cb430-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.complex</span>(x) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.logical</span>(x)) {</span>
-<span id="cb430-5"><a href="programação-orientada-a-objetos.html#cb430-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">warning</span>(<span class="st">&quot;argument is not numeric or logical: returning NA&quot;</span>)</span>
-<span id="cb430-6"><a href="programação-orientada-a-objetos.html#cb430-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
-<span id="cb430-7"><a href="programação-orientada-a-objetos.html#cb430-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb430-8"><a href="programação-orientada-a-objetos.html#cb430-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">isTRUE</span>(na.rm)) </span>
-<span id="cb430-9"><a href="programação-orientada-a-objetos.html#cb430-9" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
-<span id="cb430-10"><a href="programação-orientada-a-objetos.html#cb430-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(trim) <span class="sc">||</span> <span class="fu">length</span>(trim) <span class="sc">!=</span> 1L) </span>
-<span id="cb430-11"><a href="programação-orientada-a-objetos.html#cb430-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;&#39;trim&#39; must be numeric of length one&quot;</span>)</span>
-<span id="cb430-12"><a href="programação-orientada-a-objetos.html#cb430-12" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb430-13"><a href="programação-orientada-a-objetos.html#cb430-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (trim <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> n) {</span>
-<span id="cb430-14"><a href="programação-orientada-a-objetos.html#cb430-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.complex</span>(x)) </span>
-<span id="cb430-15"><a href="programação-orientada-a-objetos.html#cb430-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stop</span>(<span class="st">&quot;trimmed means are not defined for complex data&quot;</span>)</span>
-<span id="cb430-16"><a href="programação-orientada-a-objetos.html#cb430-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">anyNA</span>(x)) </span>
-<span id="cb430-17"><a href="programação-orientada-a-objetos.html#cb430-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
-<span id="cb430-18"><a href="programação-orientada-a-objetos.html#cb430-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (trim <span class="sc">&gt;=</span> <span class="fl">0.5</span>) </span>
-<span id="cb430-19"><a href="programação-orientada-a-objetos.html#cb430-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(stats<span class="sc">::</span><span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb430-20"><a href="programação-orientada-a-objetos.html#cb430-20" aria-hidden="true" tabindex="-1"></a>        lo <span class="ot">&lt;-</span> <span class="fu">floor</span>(n <span class="sc">*</span> trim) <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb430-21"><a href="programação-orientada-a-objetos.html#cb430-21" aria-hidden="true" tabindex="-1"></a>        hi <span class="ot">&lt;-</span> n <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span> lo</span>
-<span id="cb430-22"><a href="programação-orientada-a-objetos.html#cb430-22" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> <span class="fu">sort.int</span>(x, <span class="at">partial =</span> <span class="fu">unique</span>(<span class="fu">c</span>(lo, hi)))[lo<span class="sc">:</span>hi]</span>
-<span id="cb430-23"><a href="programação-orientada-a-objetos.html#cb430-23" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb430-24"><a href="programação-orientada-a-objetos.html#cb430-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.Internal</span>(<span class="fu">mean</span>(x))</span>
-<span id="cb430-25"><a href="programação-orientada-a-objetos.html#cb430-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb430-26"><a href="programação-orientada-a-objetos.html#cb430-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x55b0d37d6f20</span><span class="sc">&gt;</span></span>
-<span id="cb430-27"><a href="programação-orientada-a-objetos.html#cb430-27" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>base<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="programação-orientada-a-objetos.html#cb432-1" aria-hidden="true" tabindex="-1"></a>mean.default</span>
+<span id="cb432-2"><a href="programação-orientada-a-objetos.html#cb432-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, <span class="at">trim =</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>, ...) </span>
+<span id="cb432-3"><a href="programação-orientada-a-objetos.html#cb432-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb432-4"><a href="programação-orientada-a-objetos.html#cb432-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.complex</span>(x) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">is.logical</span>(x)) {</span>
+<span id="cb432-5"><a href="programação-orientada-a-objetos.html#cb432-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">warning</span>(<span class="st">&quot;argument is not numeric or logical: returning NA&quot;</span>)</span>
+<span id="cb432-6"><a href="programação-orientada-a-objetos.html#cb432-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb432-7"><a href="programação-orientada-a-objetos.html#cb432-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb432-8"><a href="programação-orientada-a-objetos.html#cb432-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">isTRUE</span>(na.rm)) </span>
+<span id="cb432-9"><a href="programação-orientada-a-objetos.html#cb432-9" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
+<span id="cb432-10"><a href="programação-orientada-a-objetos.html#cb432-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(trim) <span class="sc">||</span> <span class="fu">length</span>(trim) <span class="sc">!=</span> 1L) </span>
+<span id="cb432-11"><a href="programação-orientada-a-objetos.html#cb432-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;&#39;trim&#39; must be numeric of length one&quot;</span>)</span>
+<span id="cb432-12"><a href="programação-orientada-a-objetos.html#cb432-12" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb432-13"><a href="programação-orientada-a-objetos.html#cb432-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (trim <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> n) {</span>
+<span id="cb432-14"><a href="programação-orientada-a-objetos.html#cb432-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.complex</span>(x)) </span>
+<span id="cb432-15"><a href="programação-orientada-a-objetos.html#cb432-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stop</span>(<span class="st">&quot;trimmed means are not defined for complex data&quot;</span>)</span>
+<span id="cb432-16"><a href="programação-orientada-a-objetos.html#cb432-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">anyNA</span>(x)) </span>
+<span id="cb432-17"><a href="programação-orientada-a-objetos.html#cb432-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb432-18"><a href="programação-orientada-a-objetos.html#cb432-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (trim <span class="sc">&gt;=</span> <span class="fl">0.5</span>) </span>
+<span id="cb432-19"><a href="programação-orientada-a-objetos.html#cb432-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(stats<span class="sc">::</span><span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb432-20"><a href="programação-orientada-a-objetos.html#cb432-20" aria-hidden="true" tabindex="-1"></a>        lo <span class="ot">&lt;-</span> <span class="fu">floor</span>(n <span class="sc">*</span> trim) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb432-21"><a href="programação-orientada-a-objetos.html#cb432-21" aria-hidden="true" tabindex="-1"></a>        hi <span class="ot">&lt;-</span> n <span class="sc">+</span> <span class="dv">1</span> <span class="sc">-</span> lo</span>
+<span id="cb432-22"><a href="programação-orientada-a-objetos.html#cb432-22" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> <span class="fu">sort.int</span>(x, <span class="at">partial =</span> <span class="fu">unique</span>(<span class="fu">c</span>(lo, hi)))[lo<span class="sc">:</span>hi]</span>
+<span id="cb432-23"><a href="programação-orientada-a-objetos.html#cb432-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb432-24"><a href="programação-orientada-a-objetos.html#cb432-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.Internal</span>(<span class="fu">mean</span>(x))</span>
+<span id="cb432-25"><a href="programação-orientada-a-objetos.html#cb432-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb432-26"><a href="programação-orientada-a-objetos.html#cb432-26" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x556d85f2b058</span><span class="sc">&gt;</span></span>
+<span id="cb432-27"><a href="programação-orientada-a-objetos.html#cb432-27" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>base<span class="sc">&gt;</span></span></code></pre></div>
 <p>Agora suponha que você ddeseja criar uma função que calcule a média para
 um objeto de uma classe diferente daquelas previamente definidas. Por
 exemplo, suponha que você quer que a função <code>mean()</code> retorne a média das
 linhas de uma matriz.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="programação-orientada-a-objetos.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb431-2"><a href="programação-orientada-a-objetos.html#cb431-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>), <span class="at">nrow =</span> <span class="dv">5</span>)</span>
-<span id="cb431-3"><a href="programação-orientada-a-objetos.html#cb431-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mat)</span>
-<span id="cb431-4"><a href="programação-orientada-a-objetos.html#cb431-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1004483</span></span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="programação-orientada-a-objetos.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb433-2"><a href="programação-orientada-a-objetos.html#cb433-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">50</span>), <span class="at">nrow =</span> <span class="dv">5</span>)</span>
+<span id="cb433-3"><a href="programação-orientada-a-objetos.html#cb433-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mat)</span>
+<span id="cb433-4"><a href="programação-orientada-a-objetos.html#cb433-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1004483</span></span></code></pre></div>
 <p>O resultado é a média de todos os elementos, e não de cada linha. Nesse
 caso, podemos definir nossa própria função método para fazer o cálculo
 que precisamos. Por exemplo:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="programação-orientada-a-objetos.html#cb432-1" aria-hidden="true" tabindex="-1"></a>mean.matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">rowMeans</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="programação-orientada-a-objetos.html#cb434-1" aria-hidden="true" tabindex="-1"></a>mean.matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">rowMeans</span>(x)</span></code></pre></div>
 <p>Uma função método é sempre definida dessa forma:
 <code>&lt;funçãogenérica&gt;.&lt;classe&gt;</code>. Agora podemos ver novamente os métodos
 disponíveis para a função <code>mean()</code></p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="programação-orientada-a-objetos.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(mean)</span>
-<span id="cb433-2"><a href="programação-orientada-a-objetos.html#cb433-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.matrix     </span>
-<span id="cb433-3"><a href="programação-orientada-a-objetos.html#cb433-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>] mean.POSIXct     mean.POSIXlt     mean.quosure<span class="sc">*</span>    mean.vctrs_vctr<span class="sc">*</span></span>
-<span id="cb433-4"><a href="programação-orientada-a-objetos.html#cb433-4" aria-hidden="true" tabindex="-1"></a>see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="programação-orientada-a-objetos.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(mean)</span>
+<span id="cb435-2"><a href="programação-orientada-a-objetos.html#cb435-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] mean.Date        mean.default     mean.difftime    mean.matrix     </span>
+<span id="cb435-3"><a href="programação-orientada-a-objetos.html#cb435-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>] mean.POSIXct     mean.POSIXlt     mean.quosure<span class="sc">*</span>    mean.vctrs_vctr<span class="sc">*</span></span>
+<span id="cb435-4"><a href="programação-orientada-a-objetos.html#cb435-4" aria-hidden="true" tabindex="-1"></a>see <span class="st">&#39;?methods&#39;</span> <span class="cf">for</span> accessing help and source code</span></code></pre></div>
 <p>e simplesmente aplicar a função genérica <code>mean()</code> à um objeto da classe
 <code>matrix</code> para obter o resultado que desejamos</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="programação-orientada-a-objetos.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat)</span>
-<span id="cb434-2"><a href="programação-orientada-a-objetos.html#cb434-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span> <span class="st">&quot;array&quot;</span> </span>
-<span id="cb434-3"><a href="programação-orientada-a-objetos.html#cb434-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mat)</span>
-<span id="cb434-4"><a href="programação-orientada-a-objetos.html#cb434-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">0.09544402</span>  <span class="fl">0.12852087</span>  <span class="fl">0.06229588</span> <span class="sc">-</span><span class="fl">0.01993810</span>  <span class="fl">0.23591872</span></span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="programação-orientada-a-objetos.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat)</span>
+<span id="cb436-2"><a href="programação-orientada-a-objetos.html#cb436-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;matrix&quot;</span> <span class="st">&quot;array&quot;</span> </span>
+<span id="cb436-3"><a href="programação-orientada-a-objetos.html#cb436-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mat)</span>
+<span id="cb436-4"><a href="programação-orientada-a-objetos.html#cb436-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">0.09544402</span>  <span class="fl">0.12852087</span>  <span class="fl">0.06229588</span> <span class="sc">-</span><span class="fl">0.01993810</span>  <span class="fl">0.23591872</span></span></code></pre></div>
 <p>Esse exemplo ilustra como é simples criar funções método para
 diferentes classes de objetos. Poderíamos fazer o mesmo para objetos das
 classes <code>data.frame</code> e <code>list</code></p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="programação-orientada-a-objetos.html#cb435-1" aria-hidden="true" tabindex="-1"></a>mean.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">sapply</span>(x, mean, ...)</span>
-<span id="cb435-2"><a href="programação-orientada-a-objetos.html#cb435-2" aria-hidden="true" tabindex="-1"></a>mean.list <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">lapply</span>(x, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="programação-orientada-a-objetos.html#cb437-1" aria-hidden="true" tabindex="-1"></a>mean.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">sapply</span>(x, mean, ...)</span>
+<span id="cb437-2"><a href="programação-orientada-a-objetos.html#cb437-2" aria-hidden="true" tabindex="-1"></a>mean.list <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">lapply</span>(x, mean)</span></code></pre></div>
 <p>Aplicando em objetos dessas classes específicas, obtemos:</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="programação-orientada-a-objetos.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data frame</span></span>
-<span id="cb436-2"><a href="programação-orientada-a-objetos.html#cb436-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb436-3"><a href="programação-orientada-a-objetos.html#cb436-3" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
-<span id="cb436-4"><a href="programação-orientada-a-objetos.html#cb436-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">c2 =</span> <span class="fu">runif</span>(<span class="dv">10</span>))</span>
-<span id="cb436-5"><a href="programação-orientada-a-objetos.html#cb436-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(da)</span>
-<span id="cb436-6"><a href="programação-orientada-a-objetos.html#cb436-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span></span>
-<span id="cb436-7"><a href="programação-orientada-a-objetos.html#cb436-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(da)</span>
-<span id="cb436-8"><a href="programação-orientada-a-objetos.html#cb436-8" aria-hidden="true" tabindex="-1"></a>       c1        c2 </span>
-<span id="cb436-9"><a href="programação-orientada-a-objetos.html#cb436-9" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1322028</span> <span class="fl">0.4183230</span> </span>
-<span id="cb436-10"><a href="programação-orientada-a-objetos.html#cb436-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Lista</span></span>
-<span id="cb436-11"><a href="programação-orientada-a-objetos.html#cb436-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb436-12"><a href="programação-orientada-a-objetos.html#cb436-12" aria-hidden="true" tabindex="-1"></a>dl <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">runif</span>(<span class="dv">50</span>))</span>
-<span id="cb436-13"><a href="programação-orientada-a-objetos.html#cb436-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dl)</span>
-<span id="cb436-14"><a href="programação-orientada-a-objetos.html#cb436-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></span>
-<span id="cb436-15"><a href="programação-orientada-a-objetos.html#cb436-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dl)</span>
-<span id="cb436-16"><a href="programação-orientada-a-objetos.html#cb436-16" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
-<span id="cb436-17"><a href="programação-orientada-a-objetos.html#cb436-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1322028</span></span>
-<span id="cb436-18"><a href="programação-orientada-a-objetos.html#cb436-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb436-19"><a href="programação-orientada-a-objetos.html#cb436-19" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
-<span id="cb436-20"><a href="programação-orientada-a-objetos.html#cb436-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.4946632</span></span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="programação-orientada-a-objetos.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Data frame</span></span>
+<span id="cb438-2"><a href="programação-orientada-a-objetos.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb438-3"><a href="programação-orientada-a-objetos.html#cb438-3" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb438-4"><a href="programação-orientada-a-objetos.html#cb438-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">c2 =</span> <span class="fu">runif</span>(<span class="dv">10</span>))</span>
+<span id="cb438-5"><a href="programação-orientada-a-objetos.html#cb438-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(da)</span>
+<span id="cb438-6"><a href="programação-orientada-a-objetos.html#cb438-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb438-7"><a href="programação-orientada-a-objetos.html#cb438-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(da)</span>
+<span id="cb438-8"><a href="programação-orientada-a-objetos.html#cb438-8" aria-hidden="true" tabindex="-1"></a>       c1        c2 </span>
+<span id="cb438-9"><a href="programação-orientada-a-objetos.html#cb438-9" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1322028</span> <span class="fl">0.4183230</span> </span>
+<span id="cb438-10"><a href="programação-orientada-a-objetos.html#cb438-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Lista</span></span>
+<span id="cb438-11"><a href="programação-orientada-a-objetos.html#cb438-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb438-12"><a href="programação-orientada-a-objetos.html#cb438-12" aria-hidden="true" tabindex="-1"></a>dl <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">runif</span>(<span class="dv">50</span>))</span>
+<span id="cb438-13"><a href="programação-orientada-a-objetos.html#cb438-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dl)</span>
+<span id="cb438-14"><a href="programação-orientada-a-objetos.html#cb438-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></span>
+<span id="cb438-15"><a href="programação-orientada-a-objetos.html#cb438-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dl)</span>
+<span id="cb438-16"><a href="programação-orientada-a-objetos.html#cb438-16" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb438-17"><a href="programação-orientada-a-objetos.html#cb438-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.1322028</span></span>
+<span id="cb438-18"><a href="programação-orientada-a-objetos.html#cb438-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb438-19"><a href="programação-orientada-a-objetos.html#cb438-19" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb438-20"><a href="programação-orientada-a-objetos.html#cb438-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.4946632</span></span></code></pre></div>
 <p>Obviamente esse processo todo é extremamente importante ao se criar
 novas funções no R. Podemos tanto criar uma função genérica (como a
 <code>mean()</code>) e diversos métodos para ela usando classes de objetos
