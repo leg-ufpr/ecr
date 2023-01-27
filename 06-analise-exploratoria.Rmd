@@ -24,10 +24,10 @@ e podem ser resumidas por tabelas, gráficos e/ou medidas de tendência central 
 
 ## O conjunto de dados `milsa`
 
-O livro "Estatística Básica" de W. O. Bussab e P. A. Morettin traz no
-segundo capítulo um conjunto de dados hipotético de atributos de 36
-funcionários da companhia "Milsa". Os dados estão reproduzidos na tabela
-abaixo. Consulte o livro para mais detalhes sobre este dados.
+O livro "Estatística Básica" dos Profs Wilton Bussab e Pedro Morettin [@bussab+morettin:2017] traz no
+segundo capítulo um conjunto de dados hipotético de atributos de 36 funcionários da companhia "Milsa". 
+Os dados estão reproduzidos na tabela a seguir. 
+Consulte o livro para mais detalhes sobre este dados.
 
 ```{r, echo=FALSE, results='asis'}
 url <- "http://www.leg.ufpr.br/~fernandomayer/data/milsa.csv"
@@ -40,8 +40,9 @@ Estes dados estão disponíveis em um arquivo `csv` no endereço
 
 O nosso objetivo é, através do R,
 
-- Entrar com os dados;
-- Fazer uma análise descritiva.
+- entrar com os dados;
+- fazer uma preparação dos dados;
+- fazer uma análise descritiva.
 
 Estes são dados no "estilo planilha", com variáveis de diferentes tipos:
 categóricas e numéricas (qualitativas e quantitativas). Portanto o
@@ -97,8 +98,19 @@ argumento `ordered` da função `factor()`
 milsa$Inst <- factor(milsa$Inst, ordered = TRUE)
 ```
 
-Note agora a modificação na classe dessa coluna, e a representação dos
-níveis:
+Caso as classes em ordem alfabética não estivessem na ordem desejada feriamos a definição mais detalhada com:]
+
+```{r}
+milsa$Inst <- factor(milsa$Inst,
+                     levels = c("1o Grau", "2o Grau", "Superior"),
+                     labels = c("1o Grau", "2o Grau", "Superior"),
+                                ordered = TRUE)
+```
+
+O argumento `levels` deve conter os valores que a variável assume na ordem desejada e `labels` são rótulos que serão usados para se referir a estes valores e que não necessáriamente precisam ter o mesmo nome que `levels` , mas precisam estar na ordem correta. 
+
+
+Note agora a modificação na classe dessa coluna, e a representação dos níveis:
 
 ```{r}
 class(milsa$Inst)
@@ -122,6 +134,12 @@ variáveis `Anos` e `Meses`:
 milsa$Idade <- milsa$Anos + milsa$Meses/12
 ```
 
+Aproveitamos este comando para ilustrar uma opção interessante: usar `with` para referenciar diretamente a variávelo que vai ser tratado pelo comando. Desta forma elimina-se a necessidade de digitar `milsa$` mais de uma vez.
+
+```{r}
+milsa$Idade <- with(milsa, Anos + Meses/12)
+```
+
 Os dois comandos acima (de modificação da classe de uma variável, e a
 criação de uma nova variável) poderiam ser facilmente executadas de uma
 única vez através do comando `transform()`
@@ -137,8 +155,8 @@ A seguir mostramos como fazer análises descritivas uni e bivariadas.
 Inspecione os comandos mostrados a seguir e os resultados por eles
 produzidos.  Sugerimos ainda que o leitor use o R para reproduzir os
 resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab &
-Morettin, relacionados com este exemplo. Veja os scripts do livro
-[aqui](https://rpubs.com/EstatBasica/Introd).
+Morettin, relacionados com este exemplo. Veja [aqui](https://rpubs.com/EstatBasica/Introd) 
+os scripts do livro.
 
 ## Análise univariada
 
@@ -168,10 +186,10 @@ variável é um fator. A seguir obtemos frequências absolutas e relativas
 
 ```{r}
 ## Frequência absoluta
-civil.tb <- table(milsa$Est.civil)
+civil.tb <- with(milsa, table(Est.civil))
 civil.tb
 ## Frequência relativa, calculando manualmente
-civil.tb/length(milsa$Est.civil)
+civil.tb/sum(civil.tb)
 ## Frequência relativa, com a função prop.table()
 prop.table(civil.tb)
 ```
@@ -181,7 +199,7 @@ variável. Os comandos `barplot()` e `pie()` usam o resultado da função
 `table()` para gerar os gráficos:
 
 ```{r, fig.show='hold'}
-par(mfrow = c(1,2))
+par(mfrow = c(1,2), mar=c(3,3,0.5,0.5))
 barplot(civil.tb)
 pie(civil.tb)
 par(mfrow = c(1,1))
@@ -207,7 +225,7 @@ As tabelas de frequências são obtidas de forma semelhante à mostrada
 anteriormente.
 ```{r}
 ## Frequência absoluta
-inst.tb <- table(milsa$Inst)
+inst.tb <- with(milsa, table(Inst))
 inst.tb
 ## Frequência relativa
 prop.table(inst.tb)
@@ -244,9 +262,9 @@ isso usamos o comando seguinte.
 ## Moda
 names(inst.tb)[which.max(inst.tb)]
 ## Mediana
-median(milsa$Inst) # só funciona para variáveis numéricas
-median(as.numeric(milsa$Inst)) # traz a mediana da codificação do nível
-levels(milsa$Inst)[median(as.numeric(milsa$Inst))] # valor correto
+with(milsa, median(Inst))             # só funciona para variáveis numéricas
+with(milsa, median(as.numeric(Inst))) # traz a mediana da codificação do nível
+with(milsa, levels(Inst)[median(as.numeric(Inst))]) # valor correto
 ```
 
 ### Variável quantitativa discreta
@@ -262,7 +280,7 @@ a soma das frequências das classes anteriores. Para isso usamos a função
 
 ```{r}
 ## Frequência absoluta
-filhos.tb <- table(milsa$Filhos)
+filhos.tb <- with(milsa, table(Filhos))
 filhos.tb
 ## Frequência relativa
 filhos.tbr <- prop.table(filhos.tb)
@@ -310,11 +328,11 @@ names(filhos.tb)[which.max(filhos.tb)]
 ## Mediana
 median(milsa$Filhos, na.rm = TRUE)
 ## Média
-mean(milsa$Filhos, na.rm = TRUE)
+with(milsa, mean(Filhos, na.rm = TRUE))
 ## Média aparada
-mean(milsa$Filhos, trim = 0.1, na.rm = TRUE)
+with(mean(Filhos, trim = 0.1, na.rm = TRUE))
 ## Quartis
-quantile(milsa$Filhos, na.rm = TRUE)
+with(milsa, quantile(Filhos, na.rm = TRUE))
 ```
 
 Passando agora para medidas de dispersão, vejamos como obter o máximo e
@@ -324,20 +342,20 @@ amplitude interquartílica.
 
 ```{r}
 ## Máximo e mínimo
-max(milsa$Filhos, na.rm = TRUE)
-min(milsa$Filhos, na.rm = TRUE)
+with(milsa, max(Filhos, na.rm = TRUE))
+with(milsa, min(Filhos, na.rm = TRUE))
 ## As duas informações juntas
-range(milsa$Filhos, na.rm = TRUE)
+with(milsa, range(Filhos, na.rm = TRUE))
 ## Amplitude é a diferença entre máximo e mínimo
-diff(range(milsa$Filhos, na.rm = TRUE))
+with(milsa, diff(range(Filhos, na.rm = TRUE)))
 ## Variância
-var(milsa$Filhos, na.rm = TRUE)
+with(milsa, var(Filhos, na.rm = TRUE))
 ## Desvio-padrão
-sd(milsa$Filhos, na.rm = TRUE)
+with(milsa, sd(Filhos, na.rm = TRUE))
 ## Coeficiente de variação
-sd(milsa$Filhos, na.rm = TRUE)/mean(milsa$Filhos, na.rm = TRUE)
+with(milsa, 100*sd(Filhos, na.rm = TRUE)/mean(Filhos, na.rm = TRUE))
 ## Quartis
-(filhos.qt <- quantile(milsa$Filhos, na.rm = TRUE))
+(filhos.qt <- with(milsa, quantile(Filhos, na.rm = TRUE)))
 ## Amplitude interquartílica
 filhos.qt[4] - filhos.qt[2]
 ```
@@ -346,7 +364,7 @@ Finalmente, podemos usar a função **genérica** `summary()` para resumir
 os dados de uma só vez
 
 ```{r}
-summary(milsa$Filhos)
+with(milsa, summary(Filhos))
 ```
 
 ### Variável quantitativa contínua
@@ -363,13 +381,13 @@ as frequências absolutas e relativas.
 
 ```{r}
 ## Máximo e mínimo
-range(milsa$Salario)
+with(milsa, range(Salario))
 ## Número de classes estimado, com base no critério de Sturges. Veja
 ## outras opções em ?nclass
-nclass.Sturges(milsa$Salario)
+with(milsa, nclass.Sturges(Salario))
 ## Criando as classes com a função cut(), usando os valores mínimos e
 ## máximos dados em range()
-cut(milsa$Salario, breaks = seq(4, 23.3, length.out = 8))
+with(milsa, cut(Salario, breaks = seq(4, 23.3, length.out = 8)))
 ```
 
 Note que uma das classes é `NA`. Isso ocorre pela definição das classes,
@@ -378,8 +396,8 @@ que por padrão é no formato `(a,b]`, ou seja, o intervalo é aberto em
 padrão usando o argumento `include.lowest = TRUE`,
 
 ```{r}
-cut(milsa$Salario, breaks = seq(4, 23.3, length.out = 8),
-    include.lowest = TRUE)
+with(milsa, cut(Salario, breaks = seq(4, 23.3, length.out = 8),
+    include.lowest = TRUE))
 ```
 
 E note que agora a primeira classe fica `[a,b]`, ou seja, fechada
@@ -401,8 +419,8 @@ maiores que o máximo. Abaixo, usamos essa abordagem e fazemos uma tabela
 com as frequências absolutas e relativas.
 
 ```{r}
-salario.cut <- cut(milsa$Salario,
-                   breaks = seq(3.5, 23.5, length.out = 8))
+with(milsa, salario.cut <- cut(Salario,
+                   breaks = seq(3.5, 23.5, length.out = 8)))
 salario.cut
 ## Tabela com as frequencias absolutas por classe
 salario.tb <- table(salario.cut)
@@ -417,16 +435,16 @@ contínuas: o histograma e o *box-plot*.
 Para fazer um histograma usamos a função `hist()`, por exemplo,
 
 ```{r}
-hist(milsa$Salario)
+with(milsa, hist(Salario))
 ```
 
 A função `hist()` possui vários argumentos para alterar o comportamento
 da saída do gráfico. Por exemplo, com `labels = TRUE` as frequências são
 mostradas acima de cada barra. Com `freq = FALSE`, o gráfico é feito com
-as frequências relativas.
+as frequências relativas. O título no alto do gráfico pode ser redefinido ou excluído usando o argumento `main`. A divisão das classes segue os mesmo padrões de função `cut()`. 
 
 ```{r}
-hist(milsa$Salario, freq = FALSE, labels = TRUE)
+with(milsa, hist(Salario, freq = FALSE, labels = TRUE, main=""))
 ```
 
 Por padrão, a função `hist()` calcula automaticamente o número de
@@ -440,7 +458,7 @@ dessa forma, recebendo apenas um valor com o número de classes (como
 sugestão).
 
 ```{r}
-hist(milsa$Salario, nclass = 15)
+with(milsa, hist(Salario, nclass = 15))
 ```
 
 Assim como na função `cut()`, os argumentos `include.lowest` e `right`
@@ -452,7 +470,7 @@ para construir o gráfico. Associando um histograma a um objeto, podemos
 ver o seu conteúdo:
 
 ```{r}
-salario.hist <- hist(milsa$Salario)
+salario.hist <- with(misc, hist(Salario))
 salario.hist
 ```
 
@@ -471,7 +489,7 @@ onde $IQR$ é o intervalo inter-quartil. As linhas vão até os valores
 máximo e mínimo que ainda se encontram dentro deste intervalo.
 
 ```{r}
-boxplot(milsa$Salario)
+with(milsa, boxplot(Salario))
 ```
 
 Existem também vários argumentos que permitem variações do *boxplot*,
@@ -480,11 +498,11 @@ dos grupos (`varwidth = TRUE`), e caixas "acinturadas" (*notched
 boxplot*) (`notch = TRUE`).
 
 ```{r}
-boxplot(milsa$Salario, varwidth = TRUE, notch = TRUE)
+with(milsa, boxplot(Salario, varwidth = TRUE, notch = TRUE))
 ```
 
 Ambas opções são úteis quando há mais de um grupo e a comparação entre
-os boxplots é facilitada.
+os *boxplots* é facilitada.
 
 Finalmente, podemos obter as medidas de posição e dispersão da mesma
 forma que para variáveis discretas. Veja alguns exemplos a seguir. Note
@@ -493,28 +511,28 @@ existem `NA`s nesta variável.
 
 ```{r}
 ## Mediana
-median(milsa$Salario)
+with(milsa, median(Salario))
 ## Média
-mean(milsa$Salario)
+with(milsa, mean(Salario))
 ## Média aparada
-mean(milsa$Salario, trim = 0.1)
+with(milsa, mean(Salario, trim = 0.1))
 ## Quartis
-quantile(milsa$Salario)
+with(milsa, quantile(Salario))
 ## Máximo e mínimo
-max(milsa$Salario)
-min(milsa$Salario)
+with(milsa, max(Salario))
+with(milsa, min(Salario))
 ## As duas informações juntas
-range(milsa$Salario)
+with(milsa, range(Salario))
 ## Amplitude é a diferença entre máximo e mínimo
-diff(range(milsa$Salario))
+with(milsa, diff(range(Salario)))
 ## Variância
-var(milsa$Salario)
+with(milsa, var(Salario))
 ## Desvio-padrão
-sd(milsa$Salario)
+with(milsa, sd(Salario))
 ## Coeficiente de variação
-sd(milsa$Salario)/mean(milsa$Salario)
+with(milsa, 100 * sd(Salario)/mean(Salario))
 ## Quartis
-salario.qt <- quantile(milsa$Salario)
+salario.qt <- with(milsa, quantile(Salario))
 ## Amplitude interquartílica
 salario.qt[4] - salario.qt[2]
 ```
@@ -543,8 +561,8 @@ confundimento**. Análises com variáveis de confundimento não serão
 discutidas neste ponto.
 
 > **Observação**: de agora em diante, como serão consideradas mais de
-> uma variável, usaremos a função `with()` para chamar a maioria das
-> funções.
+> uma variável, será ainda mais vantajoso usar a função `with()` para 
+> chamar a maioria das funções.
 
 ### Qualitativa *vs* qualitativa
 
@@ -619,12 +637,12 @@ mostrado no caso anterior.
 
 ```{r}
 ## Quartis de salario
-quantile(milsa$Salario)
+with(milsa, quantile(Salario))
 ## Classificação de acordo com os quartis
-salario.cut <- cut(milsa$Salario, breaks =  quantile(milsa$Salario),
-                   include.lowest = TRUE)
+salario.cut <- with(milsa, cut(Salario, breaks =  quantile(milsa$Salario),
+                               include.lowest = TRUE))
 ## Tabela de frequências absolutas
-inst.sal.tb <- table(milsa$Inst, salario.cut)
+inst.sal.tb <- with(milsa, table(Inst, salario.cut))
 inst.sal.tb
 prop.table(inst.sal.tb, margin = 1)
 ```
@@ -715,7 +733,7 @@ portanto fazemos o gráfico com idade no eixo X. Note que na função
 de fórmula (como visto anteriormente).
 
 ```{r, fig.keep='last'}
-plot(x = milsa$Idade, y = milsa$Salario)
+with(milsa, plot(x = Idade, y = Salario))
 plot(Salario ~ Idade, data = milsa)
 ```
 
