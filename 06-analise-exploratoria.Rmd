@@ -330,7 +330,7 @@ median(milsa$Filhos, na.rm = TRUE)
 ## Média
 with(milsa, mean(Filhos, na.rm = TRUE))
 ## Média aparada
-with(mean(Filhos, trim = 0.1, na.rm = TRUE))
+with(milsa, mean(Filhos, trim = 0.1, na.rm = TRUE))
 ## Quartis
 with(milsa, quantile(Filhos, na.rm = TRUE))
 ```
@@ -470,7 +470,7 @@ para construir o gráfico. Associando um histograma a um objeto, podemos
 ver o seu conteúdo:
 
 ```{r}
-salario.hist <- with(misc, hist(Salario))
+salario.hist <- with(milsa, hist(Salario))
 salario.hist
 ```
 
