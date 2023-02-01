@@ -25,8 +25,8 @@ e podem ser resumidas por tabelas, gráficos e/ou medidas de tendência central 
 ## O conjunto de dados `milsa`
 
 O livro "Estatística Básica" dos Profs Wilton Bussab e Pedro Morettin [@bussab+morettin:2017] traz no
-segundo capítulo um conjunto de dados hipotético de atributos de 36 funcionários da companhia "Milsa". 
-Os dados estão reproduzidos na tabela a seguir. 
+segundo capítulo um conjunto de dados hipotético de atributos de 36 funcionários da companhia "Milsa".
+Os dados estão reproduzidos na tabela a seguir.
 Consulte o livro para mais detalhes sobre este dados.
 
 ```{r, echo=FALSE, results='asis'}
@@ -107,7 +107,7 @@ milsa$Inst <- factor(milsa$Inst,
                                 ordered = TRUE)
 ```
 
-O argumento `levels` deve conter os valores que a variável assume na ordem desejada e `labels` são rótulos que serão usados para se referir a estes valores e que não necessáriamente precisam ter o mesmo nome que `levels` , mas precisam estar na ordem correta. 
+O argumento `levels` deve conter os valores que a variável assume na ordem desejada e `labels` são rótulos que serão usados para se referir a estes valores e que não necessáriamente precisam ter o mesmo nome que `levels` , mas precisam estar na ordem correta.
 
 
 Note agora a modificação na classe dessa coluna, e a representação dos níveis:
@@ -155,7 +155,7 @@ A seguir mostramos como fazer análises descritivas uni e bivariadas.
 Inspecione os comandos mostrados a seguir e os resultados por eles
 produzidos.  Sugerimos ainda que o leitor use o R para reproduzir os
 resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab &
-Morettin, relacionados com este exemplo. Veja [aqui](https://rpubs.com/EstatBasica/Introd) 
+Morettin, relacionados com este exemplo. Veja [aqui](https://rpubs.com/EstatBasica/Introd)
 os scripts do livro.
 
 ## Análise univariada
@@ -419,8 +419,8 @@ maiores que o máximo. Abaixo, usamos essa abordagem e fazemos uma tabela
 com as frequências absolutas e relativas.
 
 ```{r}
-with(milsa, salario.cut <- cut(Salario,
-                   breaks = seq(3.5, 23.5, length.out = 8)))
+salario.cut <- with(milsa,
+                    cut(Salario, breaks = seq(3.5, 23.5, length.out = 8)))
 salario.cut
 ## Tabela com as frequencias absolutas por classe
 salario.tb <- table(salario.cut)
@@ -441,7 +441,7 @@ with(milsa, hist(Salario))
 A função `hist()` possui vários argumentos para alterar o comportamento
 da saída do gráfico. Por exemplo, com `labels = TRUE` as frequências são
 mostradas acima de cada barra. Com `freq = FALSE`, o gráfico é feito com
-as frequências relativas. O título no alto do gráfico pode ser redefinido ou excluído usando o argumento `main`. A divisão das classes segue os mesmo padrões de função `cut()`. 
+as frequências relativas. O título no alto do gráfico pode ser redefinido ou excluído usando o argumento `main`. A divisão das classes segue os mesmo padrões de função `cut()`.
 
 ```{r}
 with(milsa, hist(Salario, freq = FALSE, labels = TRUE, main=""))
@@ -561,7 +561,7 @@ confundimento**. Análises com variáveis de confundimento não serão
 discutidas neste ponto.
 
 > **Observação**: de agora em diante, como serão consideradas mais de
-> uma variável, será ainda mais vantajoso usar a função `with()` para 
+> uma variável, será ainda mais vantajoso usar a função `with()` para
 > chamar a maioria das funções.
 
 ### Qualitativa *vs* qualitativa
