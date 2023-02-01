@@ -185,7 +185,7 @@ Departamento de Estatística (DEST)\\
 Universidade Federal do Paraná (UFPR)\\
 \strut \\
 2018-07-24\\
-Última atualização: 2023-01-16}
+Última atualização: 2023-02-01}
 
 \begin{document}
 \maketitle
@@ -227,7 +227,7 @@ Abaixo seguem as informações do ambiente em que o documento foi gerado
 pela última vez.
 
 \begin{verbatim}
-Monday, 16 January, 2023, 22:40
+Wednesday, 01 February, 2023, 21:05
 ----------------------------------------
 R version 4.2.2 (2022-10-31)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -5770,7 +5770,7 @@ reciclagem.
 \NormalTok{)}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.087}   \FloatTok{0.000}   \FloatTok{0.086} 
+  \FloatTok{0.076}   \FloatTok{0.000}   \FloatTok{0.076} 
 
 \DocumentationTok{\#\# Tempo de execução usando a regra da reciclagem}
 \NormalTok{st2 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(}
@@ -5778,14 +5778,14 @@ reciclagem.
 \NormalTok{)}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.003}   \FloatTok{0.000}   \FloatTok{0.003} 
+  \FloatTok{0.002}   \FloatTok{0.000}   \FloatTok{0.002} 
 \end{Highlighting}
 \end{Shaded}
 
 Olhando o resultado de \texttt{elapsed}, que é o tempo total de execução de uma
 função medido por \texttt{system.time()}, notamos que usando a regra da
 reciclagem, o cálculo é aproximadamente
-\(0.086/0.003 = 28.67\) vezes mais rápido.
+\(0.076/0.002 = 38\) vezes mais rápido.
 Claramente esse é só um exemplo de um cálculo muito simples. Mas em
 situações mais complexas, a diferença entre o tempo de execução das duas
 formas pode ser muito maior.
@@ -5820,7 +5820,7 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st1}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.089}   \FloatTok{0.000}   \FloatTok{0.089} 
+  \FloatTok{0.083}   \FloatTok{0.000}   \FloatTok{0.083} 
 
 \DocumentationTok{\#\# Cria um objeto de tamanho "zero" e vai "crescendo" esse vetor}
 \NormalTok{st2 }\OtherTok{\textless{}{-}} \FunctionTok{system.time}\NormalTok{(\{}
@@ -5831,13 +5831,13 @@ Veja este exemplo:
 \NormalTok{\})}
 \NormalTok{st2}
 \NormalTok{   user  system elapsed }
-  \FloatTok{0.391}   \FloatTok{0.032}   \FloatTok{0.423} 
+  \FloatTok{0.288}   \FloatTok{0.016}   \FloatTok{0.304} 
 \end{Highlighting}
 \end{Shaded}
 
 Essa simples diferença gera um aumento de tempo de execução da segunda
 forma em aproximadamente
-0.423/0.089 = 4.75 vezes. Isso acontece
+0.304/0.083 = 3.66 vezes. Isso acontece
 porque, da segunda forma, o vetor \texttt{out} precisa ter seu tamanho
 aumentado com um elemento a cada iteração. Para fazer isso, o R precisa
 encontrar um espaço na memória que possa armazenar o objeto maior. É
@@ -6127,10 +6127,10 @@ e podem ser resumidas por tabelas, gráficos e/ou medidas de tendência central 
 \hypertarget{o-conjunto-de-dados-milsa}{%
 \section{\texorpdfstring{O conjunto de dados \texttt{milsa}}{O conjunto de dados milsa}}\label{o-conjunto-de-dados-milsa}}
 
-O livro ``Estatística Básica'' de W. O. Bussab e P. A. Morettin traz no
-segundo capítulo um conjunto de dados hipotético de atributos de 36
-funcionários da companhia ``Milsa''. Os dados estão reproduzidos na tabela
-abaixo. Consulte o livro para mais detalhes sobre este dados.
+O livro ``Estatística Básica'' dos Profs Wilton Bussab e Pedro Morettin (\protect\hyperlink{ref-bussab+morettin:2017}{\textbf{bussab+morettin:2017?}}) traz no
+segundo capítulo um conjunto de dados hipotético de atributos de 36 funcionários da companhia ``Milsa''.
+Os dados estão reproduzidos na tabela a seguir.
+Consulte o livro para mais detalhes sobre este dados.
 
 \begin{tabular}{r|l|l|r|r|r|r|l}
 \hline
@@ -6218,9 +6218,11 @@ O nosso objetivo é, através do R,
 \begin{itemize}
 \tightlist
 \item
-  Entrar com os dados;
+  entrar com os dados;
 \item
-  Fazer uma análise descritiva.
+  fazer uma preparação dos dados;
+\item
+  fazer uma análise descritiva.
 \end{itemize}
 
 Estes são dados no ``estilo planilha'', com variáveis de diferentes tipos:
@@ -6310,8 +6312,20 @@ argumento \texttt{ordered} da função \texttt{factor()}
 \end{Highlighting}
 \end{Shaded}
 
-Note agora a modificação na classe dessa coluna, e a representação dos
-níveis:
+Caso as classes em ordem alfabética não estivessem na ordem desejada feriamos a definição mais detalhada com:{]}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{milsa}\SpecialCharTok{$}\NormalTok{Inst }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst,}
+                     \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1o Grau"}\NormalTok{, }\StringTok{"2o Grau"}\NormalTok{, }\StringTok{"Superior"}\NormalTok{),}
+                     \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1o Grau"}\NormalTok{, }\StringTok{"2o Grau"}\NormalTok{, }\StringTok{"Superior"}\NormalTok{),}
+                                \AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+O argumento \texttt{levels} deve conter os valores que a variável assume na ordem desejada e \texttt{labels} são rótulos que serão usados para se referir a estes valores e que não necessáriamente precisam ter o mesmo nome que \texttt{levels} , mas precisam estar na ordem correta.
+
+Note agora a modificação na classe dessa coluna, e a representação dos níveis:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6346,6 +6360,14 @@ variáveis \texttt{Anos} e \texttt{Meses}:
 \end{Highlighting}
 \end{Shaded}
 
+Aproveitamos este comando para ilustrar uma opção interessante: usar \texttt{with} para referenciar diretamente a variávelo que vai ser tratado pelo comando. Desta forma elimina-se a necessidade de digitar \texttt{milsa\$} mais de uma vez.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{milsa}\SpecialCharTok{$}\NormalTok{Idade }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, Anos }\SpecialCharTok{+}\NormalTok{ Meses}\SpecialCharTok{/}\DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Os dois comandos acima (de modificação da classe de uma variável, e a
 criação de uma nova variável) poderiam ser facilmente executadas de uma
 única vez através do comando \texttt{transform()}
@@ -6363,8 +6385,8 @@ A seguir mostramos como fazer análises descritivas uni e bivariadas.
 Inspecione os comandos mostrados a seguir e os resultados por eles
 produzidos. Sugerimos ainda que o leitor use o R para reproduzir os
 resultados mostrados no texto dos capítulos 1 a 3 do livro de Bussab \&
-Morettin, relacionados com este exemplo. Veja os scripts do livro
-\href{https://rpubs.com/EstatBasica/Introd}{aqui}.
+Morettin, relacionados com este exemplo. Veja \href{https://rpubs.com/EstatBasica/Introd}{aqui}
+os scripts do livro.
 
 \hypertarget{anuxe1lise-univariada}{%
 \section{Análise univariada}\label{anuxe1lise-univariada}}
@@ -6402,19 +6424,19 @@ variável é um fator. A seguir obtemos frequências absolutas e relativas
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Frequência absoluta}
-\NormalTok{civil.tb }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Est.civil)}
+\NormalTok{civil.tb }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{table}\NormalTok{(Est.civil))}
 \NormalTok{civil.tb}
-
+\NormalTok{Est.civil}
 \NormalTok{  casado solteiro }
       \DecValTok{20}       \DecValTok{16} 
 \DocumentationTok{\#\# Frequência relativa, calculando manualmente}
-\NormalTok{civil.tb}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Est.civil)}
-
+\NormalTok{civil.tb}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(civil.tb)}
+\NormalTok{Est.civil}
 \NormalTok{   casado  solteiro }
 \FloatTok{0.5555556} \FloatTok{0.4444444} 
 \DocumentationTok{\#\# Frequência relativa, com a função prop.table()}
 \FunctionTok{prop.table}\NormalTok{(civil.tb)}
-
+\NormalTok{Est.civil}
 \NormalTok{   casado  solteiro }
 \FloatTok{0.5555556} \FloatTok{0.4444444} 
 \end{Highlighting}
@@ -6426,14 +6448,14 @@ variável. Os comandos \texttt{barplot()} e \texttt{pie()} usam o resultado da f
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{))}
 \FunctionTok{barplot}\NormalTok{(civil.tb)}
 \FunctionTok{pie}\NormalTok{(civil.tb)}
 \FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-293-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-295-1} \end{center}
 
 A \emph{moda} de qualquer variável aleatória é definida como o valor mais
 frequente encontrado na amostra. No R não há uma função pronta para
@@ -6461,14 +6483,14 @@ anteriormente.
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Frequência absoluta}
-\NormalTok{inst.tb }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst)}
+\NormalTok{inst.tb }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{table}\NormalTok{(Inst))}
 \NormalTok{inst.tb}
-
+\NormalTok{Inst}
 \NormalTok{ 1o Grau  2o Grau Superior }
       \DecValTok{12}       \DecValTok{18}        \DecValTok{6} 
 \DocumentationTok{\#\# Frequência relativa}
 \FunctionTok{prop.table}\NormalTok{(inst.tb)}
-
+\NormalTok{Inst}
 \NormalTok{  1o Grau   2o Grau  Superior }
 \FloatTok{0.3333333} \FloatTok{0.5000000} \FloatTok{0.1666667} 
 \end{Highlighting}
@@ -6484,7 +6506,7 @@ de barras conforme mostrado abaixo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-296-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-298-1} \end{center}
 
 Em alguns casos podemos querer mostrar o gráfico de barras com as barras
 classificadas da menor para a maior, ou vice-versa, independente da
@@ -6502,7 +6524,7 @@ os valores da tabela e fazer o gráfico
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-297-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-299-1} \end{center}
 
 Para uma variável ordinal, além da moda podemos também calcular outras
 medidas, tais como a mediana conforme exemplificado a seguir. Note que
@@ -6515,11 +6537,11 @@ isso usamos o comando seguinte.
 \FunctionTok{names}\NormalTok{(inst.tb)[}\FunctionTok{which.max}\NormalTok{(inst.tb)]}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2o Grau"}
 \DocumentationTok{\#\# Mediana}
-\FunctionTok{median}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst) }\CommentTok{\# só funciona para variáveis numéricas}
-\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{median.default}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst)}\SpecialCharTok{:}\NormalTok{ need numeric data}
-\FunctionTok{median}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst)) }\CommentTok{\# traz a mediana da codificação do nível}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{median}\NormalTok{(Inst))             }\CommentTok{\# só funciona para variáveis numéricas}
+\NormalTok{Error }\ControlFlowTok{in} \FunctionTok{median.default}\NormalTok{(Inst)}\SpecialCharTok{:}\NormalTok{ need numeric data}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{median}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(Inst))) }\CommentTok{\# traz a mediana da codificação do nível}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
-\FunctionTok{levels}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst)[}\FunctionTok{median}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst))] }\CommentTok{\# valor correto}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{levels}\NormalTok{(Inst)[}\FunctionTok{median}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(Inst))]) }\CommentTok{\# valor correto}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"2o Grau"}
 \end{Highlighting}
 \end{Shaded}
@@ -6539,15 +6561,15 @@ a soma das frequências das classes anteriores. Para isso usamos a função
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Frequência absoluta}
-\NormalTok{filhos.tb }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos)}
+\NormalTok{filhos.tb }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{table}\NormalTok{(Filhos))}
 \NormalTok{filhos.tb}
-
+\NormalTok{Filhos}
 \DecValTok{0} \DecValTok{1} \DecValTok{2} \DecValTok{3} \DecValTok{5} 
 \DecValTok{4} \DecValTok{5} \DecValTok{7} \DecValTok{3} \DecValTok{1} 
 \DocumentationTok{\#\# Frequência relativa}
 \NormalTok{filhos.tbr }\OtherTok{\textless{}{-}} \FunctionTok{prop.table}\NormalTok{(filhos.tb)}
 \NormalTok{filhos.tbr}
-
+\NormalTok{Filhos}
    \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{3}    \DecValTok{5} 
 \FloatTok{0.20} \FloatTok{0.25} \FloatTok{0.35} \FloatTok{0.15} \FloatTok{0.05} 
 \DocumentationTok{\#\# Frequência acumulada}
@@ -6569,7 +6591,7 @@ função \texttt{table()}, o gráfico adequado já é selecionado:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-300-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-302-1} \end{center}
 
 Outra possibilidade seria fazer gráficos de frequências relativas e de
 frequências acumuladas conforme mostrado na
@@ -6585,7 +6607,7 @@ frequências acumuladas conforme mostrado na
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-301-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-303-1} \end{center}
 
 Sendo a variável numérica há uma maior diversidade de medidas
 estatísticas que podem ser calculadas.
@@ -6607,13 +6629,13 @@ os quartis, incluido o mínimo e o máximo.
 \FunctionTok{median}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{2}
 \DocumentationTok{\#\# Média}
-\FunctionTok{mean}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{mean}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.65}
 \DocumentationTok{\#\# Média aparada}
-\FunctionTok{mean}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{trim =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{mean}\NormalTok{(Filhos, }\AttributeTok{trim =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.5625}
 \DocumentationTok{\#\# Quartis}
-\FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{quantile}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
   \DecValTok{0}\SpecialCharTok{\%  25\%}  \DecValTok{50}\SpecialCharTok{\%  75\%} \DecValTok{100}\NormalTok{\% }
    \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{2}    \DecValTok{5} 
 \end{Highlighting}
@@ -6627,27 +6649,27 @@ amplitude interquartílica.
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Máximo e mínimo}
-\FunctionTok{max}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{max}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
-\FunctionTok{min}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{min}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{0}
 \DocumentationTok{\#\# As duas informações juntas}
-\FunctionTok{range}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{range}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{0} \DecValTok{5}
 \DocumentationTok{\#\# Amplitude é a diferença entre máximo e mínimo}
-\FunctionTok{diff}\NormalTok{(}\FunctionTok{range}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{diff}\NormalTok{(}\FunctionTok{range}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
 \DocumentationTok{\#\# Variância}
-\FunctionTok{var}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{var}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.607895}
 \DocumentationTok{\#\# Desvio{-}padrão}
-\FunctionTok{sd}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{sd}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{1.268028}
 \DocumentationTok{\#\# Coeficiente de variação}
-\FunctionTok{sd}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.7685018}
+\FunctionTok{with}\NormalTok{(milsa, }\DecValTok{100}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{76.85018}
 \DocumentationTok{\#\# Quartis}
-\NormalTok{(filhos.qt }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{(filhos.qt }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{quantile}\NormalTok{(Filhos, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)))}
   \DecValTok{0}\SpecialCharTok{\%  25\%}  \DecValTok{50}\SpecialCharTok{\%  75\%} \DecValTok{100}\NormalTok{\% }
    \DecValTok{0}    \DecValTok{1}    \DecValTok{2}    \DecValTok{2}    \DecValTok{5} 
 \DocumentationTok{\#\# Amplitude interquartílica}
@@ -6662,7 +6684,7 @@ os dados de uma só vez
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Filhos)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{summary}\NormalTok{(Filhos))}
 \NormalTok{   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA}\StringTok{\textquotesingle{}s }
 \StringTok{   0.00    1.00    2.00    1.65    2.00    5.00      16 }
 \end{Highlighting}
@@ -6684,15 +6706,15 @@ as frequências absolutas e relativas.
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Máximo e mínimo}
-\FunctionTok{range}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{range}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{]  }\FloatTok{4.0} \FloatTok{23.3}
 \DocumentationTok{\#\# Número de classes estimado, com base no critério de Sturges. Veja}
 \DocumentationTok{\#\# outras opções em ?nclass}
-\FunctionTok{nclass.Sturges}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{nclass.Sturges}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{7}
 \DocumentationTok{\#\# Criando as classes com a função cut(), usando os valores mínimos e}
 \DocumentationTok{\#\# máximos dados em range()}
-\FunctionTok{cut}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{8}\NormalTok{))}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{cut}\NormalTok{(Salario, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{8}\NormalTok{)))}
 \NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{\textless{}}\ConstantTok{NA}\SpecialCharTok{\textgreater{}}\NormalTok{        (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    (}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
 \NormalTok{ [}\DecValTok{7}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
 \NormalTok{[}\DecValTok{13}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
@@ -6710,8 +6732,8 @@ padrão usando o argumento \texttt{include.lowest\ =\ TRUE},
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{cut}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{8}\NormalTok{),}
-    \AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{cut}\NormalTok{(Salario, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{23.3}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{8}\NormalTok{),}
+    \AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{ [}\DecValTok{1}\NormalTok{] [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]    [}\DecValTok{4}\NormalTok{,}\FloatTok{6.76}\NormalTok{]   }
 \NormalTok{ [}\DecValTok{7}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{]}
 \NormalTok{[}\DecValTok{13}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{6.76}\NormalTok{,}\FloatTok{9.51}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{] (}\FloatTok{9.51}\NormalTok{,}\FloatTok{12.3}\NormalTok{]}
@@ -6747,8 +6769,8 @@ com as frequências absolutas e relativas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{salario.cut }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario,}
-                   \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{3.5}\NormalTok{, }\FloatTok{23.5}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{8}\NormalTok{))}
+\NormalTok{salario.cut }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa,}
+                    \FunctionTok{cut}\NormalTok{(Salario, }\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{3.5}\NormalTok{, }\FloatTok{23.5}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{8}\NormalTok{)))}
 \NormalTok{salario.cut}
 \NormalTok{ [}\DecValTok{1}\NormalTok{] (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{3.5}\NormalTok{,}\FloatTok{6.36}\NormalTok{]  (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
 \NormalTok{ [}\DecValTok{7}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{] (}\FloatTok{6.36}\NormalTok{,}\FloatTok{9.21}\NormalTok{]}
@@ -6782,24 +6804,24 @@ Para fazer um histograma usamos a função \texttt{hist()}, por exemplo,
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{hist}\NormalTok{(Salario))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-308-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-310-1} \end{center}
 
 A função \texttt{hist()} possui vários argumentos para alterar o comportamento
 da saída do gráfico. Por exemplo, com \texttt{labels\ =\ TRUE} as frequências são
 mostradas acima de cada barra. Com \texttt{freq\ =\ FALSE}, o gráfico é feito com
-as frequências relativas.
+as frequências relativas. O título no alto do gráfico pode ser redefinido ou excluído usando o argumento \texttt{main}. A divisão das classes segue os mesmo padrões de função \texttt{cut()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{labels =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{hist}\NormalTok{(Salario, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{labels =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main=}\StringTok{""}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-309-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-311-1} \end{center}
 
 Por padrão, a função \texttt{hist()} calcula automaticamente o número de
 classes e os valores limites de cada classe. No entanto, isto pode ser
@@ -6813,11 +6835,11 @@ sugestão).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{nclass =} \DecValTok{15}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{hist}\NormalTok{(Salario, }\AttributeTok{nclass =} \DecValTok{15}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-310-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-312-1} \end{center}
 
 Assim como na função \texttt{cut()}, os argumentos \texttt{include.lowest} e \texttt{right}
 são utilizados para controlar a borda das classes.
@@ -6829,11 +6851,11 @@ ver o seu conteúdo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{salario.hist }\OtherTok{\textless{}{-}} \FunctionTok{hist}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\NormalTok{salario.hist }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{hist}\NormalTok{(Salario))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-311-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-313-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6852,7 +6874,7 @@ ver o seu conteúdo:
 \NormalTok{ [}\DecValTok{1}\NormalTok{]  }\DecValTok{5}  \DecValTok{7}  \DecValTok{9} \DecValTok{11} \DecValTok{13} \DecValTok{15} \DecValTok{17} \DecValTok{19} \DecValTok{21} \DecValTok{23}
 
 \SpecialCharTok{$}\NormalTok{xname}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"milsa$Salario"}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"Salario"}
 
 \SpecialCharTok{$}\NormalTok{equidist}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\ConstantTok{TRUE}
@@ -6883,11 +6905,11 @@ seguinte forma:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{boxplot}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{boxplot}\NormalTok{(Salario))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-312-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-314-1} \end{center}
 
 Existem também vários argumentos que permitem variações do \emph{boxplot},
 tais como caixas com tamanho proporcional aos tamanhos
@@ -6896,14 +6918,14 @@ boxplot}) (\texttt{notch\ =\ TRUE}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{boxplot}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{varwidth =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{boxplot}\NormalTok{(Salario, }\AttributeTok{varwidth =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-313-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-315-1} \end{center}
 
 Ambas opções são úteis quando há mais de um grupo e a comparação entre
-os boxplots é facilitada.
+os \emph{boxplots} é facilitada.
 
 Finalmente, podemos obter as medidas de posição e dispersão da mesma
 forma que para variáveis discretas. Veja alguns exemplos a seguir. Note
@@ -6913,40 +6935,40 @@ existem \texttt{NA}s nesta variável.
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Mediana}
-\FunctionTok{median}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{median}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{10.165}
 \DocumentationTok{\#\# Média}
-\FunctionTok{mean}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{mean}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{11.12222}
 \DocumentationTok{\#\# Média aparada}
-\FunctionTok{mean}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{trim =} \FloatTok{0.1}\NormalTok{)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{mean}\NormalTok{(Salario, }\AttributeTok{trim =} \FloatTok{0.1}\NormalTok{))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{10.838}
 \DocumentationTok{\#\# Quartis}
-\FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{quantile}\NormalTok{(Salario))}
      \DecValTok{0}\SpecialCharTok{\%     25\%}     \DecValTok{50}\SpecialCharTok{\%     75\%}    \DecValTok{100}\NormalTok{\% }
  \FloatTok{4.0000}  \FloatTok{7.5525} \FloatTok{10.1650} \FloatTok{14.0600} \FloatTok{23.3000} 
 \DocumentationTok{\#\# Máximo e mínimo}
-\FunctionTok{max}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{max}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{23.3}
-\FunctionTok{min}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{min}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{4}
 \DocumentationTok{\#\# As duas informações juntas}
-\FunctionTok{range}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{range}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{]  }\FloatTok{4.0} \FloatTok{23.3}
 \DocumentationTok{\#\# Amplitude é a diferença entre máximo e mínimo}
-\FunctionTok{diff}\NormalTok{(}\FunctionTok{range}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario))}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{diff}\NormalTok{(}\FunctionTok{range}\NormalTok{(Salario)))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{19.3}
 \DocumentationTok{\#\# Variância}
-\FunctionTok{var}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{var}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{21.04477}
 \DocumentationTok{\#\# Desvio{-}padrão}
-\FunctionTok{sd}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{sd}\NormalTok{(Salario))}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{4.587458}
 \DocumentationTok{\#\# Coeficiente de variação}
-\FunctionTok{sd}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
-\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{0.4124587}
+\FunctionTok{with}\NormalTok{(milsa, }\DecValTok{100} \SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(Salario)}\SpecialCharTok{/}\FunctionTok{mean}\NormalTok{(Salario))}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{41.24587}
 \DocumentationTok{\#\# Quartis}
-\NormalTok{salario.qt }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\NormalTok{salario.qt }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{quantile}\NormalTok{(Salario))}
 \DocumentationTok{\#\# Amplitude interquartílica}
 \NormalTok{salario.qt[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ salario.qt[}\DecValTok{2}\NormalTok{]}
    \DecValTok{75}\NormalTok{\% }
@@ -6991,8 +7013,8 @@ Salienta-se ainda que:
 
 \begin{quote}
 \textbf{Observação}: de agora em diante, como serão consideradas mais de
-uma variável, usaremos a função \texttt{with()} para chamar a maioria das
-funções.
+uma variável, será ainda mais vantajoso usar a função \texttt{with()} para
+chamar a maioria das funções.
 \end{quote}
 
 \hypertarget{qualitativa-vs-qualitativa}{%
@@ -7080,7 +7102,7 @@ com frequências relativas.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-317-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-319-1} \end{center}
 
 \hypertarget{qualitativa-vs-quantitativa}{%
 \subsection{\texorpdfstring{Qualitativa \emph{vs} quantitativa}{Qualitativa vs quantitativa}}\label{qualitativa-vs-quantitativa}}
@@ -7100,23 +7122,23 @@ mostrado no caso anterior.
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# Quartis de salario}
-\FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{quantile}\NormalTok{(Salario))}
      \DecValTok{0}\SpecialCharTok{\%     25\%}     \DecValTok{50}\SpecialCharTok{\%     75\%}    \DecValTok{100}\NormalTok{\% }
  \FloatTok{4.0000}  \FloatTok{7.5525} \FloatTok{10.1650} \FloatTok{14.0600} \FloatTok{23.3000} 
 \DocumentationTok{\#\# Classificação de acordo com os quartis}
-\NormalTok{salario.cut }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario, }\AttributeTok{breaks =}  \FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario),}
-                   \AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{salario.cut }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{cut}\NormalTok{(Salario, }\AttributeTok{breaks =}  \FunctionTok{quantile}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Salario),}
+                               \AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{))}
 \DocumentationTok{\#\# Tabela de frequências absolutas}
-\NormalTok{inst.sal.tb }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(milsa}\SpecialCharTok{$}\NormalTok{Inst, salario.cut)}
+\NormalTok{inst.sal.tb }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{table}\NormalTok{(Inst, salario.cut))}
 \NormalTok{inst.sal.tb}
 \NormalTok{          salario.cut}
-\NormalTok{           [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{Inst       [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
 \NormalTok{  1o Grau         }\DecValTok{7}           \DecValTok{3}           \DecValTok{2}           \DecValTok{0}
 \NormalTok{  2o Grau         }\DecValTok{2}           \DecValTok{6}           \DecValTok{5}           \DecValTok{5}
 \NormalTok{  Superior        }\DecValTok{0}           \DecValTok{0}           \DecValTok{2}           \DecValTok{4}
 \FunctionTok{prop.table}\NormalTok{(inst.sal.tb, }\AttributeTok{margin =} \DecValTok{1}\NormalTok{)}
 \NormalTok{          salario.cut}
-\NormalTok{            [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
+\NormalTok{Inst        [}\DecValTok{4}\NormalTok{,}\FloatTok{7.55}\NormalTok{] (}\FloatTok{7.55}\NormalTok{,}\FloatTok{10.2}\NormalTok{] (}\FloatTok{10.2}\NormalTok{,}\FloatTok{14.1}\NormalTok{] (}\FloatTok{14.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{]}
 \NormalTok{  1o Grau  }\FloatTok{0.5833333}   \FloatTok{0.2500000}   \FloatTok{0.1666667}   \FloatTok{0.0000000}
 \NormalTok{  2o Grau  }\FloatTok{0.1111111}   \FloatTok{0.3333333}   \FloatTok{0.2777778}   \FloatTok{0.2777778}
 \NormalTok{  Superior }\FloatTok{0.0000000}   \FloatTok{0.0000000}   \FloatTok{0.3333333}   \FloatTok{0.6666667}
@@ -7140,7 +7162,7 @@ ou descrita, (\(\sim\)) pela variável \texttt{Inst}.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-319-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-321-1} \end{center}
 
 Poderíamos ainda fazer gráficos com a variável \texttt{Salario} agrupada
 em classes, e neste caso os gráficos seriam como no caso anterior com
@@ -7266,12 +7288,12 @@ de fórmula (como visto anteriormente).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ milsa}\SpecialCharTok{$}\NormalTok{Idade, }\AttributeTok{y =}\NormalTok{ milsa}\SpecialCharTok{$}\NormalTok{Salario)}
+\FunctionTok{with}\NormalTok{(milsa, }\FunctionTok{plot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Idade, }\AttributeTok{y =}\NormalTok{ Salario))}
 \FunctionTok{plot}\NormalTok{(Salario }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Idade, }\AttributeTok{data =}\NormalTok{ milsa)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-323-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-325-1} \end{center}
 
 Para quantificar a associação entre variáveis deste tipo, usamos o
 coeficiente de correlação. A função \texttt{cor()} possui opção para três
@@ -7413,7 +7435,7 @@ limite tentando vários valores, conforme mostrado nos comandos abaixo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-327-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-329-1} \end{center}
 
 Para verificar que a integral da função é igual a 1 podemos usar a
 função \texttt{integrate()}, que efetua integração numérica. A função recebe
@@ -7462,7 +7484,7 @@ usamos a função \texttt{text()} com as coordenadas de posição do texto.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-329-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-331-1} \end{center}
 
 Oara obter as probabilidades pedidas usamos a função \texttt{integrate()}.
 
@@ -7526,7 +7548,7 @@ conforme mostrado abaixo:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-332-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-334-1} \end{center}
 
 Agora vamos responder às questões levantadas. Na questão (a) pede-se a
 probabilidade de que sejam vendidos mais que 150 kg (1,5 centenas de
@@ -7542,7 +7564,7 @@ abaixo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-333-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-335-1} \end{center}
 
 A integral pode então ser resolvida numericamente com o comando:
 
@@ -7847,7 +7869,7 @@ concentra 99,73\% da massa de probabilidade da distribuição normal.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-342-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-344-1} \end{center}
 
 \begin{quote}
 VEJA a página de ajuda da função \texttt{plot.function()} para entender os
@@ -7873,7 +7895,7 @@ unimos os pontos \((x,f(x))\) em um gráfico e \((x,F(x))\) no outro.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-343-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-345-1} \end{center}
 
 Note que, alternativamente, os mesmos gráficos poderiam ser produzidos
 com os comandos a seguir, onde fazemos usa da função \texttt{plot.function()}.
@@ -7887,7 +7909,7 @@ com os comandos a seguir, onde fazemos usa da função \texttt{plot.function()}.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-344-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-346-1} \end{center}
 
 Comandos usuais do R podem ser usados para modificar a aparência dos
 gráficos. Por exemplo, podemos incluir títulos e mudar texto dos eixos
@@ -7902,7 +7924,7 @@ conforme mostrado abaixo.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-345-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-347-1} \end{center}
 
 Os demais comandos abaixo mostram como colocar diferentes densidades em um
 mesmo gráfico, usando o argumento \texttt{add\ =\ TRUE}.
@@ -7917,7 +7939,7 @@ mesmo gráfico, usando o argumento \texttt{add\ =\ TRUE}.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-346-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-348-1} \end{center}
 
 \hypertarget{distribuiuxe7uxe3o-binomial}{%
 \subsection{Distribuição Binomial}\label{distribuiuxe7uxe3o-binomial}}
@@ -7976,7 +7998,7 @@ Os gráficos das funções de probabilidade e distribuição são mostrados abai
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-349-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-351-1} \end{center}
 
 As probabilidades pedidas são obtidas com os comandos a seguir.
 
@@ -8071,7 +8093,7 @@ valores do parâmetro \(\mu\).
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-351-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-353-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -8349,7 +8371,7 @@ definindo o perímetro desta área.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-364-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-366-1} \end{center}
 
 Para calcular a área pedida sem usar a função \texttt{pnorm()} podemos usar a
 função de integração numérica. Note que esta função, diferentemente da
@@ -8598,7 +8620,7 @@ Como dito a função de verossimilhança nos fornece uma medida de compatibilida
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-374-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-376-1} \end{center}
 
 Na prática é mais comum trabalhar com o log da verossimilhança por conveniência computacional. Isso leva a chamada função de log-verossimilhança, cujo gráfico é apresentado abaixo para o nosso exemplo
 
@@ -8613,7 +8635,7 @@ Na prática é mais comum trabalhar com o log da verossimilhança por conveniên
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-375-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-377-1} \end{center}
 
 Não é dificil mostrar usando ferramentas padrões de cálculo diferencial que o ponto de máximo ocorre em \(\hat{p} = y/n\), ou seja, na proporção amostral de eleitores do candidato X.
 
@@ -8627,7 +8649,7 @@ O próximo objetivo é dizer o quanto acreditamos neste valor. Note que uma vez 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-376-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-378-1} \end{center}
 
 Entretanto, onde fazer tal corte não é uma tarefa simples e explicar como e por que fazer isso em detalhes está fora do escopo deste material. Esta é a ideia por traz da definição do que se chama popularmente de intervalo de confiança.
 Uma forma alternativa é fazer um gráfico da função de verossimilhança relativa, definida como a verossimilhança divida pela verossimilhança no ponto de máximo,
@@ -8648,11 +8670,11 @@ Neste caso um intervalo pode ser obtido por definir algum valor entre \(0\) e \(
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-377-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-379-1} \end{center}
 
 Por fim, o último objetivo da inferência consiste em decidir se um determinado valor hipotético para \(p\) é ou não compatível com a amostra observada. Note que o valor mais compatível é o máximo da verossimilhança, assim para decidir se um valor é ou não compatível com a amostra, basta verificar se ele está perto ou longe do valor que tem maior compatibilidade. Esta ideia é o que esta por traz do que se chama de teste de hipóteses e é ilustrada abaixo.
 
-\begin{center}\includegraphics{figures/unnamed-chunk-378-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-380-1} \end{center}
 
 \hypertarget{estimauxe7uxe3o-pontual-e-intervalos-de-confianuxe7a}{%
 \section{Estimação pontual e intervalos de confiança}\label{estimauxe7uxe3o-pontual-e-intervalos-de-confianuxe7a}}
@@ -8683,7 +8705,7 @@ Importante salientar que \(Y\) é uma variável aleatória cuja observações s�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-380-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-382-1} \end{center}
 
 A Figura acima mostra que mesmo o verdadeiro valor de \(p\) sendo 0.5 existe uma probabilidade razoável de observarmos \(\hat{p} = 0.4\) e \(\hat{p} = 0.6\) em uma amostra de tamanho 10. Porém, quando nos distanciamos de \(0.5\) a probabilidade de observar \(\hat{p}\) mais extremos como 0.1 ou 0.9 é pequena. No geral, a incerteza com relação ao valor de \(p\) é grande. Para diminuir tal incerteza precisamos ganhar mais informações sobre o valor de \(p\) e para isso precisamos de mais amostras.
 
@@ -8710,7 +8732,7 @@ A Figura abaixo mostra o efeito do tamanho da amostra sobre a distribuição amo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-381-1} \end{center}
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-383-1} \end{center}
 
 Note que quanto maior a amostra a distribuição amostral fica mais concentrada ao redor do verdadeiro valor de \(p\). Isso é decorrente da Lei dos grandes números. Além disso, note que a distribuição é muito parecida com a distribuição normal, um resultado conhecido como Teorema Central do Limite.
 
@@ -8739,7 +8761,7 @@ A Figura abaixo ilustra esta ideia.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-382-1} \end{center}
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-384-1} \end{center}
 
 Temos um procedimento bastante simples para obter os limites do intervalo de confiança, porém tal procedimento depende de sermos capazes de realizar o experimento um número grande de vezes. Na prática só temos uma amostra coletada e baseado apenas nesta amostra precisamos inferir sobre \(p\). É neste ponto que entra o fato de \(\hat{p}\) ser uma variável aleatória. Este fato permite que exploremos sua distribuição mesmo sem realizar um grande número de experimentos.
 
@@ -8797,7 +8819,7 @@ Vamos fazer uma ilustração computacional deste importante resultado.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-383-1} \end{center}
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-385-1} \end{center}
 
 Agora usando resultados convencionais da distribuição normal podemos encontrar os limites do intervalo de confiança. Para o caso binomial o intervalo é dado por
 \[\hat{p} \pm Z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}},\]
@@ -8842,7 +8864,7 @@ O código abaixo ilustra computacionalmente tal interpretação.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-384-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-386-1} \end{center}
 
 \textbf{Exemplo 1} No caso do candidato X suponha que é de interesse apresentar uma estimativa intervalar para a proporção de eleitores de X na população. Assumindo que a estimativa amostral foi de \(0,60\) (seis sucessos em dez ensaios) o intervalo com \(95\%\) de confiança é dado por
 \[
@@ -8924,7 +8946,7 @@ Para construir um teste de hipótese usamos novamente o pensamento frequentista 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-387-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-389-1} \end{center}
 
 Veja que mesmo a hipótese nula sendo verdadeira existe uma probabilidade
 não desprezível de observarmos \(8\) eleitores de X em \(10\) eleitores.
@@ -8950,7 +8972,7 @@ grande. Para diminuir a incerteza precisamos de mais informação o que consegui
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-388-1} \end{center}
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-390-1} \end{center}
 
 O procedimento é bastante intuivo e parecido com a construção de intervalos de confiança. No entanto, no caso de teste de hipóteses precisamos tomar uma decisão. Sendo assim, a ideia é construir uma região de valores para os quais você aceitará (ou não rejeitará) a hipótese nula esta região é chamada de região de aceitação ou não rejeição de \(H_0\).
 A Figura abaixo ilustra a construção da região de rejeição
@@ -8975,7 +8997,7 @@ A Figura abaixo ilustra a construção da região de rejeição
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-389-1} \end{center}
+\begin{center}\includegraphics[width=0.99\linewidth]{figures/unnamed-chunk-391-1} \end{center}
 
 Novamente em termos práticos não temos como repetir o experimento um número grande vezes. Assim, recorremos novamente ao Teorema Central do Limite e estabelecemos a região critica de forma aproximada usando a aproximação Gaussiana. No caso Bernoulli, este procedimento resulta na seguinte estatística de teste
 
@@ -9013,7 +9035,7 @@ Vamos fazer um gráfico da região de aceitação e rejeição e verificar onde 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-390-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-392-1} \end{center}
 
 Lembre-se que a proporção amostral foi de \(0.6\) em \(10\) entrevistas.
 Assim, vemos claramente que não temos evidências para rejeitar \(H_0\).
@@ -9077,7 +9099,7 @@ Ilustrando a região crítica
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{figures/unnamed-chunk-392-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-394-1} \end{center}
 
 Como o valor observado da média amostral pertence a região de aceitação de \(H_0\), aceitamos a hipóteses \(H_0\) ao nível de significância de \(5\%\). Em outras palavras, concluímos que o tempo de reação das cobais submetidas à substância não é alterado.
 
@@ -10192,12 +10214,12 @@ documento \texttt{.Rmd} em um documento com sintaxe Markdown \texttt{.md}
 \NormalTok{  ordinary text without R code}
 
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{............................                                          }\SpecialCharTok{|}  \DecValTok{40}\NormalTok{\%}
-\NormalTok{label}\SpecialCharTok{:}\NormalTok{ unnamed}\SpecialCharTok{{-}}\NormalTok{chunk}\DecValTok{{-}453}
+\NormalTok{label}\SpecialCharTok{:}\NormalTok{ unnamed}\SpecialCharTok{{-}}\NormalTok{chunk}\DecValTok{{-}455}
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{..........................................                            }\SpecialCharTok{|}  \DecValTok{60}\NormalTok{\%}
 \NormalTok{  ordinary text without R code}
 
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{........................................................              }\SpecialCharTok{|}  \DecValTok{80}\NormalTok{\%}
-\NormalTok{label}\SpecialCharTok{:}\NormalTok{ unnamed}\SpecialCharTok{{-}}\NormalTok{chunk}\DecValTok{{-}454}
+\NormalTok{label}\SpecialCharTok{:}\NormalTok{ unnamed}\SpecialCharTok{{-}}\NormalTok{chunk}\DecValTok{{-}456}
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{......................................................................}\SpecialCharTok{|} \DecValTok{100}\NormalTok{\%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\SpecialCharTok{:}\NormalTok{ exemplos}\SpecialCharTok{/}\NormalTok{Exemplo1}\SpecialCharTok{{-}}\NormalTok{knitr.md}
@@ -10258,7 +10280,7 @@ hist(x)
 
 
 
-\begin{center}\includegraphics{figures/unnamed-chunk-454-1} \end{center}
+\begin{center}\includegraphics{figures/unnamed-chunk-456-1} \end{center}
 
 A média de $X$ é 0.029.
 \end{verbatim}
@@ -10355,7 +10377,7 @@ formato de saída, que por padrão é HTML.
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{......................................................................}\SpecialCharTok{|} \DecValTok{100}\NormalTok{\%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\SpecialCharTok{:}\NormalTok{ Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.knit.md}
-\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{RtmphnZ6sQ}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str210435ce49b2.html }
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{RtmpjaV2gA}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str7eaf26218da2.html }
 
 \NormalTok{Output created}\SpecialCharTok{:}\NormalTok{ Exemplo2}\SpecialCharTok{{-}}\NormalTok{knitr.html}
 \end{Highlighting}
@@ -10417,7 +10439,7 @@ renderizar esse aquivo, usamos:
   \SpecialCharTok{|}                                                                              \ErrorTok{|}\NormalTok{......................................................................}\SpecialCharTok{|} \DecValTok{100}\NormalTok{\%}
 \NormalTok{   inline R code fragments}
 \NormalTok{output file}\SpecialCharTok{:}\NormalTok{ Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.knit.md}
-\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{RtmphnZ6sQ}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str210438653a48.html }
+\SpecialCharTok{/}\NormalTok{usr}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{pandoc }\SpecialCharTok{+}\NormalTok{RTS }\SpecialCharTok{{-}}\NormalTok{K512m }\SpecialCharTok{{-}}\NormalTok{RTS Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.knit.md }\SpecialCharTok{{-}{-}}\NormalTok{to html4 }\SpecialCharTok{{-}{-}}\NormalTok{from markdown}\SpecialCharTok{+}\NormalTok{autolink\_bare\_uris}\SpecialCharTok{+}\NormalTok{tex\_math\_single\_backslash }\SpecialCharTok{{-}{-}}\NormalTok{output Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.html }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{pagebreak.lua }\SpecialCharTok{{-}{-}}\NormalTok{lua}\SpecialCharTok{{-}}\NormalTok{filter }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{lua}\SpecialCharTok{/}\NormalTok{latex}\SpecialCharTok{{-}}\NormalTok{div.lua }\SpecialCharTok{{-}{-}}\NormalTok{embed}\SpecialCharTok{{-}}\NormalTok{resources }\SpecialCharTok{{-}{-}}\NormalTok{standalone }\SpecialCharTok{{-}{-}}\NormalTok{variable bs3}\OtherTok{=}\ConstantTok{TRUE} \SpecialCharTok{{-}{-}}\NormalTok{section}\SpecialCharTok{{-}}\NormalTok{divs }\SpecialCharTok{{-}{-}}\NormalTok{template }\SpecialCharTok{/}\NormalTok{home}\SpecialCharTok{/}\NormalTok{runner}\SpecialCharTok{/}\NormalTok{.local}\SpecialCharTok{/}\NormalTok{share}\SpecialCharTok{/}\NormalTok{renv}\SpecialCharTok{/}\NormalTok{cache}\SpecialCharTok{/}\NormalTok{v5}\SpecialCharTok{/}\NormalTok{R}\FloatTok{{-}4.2}\SpecialCharTok{/}\NormalTok{x86\_64}\SpecialCharTok{{-}}\NormalTok{pc}\SpecialCharTok{{-}}\NormalTok{linux}\SpecialCharTok{{-}}\NormalTok{gnu}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\FloatTok{2.17}\SpecialCharTok{/}\NormalTok{e97c8be593e010f93520e8215c0f9189}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{/}\NormalTok{rmd}\SpecialCharTok{/}\NormalTok{h}\SpecialCharTok{/}\NormalTok{default.html }\SpecialCharTok{{-}{-}}\NormalTok{no}\SpecialCharTok{{-}}\NormalTok{highlight }\SpecialCharTok{{-}{-}}\NormalTok{variable highlightjs}\OtherTok{=}\DecValTok{1} \SpecialCharTok{{-}{-}}\NormalTok{variable theme}\OtherTok{=}\NormalTok{bootstrap }\SpecialCharTok{{-}{-}}\NormalTok{mathjax }\SpecialCharTok{{-}{-}}\NormalTok{variable }\StringTok{\textquotesingle{}mathjax{-}url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX{-}AMS{-}MML\_HTMLorMML\textquotesingle{}} \SpecialCharTok{{-}{-}}\NormalTok{include}\SpecialCharTok{{-}}\ControlFlowTok{in}\SpecialCharTok{{-}}\NormalTok{header }\SpecialCharTok{/}\NormalTok{tmp}\SpecialCharTok{/}\NormalTok{RtmpjaV2gA}\SpecialCharTok{/}\NormalTok{rmarkdown}\SpecialCharTok{{-}}\NormalTok{str7eaf3f8fa8ed.html }
 
 \NormalTok{Output created}\SpecialCharTok{:}\NormalTok{ Exemplo1}\SpecialCharTok{{-}}\NormalTok{yaml.html}
 \end{Highlighting}
@@ -10870,7 +10892,7 @@ ser despachado. Por exemplo, veja o código fonte da função \texttt{mean()}
 \NormalTok{mean}
 \ControlFlowTok{function}\NormalTok{ (x, ...) }
 \FunctionTok{UseMethod}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
-\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x55d67228e558}\SpecialCharTok{\textgreater{}}
+\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x55b631ed6590}\SpecialCharTok{\textgreater{}}
 \ErrorTok{\textless{}}\NormalTok{environment}\SpecialCharTok{:}\NormalTok{ namespace}\SpecialCharTok{:}\NormalTok{base}\SpecialCharTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
@@ -10905,7 +10927,7 @@ específico para vetores numéricos
 \NormalTok{    \}}
     \FunctionTok{.Internal}\NormalTok{(}\FunctionTok{mean}\NormalTok{(x))}
 \NormalTok{\}}
-\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x55d67265c058}\SpecialCharTok{\textgreater{}}
+\SpecialCharTok{\textless{}}\NormalTok{bytecode}\SpecialCharTok{:} \DecValTok{0x55b6322a4058}\SpecialCharTok{\textgreater{}}
 \ErrorTok{\textless{}}\NormalTok{environment}\SpecialCharTok{:}\NormalTok{ namespace}\SpecialCharTok{:}\NormalTok{base}\SpecialCharTok{\textgreater{}}
 \end{Highlighting}
 \end{Shaded}
